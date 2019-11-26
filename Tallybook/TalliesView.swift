@@ -13,21 +13,36 @@ struct TalliesView: View {
     
     @EnvironmentObject var userData: UserData
     
+    @State var selection: Int? = nil
+    
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont.systemRounded(style: .largeTitle, weight: .bold)]
-        
         UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.systemRounded(style: .headline, weight: .semibold)]
+        
+        UITableView.appearance().separatorStyle = .none
     }
     
     
     var body: some View {
         NavigationView {
-            
-            List {
-                ForEach(userData.tallies, id: \.kind) { tally in
+            // Need to specify selection in order for text field to be editable
+            List(selection: $selection) {
+                ForEach(userData.tallies, id: \.id) { tally in
                     TallyBlock(tally: tally)
+                    .listRowInsets(EdgeInsets())
+                    
                 }
+                
+                .onMove { source, destination in
+                    self.userData.tallies.move(fromOffsets: source, toOffset: destination)
+                }
+                .onDelete { sources in
+                    self.userData.tallies.remove(atOffsets: sources)
+                }
+                
+                
             }
+                
                 
             .navigationBarItems(leading: EditButton(),
             trailing:
@@ -39,17 +54,11 @@ struct TalliesView: View {
             .navigationBarTitle(Text("Tallies"))
         }
         .accentColor(.green)
-        
-        
     }
+    
+
 }
 
-struct TalliesView_Previews: PreviewProvider {
-    static var previews: some View {
-        TalliesView()
-        .environmentObject(UserData())
-    }
-}
 
 
 extension UIFont {
@@ -61,3 +70,16 @@ extension UIFont {
         return font
     }
 }
+
+
+
+
+
+struct TalliesView_Previews: PreviewProvider {
+    static var previews: some View {
+        TalliesView()
+            .environmentObject(UserData.testData())
+    }
+}
+
+
