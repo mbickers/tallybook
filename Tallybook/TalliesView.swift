@@ -12,9 +12,7 @@ import UIKit
 struct TalliesView: View {
     
     @EnvironmentObject var userData: UserData
-    
-    @State var selection: Int? = nil
-    
+        
     init() {
         UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont.systemRounded(style: .largeTitle, weight: .bold)]
         UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.systemRounded(style: .headline, weight: .semibold)]
@@ -25,11 +23,11 @@ struct TalliesView: View {
     
     var body: some View {
         NavigationView {
-            // Need to specify selection in order for text field to be editable
-            List(selection: $selection) {
+
+            List() {
                 ForEach(userData.tallies, id: \.id) { tally in
                     TallyBlock(tally: tally)
-                    .listRowInsets(EdgeInsets())
+                    .listRowInsets(EdgeInsets(top: 6, leading: 10, bottom: 6, trailing: 10))
                     
                 }
                 
@@ -41,8 +39,10 @@ struct TalliesView: View {
                 }
                 
                 
-            }
                 
+                
+            }
+            
                 
             .navigationBarItems(leading: EditButton(),
             trailing:
@@ -52,8 +52,10 @@ struct TalliesView: View {
             })
                 
             .navigationBarTitle(Text("Tallies"))
+            
         }
-        .accentColor(.green)
+        .accentColor(Color(UIColor.systemGreen))
+        
     }
     
 
@@ -79,6 +81,7 @@ struct TalliesView_Previews: PreviewProvider {
     static var previews: some View {
         TalliesView()
             .environmentObject(UserData.testData())
+        .environment(\.colorScheme, .dark)
     }
 }
 

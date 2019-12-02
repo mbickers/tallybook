@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Tallybook
+//@testable import Tallybook
 
 class TallybookTests: XCTestCase {
 

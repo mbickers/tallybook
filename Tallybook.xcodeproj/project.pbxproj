@@ -7,14 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A561E5AD238C80C7000767E4 /* TalliesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561E5AC238C80C7000767E4 /* TalliesView.swift */; };
+		A561E5AF238C86DE000767E4 /* TallyViewDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561E5AE238C86DE000767E4 /* TallyViewDetail.swift */; };
+		A5A278982395AF18008572E9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A278972395AF18008572E9 /* CustomTextField.swift */; };
+		A5B63C85238C9C61004390E6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B63C84238C9C61004390E6 /* Model.swift */; };
 		A5CA797C238AF46A00263480 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA797B238AF46A00263480 /* AppDelegate.swift */; };
 		A5CA797E238AF46A00263480 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA797D238AF46A00263480 /* SceneDelegate.swift */; };
-		A5CA7980238AF46A00263480 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA797F238AF46A00263480 /* ContentView.swift */; };
 		A5CA7982238AF46C00263480 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CA7981238AF46C00263480 /* Assets.xcassets */; };
 		A5CA7985238AF46C00263480 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CA7984238AF46C00263480 /* Preview Assets.xcassets */; };
 		A5CA7988238AF46C00263480 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CA7986238AF46C00263480 /* LaunchScreen.storyboard */; };
 		A5CA7993238AF46C00263480 /* TallybookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA7992238AF46C00263480 /* TallybookTests.swift */; };
 		A5CA799E238AF46C00263480 /* TallybookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA799D238AF46C00263480 /* TallybookUITests.swift */; };
+		A5CA79AC238AF53F00263480 /* TallyBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA79AB238AF53F00263480 /* TallyBlock.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,10 +39,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A561E5AC238C80C7000767E4 /* TalliesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalliesView.swift; sourceTree = "<group>"; };
+		A561E5AE238C86DE000767E4 /* TallyViewDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyViewDetail.swift; sourceTree = "<group>"; };
+		A5A278972395AF18008572E9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		A5B63C84238C9C61004390E6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		A5CA7978238AF46A00263480 /* Tallybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tallybook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CA797B238AF46A00263480 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CA797D238AF46A00263480 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		A5CA797F238AF46A00263480 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A5CA7981238AF46C00263480 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A5CA7984238AF46C00263480 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A5CA7987238AF46C00263480 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +56,7 @@
 		A5CA7999238AF46C00263480 /* TallybookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TallybookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CA799D238AF46C00263480 /* TallybookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallybookUITests.swift; sourceTree = "<group>"; };
 		A5CA799F238AF46C00263480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5CA79AB238AF53F00263480 /* TallyBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyBlock.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +109,11 @@
 			children = (
 				A5CA797B238AF46A00263480 /* AppDelegate.swift */,
 				A5CA797D238AF46A00263480 /* SceneDelegate.swift */,
-				A5CA797F238AF46A00263480 /* ContentView.swift */,
+				A561E5AC238C80C7000767E4 /* TalliesView.swift */,
+				A5CA79AB238AF53F00263480 /* TallyBlock.swift */,
+				A5A278972395AF18008572E9 /* CustomTextField.swift */,
+				A561E5AE238C86DE000767E4 /* TallyViewDetail.swift */,
+				A5B63C84238C9C61004390E6 /* Model.swift */,
 				A5CA7981238AF46C00263480 /* Assets.xcassets */,
 				A5CA7986238AF46C00263480 /* LaunchScreen.storyboard */,
 				A5CA7989238AF46C00263480 /* Info.plist */,
@@ -267,9 +279,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5A278982395AF18008572E9 /* CustomTextField.swift in Sources */,
+				A5B63C85238C9C61004390E6 /* Model.swift in Sources */,
+				A5CA79AC238AF53F00263480 /* TallyBlock.swift in Sources */,
 				A5CA797C238AF46A00263480 /* AppDelegate.swift in Sources */,
 				A5CA797E238AF46A00263480 /* SceneDelegate.swift in Sources */,
-				A5CA7980238AF46A00263480 /* ContentView.swift in Sources */,
+				A561E5AF238C86DE000767E4 /* TallyViewDetail.swift in Sources */,
+				A561E5AD238C80C7000767E4 /* TalliesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

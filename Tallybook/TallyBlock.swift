@@ -13,19 +13,17 @@ struct TallyBlock: View {
     @EnvironmentObject var userData: UserData
     var tally: Tally
     
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+    
     
     @State var fieldValue: String = ""
+    var green = Color(UIColor.systemGreen)
     
-    
-    var index: Int {
-        userData.tallies.firstIndex(where: { $0.kind == tally.kind })!
-    }
     
     var body: some View {
         
                 
         HStack {
-
 
             VStack(alignment: .leading) {
                 
@@ -43,22 +41,20 @@ struct TallyBlock: View {
                 
                 if tally.kind == .counter {
                     HStack {
-                        VStack {
-                            Image(systemName: "plus.circle.fill")
-                            .resizable()
-                            .frame(width: 38, height: 38)
-                            .foregroundColor(.green)
-                            
-                            Image(systemName: "minus.circle.fill")
-                            .resizable()
-                            .frame(width: 38, height: 38)
-                            .foregroundColor(.red)
-                        }
+                        Image(systemName: "plus.circle")
+                        .resizable()
+                        .frame(width: 84, height: 84)
+                            .foregroundColor(green)
+                            .padding(.top, -5)
                         .padding(.top, -20)
                         
-                        Text("23")
+                        TextField("0", text: $fieldValue)
                         .font(.system(size: 99, weight: .regular, design: .rounded))
+                            .keyboardType(.numberPad)
+
                             .padding(.top, -25)
+                        .zIndex(200)
+                        
                     }
                     
                     
@@ -67,7 +63,10 @@ struct TallyBlock: View {
                 if tally.kind == .amount {
                     TextField("Tap", text: $fieldValue)
                         .font(.system(size: 99, weight: .regular, design: .rounded))
+                        .keyboardType(.numberPad)
+
                         .padding(.top, -25)
+
                         .zIndex(200)
                 }
                 
@@ -78,32 +77,34 @@ struct TallyBlock: View {
             .scaledToFill()
             
             
-            if tally.kind != .amount {
-                Spacer()
-            }
+            Spacer()
+
             
             
             
             ZStack {
                 Rectangle()
                     .frame(width: 62)
-                    .foregroundColor(.green)
+                    .foregroundColor(green)
                 
                 Image(systemName: "chevron.right.circle.fill")
                     .resizable()
                     .frame(width: 50, height: 50)
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(UIColor.tertiarySystemBackground))
             }
         .zIndex(-200)
             
 
         }
         .frame(height: 150)
-        .background(Color.white)
+        .background(Color(UIColor.tertiarySystemBackground))
         .cornerRadius(20)
-        .shadow(color: .gray, radius: 3, x: 0, y: 2)
-        .padding(.vertical, 7)
-        .padding(.horizontal, 10)
+        // Clumsy way to only have shadows if not dark mode
+        .shadow(color: .gray, radius: colorScheme != .dark ? 3 : 0, x: 0, y: colorScheme != .dark ? 2 : 0)
+
+        
+        
+    
     }
 }
 
@@ -112,6 +113,15 @@ struct TallyBlock_Previews: PreviewProvider {
         
         TallyBlock(tally: UserData.testData().tallies[2])
             .environmentObject(UserData.testData())
+        
+//        Group {
+//            TalliesView()
+//                .environmentObject(UserData.testData())
+//            .environment(\.colorScheme, .dark)
+//            
+//            TalliesView()
+//            .environmentObject(UserData.testData())
+//        }
         
         
     }
