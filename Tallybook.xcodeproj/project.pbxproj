@@ -86,6 +86,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5A2789B23960696008572E9 /* User Interface */ = {
+			isa = PBXGroup;
+			children = (
+				A561E5AC238C80C7000767E4 /* TalliesView.swift */,
+				A5CA79AB238AF53F00263480 /* TallyBlock.swift */,
+				A5A278992395C868008572E9 /* Helpers.swift */,
+				A5A278972395AF18008572E9 /* CustomTextField.swift */,
+				A561E5AE238C86DE000767E4 /* TallyViewDetail.swift */,
+			);
+			name = "User Interface";
+			sourceTree = "<group>";
+		};
 		A5CA796F238AF46A00263480 = {
 			isa = PBXGroup;
 			children = (
@@ -111,14 +123,10 @@
 			children = (
 				A5CA797B238AF46A00263480 /* AppDelegate.swift */,
 				A5CA797D238AF46A00263480 /* SceneDelegate.swift */,
-				A561E5AC238C80C7000767E4 /* TalliesView.swift */,
-				A5CA79AB238AF53F00263480 /* TallyBlock.swift */,
-				A5A278992395C868008572E9 /* Helpers.swift */,
-				A5A278972395AF18008572E9 /* CustomTextField.swift */,
-				A561E5AE238C86DE000767E4 /* TallyViewDetail.swift */,
+				A5A2789B23960696008572E9 /* User Interface */,
 				A5B63C84238C9C61004390E6 /* Model.swift */,
-				A5CA7981238AF46C00263480 /* Assets.xcassets */,
 				A5CA7986238AF46C00263480 /* LaunchScreen.storyboard */,
+				A5CA7981238AF46C00263480 /* Assets.xcassets */,
 				A5CA7989238AF46C00263480 /* Info.plist */,
 				A5CA7983238AF46C00263480 /* Preview Content */,
 			);

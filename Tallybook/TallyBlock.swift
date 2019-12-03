@@ -22,14 +22,17 @@ struct TallyBlock: View {
     // Here for convenience
     var green = Color(UIColor.systemGreen)
     
+
     
     var body: some View {
         
-        HStack {
+        HStack(alignment: .top) {
             VStack(alignment: .leading) {
                 
                 Text(tally.name)
                     .font(.system(size: 24, weight: .regular, design: .rounded))
+                    .padding(.top, 7)
+                    .layoutPriority(10)
                 
                 
                 // Interactive component of each tally block
@@ -40,6 +43,7 @@ struct TallyBlock: View {
                         .frame(width: 84, height: 84)
                         .foregroundColor(Color(UIColor.tertiaryLabel))
                         .padding(.top, -5)
+                        
                 }
                 
                 if tally.kind == .counter {
@@ -48,15 +52,14 @@ struct TallyBlock: View {
                             .resizable()
                             .frame(width: 84, height: 84)
                             .foregroundColor(green)
-                            .padding(.top, -5)
-                            .padding(.top, -20)
+                            //.padding(.top, -25)
                         
                         CustomNumericTextField(placeholder: "0", text: $fieldValue)
-                            .padding(.top, -25)
+                            //.padding(.top, -25)
                             // Setting max width to .infinity actually stops the text field from expanding and taking up too much space
                             .frame(minWidth: 0, maxWidth: .infinity)
-                        
                     }
+                        .padding(.top, -25)
                 }
                 
                 if tally.kind == .amount {
@@ -66,7 +69,7 @@ struct TallyBlock: View {
                         .frame(minWidth: 0, maxWidth: .infinity)
                 }
             }
-                .padding(.leading, 10)
+                .padding(.leading, 12)
             
             
             Spacer()
@@ -83,28 +86,32 @@ struct TallyBlock: View {
                     .foregroundColor(Color(UIColor.tertiarySystemBackground))
             }
         }
-            .frame(height: 150)
+            .frame(height: 145)
             .background(Color(UIColor.tertiarySystemBackground))
             .cornerRadius(20)
             // Only have shadows when dark mode is off
-            .shadow(color: .gray, radius: colorScheme != .dark ? 3 : 0, x: 0, y: colorScheme != .dark ? 2 : 0)        
+            .shadow(color: .gray, radius: colorScheme != .dark ? 3 : 0, x: 0, y: colorScheme != .dark ? 2 : 0)
     }
 }
 
 struct TallyBlock_Previews: PreviewProvider {
     static var previews: some View {
-        
-//        TallyBlock(tally: UserData.testData().tallies[1])
-//            .environmentObject(UserData.testData())
-        
-        Group {
-            TalliesView()
+        List {
+            TallyBlock(tally: UserData.testData().tallies[0])
                 .environmentObject(UserData.testData())
-                .environment(\.colorScheme, .dark)
-            
-            TalliesView()
+            TallyBlock(tally: UserData.testData().tallies[1])
                 .environmentObject(UserData.testData())
         }
+        
+//        
+//        Group {
+//            TalliesView()
+//                .environmentObject(UserData.testData())
+//                .environment(\.colorScheme, .dark)
+//            
+//            TalliesView()
+//                .environmentObject(UserData.testData())
+//        }
         
         
     }
