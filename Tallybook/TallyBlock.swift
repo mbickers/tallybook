@@ -9,14 +9,11 @@
 import SwiftUI
 
 struct TallyBlock: View {
-    var tally: Tally
+    
+    @ObservedObject var tally: Tally
     
     // Used to tell whether dark mode is on
     @Environment(\.colorScheme) var colorScheme: ColorScheme    
-    
-    // State variable used for both counter and amount tallies
-    @State private var fieldValue: String?
-    @State private var checkValue: Bool = false
     
     // Here for convenience
     var green = Color(UIColor.systemGreen)
@@ -38,14 +35,13 @@ struct TallyBlock: View {
                 
                 if tally.kind == .completion {
                     Button(action: {
-                        self.checkValue.toggle()
+                        self.tally.completionToday.toggle()
                     }) {
-                        Image(systemName: checkValue ? "checkmark.circle.fill" : "checkmark.circle")
+                        Image(systemName: tally.completionToday ? "checkmark.circle.fill" : "checkmark.circle")
                             .resizable()
                             .frame(width: 84, height: 84)
                             .animation(nil)
-                            .foregroundColor(checkValue ? green : Color(UIColor.tertiaryLabel))
-                            
+                            .foregroundColor(tally.completionToday ? green : Color(UIColor.tertiaryLabel))                            
                     }
                     .buttonStyle(CheckButtonStyle())
                     .padding(.top, -5)
@@ -54,7 +50,7 @@ struct TallyBlock: View {
                 if tally.kind == .counter {
                     HStack {
                         Button(action: {
-                            //count++
+                            self.tally.numericToday += 1
                         }) {
                             Image(systemName: "plus.circle")
                                 .resizable()
@@ -64,8 +60,7 @@ struct TallyBlock: View {
                         }
                         .buttonStyle(CounterButtonStyle())
                         
-                        CustomNumericTextField(placeholder: "0", text: $fieldValue)
-                            //.padding(.top, -25)
+                        CustomNumericTextField(placeholder: "0", text: $tally.numericStringToday)
                             // Setting max width to .infinity actually stops the text field from expanding and taking up too much space
                             .frame(minWidth: 0, maxWidth: .infinity)
                     }
@@ -73,7 +68,7 @@ struct TallyBlock: View {
                 }
                 
                 if tally.kind == .amount {
-                    CustomNumericTextField(placeholder: "Tap", text: $fieldValue)
+                    CustomNumericTextField(placeholder: "Tap", text: $tally.numericStringToday)
                         .padding(.top, -25)
                         // Setting max width to .infinity actually stops the text field from expanding and taking up too much space
                         .frame(minWidth: 0, maxWidth: .infinity)
@@ -122,25 +117,24 @@ struct CounterButtonStyle: ButtonStyle {
 }
 
 struct TallyBlock_Previews: PreviewProvider {
+    
     static var previews: some View {
-        List {
-            TallyBlock(tally: UserData.testData().tallies[0])
-                .environmentObject(UserData.testData())
-            TallyBlock(tally: UserData.testData().tallies[1])
-                .environmentObject(UserData.testData())
-            TallyBlock(tally: UserData.testData().tallies[3])
-                .environmentObject(UserData.testData())
-        }
-        
-//        
-//        Group {
-//            TalliesView()
+//        List {
+//            TallyBlock(tally: $(userData.tallies[0]))
 //                .environmentObject(UserData.testData())
-//                .environment(\.colorScheme, .dark)
-//            
-//            TalliesView()
+//            TallyBlock(tally: UserData.testData().tallies[1])
+//                .environmentObject(UserData.testData())
+//            TallyBlock(tally: UserData.testData().tallies[3])
 //                .environmentObject(UserData.testData())
 //        }
+        
+        
+        Group {
+            TalliesView()
+            
+            TalliesView()
+                .environment(\.colorScheme, .dark)
+        }
         
         
     }
