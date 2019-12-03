@@ -10,6 +10,7 @@
 		A561E5AD238C80C7000767E4 /* TalliesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561E5AC238C80C7000767E4 /* TalliesView.swift */; };
 		A561E5AF238C86DE000767E4 /* TallyViewDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561E5AE238C86DE000767E4 /* TallyViewDetail.swift */; };
 		A5A278982395AF18008572E9 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A278972395AF18008572E9 /* CustomTextField.swift */; };
+		A5A2789A2395C868008572E9 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A278992395C868008572E9 /* Helpers.swift */; };
 		A5B63C85238C9C61004390E6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B63C84238C9C61004390E6 /* Model.swift */; };
 		A5CA797C238AF46A00263480 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA797B238AF46A00263480 /* AppDelegate.swift */; };
 		A5CA797E238AF46A00263480 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA797D238AF46A00263480 /* SceneDelegate.swift */; };
@@ -42,6 +43,7 @@
 		A561E5AC238C80C7000767E4 /* TalliesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalliesView.swift; sourceTree = "<group>"; };
 		A561E5AE238C86DE000767E4 /* TallyViewDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyViewDetail.swift; sourceTree = "<group>"; };
 		A5A278972395AF18008572E9 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
+		A5A278992395C868008572E9 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A5B63C84238C9C61004390E6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		A5CA7978238AF46A00263480 /* Tallybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tallybook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CA797B238AF46A00263480 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				A5CA797D238AF46A00263480 /* SceneDelegate.swift */,
 				A561E5AC238C80C7000767E4 /* TalliesView.swift */,
 				A5CA79AB238AF53F00263480 /* TallyBlock.swift */,
+				A5A278992395C868008572E9 /* Helpers.swift */,
 				A5A278972395AF18008572E9 /* CustomTextField.swift */,
 				A561E5AE238C86DE000767E4 /* TallyViewDetail.swift */,
 				A5B63C84238C9C61004390E6 /* Model.swift */,
@@ -282,6 +285,7 @@
 				A5A278982395AF18008572E9 /* CustomTextField.swift in Sources */,
 				A5B63C85238C9C61004390E6 /* Model.swift in Sources */,
 				A5CA79AC238AF53F00263480 /* TallyBlock.swift in Sources */,
+				A5A2789A2395C868008572E9 /* Helpers.swift in Sources */,
 				A5CA797C238AF46A00263480 /* AppDelegate.swift in Sources */,
 				A5CA797E238AF46A00263480 /* SceneDelegate.swift in Sources */,
 				A561E5AF238C86DE000767E4 /* TallyViewDetail.swift in Sources */,

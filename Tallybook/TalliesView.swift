@@ -11,26 +11,29 @@ import UIKit
 
 struct TalliesView: View {
     
+    
     @EnvironmentObject var userData: UserData
+
         
     init() {
+        // Configure navigation bar - not yet possible natively in SwiftUI
         UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont.systemRounded(style: .largeTitle, weight: .bold)]
         UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.systemRounded(style: .headline, weight: .semibold)]
         
+        // Configure tally list - not yet possible natively in SwiftUI
         UITableView.appearance().separatorStyle = .none
     }
     
     
     var body: some View {
         NavigationView {
-
+            
             List() {
                 ForEach(userData.tallies, id: \.id) { tally in
                     TallyBlock(tally: tally)
                     .listRowInsets(EdgeInsets(top: 6, leading: 10, bottom: 6, trailing: 10))
-                    
                 }
-                
+                // Callbacks to allow tallies to be rearranged and deleted by the table view
                 .onMove { source, destination in
                     self.userData.tallies.move(fromOffsets: source, toOffset: destination)
                 }
@@ -38,19 +41,16 @@ struct TalliesView: View {
                     self.userData.tallies.remove(atOffsets: sources)
                 }
                 
-                
-                
-                
             }
             
-                
+            // Configure navigation bar
+            // EditButton has built in functionality that makes the list go into editing mode 
             .navigationBarItems(leading: EditButton(),
             trailing:
-                Button(action: {  }) {
+                Button(action: {}) {
                 Image(systemName: "plus")
                     .imageScale(.large)
             })
-                
             .navigationBarTitle(Text("Tallies"))
             
         }
@@ -59,18 +59,6 @@ struct TalliesView: View {
     }
     
 
-}
-
-
-
-extension UIFont {
-    static func systemRounded(style: UIFont.TextStyle, weight: UIFont.Weight) -> UIFont {
-        let size = UIFont.preferredFont(forTextStyle: style).pointSize
-        let descriptor = UIFont.systemFont(ofSize: size, weight: weight).fontDescriptor.withDesign(.rounded) 
-        let font = UIFont(descriptor: descriptor!, size: size)
-    
-        return font
-    }
 }
 
 
