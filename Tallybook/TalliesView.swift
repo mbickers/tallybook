@@ -22,6 +22,8 @@ struct TalliesView: View {
         
         // Configure tally list - not yet possible natively in SwiftUI
         UITableView.appearance().separatorStyle = .none
+        UITableView.appearance().allowsSelection = false
+        UITableViewCell.appearance().selectionStyle = .none
     }
     
     
@@ -40,7 +42,6 @@ struct TalliesView: View {
                 .onDelete { sources in
                     self.userData.tallies.remove(atOffsets: sources)
                 }
-                
             }
             
             // Configure navigation bar
@@ -55,7 +56,7 @@ struct TalliesView: View {
             
         }
         .accentColor(Color(UIColor.systemGreen))
-        
+
     }
     
 

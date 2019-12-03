@@ -9,15 +9,14 @@
 import SwiftUI
 
 struct TallyBlock: View {
-    
-    @EnvironmentObject var userData: UserData
     var tally: Tally
     
     // Used to tell whether dark mode is on
     @Environment(\.colorScheme) var colorScheme: ColorScheme    
     
     // State variable used for both counter and amount tallies
-    @State var fieldValue: String?
+    @State private var fieldValue: String?
+    @State private var checkValue: Bool = false
     
     // Here for convenience
     var green = Color(UIColor.systemGreen)
@@ -38,21 +37,32 @@ struct TallyBlock: View {
                 // Interactive component of each tally block
                 
                 if tally.kind == .completion {
-                    Image(systemName: "checkmark.circle")
-                        .resizable()
-                        .frame(width: 84, height: 84)
-                        .foregroundColor(Color(UIColor.tertiaryLabel))
-                        .padding(.top, -5)
-                        
+                    Button(action: {
+                        self.checkValue.toggle()
+                    }) {
+                        Image(systemName: checkValue ? "checkmark.circle.fill" : "checkmark.circle")
+                            .resizable()
+                            .frame(width: 84, height: 84)
+                            .animation(nil)
+                            .foregroundColor(checkValue ? green : Color(UIColor.tertiaryLabel))
+                            
+                    }
+                    .buttonStyle(CheckButtonStyle())
+                    .padding(.top, -5)
                 }
                 
                 if tally.kind == .counter {
                     HStack {
-                        Image(systemName: "plus.circle")
-                            .resizable()
-                            .frame(width: 84, height: 84)
-                            .foregroundColor(green)
-                            //.padding(.top, -25)
+                        Button(action: {
+                            //count++
+                        }) {
+                            Image(systemName: "plus.circle")
+                                .resizable()
+                                .frame(width: 84, height: 84)
+                                .animation(nil)
+                                .foregroundColor(.green)
+                        }
+                        .buttonStyle(CounterButtonStyle())
                         
                         CustomNumericTextField(placeholder: "0", text: $fieldValue)
                             //.padding(.top, -25)
@@ -86,11 +96,28 @@ struct TallyBlock: View {
                     .foregroundColor(Color(UIColor.tertiarySystemBackground))
             }
         }
+            .accentColor(green)
             .frame(height: 145)
             .background(Color(UIColor.tertiarySystemBackground))
             .cornerRadius(20)
             // Only have shadows when dark mode is off
             .shadow(color: .gray, radius: colorScheme != .dark ? 3 : 0, x: 0, y: colorScheme != .dark ? 2 : 0)
+    }
+}
+
+struct CheckButtonStyle: ButtonStyle {
+    
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 1.07 : 1.0)
+    }
+}
+
+struct CounterButtonStyle: ButtonStyle {
+    
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .scaleEffect(configuration.isPressed ? 1.07 : 1.0)
     }
 }
 
@@ -100,6 +127,8 @@ struct TallyBlock_Previews: PreviewProvider {
             TallyBlock(tally: UserData.testData().tallies[0])
                 .environmentObject(UserData.testData())
             TallyBlock(tally: UserData.testData().tallies[1])
+                .environmentObject(UserData.testData())
+            TallyBlock(tally: UserData.testData().tallies[3])
                 .environmentObject(UserData.testData())
         }
         
