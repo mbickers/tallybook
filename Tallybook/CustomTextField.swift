@@ -70,6 +70,14 @@ struct CustomNumericTextField: UIViewRepresentable {
         
         let spacer = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let doneButton = UIBarButtonItem(title: "Done", style: .done, target: textField, action: #selector(textField.resignFirstResponder))
+        
+        let buttonFont = UIFont.systemRounded(style: .body, weight: .regular)
+        let attributes: [NSAttributedString.Key : Any] = [.font : buttonFont,
+                                                          .foregroundColor : UIColor.customAccent]
+        
+        doneButton.setTitleTextAttributes(attributes, for: .normal)
+        doneButton.setTitleTextAttributes(attributes, for: .highlighted)
+        
         toolbar.setItems([spacer, doneButton], animated: false)
         
         toolbar.sizeToFit()

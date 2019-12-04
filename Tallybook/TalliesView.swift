@@ -54,7 +54,7 @@ struct TalliesView: View {
             .navigationBarTitle(Text("Tallies"))
             
         }
-        .accentColor(Color(UIColor.systemGreen))
+        .accentColor(.customAccent)
 
     }
     

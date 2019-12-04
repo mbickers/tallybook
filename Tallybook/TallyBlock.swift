@@ -14,10 +14,6 @@ struct TallyBlock: View {
     
     // Used to tell whether dark mode is on
     @Environment(\.colorScheme) var colorScheme: ColorScheme    
-    
-    // Here for convenience
-    var green = Color(UIColor.systemGreen)
-    
 
     
     var body: some View {
@@ -41,7 +37,7 @@ struct TallyBlock: View {
                             .resizable()
                             .frame(width: 84, height: 84)
                             .animation(nil)
-                            .foregroundColor(tally.completionToday ? green : Color(UIColor.tertiaryLabel))                            
+                            .foregroundColor(tally.completionToday ? .customAccent : Color(UIColor.tertiaryLabel))                            
                     }
                     .buttonStyle(CheckButtonStyle())
                     .padding(.top, -5)
@@ -56,7 +52,7 @@ struct TallyBlock: View {
                                 .resizable()
                                 .frame(width: 84, height: 84)
                                 .animation(nil)
-                                .foregroundColor(.green)
+                                .foregroundColor(.customAccent)
                         }
                         .buttonStyle(CounterButtonStyle())
                         
@@ -83,7 +79,7 @@ struct TallyBlock: View {
             ZStack {
                 Rectangle()
                     .frame(width: 62)
-                    .foregroundColor(green)
+                    .foregroundColor(.customAccent)
                 
                 Image(systemName: "chevron.right.circle.fill")
                     .resizable()
@@ -91,7 +87,7 @@ struct TallyBlock: View {
                     .foregroundColor(Color(UIColor.tertiarySystemBackground))
             }
         }
-            .accentColor(green)
+        .accentColor(.customAccent)
             .frame(height: 145)
             .background(Color(UIColor.tertiarySystemBackground))
             .cornerRadius(20)

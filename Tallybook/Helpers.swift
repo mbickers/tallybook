@@ -6,7 +6,7 @@
 //  Copyright © 2019 Max Bickers. All rights reserved.
 //
 
-import UIKit
+import SwiftUI
 
 // Helper to have easy access to SF Rounded font
 extension UIFont {
@@ -24,4 +24,12 @@ extension UIFont {
     
         return font
     }
+}
+
+extension UIColor {
+    static let customAccent: UIColor = UIColor.systemIndigo
+}
+
+extension Color {
+    static let customAccent: Color = Color(UIColor.customAccent)
 }
