@@ -19,8 +19,10 @@ struct AddTallyView: View {
     
     init(presenting: Binding<Bool>) {
         
+        // Need to have a binding to presenting view's "modal show" variable for the done and cancel buttons to work
         _presenting = presenting
         
+        // Change font of Segmented Control to rounded. Not possible in native SwiftUI yet
         let selectedFont = UIFont.systemRounded(style: .callout, weight: .semibold)
         UISegmentedControl.appearance().setTitleTextAttributes([.font: selectedFont], for: .selected)
         
@@ -32,6 +34,7 @@ struct AddTallyView: View {
     var body: some View {
         VStack(alignment: .center) {
             
+            // Header at top of view
             HStack {
                 Button(action: {
                     self.presenting = false
@@ -58,11 +61,11 @@ struct AddTallyView: View {
                         .font(Font.system(.body, design: .rounded))
                 })
                     .padding()
+                    // Disable done button whenever there is no text in textfield
                     .disabled(tally.name == "" ? true : false)
-                
-                
             }
             
+            // Bouncing preview Tally Block in the middle of the view
             TallyBlock(tally: tally)
                 .disabled(true)
                 .scaleEffect(animatingTallyBlock ? 0.75 : 0.8)
@@ -74,6 +77,7 @@ struct AddTallyView: View {
                 }
             
             CustomAutofocusTextField(text: $tally.name)
+                // Need to set max frame to .infinity for layout to work correctly
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding(.vertical, 10)
                 .background(Color(UIColor.tertiarySystemFill))
