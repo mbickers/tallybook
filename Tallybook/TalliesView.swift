@@ -11,7 +11,9 @@ import UIKit
 
 struct TalliesView: View {
     
-    @ObservedObject var userData: UserData = UserData.testData
+    @EnvironmentObject var userData: UserData
+    
+    @State private var showingAddTally = false
 
         
     init() {
@@ -69,6 +71,7 @@ struct TalliesView_Previews: PreviewProvider {
     static var previews: some View {
         TalliesView()
             .environment(\.colorScheme, .dark)
+            .environmentObject(UserData.testData)
     }
 }
 

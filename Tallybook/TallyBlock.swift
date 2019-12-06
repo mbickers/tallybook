@@ -21,10 +21,9 @@ struct TallyBlock: View {
         HStack(alignment: .top) {
             VStack(alignment: .leading) {
                 
-                Text(tally.name)
+                Text(tally.name != "" ? tally.name : " ")
                     .font(.system(size: 24, weight: .regular, design: .rounded))
                     .padding(.top, 7)
-                    .layoutPriority(10)
                 
                 
                 // Interactive component of each tally block
@@ -56,7 +55,7 @@ struct TallyBlock: View {
                         }
                         .buttonStyle(CounterButtonStyle())
                         
-                        CustomNumericTextField(placeholder: "0", text: $tally.numericStringToday)
+                        TallyBlockTextField(placeholder: "0", text: $tally.numericStringToday)
                             // Setting max width to .infinity actually stops the text field from expanding and taking up too much space
                             .frame(minWidth: 0, maxWidth: .infinity)
                     }
@@ -64,7 +63,7 @@ struct TallyBlock: View {
                 }
                 
                 if tally.kind == .amount {
-                    CustomNumericTextField(placeholder: "Tap", text: $tally.numericStringToday)
+                    TallyBlockTextField(placeholder: "Tap", text: $tally.numericStringToday)
                         .padding(.top, -25)
                         // Setting max width to .infinity actually stops the text field from expanding and taking up too much space
                         .frame(minWidth: 0, maxWidth: .infinity)
@@ -111,6 +110,7 @@ struct CounterButtonStyle: ButtonStyle {
             .scaleEffect(configuration.isPressed ? 1.07 : 1.0)
     }
 }
+
 
 struct TallyBlock_Previews: PreviewProvider {
     

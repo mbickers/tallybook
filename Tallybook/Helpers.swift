@@ -27,7 +27,7 @@ extension UIFont {
 }
 
 extension UIColor {
-    static let customAccent: UIColor = UIColor.systemIndigo
+    static let customAccent: UIColor = UIColor.systemGreen
 }
 
 extension Color {

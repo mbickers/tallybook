@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-class CustomUITextField: UITextField, UITextFieldDelegate {
+class CustomNumericUITextField: UITextField, UITextFieldDelegate {
     
     // Have to resize cursor because the vertical padding is negative within TallyBlock
     override func caretRect(for position: UITextPosition) -> CGRect {
@@ -43,15 +43,15 @@ class CustomUITextField: UITextField, UITextFieldDelegate {
 }
 
 // SwiftUI compatibible wrapper of CustomUITextField that adds custom functionality
-struct CustomNumericTextField: UIViewRepresentable {
+struct TallyBlockTextField: UIViewRepresentable {
     
-    private let textField = CustomUITextField()
+    let textField = CustomNumericUITextField()
     var placeholder: String?
     
     @Binding var text: String?
     
     
-    func makeUIView(context: UIViewRepresentableContext<CustomNumericTextField>) -> CustomUITextField {
+    func makeUIView(context: UIViewRepresentableContext<TallyBlockTextField>) -> UITextField {
         
         // Configure text field
 
@@ -93,7 +93,7 @@ struct CustomNumericTextField: UIViewRepresentable {
         return textField
     }
     
-    func updateUIView(_ uiView: CustomUITextField, context: UIViewRepresentableContext<CustomNumericTextField>) {
+    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<TallyBlockTextField>) {
         // Make sure that the text field adjusts for changes to the state that originate from other parts of the app
         uiView.text = text
     }
@@ -102,21 +102,21 @@ struct CustomNumericTextField: UIViewRepresentable {
 
 
 
-struct ContentView_TestCustomTextField : View {
+struct ContentView_TestCustomNumericTextField : View {
     @State var numberOfBeans: String? = "12"
     
     var body: some View {
         VStack {
             Text("Beans: " + (numberOfBeans ?? "0"))
             
-            CustomNumericTextField(placeholder: "Beans", text: $numberOfBeans)
+            TallyBlockTextField(placeholder: "Beans", text: $numberOfBeans)
                 .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
         }
     }
 }
 
-struct CustomTextField_Previews: PreviewProvider {
+struct CustomNumericTextField_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView_TestCustomTextField()
+        ContentView_TestCustomNumericTextField()
     }
 }

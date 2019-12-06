@@ -10,13 +10,13 @@ import Foundation
 
 class Tally: Identifiable, ObservableObject {
     
-    enum Kind {
-        case completion, counter, amount
+    enum Kind: String, CaseIterable {
+        case completion = "Completion", counter = "Counter", amount = "Amount"
     }
     
-    var kind: Kind
-    var name: String = "Test"
-    var values: [String : Int]
+    @Published var kind: Kind
+    @Published var name: String = "Test"
+    @Published var values: [String : Int]
     let id = UUID()
     
     init(kind: Kind, name: String, values: [String : Int]) {
