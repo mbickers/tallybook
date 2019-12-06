@@ -67,6 +67,7 @@ struct AddTallyView: View {
                 .padding(.bottom, 30)
             
             CustomAutofocusTextField(text: $tally.name)
+                .frame(minWidth: 0, maxWidth: .infinity)
                 .padding(.vertical, 10)
                 .background(Color(UIColor.tertiarySystemFill))
                 .cornerRadius(12)

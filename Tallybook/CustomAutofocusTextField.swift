@@ -21,6 +21,7 @@ struct CustomAutofocusTextField: UIViewRepresentable {
         textField.textAlignment = .center
         textField.font = UIFont.systemRounded(style: .title1, weight: .semibold)
         
+        textField.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         textField.setContentHuggingPriority(.defaultHigh, for: .vertical)
         textField.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
