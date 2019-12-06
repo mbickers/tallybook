@@ -14,6 +14,8 @@ struct AddTallyView: View {
     @ObservedObject var tally = Tally(kind: .completion, name: "", values: [String : Int]())
     @Binding var presenting: Bool
     
+    @State private var animatingTallyBlock = false
+    
     
     init(presenting: Binding<Bool>) {
         
@@ -63,8 +65,13 @@ struct AddTallyView: View {
             
             TallyBlock(tally: tally)
                 .disabled(true)
-                .scaleEffect(0.8)
+                .scaleEffect(animatingTallyBlock ? 0.75 : 0.8)
                 .padding(.bottom, 30)
+                .onAppear {
+                    withAnimation(Animation.easeInOut(duration: 1.2).repeatForever()) {
+                        self.animatingTallyBlock = true
+                    }
+                }
             
             CustomAutofocusTextField(text: $tally.name)
                 .frame(minWidth: 0, maxWidth: .infinity)
