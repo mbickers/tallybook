@@ -47,13 +47,21 @@ struct TalliesView: View {
             
             // Configure navigation bar
             // EditButton has built in functionality that makes the list go into editing mode 
-            .navigationBarItems(leading: EditButton(),
-            trailing:
-                Button(action: {}) {
-                Image(systemName: "plus")
-                    .imageScale(.large)
-            })
+            .navigationBarItems(leading:
+                EditButton().font(Font.system(.body, design: .rounded)),
+                                trailing:
+                Button(action: {
+                    self.showingAddTally = true
+                }) {
+                    Image(systemName: "plus")
+                        .imageScale(.large)
+                })
             .navigationBarTitle(Text("Tallies"))
+            
+            .sheet(isPresented: $showingAddTally) {
+                AddTallyView(presenting: self.$showingAddTally)
+                    .environmentObject(self.userData)
+            }
             
         }
         .accentColor(.customAccent)
