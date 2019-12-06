@@ -33,3 +33,9 @@ extension UIColor {
 extension Color {
     static let customAccent: Color = Color(UIColor.customAccent)
 }
+
+extension UIDevice {
+    static func vibrate() {
+        UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+    }
+}

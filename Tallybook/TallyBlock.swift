@@ -30,6 +30,7 @@ struct TallyBlock: View {
                 
                 if tally.kind == .completion {
                     Button(action: {
+                        UIDevice.vibrate()
                         self.tally.completionToday.toggle()
                     }) {
                         Image(systemName: tally.completionToday ? "checkmark.circle.fill" : "checkmark.circle")
@@ -45,6 +46,7 @@ struct TallyBlock: View {
                 if tally.kind == .counter {
                     HStack {
                         Button(action: {
+                            UIDevice.vibrate()
                             self.tally.numericToday += 1
                         }) {
                             Image(systemName: "plus.circle")
