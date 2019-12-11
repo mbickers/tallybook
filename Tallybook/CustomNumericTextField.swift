@@ -21,7 +21,7 @@ class CustomNumericUITextField: UITextField, UITextFieldDelegate {
 
     // Implementation of UITextFieldDelegate
     
-    var didEndEditing: ((String?)->Void)?
+    var didEndEditing: ((String)->Void)?
     
     // Need to implement this in order to resign input when return key is pressed
     // This implementaiton doesn't effect the usage of the done button
@@ -38,7 +38,7 @@ class CustomNumericUITextField: UITextField, UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        didEndEditing?(text)
+        didEndEditing?(text ?? "")
     }
 }
 
@@ -48,7 +48,7 @@ struct TallyBlockTextField: UIViewRepresentable {
     let textField = CustomNumericUITextField()
     var placeholder: String?
     
-    @Binding var text: String?
+    @Binding var text: String
     
     
     func makeUIView(context: UIViewRepresentableContext<TallyBlockTextField>) -> UITextField {
@@ -103,11 +103,11 @@ struct TallyBlockTextField: UIViewRepresentable {
 
 
 struct ContentView_TestCustomNumericTextField : View {
-    @State var numberOfBeans: String? = "12"
+    @State var numberOfBeans: String = "12"
     
     var body: some View {
         VStack {
-            Text("Beans: " + (numberOfBeans ?? "0"))
+            Text("Beans: " + (numberOfBeans))
             
             TallyBlockTextField(placeholder: "Beans", text: $numberOfBeans)
                 .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))

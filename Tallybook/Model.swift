@@ -101,13 +101,21 @@ class Tally: Identifiable, ObservableObject {
         }
     }
     
-    var numericStringToday: String? {
+    var numericStringToday: String {
         get {
-            return todayValue != nil ? String(todayValue!) : ""
+            if let tv = todayValue {
+                return String(tv);
+            } else {
+                return "";
+            }
         }
         
         set {
-            todayValue = Int(newValue ?? "")
+            if newValue == "" {
+                todayValue = nil
+            } else {
+                todayValue = Int(newValue)
+            }
         }
     }
 }
