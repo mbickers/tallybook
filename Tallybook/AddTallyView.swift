@@ -11,7 +11,7 @@ import SwiftUI
 struct AddTallyView: View {
     
     @EnvironmentObject var userData: UserData
-    @ObservedObject var tally = Tally(kind: .completion, name: "", values: [String : Int]())
+    @ObservedObject var tally = Tally(kind: .completion, name: "", data: [TallyDatum]())
     @Binding var presenting: Bool
     
     @State private var animatingTallyBlock = false

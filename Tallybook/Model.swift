@@ -8,6 +8,38 @@
 
 import Foundation
 
+struct TallyDatum: Identifiable {
+    var id = UUID()
+    
+    var date: String
+    var value: Int
+    
+    
+    static private var df: DateFormatter = {
+        let formatter = DateFormatter();
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+    
+    //TODO: Update to use combine to broadcast change on date change
+    static var today: String {
+        get {
+            df.string(from: Date())
+        }
+    }
+    
+    init(date: Date, value: Int) {
+        self.date = TallyDatum.df.string(from: date)
+        self.value = value
+    }
+    
+    init(date: String, value: Int) {
+        self.date = date
+        self.value = value
+    }
+}
+
+
 class Tally: Identifiable, ObservableObject {
     
     enum Kind: String, CaseIterable {
@@ -16,48 +48,66 @@ class Tally: Identifiable, ObservableObject {
     
     @Published var kind: Kind
     @Published var name: String = "Test"
-    @Published var values: [String : Int]
+    @Published var data: [TallyDatum]
     let id = UUID()
     
-    init(kind: Kind, name: String, values: [String : Int]) {
+    init(kind: Kind, name: String, data: [TallyDatum]) {
         self.kind = kind
         self.name = name
-        self.values = values
+        self.data = data
     }
     
-    // Will be removed once the derived properties are based on values variable
-    // This value is an optional because 0 means value of 0 and nil means user didn't set a value
-    @Published var tempToday: Int?
+
+    var todayValue: Int? {
+        get {
+            if data.count > 0 && data[0].date == TallyDatum.today {
+                return data[0].value
+            }
+            return nil
+        }
+        
+        set {
+            if data.count > 0 && data[0].date == TallyDatum.today {
+                if let nv = newValue {
+                    data[0].value = nv
+                } else {
+                    data.remove(at: 0)
+                }
+            } else if let nv = newValue {
+                data.insert(TallyDatum(date: Date(), value: nv), at: 0)
+            }
+        }
+    }
     
     // Wrappers to access values from today for convience in TallyBlock
     
     var completionToday: Bool {
         get {
-            return tempToday == 1
+            return (todayValue ?? 0) >= 1
         }
         
         set {
-            tempToday = newValue ? 1 : nil
+            todayValue = newValue ? 1 : nil
         }
     }
     
     var numericToday: Int {
         get {
-            return tempToday ?? 0
+            return todayValue ?? 0
         }
         
         set {
-            tempToday = newValue
+            todayValue = newValue
         }
     }
     
     var numericStringToday: String? {
         get {
-            return tempToday != nil ? String(tempToday!) : ""
+            return todayValue != nil ? String(todayValue!) : ""
         }
         
         set {
-            tempToday = Int(newValue ?? "")
+            todayValue = Int(newValue ?? "")
         }
     }
 }
@@ -71,13 +121,25 @@ class UserData: ObservableObject {
     }
     
     static let testData: UserData = {
+        // Generate dummy date data
+        var day = Date();
+
+        let dummy_values = [2, 3, 5, 0, 1, 10, 2, 0, 12, 2, 6];
+        var data = [TallyDatum]()
+        
+        for v in dummy_values {
+            data.append(TallyDatum(date: day, value: v))
+            day.addTimeInterval(-2*24*3600)
+        }
+                
+        
         let u  = UserData()
-        u.tallies = [Tally(kind: .completion, name: "Go to Gym", values: [String : Int]()),
-                     Tally(kind: .counter, name: "Cups of Coffee", values: [String : Int]()),
-                     Tally(kind: .amount, name: "Weight", values: [String : Int]()),
-                     Tally(kind: .amount, name: "Hours of Sleep", values: [String : Int]()),
-                     Tally(kind: .counter, name: "Internship Rejections", values: [String : Int]()),
-                     Tally(kind: .amount, name: "Beans", values: [String : Int]())]
+        u.tallies = [Tally(kind: .completion, name: "Go to Gym", data: data),
+                     Tally(kind: .counter, name: "Cups of Coffee", data: data),
+                     Tally(kind: .amount, name: "Weight", data: data),
+                     Tally(kind: .amount, name: "Hours of Sleep", data: data),
+                     Tally(kind: .counter, name: "Internship Rejections", data: data),
+                     Tally(kind: .amount, name: "Beans", data: data)]
         return u
     }()
     
