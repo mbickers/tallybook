@@ -65,11 +65,13 @@ struct TallyDatum: Identifiable {
     init(date: Date, value: Int) {
         self.date = TallyDatum.df.string(from: date)
         self.value = value
+        intValue = intValue
     }
     
     init(date: String, value: Int) {
         self.date = date
         self.value = value
+        intValue = intValue
     }
 }
 

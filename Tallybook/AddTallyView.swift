@@ -59,6 +59,7 @@ struct AddTallyView: View {
                 }, label: {
                     Text("Done")
                         .font(Font.system(.body, design: .rounded))
+                        .bold()
                 })
                     .padding()
                     // Disable done button whenever there is no text in textfield

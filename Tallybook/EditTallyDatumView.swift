@@ -20,6 +20,13 @@ struct EditTallyDatumView: View {
     @State var valueString: String = "0"
     @State private var date = Date()
     
+    init(presenting: Binding<Bool>, tally: Tally, selectedTallyDatumID: Binding<UUID?>) {
+        _presenting = presenting
+        self.tally = tally
+        _selectedTallyDatumID = selectedTallyDatumID
+        
+        
+    }
     
     var body: some View {
         VStack(alignment: .center) {
@@ -48,23 +55,30 @@ struct EditTallyDatumView: View {
                     // Make changes
                     let value = Int(self.valueString) ?? 0
                     let dateString = TallyDatum.df.string(from: self.date)
+                    let td = TallyDatum(date: dateString, value: value)
+                                       
+                    // Remove old tallyDatum if editing
+                    if self.isEditing {
+                        let oldIdx = self.tally.data.firstIndex(where: { $0.id == self.selectedTallyDatumID })!
+                        self.tally.data.remove(at: oldIdx)
+                    }
+                    
+                    // Check if there is a tally datum already at date. If so, overwrite it
                     if let idx = self.tally.data.firstIndex(where: { $0.date == dateString }) {
-                        
-                        self.tally.data[idx].value = value;
-                        
+                        self.tally.data[idx] = td
                     } else {
-                        let td = TallyDatum(date: dateString, value: value)
                         let idx = self.tally.data.firstIndex(where: { $0.date < dateString }) ?? self.tally.data.count
                         self.tally.data.insert(td, at: idx);
-                        
                     }
-                    // If same data is selected, add data to tallydatum that already exists for that day
+                    
                     
                     self.presenting = false
                 }, label: {
                     Text(isEditing ? "Done" : "Add")
                         .font(Font.system(.body, design: .rounded))
+                        .bold()
                 })
+                    .disabled(self.valueString == "" ? true : false)
                     .padding([.horizontal, .top])
             }
             
@@ -76,7 +90,10 @@ struct EditTallyDatumView: View {
                 VStack {
                     HStack(alignment: .firstTextBaseline) {
                         Text("Value")
-                        TextField("Value", text: self.$valueString)
+                            .font(Font.system(.body, design: .rounded))
+                        TextField("0", text: self.$valueString)
+                            .font(Font.system(.body, design: .rounded))
+                            .keyboardType(.numberPad)
                             .multilineTextAlignment(.trailing)
                     }
                     Divider()
@@ -89,6 +106,7 @@ struct EditTallyDatumView: View {
                 VStack {
                     DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
                         Text("Date")
+                        .font(Font.system(.body, design: .rounded))
                     }
                     .datePickerStyle(WheelDatePickerStyle())
                     
@@ -104,10 +122,12 @@ struct EditTallyDatumView: View {
             // An editing ID is sometimes passed in from the controlling view.
             // Because this screen can function as either an add or edit screen, configure state accordingly
             if let td = self.tally.data.first(where: { $0.id == self.selectedTallyDatumID }) {
-                self.tallyDatum = td
+                self.valueString = String(td.value)
+                self.date = TallyDatum.df.date(from: td.date)!
                 self.isEditing = true
             } else {
-                self.tallyDatum = TallyDatum(date: Date(), value: 0)
+                self.valueString = ""
+                self.date = Date()
                 self.isEditing = false
             }
         }
