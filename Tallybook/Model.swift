@@ -74,15 +74,15 @@ struct TallyDatum: Identifiable {
 }
 
 
-struct Tally: Identifiable {
+class Tally: Identifiable, ObservableObject {
     
     enum Kind: String, CaseIterable {
         case completion = "Completion", counter = "Counter", amount = "Amount"
     }
     
-    var kind: Kind
-    var name: String = "Test"
-    var data: [TallyDatum]
+    @Published var kind: Kind
+    @Published var name: String = "Test"
+    @Published var data: [TallyDatum]
     let id = UUID()
     
     init(kind: Kind, name: String, data: [TallyDatum]) {

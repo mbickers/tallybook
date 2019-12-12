@@ -11,7 +11,7 @@ import SwiftUI
 struct AddTallyView: View {
     
     @EnvironmentObject var userData: UserData
-    @State var tally = Tally(kind: .completion, name: "", data: [TallyDatum]())
+    @ObservedObject var tally = Tally(kind: .completion, name: "", data: [TallyDatum]())
     @Binding var presenting: Bool
     
     @State private var animatingTallyBlock = false
@@ -66,7 +66,7 @@ struct AddTallyView: View {
             }
             
             // Bouncing preview Tally Block in the middle of the view
-            TallyBlock(tally: $tally)
+            TallyBlock(tally: tally)
                 .disabled(true)
                 .scaleEffect(animatingTallyBlock ? 0.75 : 0.8)
                 .padding(.bottom, 30)

@@ -11,7 +11,7 @@ import SwiftUI
 struct EditTallyDatumView: View {
     
     @Binding var presenting: Bool
-    @Binding var tally: Tally
+    @ObservedObject var tally: Tally
     @Binding var selectedTallyDatumID: UUID?
     
     @State var tallyDatum: TallyDatum? = nil
@@ -117,9 +117,8 @@ struct EditTallyDatumView: View {
 
 struct EditTallyDatumView_Previews: PreviewProvider {
     static var previews: some View {
-        EmptyView()
-//        EditTallyDatumView(presenting: .constant(true),
-//                           tally: Tally(kind: .counter, name: "Test", data: [TallyDatum]()),
-//                           selectedTallyDatumID: .constant(nil))
+        EditTallyDatumView(presenting: .constant(true),
+                           tally: Tally(kind: .counter, name: "Test", data: [TallyDatum]()),
+                           selectedTallyDatumID: .constant(nil))
     }
 }
