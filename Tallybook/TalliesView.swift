@@ -31,8 +31,8 @@ struct TalliesView: View {
         NavigationView {
             
             List() {
-                ForEach(userData.tallies, id: \.id) { tally in
-                    TallyBlock(tally: tally)
+                ForEach(0..<userData.tallies.count) { index in
+                    TallyBlock(tally: self.$userData.tallies[index])
                         .listRowInsets(EdgeInsets(top: 6, leading: 10, bottom: 6, trailing: 10))
                     
                 }

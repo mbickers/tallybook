@@ -10,14 +10,10 @@ import SwiftUI
 
 struct TallyDetailView: View {
     
-    @ObservedObject var tally: Tally
+    @Binding var tally: Tally
     
     @State var selectedTallyDatumID: UUID? = nil
     @State var showingEditTallyDatum = false;
-    
-    init(tally: Tally) {
-        self.tally = tally
-    }
     
     var body: some View {
         List {
@@ -84,7 +80,7 @@ struct TallyDetailView: View {
         
         .sheet(isPresented: $showingEditTallyDatum) {
             EditTallyDatumView(presenting: self.$showingEditTallyDatum,
-                               tally: self.tally,
+                               tally: self.$tally,
                                selectedTallyDatumID: self.$selectedTallyDatumID)
         }
         .navigationBarTitle(tally.name)
@@ -95,6 +91,7 @@ struct TallyDetailView: View {
 struct TallyViewDetail_Previews: PreviewProvider {
     
     static var previews: some View {
-        TallyDetailView(tally: UserData.testData.tallies[0])
+        EmptyView()
+        //TallyDetailView(tally: UserData.testData.tallies[0])
     }
 }
