@@ -81,7 +81,7 @@ struct TallyBlock: View {
                 // SwiftUI navigation links are a very funky, particular kind of beast.
                 // The navigation link button is hidden under other stuff here,
                 // but is activated by the showingDetailView binding
-                NavigationLink(destination: TallyViewDetail(tally: tally), isActive: $showingDetailView) {
+                NavigationLink(destination: TallyDetailView(tally: tally), isActive: $showingDetailView) {
                     EmptyView()
                 }
                 .disabled(true)

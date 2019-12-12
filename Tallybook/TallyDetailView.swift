@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct TallyViewDetail: View {
+struct TallyDetailView: View {
     
     @ObservedObject var tally: Tally
     
@@ -26,6 +26,6 @@ struct TallyViewDetail: View {
 struct TallyViewDetail_Previews: PreviewProvider {
     
     static var previews: some View {
-        TallyViewDetail(tally: UserData.testData.tallies[0])
+        TallyDetailView(tally: UserData.testData.tallies[0])
     }
 }
