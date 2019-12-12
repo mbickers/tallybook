@@ -12,13 +12,15 @@ struct TallyDetailView: View {
     
     @ObservedObject var tally: Tally
     
+    @State var selectedTallyDatumID: UUID? = nil
+    @State var showingEditTallyDatum = false;
+    
     init(tally: Tally) {
         self.tally = tally
     }
     
     var body: some View {
         List {
-            // Section header is blank because of SwiftUI bug where text moves after list appears
             Section(header: Text("All Recorded Data")) {
                 ForEach(tally.data) { tallyDatum in
                     VStack {
@@ -29,13 +31,20 @@ struct TallyDetailView: View {
                             .foregroundColor(Color(UIColor.clear))
                             .frame(height: 1)
                         
-                        HStack {
-                            Text(String(tallyDatum.value))
-                            Spacer()
-                            Text(tallyDatum.date)
-                                .foregroundColor(Color(UIColor.secondaryLabel))
-                                .padding(.trailing, 15)
-                        }
+                        // This button should make the list row highlight, will add later
+                        Button(action: {
+                            self.selectedTallyDatumID = tallyDatum.id
+                            self.showingEditTallyDatum = true
+                        }) {
+                            HStack {
+                                Text(String(tallyDatum.value))
+                                    .foregroundColor(Color(UIColor.label))
+                                Spacer()
+                                Text(tallyDatum.date)
+                                    .foregroundColor(Color(UIColor.secondaryLabel))
+                                    .padding(.trailing, 15)
+                            }
+                        }                        
                         
                         // Manually add seperator at the bottom of each list item
                         if tallyDatum.id != self.tally.data.last?.id {
@@ -48,21 +57,36 @@ struct TallyDetailView: View {
                                 .frame(height: 1)
                         }
                     }
-                        
-                    // Have to manually specify insets and padding to avoid bug where List jumps around
-                    .listRowInsets(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
                 }
                 .onDelete { sources in
                     withAnimation() {
                         self.tally.data.remove(atOffsets: sources)
                     }
                 }
+                // Have to manually specify insets and padding to avoid bug where List jumps around
+                .listRowInsets(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
             }
         }
         // In order for the inset grouped style to be changed, the size class has to be manually changed
         .environment(\.horizontalSizeClass, .regular)
         .listStyle(GroupedListStyle())
-            
+        
+        // Configure navigation bar
+        .navigationBarItems(trailing:
+            Button(action: {
+                self.selectedTallyDatumID = nil
+                self.showingEditTallyDatum = true
+            }) {
+                Text("Add Data")
+                    .padding([.vertical, .leading])
+            })
+        .navigationBarTitle(tally.name)
+        
+        .sheet(isPresented: $showingEditTallyDatum) {
+            EditTallyDatumView(presenting: self.$showingEditTallyDatum,
+                               tally: self.tally,
+                               selectedTallyDatumID: self.$selectedTallyDatumID)
+        }
         .navigationBarTitle(tally.name)
         
     }

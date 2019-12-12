@@ -15,7 +15,7 @@ struct TallyDatum: Identifiable {
     var value: Int
     
     
-    static private var df: DateFormatter = {
+    static var df: DateFormatter = {
         let formatter = DateFormatter();
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
