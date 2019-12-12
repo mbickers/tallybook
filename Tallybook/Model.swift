@@ -14,6 +14,40 @@ struct TallyDatum: Identifiable {
     var date: String
     var value: Int
     
+    var intValue: Int {
+        get {
+            return value
+        }
+        
+        set {
+            value = min(9999, newValue)
+        }
+    }
+    
+    var stringValue: String {
+        get {
+            if value == 0 {
+                return ""
+            } else {
+                return String(value)
+            }
+        }
+        
+        set {
+            intValue = Int(newValue) ?? 0
+        }
+    }
+    
+    var boolValue: Bool {
+        get {
+            return value >= 1
+        }
+        
+        set {
+            value = newValue ? 1 : 0
+        }
+    }
+    
     
     static var df: DateFormatter = {
         let formatter = DateFormatter();
@@ -69,7 +103,7 @@ class Tally: Identifiable, ObservableObject {
         set {
             if data.count > 0 && data[0].date == TallyDatum.today {
                 if let nv = newValue {
-                    data[0].value = nv
+                    data[0].intValue = nv
                 } else {
                     data.remove(at: 0)
                 }
