@@ -26,15 +26,15 @@ struct TalliesView: View {
         UITableView.appearance().allowsSelection = false
         UITableViewCell.appearance().selectionStyle = .none
     }
-    
-    
+        
     var body: some View {
         NavigationView {
             
             List() {
                 ForEach(userData.tallies, id: \.id) { tally in
                     TallyBlock(tally: tally)
-                    .listRowInsets(EdgeInsets(top: 6, leading: 10, bottom: 6, trailing: 10))
+                        .listRowInsets(EdgeInsets(top: 6, leading: 10, bottom: 6, trailing: 10))
+                    
                 }
                 // Callbacks to allow tallies to be rearranged and deleted by the table view
                 .onMove { source, destination in

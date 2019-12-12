@@ -9,13 +9,23 @@
 import SwiftUI
 
 struct TallyViewDetail: View {
+    
+    @ObservedObject var tally: Tally
+    
+    init(tally: Tally) {
+        self.tally = tally
+    }
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
+        List {
+            Text("Placeholder")
+        }
     }
 }
 
 struct TallyViewDetail_Previews: PreviewProvider {
+    
     static var previews: some View {
-        TallyViewDetail()
+        TallyViewDetail(tally: UserData.testData.tallies[0])
     }
 }

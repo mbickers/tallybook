@@ -13,8 +13,9 @@ struct TallyBlock: View {
     @ObservedObject var tally: Tally
     
     // Used to tell whether dark mode is on
-    @Environment(\.colorScheme) var colorScheme: ColorScheme    
-
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
+    
+    @State var showingDetailView: Bool = false
     
     var body: some View {
         
@@ -76,8 +77,17 @@ struct TallyBlock: View {
             
             Spacer()
             
-            // Button linking to detail view
             ZStack {
+                // SwiftUI navigation links are a very funky, particular kind of beast.
+                // The navigation link button is hidden under other stuff here,
+                // but is activated by the showingDetailView binding
+                NavigationLink(destination: TallyViewDetail(tally: tally), isActive: $showingDetailView) {
+                    EmptyView()
+                }
+                .disabled(true)
+                .padding(.all, 0)
+                .frame(minWidth: 0, idealWidth: 0, maxWidth: 0, minHeight: 0, idealHeight: 0, maxHeight: 0)
+                
                 Rectangle()
                     .frame(width: 62)
                     .foregroundColor(.customAccent)
@@ -87,6 +97,10 @@ struct TallyBlock: View {
                     .frame(width: 50, height: 50)
                     .foregroundColor(Color(UIColor.tertiarySystemBackground))
             }
+            .onTapGesture {
+                self.showingDetailView = true
+            }            
+            
         }
         .accentColor(.customAccent)
             .frame(height: 145)
@@ -129,8 +143,10 @@ struct TallyBlock_Previews: PreviewProvider {
         
         Group {
             TalliesView()
+            .environmentObject(UserData.testData)
             
             TalliesView()
+                .environmentObject(UserData.testData)
                 .environment(\.colorScheme, .dark)
         }
         
