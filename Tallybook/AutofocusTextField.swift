@@ -12,6 +12,8 @@ struct AutofocusTextField: UIViewRepresentable {
     typealias UIViewType = UITextField
     
     @Binding var text: String
+    var didBecomeFirstResponder = false
+
 
     func makeUIView(context: UIViewRepresentableContext<AutofocusTextField>) -> UITextField {
         let textField = UITextField(frame: .zero)
@@ -31,8 +33,9 @@ struct AutofocusTextField: UIViewRepresentable {
         uiView.text = text
         
         // Make text field first responder whenever view is shown
-        if uiView.window != nil {
+        if uiView.window != nil && !(uiView.delegate as! AutofocusTextField.Coordinator).didBecomeFirstResponder {
             uiView.becomeFirstResponder()
+            (uiView.delegate as! AutofocusTextField.Coordinator).didBecomeFirstResponder = true
         }
     }
     
@@ -42,6 +45,7 @@ struct AutofocusTextField: UIViewRepresentable {
         
         @Binding var text: String
         var didBecomeFirstResponder = false
+
                 
         init(text: Binding<String>) {
             _text = text
