@@ -68,7 +68,7 @@ struct ContentView_TestAutofocusTextField : View {
 
 struct AutofocusTextField_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView_TestCustomAutofocusTextField()
+        ContentView_TestAutofocusTextField()
     }
 }
 

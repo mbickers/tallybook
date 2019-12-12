@@ -48,13 +48,15 @@ struct TalliesView: View {
             // Configure navigation bar
             // EditButton has built in functionality that makes the list go into editing mode 
             .navigationBarItems(leading:
-                EditButton().font(Font.system(.body, design: .rounded)),
-                                trailing:
+                EditButton().font(Font.system(.body, design: .rounded))
+                    .padding([.vertical, .trailing])
+                , trailing:
                 Button(action: {
                     self.showingAddTally = true
                 }) {
                     Image(systemName: "plus")
                         .imageScale(.large)
+                        .padding([.vertical, .leading])
                 })
             .navigationBarTitle(Text("Tallies"))
             

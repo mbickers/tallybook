@@ -20,6 +20,7 @@ struct TallyDetailView: View {
         List {
             Text("Placeholder")
         }
+        .navigationBarTitle(tally.name)
     }
 }
 
