@@ -58,7 +58,7 @@ struct TallyBlock: View {
                         }
                         .buttonStyle(CounterButtonStyle())
                         
-                        TallyBlockTextField(placeholder: "0", text: $tally.numericStringToday)
+                        NumericTallyTextField(placeholder: "0", text: $tally.numericStringToday)
                             // Setting max width to .infinity actually stops the text field from expanding and taking up too much space
                             .frame(minWidth: 0, maxWidth: .infinity)
                     }
@@ -66,7 +66,7 @@ struct TallyBlock: View {
                 }
                 
                 if tally.kind == .amount {
-                    TallyBlockTextField(placeholder: "Tap", text: $tally.numericStringToday)
+                    NumericTallyTextField(placeholder: "Tap", text: $tally.numericStringToday)
                         .padding(.top, -25)
                         // Setting max width to .infinity actually stops the text field from expanding and taking up too much space
                         .frame(minWidth: 0, maxWidth: .infinity)

@@ -10,8 +10,8 @@
 		A50F6F962399A2A000EB7235 /* AddTallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F6F952399A2A000EB7235 /* AddTallyView.swift */; };
 		A561E5AD238C80C7000767E4 /* TalliesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561E5AC238C80C7000767E4 /* TalliesView.swift */; };
 		A561E5AF238C86DE000767E4 /* TallyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561E5AE238C86DE000767E4 /* TallyDetailView.swift */; };
-		A59913142399D11500B0D22E /* CustomAutofocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59913132399D11500B0D22E /* CustomAutofocusTextField.swift */; };
-		A5A278982395AF18008572E9 /* CustomNumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A278972395AF18008572E9 /* CustomNumericTextField.swift */; };
+		A59913142399D11500B0D22E /* AutofocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59913132399D11500B0D22E /* AutofocusTextField.swift */; };
+		A5A278982395AF18008572E9 /* NumericTallyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A278972395AF18008572E9 /* NumericTallyTextField.swift */; };
 		A5A2789A2395C868008572E9 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A278992395C868008572E9 /* Helpers.swift */; };
 		A5B63C85238C9C61004390E6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B63C84238C9C61004390E6 /* Model.swift */; };
 		A5CA797C238AF46A00263480 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA797B238AF46A00263480 /* AppDelegate.swift */; };
@@ -45,8 +45,8 @@
 		A50F6F952399A2A000EB7235 /* AddTallyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTallyView.swift; sourceTree = "<group>"; };
 		A561E5AC238C80C7000767E4 /* TalliesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalliesView.swift; sourceTree = "<group>"; };
 		A561E5AE238C86DE000767E4 /* TallyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyDetailView.swift; sourceTree = "<group>"; };
-		A59913132399D11500B0D22E /* CustomAutofocusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAutofocusTextField.swift; sourceTree = "<group>"; };
-		A5A278972395AF18008572E9 /* CustomNumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNumericTextField.swift; sourceTree = "<group>"; };
+		A59913132399D11500B0D22E /* AutofocusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofocusTextField.swift; sourceTree = "<group>"; };
+		A5A278972395AF18008572E9 /* NumericTallyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTallyTextField.swift; sourceTree = "<group>"; };
 		A5A278992395C868008572E9 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A5B63C84238C9C61004390E6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		A5CA7978238AF46A00263480 /* Tallybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tallybook.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,8 +96,8 @@
 				A561E5AC238C80C7000767E4 /* TalliesView.swift */,
 				A50F6F952399A2A000EB7235 /* AddTallyView.swift */,
 				A5CA79AB238AF53F00263480 /* TallyBlock.swift */,
-				A5A278972395AF18008572E9 /* CustomNumericTextField.swift */,
-				A59913132399D11500B0D22E /* CustomAutofocusTextField.swift */,
+				A5A278972395AF18008572E9 /* NumericTallyTextField.swift */,
+				A59913132399D11500B0D22E /* AutofocusTextField.swift */,
 				A561E5AE238C86DE000767E4 /* TallyDetailView.swift */,
 			);
 			name = "User Interface";
@@ -296,11 +296,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5A278982395AF18008572E9 /* CustomNumericTextField.swift in Sources */,
+				A5A278982395AF18008572E9 /* NumericTallyTextField.swift in Sources */,
 				A5B63C85238C9C61004390E6 /* Model.swift in Sources */,
 				A5CA79AC238AF53F00263480 /* TallyBlock.swift in Sources */,
 				A5A2789A2395C868008572E9 /* Helpers.swift in Sources */,
-				A59913142399D11500B0D22E /* CustomAutofocusTextField.swift in Sources */,
+				A59913142399D11500B0D22E /* AutofocusTextField.swift in Sources */,
 				A5CA797C238AF46A00263480 /* AppDelegate.swift in Sources */,
 				A5CA797E238AF46A00263480 /* SceneDelegate.swift in Sources */,
 				A561E5AF238C86DE000767E4 /* TallyDetailView.swift in Sources */,

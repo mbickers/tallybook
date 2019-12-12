@@ -76,7 +76,7 @@ struct AddTallyView: View {
                     }
                 }
             
-            CustomAutofocusTextField(text: $tally.name)
+            AutofocusTextField(text: $tally.name)
                 // Need to set max frame to .infinity for layout to work correctly
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .padding(.vertical, 10)

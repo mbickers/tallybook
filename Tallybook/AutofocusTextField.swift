@@ -8,12 +8,12 @@
 
 import SwiftUI
 
-struct CustomAutofocusTextField: UIViewRepresentable {
+struct AutofocusTextField: UIViewRepresentable {
     typealias UIViewType = UITextField
     
     @Binding var text: String
 
-    func makeUIView(context: UIViewRepresentableContext<CustomAutofocusTextField>) -> UITextField {
+    func makeUIView(context: UIViewRepresentableContext<AutofocusTextField>) -> UITextField {
         let textField = UITextField(frame: .zero)
         textField.delegate = context.coordinator
         
@@ -27,7 +27,7 @@ struct CustomAutofocusTextField: UIViewRepresentable {
         return textField
     }
     
-    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<CustomAutofocusTextField>) {
+    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<AutofocusTextField>) {
         uiView.text = text
         
         // Make text field first responder whenever view is shown
@@ -52,21 +52,21 @@ struct CustomAutofocusTextField: UIViewRepresentable {
         }
     }
     
-    func makeCoordinator() -> CustomAutofocusTextField.Coordinator {
+    func makeCoordinator() -> AutofocusTextField.Coordinator {
         return Coordinator(text: $text)
     }
     
 }
 
-struct ContentView_TestCustomAutofocusTextField : View {
+struct ContentView_TestAutofocusTextField : View {
     @State var text: String = "12"
     
     var body: some View {
-        CustomAutofocusTextField(text: $text)
+        AutofocusTextField(text: $text)
     }
 }
 
-struct CustomAutofocusTextField_Previews: PreviewProvider {
+struct AutofocusTextField_Previews: PreviewProvider {
     static var previews: some View {
         ContentView_TestCustomAutofocusTextField()
     }

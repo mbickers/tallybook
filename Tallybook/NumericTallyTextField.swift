@@ -43,7 +43,7 @@ class CustomNumericUITextField: UITextField, UITextFieldDelegate {
 }
 
 // SwiftUI compatibible wrapper of CustomUITextField that adds custom functionality
-struct TallyBlockTextField: UIViewRepresentable {
+struct NumericTallyTextField: UIViewRepresentable {
     
     let textField = CustomNumericUITextField()
     var placeholder: String?
@@ -51,7 +51,7 @@ struct TallyBlockTextField: UIViewRepresentable {
     @Binding var text: String
     
     
-    func makeUIView(context: UIViewRepresentableContext<TallyBlockTextField>) -> UITextField {
+    func makeUIView(context: UIViewRepresentableContext<NumericTallyTextField>) -> UITextField {
         
         // Configure text field
 
@@ -93,7 +93,7 @@ struct TallyBlockTextField: UIViewRepresentable {
         return textField
     }
     
-    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<TallyBlockTextField>) {
+    func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<NumericTallyTextField>) {
         // Make sure that the text field adjusts for changes to the state that originate from other parts of the app
         uiView.text = text
     }
@@ -102,21 +102,21 @@ struct TallyBlockTextField: UIViewRepresentable {
 
 
 
-struct ContentView_TestCustomNumericTextField : View {
+struct ContentView_TestNumericTallyTextField : View {
     @State var numberOfBeans: String = "12"
     
     var body: some View {
         VStack {
             Text("Beans: " + (numberOfBeans))
             
-            TallyBlockTextField(placeholder: "Beans", text: $numberOfBeans)
+            NumericTallyTextField(placeholder: "Beans", text: $numberOfBeans)
                 .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
         }
     }
 }
 
-struct CustomNumericTextField_Previews: PreviewProvider {
+struct NumericTallyTextField_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView_TestCustomNumericTextField()
+        ContentView_TestNumericTallyTextField()
     }
 }
