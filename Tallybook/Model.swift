@@ -8,18 +8,18 @@
 
 import Foundation
 
-struct TallyDatum: Identifiable {
+class TallyDatum: Identifiable, ObservableObject {
     var id = UUID()
     
-    var date: String
-    var value: Int
+    @Published var date: String
+    @Published var value: Int
     
     var intValue: Int {
         get {
             return value
         }
         
-        mutating set {
+        set {
             value = min(9999, newValue)
         }
     }
@@ -107,17 +107,86 @@ class Tally: Identifiable, ObservableObject {
     }
     
     
-    var today: TallyDatum {
+    
+    var todayValue: Int? {
         get {
-            if data.count == 0 || data[0].date != TallyDatum.today {
-                data.append(TallyDatum(date: Date(), value: 0))
+            if data.count > 0 && data[0].date == TallyDatum.today {
+                return data[0].value
             }
-            
-            return data[0]
+            return nil
         }
         
         set {
-            data[0] = newValue
+            if data.count > 0 && data[0].date == TallyDatum.today {
+                if let nv = newValue {
+                    data[0].intValue = nv
+                } else {
+                    data.remove(at: 0)
+                }
+            } else if let nv = newValue {
+                data.insert(TallyDatum(date: Date(), value: nv), at: 0)
+            }
+        }
+    }
+    
+    //    var today: TallyDatum {
+    //        get {
+    //            if data.count > 0 && data[0].date == TallyDatum.today {
+    //                return data[0]
+    //            }
+    //            return TallyDatum(date: Date(), value: 0)
+    //        }
+    //        
+    //        set {
+    //            if data.count > 0 && data[0].date == TallyDatum.today {
+    //                if let nv = newValue {
+    //                    data[0].intValue = nv
+    //                } else {
+    //                    data.remove(at: 0)
+    //                }
+    //            } else if let nv = newValue {
+    //                data.insert(TallyDatum(date: Date(), value: nv), at: 0)
+    //            }
+    //        }
+    //    }
+    
+    // Wrappers to access values from today for convience in TallyBlock
+    
+    var completionToday: Bool {
+        get {
+            return (todayValue ?? 0) >= 1
+        }
+        
+        set {
+            todayValue = newValue ? 1 : nil
+        }
+    }
+    
+    var numericToday: Int {
+        get {
+            return todayValue ?? 0
+        }
+        
+        set {
+            todayValue = newValue
+        }
+    }
+    
+    var numericStringToday: String {
+        get {
+            if let tv = todayValue {
+                return String(tv);
+            } else {
+                return "";
+            }
+        }
+        
+        set {
+            if newValue == "" {
+                todayValue = nil
+            } else {
+                todayValue = Int(newValue)
+            }
         }
     }
 }

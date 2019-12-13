@@ -15,7 +15,7 @@ struct EditTallyDatumView: View {
     @Binding var selectedTallyDatumID: UUID?
     
     @State var isEditing: Bool = false
-    @State var tallyDatum: TallyDatum = TallyDatum(date: Date(), value: 0)
+    @ObservedObject var tallyDatum: TallyDatum = TallyDatum(date: Date(), value: 0)
     
     @State private var date = Date()
     
