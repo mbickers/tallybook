@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A50F6F962399A2A000EB7235 /* AddTallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F6F952399A2A000EB7235 /* AddTallyView.swift */; };
+		A5313EE623A337B100D0E367 /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5313EE523A337B100D0E367 /* NumericTextField.swift */; };
 		A561E5AD238C80C7000767E4 /* TalliesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561E5AC238C80C7000767E4 /* TalliesView.swift */; };
 		A561E5AF238C86DE000767E4 /* TallyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561E5AE238C86DE000767E4 /* TallyDetailView.swift */; };
 		A59913142399D11500B0D22E /* AutofocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59913132399D11500B0D22E /* AutofocusTextField.swift */; };
@@ -44,6 +45,7 @@
 
 /* Begin PBXFileReference section */
 		A50F6F952399A2A000EB7235 /* AddTallyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTallyView.swift; sourceTree = "<group>"; };
+		A5313EE523A337B100D0E367 /* NumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTextField.swift; sourceTree = "<group>"; };
 		A561E5AC238C80C7000767E4 /* TalliesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalliesView.swift; sourceTree = "<group>"; };
 		A561E5AE238C86DE000767E4 /* TallyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyDetailView.swift; sourceTree = "<group>"; };
 		A59913132399D11500B0D22E /* AutofocusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofocusTextField.swift; sourceTree = "<group>"; };
@@ -92,14 +94,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A5313EE423A3378B00D0E367 /* Supporting Views */ = {
+			isa = PBXGroup;
+			children = (
+				A5313EE523A337B100D0E367 /* NumericTextField.swift */,
+				A5CA79AB238AF53F00263480 /* TallyBlock.swift */,
+				A5A278972395AF18008572E9 /* NumericTallyTextField.swift */,
+				A59913132399D11500B0D22E /* AutofocusTextField.swift */,
+			);
+			name = "Supporting Views";
+			sourceTree = "<group>";
+		};
 		A5A2789B23960696008572E9 /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
 				A561E5AC238C80C7000767E4 /* TalliesView.swift */,
 				A50F6F952399A2A000EB7235 /* AddTallyView.swift */,
-				A5CA79AB238AF53F00263480 /* TallyBlock.swift */,
-				A5A278972395AF18008572E9 /* NumericTallyTextField.swift */,
-				A59913132399D11500B0D22E /* AutofocusTextField.swift */,
 				A561E5AE238C86DE000767E4 /* TallyDetailView.swift */,
 				A59E31B423A1F57D00A06ACC /* EditTallyDatumView.swift */,
 			);
@@ -131,6 +141,7 @@
 			children = (
 				A5CA797B238AF46A00263480 /* AppDelegate.swift */,
 				A5CA797D238AF46A00263480 /* SceneDelegate.swift */,
+				A5313EE423A3378B00D0E367 /* Supporting Views */,
 				A5A2789B23960696008572E9 /* User Interface */,
 				A5B63C84238C9C61004390E6 /* Model.swift */,
 				A5A278992395C868008572E9 /* Helpers.swift */,
@@ -304,6 +315,7 @@
 				A5CA79AC238AF53F00263480 /* TallyBlock.swift in Sources */,
 				A5A2789A2395C868008572E9 /* Helpers.swift in Sources */,
 				A59913142399D11500B0D22E /* AutofocusTextField.swift in Sources */,
+				A5313EE623A337B100D0E367 /* NumericTextField.swift in Sources */,
 				A5CA797C238AF46A00263480 /* AppDelegate.swift in Sources */,
 				A5CA797E238AF46A00263480 /* SceneDelegate.swift in Sources */,
 				A59E31B523A1F57D00A06ACC /* EditTallyDatumView.swift in Sources */,

@@ -101,10 +101,7 @@ struct EditTallyDatumView: View {
                             }
                             .padding(.bottom, -2)
                         } else {
-                            TextField("0", text: self.$tallyDatum.defaultBlankStringValue)
-                            .font(Font.system(.body, design: .rounded))
-                            .keyboardType(.numberPad)
-                            .multilineTextAlignment(.trailing)
+                            NumericTextField(placeholder: "0", text: self.$tallyDatum.defaultBlankStringValue)
                         }
                         
                     }
