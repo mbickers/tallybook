@@ -14,10 +14,11 @@ struct EditTallyDatumView: View {
     @ObservedObject var tally: Tally
     @Binding var selectedTallyDatumID: UUID?
     
-    @State var tallyDatum: TallyDatum? = nil
     @State var isEditing: Bool = false
     
     @State var valueString: String = "0"
+    @State var valueBool: Bool = true
+    
     @State private var date = Date()
     
     init(presenting: Binding<Bool>, tally: Tally, selectedTallyDatumID: Binding<UUID?>) {
@@ -53,7 +54,12 @@ struct EditTallyDatumView: View {
                 
                 Button(action: {
                     // Make changes
-                    let value = Int(self.valueString) ?? 0
+                    var value = Int(self.valueString) ?? 0
+                    
+                    if self.tally.kind == .completion {
+                        value = self.valueBool ? 1 : 0
+                    }
+                    
                     let dateString = TallyDatum.df.string(from: self.date)
                     let td = TallyDatum(date: dateString, value: value)
                                        
@@ -91,11 +97,28 @@ struct EditTallyDatumView: View {
                     HStack(alignment: .firstTextBaseline) {
                         Text("Value")
                             .font(Font.system(.body, design: .rounded))
-                        TextField("0", text: self.$valueString)
+                        
+                        if self.tally.kind == .completion {
+                            Spacer()
+                            
+                            Button(action: {
+                                self.valueBool.toggle()
+                            }) {
+                                Image(systemName: self.valueBool ? "checkmark.circle.fill" : "checkmark.circle")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundColor(self.valueBool ? .customAccent : Color(UIColor.tertiaryLabel))                            
+                            }
+                            .padding(.bottom, -2)
+                        } else {
+                            TextField("0", text: self.$valueString)
                             .font(Font.system(.body, design: .rounded))
                             .keyboardType(.numberPad)
                             .multilineTextAlignment(.trailing)
+                        }
+                        
                     }
+                    
                     Divider()
                         .padding(.top, -5)
                         .padding(.trailing, -20)
@@ -123,12 +146,19 @@ struct EditTallyDatumView: View {
             // Because this screen can function as either an add or edit screen, configure state accordingly
             if let td = self.tally.data.first(where: { $0.id == self.selectedTallyDatumID }) {
                 self.valueString = String(td.value)
+                self.valueBool = td.value >= 1
                 self.date = TallyDatum.df.date(from: td.date)!
                 self.isEditing = true
             } else {
                 self.valueString = ""
+                self.valueBool = true
                 self.date = Date()
                 self.isEditing = false
+            }
+            
+            // If the tally kind is completion, the user can exit the edit at any time, so set valueString to something that isn't ""
+            if self.tally.kind == .completion {
+                self.valueString = "Placeholder"
             }
         }
         
@@ -138,7 +168,7 @@ struct EditTallyDatumView: View {
 struct EditTallyDatumView_Previews: PreviewProvider {
     static var previews: some View {
         EditTallyDatumView(presenting: .constant(true),
-                           tally: Tally(kind: .counter, name: "Test", data: [TallyDatum]()),
+                           tally: Tally(kind: .completion, name: "Test", data: [TallyDatum]()),
                            selectedTallyDatumID: .constant(nil))
     }
 }

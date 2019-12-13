@@ -37,8 +37,13 @@ struct TallyDetailView: View {
                             self.showingEditTallyDatum = true
                         }) {
                             HStack {
-                                Text(String(tallyDatum.value))
-                                    .foregroundColor(Color(UIColor.label))
+                                if self.tally.kind == .completion {
+                                    Text(tallyDatum.boolValue ? "Complete" : "Incomplete")
+                                        .foregroundColor(Color(UIColor.label))
+                                } else {
+                                    Text(String(tallyDatum.value))
+                                        .foregroundColor(Color(UIColor.label))
+                                }
                                 Spacer()
                                 Text(tallyDatum.date)
                                     .foregroundColor(Color(UIColor.secondaryLabel))
