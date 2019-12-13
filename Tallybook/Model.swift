@@ -72,6 +72,11 @@ struct TallyDatum: Identifiable {
         }
     }
     
+    static func validate(string: String) -> Bool {
+        let digits = CharacterSet.decimalDigits
+        return digits.isSuperset(of: CharacterSet(charactersIn: string)) && string.count <= 4
+    }
+    
     init(date: Date, value: Int) {
         self.date = TallyDatum.df.string(from: date)
         self.value = min(9999, value)
