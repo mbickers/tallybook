@@ -115,37 +115,6 @@ class Tally: Identifiable, ObservableObject {
             data[0] = newValue
         }
     }
-    
-    // Wrappers to access values from today for convience in TallyBlock. If these properties are not exposed here, then they are not automatically updaated in the UI because TallyDatum is a reference type
-    var completionToday: Bool {
-        get {
-            return today.boolValue
-        }
-        
-        set {
-            today.boolValue = newValue
-        }
-    }
-    
-    var numericToday: Int {
-        get {
-            return today.intValue
-        }
-        
-        set {
-            today.intValue = newValue
-        }
-    }
-    
-    var numericStringToday: String {
-        get {
-            return today.defaultBlankStringValue
-        }
-        
-        set {
-            today.defaultBlankStringValue = newValue
-        }
-    }
 }
 
 

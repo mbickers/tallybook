@@ -32,15 +32,15 @@ struct TallyBlock: View {
                 if tally.kind == .completion {
                     Button(action: {
                         UIDevice.vibrate()
-                        self.tally.completionToday.toggle()
+                        self.tally.today.boolValue.toggle()
                     }) {
-                        Image(systemName: tally.completionToday ? "checkmark.circle.fill" : "checkmark.circle")
+                        Image(systemName: tally.today.boolValue ? "checkmark.circle.fill" : "checkmark.circle")
                             .resizable()
                             .frame(width: 84, height: 84)
                             .animation(nil)
-                            .foregroundColor(tally.completionToday ? .customAccent : Color(UIColor.tertiaryLabel))                            
+                            .foregroundColor(tally.today.boolValue ? .customAccent : Color(UIColor.tertiaryLabel))                            
                     }
-                    .buttonStyle(CheckButtonStyle())
+                    .buttonStyle(ExpandingButtonStyle())
                     .padding(.top, -5)
                 }
                 
@@ -48,7 +48,7 @@ struct TallyBlock: View {
                     HStack {
                         Button(action: {
                             UIDevice.vibrate()
-                            self.tally.numericToday += 1
+                            self.tally.today.intValue += 1
                         }) {
                             Image(systemName: "plus.circle")
                                 .resizable()
@@ -56,9 +56,9 @@ struct TallyBlock: View {
                                 .animation(nil)
                                 .foregroundColor(.customAccent)
                         }
-                        .buttonStyle(CounterButtonStyle())
+                        .buttonStyle(ExpandingButtonStyle())
                         
-                        NumericTallyTextField(placeholder: "0", text: $tally.numericStringToday)
+                        NumericTallyTextField(placeholder: "0", text: $tally.today.defaultBlankStringValue)
                             // Setting max width to .infinity actually stops the text field from expanding and taking up too much space
                             .frame(minWidth: 0, maxWidth: .infinity)
                     }
@@ -66,7 +66,7 @@ struct TallyBlock: View {
                 }
                 
                 if tally.kind == .amount {
-                    NumericTallyTextField(placeholder: "Tap", text: $tally.numericStringToday)
+                    NumericTallyTextField(placeholder: "Tap", text: $tally.today.defaultBlankStringValue)
                         .padding(.top, -25)
                         // Setting max width to .infinity actually stops the text field from expanding and taking up too much space
                         .frame(minWidth: 0, maxWidth: .infinity)
@@ -111,15 +111,7 @@ struct TallyBlock: View {
     }
 }
 
-struct CheckButtonStyle: ButtonStyle {
-    
-    func makeBody(configuration: Self.Configuration) -> some View {
-        configuration.label
-            .scaleEffect(configuration.isPressed ? 1.07 : 1.0)
-    }
-}
-
-struct CounterButtonStyle: ButtonStyle {
+struct ExpandingButtonStyle: ButtonStyle {
     
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
@@ -131,15 +123,6 @@ struct CounterButtonStyle: ButtonStyle {
 struct TallyBlock_Previews: PreviewProvider {
     
     static var previews: some View {
-//        List {
-//            TallyBlock(tally: $(userData.tallies[0]))
-//                .environmentObject(UserData.testData())
-//            TallyBlock(tally: UserData.testData().tallies[1])
-//                .environmentObject(UserData.testData())
-//            TallyBlock(tally: UserData.testData().tallies[3])
-//                .environmentObject(UserData.testData())
-//        }
-        
         
         Group {
             TalliesView()
@@ -149,7 +132,6 @@ struct TallyBlock_Previews: PreviewProvider {
                 .environmentObject(UserData.testData)
                 .environment(\.colorScheme, .dark)
         }
-        
         
     }
 }
