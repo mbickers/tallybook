@@ -8,28 +8,28 @@
 
 import Foundation
 
-class TallyDatum: Identifiable, ObservableObject {
+struct TallyDatum: Identifiable {
     var id = UUID()
     
-    @Published var date: String
-    @Published var value: Int
+    var date: String
+    var value: Int
     
     var intValue: Int {
         get {
             return value
         }
         
-        set {
+        mutating set {
             value = min(9999, newValue)
         }
     }
     
     var defaultBlankStringValue: String {
         get {
-            if value == 0 {
+            if intValue == 0 {
                 return ""
             } else {
-                return String(value)
+                return String(intValue)
             }
         }
         
@@ -40,7 +40,7 @@ class TallyDatum: Identifiable, ObservableObject {
     
     var defaultZeroStringValue: String {
         get {
-            return String(value)
+            return String(intValue)
         }
         
         set {
@@ -50,11 +50,11 @@ class TallyDatum: Identifiable, ObservableObject {
     
     var boolValue: Bool {
         get {
-            return value >= 1
+            return intValue >= 1
         }
         
         set {
-            value = newValue ? 1 : 0
+            intValue = newValue ? 1 : 0
         }
     }
     
@@ -101,86 +101,49 @@ class Tally: Identifiable, ObservableObject {
         self.data = data
     }
     
-
-    var todayValue: Int? {
+    
+    var today: TallyDatum {
         get {
-            if data.count > 0 && data[0].date == TallyDatum.today {
-                return data[0].value
+            if data.count == 0 || data[0].date != TallyDatum.today {
+                data.append(TallyDatum(date: Date(), value: 0))
             }
-            return nil
+            
+            return data[0]
         }
         
         set {
-            if data.count > 0 && data[0].date == TallyDatum.today {
-                if let nv = newValue {
-                    data[0].intValue = nv
-                } else {
-                    data.remove(at: 0)
-                }
-            } else if let nv = newValue {
-                data.insert(TallyDatum(date: Date(), value: nv), at: 0)
-            }
+            data[0] = newValue
         }
     }
     
-//    var today: TallyDatum {
-//        get {
-//            if data.count > 0 && data[0].date == TallyDatum.today {
-//                return data[0]
-//            }
-//            return TallyDatum(date: Date(), value: 0)
-//        }
-//        
-//        set {
-//            if data.count > 0 && data[0].date == TallyDatum.today {
-//                if let nv = newValue {
-//                    data[0].intValue = nv
-//                } else {
-//                    data.remove(at: 0)
-//                }
-//            } else if let nv = newValue {
-//                data.insert(TallyDatum(date: Date(), value: nv), at: 0)
-//            }
-//        }
-//    }
-    
-    // Wrappers to access values from today for convience in TallyBlock
-    
+    // Wrappers to access values from today for convience in TallyBlock. If these properties are not exposed here, then they are not automatically updaated in the UI because TallyDatum is a reference type
     var completionToday: Bool {
         get {
-            return (todayValue ?? 0) >= 1
+            return today.boolValue
         }
         
         set {
-            todayValue = newValue ? 1 : nil
+            today.boolValue = newValue
         }
     }
     
     var numericToday: Int {
         get {
-            return todayValue ?? 0
+            return today.intValue
         }
         
         set {
-            todayValue = newValue
+            today.intValue = newValue
         }
     }
     
     var numericStringToday: String {
         get {
-            if let tv = todayValue {
-                return String(tv);
-            } else {
-                return "";
-            }
+            return today.defaultBlankStringValue
         }
         
         set {
-            if newValue == "" {
-                todayValue = nil
-            } else {
-                todayValue = Int(newValue)
-            }
+            today.defaultBlankStringValue = newValue
         }
     }
 }
