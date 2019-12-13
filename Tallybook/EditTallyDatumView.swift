@@ -54,10 +54,12 @@ struct EditTallyDatumView: View {
                 
                 Button(action: {
                     // Make changes
-                    var value = Int(self.valueString) ?? 0
+                    var value: Int!
                     
                     if self.tally.kind == .completion {
                         value = self.valueBool ? 1 : 0
+                    } else {
+                        value = Int(self.valueString) ?? 0
                     }
                     
                     let dateString = TallyDatum.df.string(from: self.date)
