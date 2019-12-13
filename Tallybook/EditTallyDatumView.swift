@@ -15,9 +15,7 @@ struct EditTallyDatumView: View {
     @Binding var selectedTallyDatumID: UUID?
     
     @State var isEditing: Bool = false
-    
-    @State var valueString: String = "0"
-    @State var valueBool: Bool = true
+    @ObservedObject var tallyDatum: TallyDatum = TallyDatum(date: Date(), value: 0)
     
     @State private var date = Date()
     
@@ -53,17 +51,7 @@ struct EditTallyDatumView: View {
                 Spacer()
                 
                 Button(action: {
-                    // Make changes
-                    var value: Int!
-                    
-                    if self.tally.kind == .completion {
-                        value = self.valueBool ? 1 : 0
-                    } else {
-                        value = Int(self.valueString) ?? 0
-                    }
-                    
-                    let dateString = TallyDatum.df.string(from: self.date)
-                    let td = TallyDatum(date: dateString, value: value)
+                    self.tallyDatum.date = TallyDatum.df.string(from: self.date)
                                        
                     // Remove old tallyDatum if editing
                     if self.isEditing {
@@ -72,21 +60,21 @@ struct EditTallyDatumView: View {
                     }
                     
                     // Check if there is a tally datum already at date. If so, overwrite it
-                    if let idx = self.tally.data.firstIndex(where: { $0.date == dateString }) {
-                        self.tally.data[idx] = td
+                    if let idx = self.tally.data.firstIndex(where: { $0.date == self.tallyDatum.date }) {
+                        self.tally.data[idx] = self.tallyDatum
                     } else {
-                        let idx = self.tally.data.firstIndex(where: { $0.date < dateString }) ?? self.tally.data.count
-                        self.tally.data.insert(td, at: idx);
+                        let idx = self.tally.data.firstIndex(where: { $0.date < self.tallyDatum.date }) ?? self.tally.data.count
+                        self.tally.data.insert(self.tallyDatum, at: idx);
                     }
                     
-                    
                     self.presenting = false
+                    
                 }, label: {
                     Text(isEditing ? "Done" : "Add")
                         .font(Font.system(.body, design: .rounded))
                         .bold()
                 })
-                    .disabled(self.valueString == "" ? true : false)
+                    .disabled(self.tallyDatum.intValue == 0 && self.tally.kind != .completion)
                     .padding([.horizontal, .top])
             }
             
@@ -104,16 +92,16 @@ struct EditTallyDatumView: View {
                             Spacer()
                             
                             Button(action: {
-                                self.valueBool.toggle()
+                                self.tallyDatum.boolValue.toggle()
                             }) {
-                                Image(systemName: self.valueBool ? "checkmark.circle.fill" : "checkmark.circle")
+                                Image(systemName: self.tallyDatum.boolValue ? "checkmark.circle.fill" : "checkmark.circle")
                                     .resizable()
                                     .frame(width: 20, height: 20)
-                                    .foregroundColor(self.valueBool ? .customAccent : Color(UIColor.tertiaryLabel))                            
+                                    .foregroundColor(self.tallyDatum.boolValue ? .customAccent : Color(UIColor.tertiaryLabel))                            
                             }
                             .padding(.bottom, -2)
                         } else {
-                            TextField("0", text: self.$valueString)
+                            TextField("0", text: self.$tallyDatum.defaultBlankStringValue)
                             .font(Font.system(.body, design: .rounded))
                             .keyboardType(.numberPad)
                             .multilineTextAlignment(.trailing)
@@ -147,20 +135,13 @@ struct EditTallyDatumView: View {
             // An editing ID is sometimes passed in from the controlling view.
             // Because this screen can function as either an add or edit screen, configure state accordingly
             if let td = self.tally.data.first(where: { $0.id == self.selectedTallyDatumID }) {
-                self.valueString = String(td.value)
-                self.valueBool = td.value >= 1
+                self.tallyDatum.date = td.date
+                self.tallyDatum.intValue = td.intValue
                 self.date = TallyDatum.df.date(from: td.date)!
                 self.isEditing = true
             } else {
-                self.valueString = ""
-                self.valueBool = true
                 self.date = Date()
                 self.isEditing = false
-            }
-            
-            // If the tally kind is completion, the user can exit the edit at any time, so set valueString to something that isn't ""
-            if self.tally.kind == .completion {
-                self.valueString = "Placeholder"
             }
         }
         

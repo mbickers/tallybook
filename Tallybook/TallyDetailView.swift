@@ -41,7 +41,7 @@ struct TallyDetailView: View {
                                     Text(tallyDatum.boolValue ? "Complete" : "Incomplete")
                                         .foregroundColor(Color(UIColor.label))
                                 } else {
-                                    Text(String(tallyDatum.value))
+                                    Text(tallyDatum.defaultZeroStringValue)
                                         .foregroundColor(Color(UIColor.label))
                                 }
                                 Spacer()

@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct TallyDatum: Identifiable {
+class TallyDatum: Identifiable, ObservableObject {
     var id = UUID()
     
-    var date: String
-    var value: Int
+    @Published var date: String
+    @Published var value: Int
     
     var intValue: Int {
         get {
@@ -24,13 +24,23 @@ struct TallyDatum: Identifiable {
         }
     }
     
-    var stringValue: String {
+    var defaultBlankStringValue: String {
         get {
             if value == 0 {
                 return ""
             } else {
                 return String(value)
             }
+        }
+        
+        set {
+            intValue = Int(newValue) ?? 0
+        }
+    }
+    
+    var defaultZeroStringValue: String {
+        get {
+            return String(value)
         }
         
         set {
@@ -64,14 +74,12 @@ struct TallyDatum: Identifiable {
     
     init(date: Date, value: Int) {
         self.date = TallyDatum.df.string(from: date)
-        self.value = value
-        intValue = intValue
+        self.value = min(9999, value)
     }
     
     init(date: String, value: Int) {
         self.date = date
-        self.value = value
-        intValue = intValue
+        self.value = min(9999, value)
     }
 }
 
