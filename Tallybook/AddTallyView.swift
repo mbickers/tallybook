@@ -87,7 +87,7 @@ struct AddTallyView: View {
             
             Picker(selection: $tally.kind, label: Text("Tally Type")) {
                 ForEach(Tally.Kind.allCases, id: \.self) { kind in
-                    Text(kind.rawValue).tag(Tally.Kind.completion)
+                    Text(kind.rawValue)
                 }
             }
                 .pickerStyle(SegmentedPickerStyle())
