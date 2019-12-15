@@ -33,26 +33,24 @@ struct TallyBlock: View {
                 
                 // Interactive component of each tally block
                 
-                // For completion tallies, show a checkbox that can be toggled
-                if tally.kind == .completion {
-                    Button(action: {
-                        UIDevice.vibrate()
-                        self.tally.today.boolValue.toggle()
-                    }) {
-                        Image(systemName: tally.today.boolValue ? "checkmark.circle.fill" : "checkmark.circle")
-                            .resizable()
-                            .frame(width: 84, height: 84)
-                            .animation(nil)
-                            .foregroundColor(tally.today.boolValue ? .customAccent : Color(UIColor.tertiaryLabel))                            
+                HStack(alignment: .center) {
+                    if tally.kind == .completion {
+                        Button(action: {
+                            UIDevice.vibrate()
+                            self.tally.today.boolValue.toggle()
+                        }) {
+                            Image(systemName: tally.today.boolValue ? "checkmark.circle.fill" : "checkmark.circle")
+                                .resizable()
+                                .frame(width: 84, height: 84)
+                                .animation(nil)
+                                .foregroundColor(tally.today.boolValue ? .customAccent : Color(UIColor.tertiaryLabel))                            
+                        }
+                        // ExpandingButtonStyle is a custom style defined below
+                        .buttonStyle(ExpandingButtonStyle())
+                        .padding(.top, 18)
                     }
-                    // ExpandingButtonStyle is a custom style defined below
-                    .buttonStyle(ExpandingButtonStyle())
-                    .padding(.top, -5)
-                }
-                
-                // For counter tallies, show a increment button and a text field
-                if tally.kind == .counter {
-                    HStack {
+                    
+                    if tally.kind == .counter {
                         Button(action: {
                             UIDevice.vibrate()
                             self.tally.today.intValue += 1
@@ -64,21 +62,15 @@ struct TallyBlock: View {
                                 .foregroundColor(.customAccent)
                         }
                         .buttonStyle(ExpandingButtonStyle())
-                        
-                        NumericTallyTextField(placeholder: "0", text: $tally.today.defaultBlankStringValue)
-                            // Setting max width to .infinity stops the text field from expanding and taking up too much space
-                            .frame(minWidth: 0, maxWidth: .infinity)
                     }
-                    .padding(.top, -25)
-                }
-                
-                // For amount tallies, show a text field
-                if tally.kind == .amount {
-                    NumericTallyTextField(placeholder: "Tap", text: $tally.today.defaultBlankStringValue)
-                        .padding(.top, -25)
-                        // Setting max width to .infinity actually stops the text field from expanding and taking up too much space
+                    
+                    if tally.kind != .completion {
+                        NumericTallyTextField(placeholder: "0", text: $tally.today.defaultBlankStringValue)
+                        // Setting max width to .infinity stops the text field from expanding and taking up too much space
                         .frame(minWidth: 0, maxWidth: .infinity)
+                    }
                 }
+                .padding(.top, -25)
                 
             }
             .padding(.leading, 12)

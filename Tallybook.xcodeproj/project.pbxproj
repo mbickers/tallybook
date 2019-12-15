@@ -25,6 +25,7 @@
 		A5CA7993238AF46C00263480 /* TallybookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA7992238AF46C00263480 /* TallybookTests.swift */; };
 		A5CA799E238AF46C00263480 /* TallybookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA799D238AF46C00263480 /* TallybookUITests.swift */; };
 		A5CA79AC238AF53F00263480 /* TallyBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA79AB238AF53F00263480 /* TallyBlock.swift */; };
+		A5E2CAA523A69C4300622D86 /* NumericUITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E2CAA423A69C4300622D86 /* NumericUITextFieldDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		A5CA799D238AF46C00263480 /* TallybookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallybookUITests.swift; sourceTree = "<group>"; };
 		A5CA799F238AF46C00263480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5CA79AB238AF53F00263480 /* TallyBlock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyBlock.swift; sourceTree = "<group>"; };
+		A5E2CAA423A69C4300622D86 /* NumericUITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericUITextFieldDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				A5A2789B23960696008572E9 /* User Interface */,
 				A5B63C84238C9C61004390E6 /* Model.swift */,
 				A5A278992395C868008572E9 /* Helpers.swift */,
+				A5E2CAA423A69C4300622D86 /* NumericUITextFieldDelegate.swift */,
 				A5CA7986238AF46C00263480 /* LaunchScreen.storyboard */,
 				A5CA7981238AF46C00263480 /* Assets.xcassets */,
 				A5CA7989238AF46C00263480 /* Info.plist */,
@@ -321,6 +324,7 @@
 				A59913142399D11500B0D22E /* AutofocusTextField.swift in Sources */,
 				A5313EE623A337B100D0E367 /* NumericTextField.swift in Sources */,
 				A5CA797C238AF46A00263480 /* AppDelegate.swift in Sources */,
+				A5E2CAA523A69C4300622D86 /* NumericUITextFieldDelegate.swift in Sources */,
 				A5CA797E238AF46A00263480 /* SceneDelegate.swift in Sources */,
 				A59E31B523A1F57D00A06ACC /* EditTallyDatumView.swift in Sources */,
 				A561E5AF238C86DE000767E4 /* TallyDetailView.swift in Sources */,
