@@ -36,32 +36,29 @@ struct TallyGraphView: View {
     }
     
     
-    func dateRange() -> (start: Date, end: Date) {
+    func dateRange() -> (start: Date, end: Date, length: Int) {
         let end = Date()
         var start: Date!
+        var length: Int!
                 
         switch duration {
         case .week:
             start = Date().advanced(by: -7*24*3600)
+            length = 7
         case .month:
             start = Date().advanced(by: -28*24*3600)
+            length = 28
         case .allTime:
             if let date = tally.data.last?.date {
                 start = TallyDatum.df.date(from: date)
+                length = Calendar.current.dateComponents([.day], from: start, to: end).day ?? 0
             } else {
                 start = end
+                length = 0
             }
         }
         
-        return (start, end)
-    }
-    
-    func dataInRange() -> [TallyDatum] {
-        let range = dateRange()
-        let start = TallyDatum.df.string(from: range.start)
-        let end = TallyDatum.df.string(from: range.end)
-
-        return tally.data.filter() { td in td.date >= start && td.date <= end }
+        return (start, end, length)
     }
     
     func headerLabel() -> String {
@@ -74,17 +71,21 @@ struct TallyGraphView: View {
     }
     
     func headerNumberText() -> String {
+        let range = dateRange()
         
-        let tallyDatums = dataInRange()
+        let start = TallyDatum.df.string(from: range.start)
+        let end = TallyDatum.df.string(from: range.end)
+        
+        let tallyDatums = tally.data.filter() { td in td.date >= start && td.date <= end }
         
         let sum = tallyDatums.reduce(0) { $0 + $1.value }
         
         switch graphBehavior {
         case .aggregate:
-            if tallyDatums.count == 0 {
+            if range.length == 0 {
                 return "0"
             } else {
-                return String(format: "%.01f", Double(sum)/Double(tallyDatums.count))
+                return String(format: "%.01f", Double(sum)/Double(range.length))
             }
         case .cumulative:
             return String(sum)
@@ -115,7 +116,7 @@ struct TallyGraphView: View {
                     
                     HStack(alignment: .firstTextBaseline) {
                         Text(headerNumberText())
-                            .font(.system(.largeTitle, design: .rounded))
+                            .font(.system(.title, design: .rounded))
                         
                         Text(headerDateText())
                             .font(.system(.body, design: .rounded))
@@ -150,7 +151,7 @@ struct TallyGraphView: View {
 }
 
 struct ContentView_TallyGraphView: View {    
-    @State var tally = Tally(kind: .completion, name: "Jamie", data: [TallyDatum]())
+    @State var tally = UserData.testData.tallies[0]
     
     var body: some View {
         TallyGraphView(tally: tally)
@@ -158,7 +159,6 @@ struct ContentView_TallyGraphView: View {
 }
 
 struct TallyGraphView_Previews: PreviewProvider {
-    @State var tally = Tally(kind: .completion, name: "Jamie", data: [TallyDatum]())
     static var previews: some View {
         ContentView_TallyGraphView()
     }
