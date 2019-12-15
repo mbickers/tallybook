@@ -64,10 +64,16 @@ struct TallyBlock: View {
                         .buttonStyle(ExpandingButtonStyle())
                     }
                     
-                    if tally.kind != .completion {
+                    if tally.kind == .counter {
                         NumericTallyTextField(placeholder: "0", text: $tally.today.defaultBlankStringValue)
                         // Setting max width to .infinity stops the text field from expanding and taking up too much space
-                        .frame(minWidth: 0, maxWidth: .infinity)
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                    }
+                    
+                    if tally.kind == .amount {
+                        NumericTallyTextField(placeholder: "Tap...", text: $tally.today.defaultBlankStringValue)
+                        // Setting max width to .infinity stops the text field from expanding and taking up too much space
+                            .frame(minWidth: 0, maxWidth: .infinity)
                     }
                 }
                 .padding(.top, -25)
