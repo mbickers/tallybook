@@ -56,9 +56,10 @@ struct TallyDetailHeader: View {
             if let date = tally.data.last?.date {
                 start = TallyDatum.df.date(from: date)
                 length = Calendar.current.dateComponents([.day], from: start, to: end).day ?? 0
+                length = max(1, length)
             } else {
                 start = end
-                length = 0
+                length = 1
             }
         }
         
@@ -83,14 +84,23 @@ struct TallyDetailHeader: View {
         let end = TallyDatum.df.string(from: range.end)
         
         let tallyDatums = tally.data.filter() { td in td.date >= start && td.date <= end }
-        let sum = tallyDatums.reduce(0) { $0 + $1.intValue }
+        
+        var sum: Int!
+        if tally.kind == .completion {
+            sum = tallyDatums.reduce(0) { $0 + ($1.boolValue ? 1 : 0) }
+        } else {
+            sum = tallyDatums.reduce(0) { $0 + $1.intValue }
+        }
         
         switch graphBehavior {
         case .aggregate:
             if range.length == 0 {
                 return "0"
             } else {
-                return String(format: "%.01f", Double(sum)/Double(range.length))
+                if tally.kind == .completion {
+                    return String(format: "%.0f%%", 100 * Double(sum) / Double(range.length))
+                }
+                return String(format: "%.01f", Double(sum) / Double(range.length))
             }
         case .cumulative:
             return String(sum)
