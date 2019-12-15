@@ -26,7 +26,7 @@ struct TallyDetailView: View {
             List {
                 
                 Section(header: Text("All Recorded Data")) {
-                    ForEach(tally.data) { tallyDatum in
+                    ForEach(tally.data, id: \.id) { tallyDatum in
                         VStack {
                             // Because seperators are disabled for the main view, and that is a global setting in SwiftUI, seperators are implemented manually here
                             

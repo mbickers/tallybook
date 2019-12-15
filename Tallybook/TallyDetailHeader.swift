@@ -103,7 +103,7 @@ struct TallyDetailHeader: View {
             df.dateFormat = "MMM dd, yyyy"
         }
         
-        return "\(df.string(from: range.start)) - \(df.string(from: range.end))"
+        return "\(df.string(from: range.start)) – \(df.string(from: range.end))"
     }
     
     var body: some View {
