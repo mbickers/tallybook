@@ -30,7 +30,9 @@ struct AutofocusTextField: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<AutofocusTextField>) {
-        uiView.text = text
+        DispatchQueue.main.async {
+            uiView.text = self.text
+        }
         
         // Make text field first responder whenever view is shown
         if uiView.window != nil && !(uiView.delegate as! AutofocusTextField.Coordinator).didBecomeFirstResponder {

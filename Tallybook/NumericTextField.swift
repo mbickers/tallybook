@@ -41,7 +41,9 @@ struct NumericTextField: UIViewRepresentable {
     
     func updateUIView(_ uiView: UITextField, context: UIViewRepresentableContext<NumericTextField>) {
         // Make sure that the text field adjusts for changes to the state that originate from other parts of the app
-        uiView.text = text
+        DispatchQueue.main.async {
+            uiView.text = self.text
+        }
     }
     
     func makeCoordinator() -> NumericUITextFieldDelegate {
