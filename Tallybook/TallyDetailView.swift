@@ -21,7 +21,7 @@ struct TallyDetailView: View {
     
     var body: some View {             
         VStack {
-            TallyGraphView(tally: tally)
+            TallyDetailHeader(tally: tally)
             
             List {
                 

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		A50F6F962399A2A000EB7235 /* AddTallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F6F952399A2A000EB7235 /* AddTallyView.swift */; };
 		A5313EE623A337B100D0E367 /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5313EE523A337B100D0E367 /* NumericTextField.swift */; };
-		A5313EE823A33C1200D0E367 /* TallyGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5313EE723A33C1200D0E367 /* TallyGraphView.swift */; };
+		A5313EE823A33C1200D0E367 /* TallyDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5313EE723A33C1200D0E367 /* TallyDetailHeader.swift */; };
 		A561E5AD238C80C7000767E4 /* TalliesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561E5AC238C80C7000767E4 /* TalliesView.swift */; };
 		A561E5AF238C86DE000767E4 /* TallyDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A561E5AE238C86DE000767E4 /* TallyDetailView.swift */; };
 		A59913142399D11500B0D22E /* AutofocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59913132399D11500B0D22E /* AutofocusTextField.swift */; };
@@ -47,7 +47,7 @@
 /* Begin PBXFileReference section */
 		A50F6F952399A2A000EB7235 /* AddTallyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTallyView.swift; sourceTree = "<group>"; };
 		A5313EE523A337B100D0E367 /* NumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTextField.swift; sourceTree = "<group>"; };
-		A5313EE723A33C1200D0E367 /* TallyGraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyGraphView.swift; sourceTree = "<group>"; };
+		A5313EE723A33C1200D0E367 /* TallyDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyDetailHeader.swift; sourceTree = "<group>"; };
 		A561E5AC238C80C7000767E4 /* TalliesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TalliesView.swift; sourceTree = "<group>"; };
 		A561E5AE238C86DE000767E4 /* TallyDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyDetailView.swift; sourceTree = "<group>"; };
 		A59913132399D11500B0D22E /* AutofocusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofocusTextField.swift; sourceTree = "<group>"; };
@@ -103,7 +103,7 @@
 				A5CA79AB238AF53F00263480 /* TallyBlock.swift */,
 				A5A278972395AF18008572E9 /* NumericTallyTextField.swift */,
 				A59913132399D11500B0D22E /* AutofocusTextField.swift */,
-				A5313EE723A33C1200D0E367 /* TallyGraphView.swift */,
+				A5313EE723A33C1200D0E367 /* TallyDetailHeader.swift */,
 			);
 			name = "Supporting Views";
 			sourceTree = "<group>";
@@ -313,7 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5313EE823A33C1200D0E367 /* TallyGraphView.swift in Sources */,
+				A5313EE823A33C1200D0E367 /* TallyDetailHeader.swift in Sources */,
 				A5A278982395AF18008572E9 /* NumericTallyTextField.swift in Sources */,
 				A5B63C85238C9C61004390E6 /* Model.swift in Sources */,
 				A5CA79AC238AF53F00263480 /* TallyBlock.swift in Sources */,

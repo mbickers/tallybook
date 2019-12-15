@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct TallyGraphView: View {
+struct TallyDetailHeader: View {
     
     @ObservedObject var tally: Tally
     
@@ -129,8 +129,6 @@ struct TallyGraphView: View {
             }
             .padding(.top)
             
-            
-            
             Picker(selection: $duration, label: Text("Graph Duration")) {
                 ForEach(Duration.allCases, id: \.self) { kind in
                     Text(kind.rawValue)
@@ -150,16 +148,16 @@ struct TallyGraphView: View {
     }
 }
 
-struct ContentView_TallyGraphView: View {    
+struct ContentView_TallyDetailHeader: View {    
     @State var tally = UserData.testData.tallies[0]
     
     var body: some View {
-        TallyGraphView(tally: tally)
+        TallyDetailHeader(tally: tally)
     }
 }
 
-struct TallyGraphView_Previews: PreviewProvider {
+struct TallyDetailHeader_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView_TallyGraphView()
+        ContentView_TallyDetailHeader()
     }
 }
