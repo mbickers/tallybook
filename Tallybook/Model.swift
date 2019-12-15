@@ -142,8 +142,6 @@ class Tally: Identifiable, ObservableObject {
             } else {
                 if newValue.intValue != 0 {
                     data.insert(newValue, at: 0)
-                } else {
-                    data.removeFirst()
                 }
             }
         }
