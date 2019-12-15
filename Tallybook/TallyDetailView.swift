@@ -23,6 +23,11 @@ struct TallyDetailView: View {
         self.tally = tally
     }
     
+    static let df: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "MMM dd, yyyy"
+        return df
+    }()
     
     var body: some View {             
         VStack {
@@ -55,7 +60,7 @@ struct TallyDetailView: View {
                                             .foregroundColor(Color(UIColor.label))
                                     }
                                     Spacer()
-                                    Text(tallyDatum.date)
+                                    Text(TallyDetailView.df.string(from: TallyDatum.df.date(from: tallyDatum.date)!))
                                         .foregroundColor(Color(UIColor.secondaryLabel))
                                         .padding(.trailing, 15)
                                 }

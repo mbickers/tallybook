@@ -33,7 +33,7 @@ struct TallyDatum: Identifiable {
     
     
     // Beccause the tally datums use a custom string format, this is date formatter can be used to convert the string dates to more versatile date objects
-    static var df: DateFormatter = {
+    static let df: DateFormatter = {
         let formatter = DateFormatter();
         formatter.dateFormat = "yyyy-MM-dd"
         return formatter
