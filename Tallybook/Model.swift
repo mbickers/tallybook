@@ -107,67 +107,33 @@ class Tally: Identifiable, ObservableObject {
     }
     
     
-    
-    var todayValue: Int? {
+    var today: TallyDatum {
         get {
-            if data.count > 0 && data[0].date == TallyDatum.today {
-                return data[0].value
+            if let td = data.first, td.date == TallyDatum.today {
+                return td
+            } else {
+                return TallyDatum(date: Date(), value: 0)
             }
-            return nil
         }
         
         set {
-            if data.count > 0 && data[0].date == TallyDatum.today {
-                if let nv = newValue {
-                    data[0].intValue = nv
+            if let td = data.first, td.date == TallyDatum.today {
+                if newValue.value != 0 {
+                    data[0].intValue = newValue.intValue
                 } else {
-                    data.remove(at: 0)
+                    data.removeFirst()
                 }
-            } else if let nv = newValue {
-                data.insert(TallyDatum(date: Date(), value: nv), at: 0)
-            }
-        }
-    }
-    
-    // Wrappers to access values from today for convience in TallyBlock
-    
-    var completionToday: Bool {
-        get {
-            return (todayValue ?? 0) >= 1
-        }
-        
-        set {
-            todayValue = newValue ? 1 : nil
-        }
-    }
-    
-    var numericToday: Int {
-        get {
-            return todayValue ?? 0
-        }
-        
-        set {
-            todayValue = newValue
-        }
-    }
-    
-    var numericStringToday: String {
-        get {
-            if let tv = todayValue {
-                return String(tv);
             } else {
-                return "";
-            }
-        }
-        
-        set {
-            if newValue == "" {
-                todayValue = nil
-            } else {
-                todayValue = Int(newValue)
+                if newValue.value != 0 {
+                    data.insert(newValue, at: 0)
+                } else {
+                    data.removeFirst()
+                }
             }
         }
     }
+    
+    
 }
 
 

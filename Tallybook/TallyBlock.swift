@@ -32,13 +32,13 @@ struct TallyBlock: View {
                 if tally.kind == .completion {
                     Button(action: {
                         UIDevice.vibrate()
-                        self.tally.completionToday.toggle()
+                        self.tally.today.boolValue.toggle()
                     }) {
-                        Image(systemName: tally.completionToday ? "checkmark.circle.fill" : "checkmark.circle")
+                        Image(systemName: tally.today.boolValue ? "checkmark.circle.fill" : "checkmark.circle")
                             .resizable()
                             .frame(width: 84, height: 84)
                             .animation(nil)
-                            .foregroundColor(tally.completionToday ? .customAccent : Color(UIColor.tertiaryLabel))                            
+                            .foregroundColor(tally.today.boolValue ? .customAccent : Color(UIColor.tertiaryLabel))                            
                     }
                     .buttonStyle(ExpandingButtonStyle())
                     .padding(.top, -5)
@@ -48,7 +48,7 @@ struct TallyBlock: View {
                     HStack {
                         Button(action: {
                             UIDevice.vibrate()
-                            self.tally.numericToday += 1
+                            self.tally.today.intValue += 1
                         }) {
                             Image(systemName: "plus.circle")
                                 .resizable()
@@ -58,7 +58,7 @@ struct TallyBlock: View {
                         }
                         .buttonStyle(ExpandingButtonStyle())
                         
-                        NumericTallyTextField(placeholder: "0", text: $tally.numericStringToday)
+                        NumericTallyTextField(placeholder: "0", text: $tally.today.defaultBlankStringValue)
                             // Setting max width to .infinity actually stops the text field from expanding and taking up too much space
                             .frame(minWidth: 0, maxWidth: .infinity)
                     }
@@ -66,7 +66,7 @@ struct TallyBlock: View {
                 }
                 
                 if tally.kind == .amount {
-                    NumericTallyTextField(placeholder: "Tap", text: $tally.numericStringToday)
+                    NumericTallyTextField(placeholder: "Tap", text: $tally.today.defaultBlankStringValue)
                         .padding(.top, -25)
                         // Setting max width to .infinity actually stops the text field from expanding and taking up too much space
                         .frame(minWidth: 0, maxWidth: .infinity)
