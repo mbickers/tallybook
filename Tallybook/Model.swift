@@ -8,11 +8,11 @@
 
 import Foundation
 
-class TallyDatum: Identifiable, ObservableObject {
+struct TallyDatum: Identifiable {
     var id = UUID()
     
-    @Published var date: String
-    @Published var value: Int
+    var date: String
+    var value: Int
     
     var intValue: Int {
         get {
