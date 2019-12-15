@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+
 // Helper to have easy access to SF Rounded font
 extension UIFont {
     static func systemRounded(style: UIFont.TextStyle, weight: UIFont.Weight) -> UIFont {
@@ -27,6 +28,7 @@ extension UIFont {
 }
 
 
+// Helper that accesses AccentColor font in Assets folder
 extension UIColor {
     static let customAccent: UIColor = UIColor(named: "AccentColor")!
 }
@@ -36,6 +38,7 @@ extension Color {
 }
 
 
+// Helper to vibrate device
 extension UIDevice {
     static func vibrate() {
         UIImpactFeedbackGenerator(style: .medium).impactOccurred()
@@ -43,6 +46,7 @@ extension UIDevice {
 }
 
 
+// Custom UITextField delegate that only allows legal input
 class NumericUITextFieldDelegate: NSObject, UITextFieldDelegate {
     @Binding var text: String
     var didEndEditing: ((String)->Void)?
@@ -56,7 +60,7 @@ class NumericUITextFieldDelegate: NSObject, UITextFieldDelegate {
     }
     
     // Need to implement this in order to resign input when return key is pressed
-    // This implementaiton doesn't effect the usage of the done button
+    // This implementation doesn't effect the usage of the done button
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false

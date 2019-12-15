@@ -8,30 +8,32 @@
 
 import SwiftUI
 
+// View to Add/Edit Tally Datums
 struct EditTallyDatumView: View {
     
+    // Variables passed in through parent view
     @Binding var presenting: Bool
     @ObservedObject var tally: Tally
+    
+    // If a tally datum is being edited, its UUID is passed in. If this value is in nil, the view is in add mode
     @Binding var selectedTallyDatumID: UUID?
     
-    @State var isEditing: Bool = false
-    @State var tallyDatum: TallyDatum = TallyDatum(date: Date(), value: 0)
+    // isEditing shows whether the view is in add or edit mode
+    @State private var isEditing: Bool = false
     
+    // Model componenet that is set up when view is created. When done button is pressed, it is added to the actual model
+    @State private var tallyDatum: TallyDatum = TallyDatum(date: Date(), value: 0)
+    
+    // Variable that date picker binds to
     @State private var date = Date()
     
-    init(presenting: Binding<Bool>, tally: Tally, selectedTallyDatumID: Binding<UUID?>) {
-        _presenting = presenting
-        self.tally = tally
-        _selectedTallyDatumID = selectedTallyDatumID
-        
-        
-    }
     
     var body: some View {
         VStack(alignment: .center) {
             
             // Header at top of view
             HStack {
+                // Close button
                 Button(action: {
                     self.selectedTallyDatumID = nil
                     self.presenting = false
@@ -39,7 +41,7 @@ struct EditTallyDatumView: View {
                     Text("Cancel")
                         .font(Font.system(.body, design: .rounded))
                 })
-                    .padding([.horizontal, .top])
+                .padding([.horizontal, .top])
                 
                 Spacer()
                 
@@ -50,6 +52,7 @@ struct EditTallyDatumView: View {
                 
                 Spacer()
                 
+                // Done button
                 Button(action: {
                     self.tallyDatum.date = TallyDatum.df.string(from: self.date)
                                        
@@ -74,20 +77,23 @@ struct EditTallyDatumView: View {
                         .font(Font.system(.body, design: .rounded))
                         .bold()
                 })
-                    .disabled(self.tallyDatum.intValue == 0 && self.tally.kind != .completion)
-                    .padding([.horizontal, .top])
+                // Disable done button when the TallyDatum is blank
+                .disabled(self.tallyDatum.intValue == 0 && self.tally.kind != .completion)
+                .padding([.horizontal, .top])
             }
             
             
-            // Edit fields
+            // Editable fields
             
             List {
                 
+                // Field to set value
                 VStack {
                     HStack(alignment: .firstTextBaseline) {
                         Text("Value")
                             .font(Font.system(.body, design: .rounded))
                         
+                        // If the tally is the completion type, show a checkmark. Otherwise, show a text field
                         if self.tally.kind == .completion {
                             Spacer()
                             
@@ -101,25 +107,26 @@ struct EditTallyDatumView: View {
                             }
                             .padding(.bottom, -2)
                         } else {
+                            // Custom numeric text field that only accepts numeric 4-digit or less inputs
                             NumericTextField(placeholder: "0", text: self.$tallyDatum.defaultBlankStringValue)
                         }
                         
                     }
                     
+                    // Divider at the bottom of the list cell
                     Divider()
                         .padding(.top, -5)
                         .padding(.trailing, -20)
                 }
                 .padding(.bottom, -10)
 
-                
+                // Date picker
                 VStack {
                     DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
                         Text("Date")
                         .font(Font.system(.body, design: .rounded))
                     }
                     .datePickerStyle(WheelDatePickerStyle())
-                    
                 }
                 
             }
@@ -144,6 +151,15 @@ struct EditTallyDatumView: View {
         
     }
 }
+
+
+
+
+
+
+
+
+
 
 struct EditTallyDatumView_Previews: PreviewProvider {
     static var previews: some View {

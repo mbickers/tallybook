@@ -8,20 +8,24 @@
 
 import SwiftUI
 
+// List rows on main screen that show interactive information about each tally
 struct TallyBlock: View {
     
+    // Reference to Tally model object passed in by parent view
     @ObservedObject var tally: Tally
     
     // Used to tell whether dark mode is on
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     
-    @State var showingDetailView: Bool = false
+    // The navigation link to the next view is manually triggered using this variable because the default SwiftUI Navigation Link button doesn't fit with the app UI
+    @State private var showingDetailView: Bool = false
     
     var body: some View {
         
         HStack(alignment: .top) {
             VStack(alignment: .leading) {
                 
+                // Name of the Tally at the top of the TallyBlock
                 Text(tally.name != "" ? tally.name : " ")
                     .font(.system(size: 24, weight: .regular, design: .rounded))
                     .padding(.top, 7)
@@ -29,6 +33,7 @@ struct TallyBlock: View {
                 
                 // Interactive component of each tally block
                 
+                // For completion tallies, show a checkbox that can be toggled
                 if tally.kind == .completion {
                     Button(action: {
                         UIDevice.vibrate()
@@ -40,10 +45,12 @@ struct TallyBlock: View {
                             .animation(nil)
                             .foregroundColor(tally.today.boolValue ? .customAccent : Color(UIColor.tertiaryLabel))                            
                     }
+                    // ExpandingButtonStyle is a custom style defined below
                     .buttonStyle(ExpandingButtonStyle())
                     .padding(.top, -5)
                 }
                 
+                // For counter tallies, show a increment button and a text field
                 if tally.kind == .counter {
                     HStack {
                         Button(action: {
@@ -59,60 +66,68 @@ struct TallyBlock: View {
                         .buttonStyle(ExpandingButtonStyle())
                         
                         NumericTallyTextField(placeholder: "0", text: $tally.today.defaultBlankStringValue)
-                            // Setting max width to .infinity actually stops the text field from expanding and taking up too much space
+                            // Setting max width to .infinity stops the text field from expanding and taking up too much space
                             .frame(minWidth: 0, maxWidth: .infinity)
                     }
-                        .padding(.top, -25)
+                    .padding(.top, -25)
                 }
                 
+                // For amount tallies, show a text field
                 if tally.kind == .amount {
                     NumericTallyTextField(placeholder: "Tap", text: $tally.today.defaultBlankStringValue)
                         .padding(.top, -25)
                         // Setting max width to .infinity actually stops the text field from expanding and taking up too much space
                         .frame(minWidth: 0, maxWidth: .infinity)
                 }
+                
             }
-                .padding(.leading, 12)
+            .padding(.leading, 12)
             
             
             Spacer()
             
+            // Navigation button on right side of the tally block
             ZStack {
                 // SwiftUI navigation links are a very funky, particular kind of beast.
-                // The navigation link button is hidden under other stuff here,
-                // but is activated by the showingDetailView binding
+                // The navigation link button is hidden under other stuff here and minimized, so that its default button doesn't show up
+                // It is activated by the showingDetailView binding
                 NavigationLink(destination: TallyDetailView(tally: tally), isActive: $showingDetailView) {
                     EmptyView()
                 }
+                // Disable the button that would show up, not the navigation functionality
                 .disabled(true)
                 .padding(.all, 0)
                 .frame(minWidth: 0, idealWidth: 0, maxWidth: 0, minHeight: 0, idealHeight: 0, maxHeight: 0)
                 
+                // Green background
                 Rectangle()
                     .frame(width: 62)
                     .foregroundColor(.customAccent)
                 
+                // Chevron icon
                 Image(systemName: "chevron.right.circle.fill")
                     .resizable()
                     .frame(width: 50, height: 50)
                     .foregroundColor(Color(UIColor.tertiarySystemBackground))
             }
             .onTapGesture {
+                // Activate the navigation link
                 self.showingDetailView = true
             }            
             
         }
         .accentColor(.customAccent)
-            .frame(height: 145)
-            .background(Color(UIColor.tertiarySystemBackground))
-            .cornerRadius(20)
-            // Only have shadows when dark mode is off
-            .shadow(color: .gray, radius: colorScheme != .dark ? 3 : 0, x: 0, y: colorScheme != .dark ? 2 : 0)
+        .frame(height: 145)
+        .background(Color(UIColor.tertiarySystemBackground))
+        .cornerRadius(20)
+        // Only have shadows when dark mode is off
+        .shadow(color: .gray, radius: colorScheme != .dark ? 3 : 0, x: 0, y: colorScheme != .dark ? 2 : 0)
     }
+    
 }
 
+// Custom button style that causes button to expand
 struct ExpandingButtonStyle: ButtonStyle {
-    
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label
             .scaleEffect(configuration.isPressed ? 1.07 : 1.0)
@@ -120,10 +135,14 @@ struct ExpandingButtonStyle: ButtonStyle {
 }
 
 
+
+
+
+
+
+
 struct TallyBlock_Previews: PreviewProvider {
-    
     static var previews: some View {
-        
         Group {
             TalliesView()
             .environmentObject(UserData.testData)
@@ -132,6 +151,5 @@ struct TallyBlock_Previews: PreviewProvider {
                 .environmentObject(UserData.testData)
                 .environment(\.colorScheme, .dark)
         }
-        
     }
 }

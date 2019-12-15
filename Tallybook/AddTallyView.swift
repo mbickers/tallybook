@@ -8,12 +8,17 @@
 
 import SwiftUI
 
+// Screen to add new tallies
 struct AddTallyView: View {
     
     @EnvironmentObject var userData: UserData
+    
+    // Model object that is added to the real model when save button is pressed
     @ObservedObject var tally = Tally(kind: .completion, name: "", data: [TallyDatum]())
+    
     @Binding var presenting: Bool
     
+    // This variable is always true when the view is shown. Setting its value is done with an animation wrapper that causes the Tally Block to bounce
     @State private var animatingTallyBlock = false
     
     
@@ -36,6 +41,7 @@ struct AddTallyView: View {
             
             // Header at top of view
             HStack {
+                // Cancel button
                 Button(action: {
                     self.presenting = false
                 }, label: {
@@ -53,6 +59,7 @@ struct AddTallyView: View {
                 
                 Spacer()
                 
+                // Done button
                 Button(action: {
                     self.userData.tallies.insert(self.tally, at: 0)
                     self.presenting = false
@@ -66,6 +73,7 @@ struct AddTallyView: View {
                     .disabled(tally.name == "" ? true : false)
             }
             
+            
             // Bouncing preview Tally Block in the middle of the view
             TallyBlock(tally: tally)
                 .disabled(true)
@@ -77,6 +85,7 @@ struct AddTallyView: View {
                     }
                 }
             
+            // Custom text field that automatically brings up keyboard and becommes active when it appears
             AutofocusTextField(text: $tally.name)
                 // Need to set max frame to .infinity for layout to work correctly
                 .frame(minWidth: 0, maxWidth: .infinity)
@@ -85,14 +94,15 @@ struct AddTallyView: View {
                 .cornerRadius(12)
                 .padding(.horizontal)
             
+            // Segment control to select tally type
             Picker(selection: $tally.kind, label: Text("Tally Type")) {
                 ForEach(Tally.Kind.allCases, id: \.self) { kind in
                     Text(kind.rawValue)
                 }
             }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.horizontal)
-                .padding(.top, 5)
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal)
+            .padding(.top, 5)
             
             Spacer()
         }
@@ -100,6 +110,15 @@ struct AddTallyView: View {
         
     }
 }
+
+
+
+
+
+
+
+
+
 
 struct AddTallyView_Previews: PreviewProvider {
     static var previews: some View {

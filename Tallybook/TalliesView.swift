@@ -9,6 +9,7 @@
 import SwiftUI
 import UIKit
 
+// Main screen on app
 struct TalliesView: View {
     
     @EnvironmentObject var userData: UserData
@@ -26,10 +27,13 @@ struct TalliesView: View {
         UITableView.appearance().allowsSelection = false
         UITableViewCell.appearance().selectionStyle = .none
     }
-        
+    
+    
     var body: some View {
+        
         NavigationView {
             
+            // List of TallyBlocks
             List() {
                 ForEach(userData.tallies, id: \.id) { tally in
                     TallyBlock(tally: tally)
@@ -60,6 +64,7 @@ struct TalliesView: View {
                 })
             .navigationBarTitle(Text("Tallies"))
             
+            // New Tally Modal Sheet
             .sheet(isPresented: $showingAddTally) {
                 AddTallyView(presenting: self.$showingAddTally)
                     .environmentObject(self.userData)
@@ -72,6 +77,9 @@ struct TalliesView: View {
     
 
 }
+
+
+
 
 
 

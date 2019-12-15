@@ -8,23 +8,27 @@
 
 import SwiftUI
 
+// Header at the top of TallyDetailView that includes statistics about the tally data
+// PLANNED: Include graph of data
 struct TallyDetailHeader: View {
     
     @ObservedObject var tally: Tally
     
+    // Types and variables for the segment controls with congrols
     enum Duration: String, CaseIterable {
         case week = "Week", month = "Month", allTime = "All Time"
     }
-    @State var duration: Duration = .week
+    @State private var duration: Duration = .week
     
     enum GraphBehavior: String, CaseIterable {
+        // Aggregate: Look at data points individually
+        // Cumulative: Look at running tally
         case aggregate = "Aggregate", cumulative = "Cumulative"
     }
-    @State var graphBehavior: GraphBehavior = .aggregate
+    @State private var graphBehavior: GraphBehavior = .aggregate
     
     
     init(tally: Tally) {
-        
         self.tally = tally
         
         // Change font of Segmented Control to rounded. Not possible in native SwiftUI yet
@@ -35,7 +39,7 @@ struct TallyDetailHeader: View {
         UISegmentedControl.appearance().setTitleTextAttributes([.font: defaultFont], for: .normal)
     }
     
-    
+    // Helper function to find the current date range as selected on the segment control
     func dateRange() -> (start: Date, end: Date, length: Int) {
         let end = Date()
         var start: Date!
@@ -61,6 +65,7 @@ struct TallyDetailHeader: View {
         return (start, end, length)
     }
     
+    // Helper function to find name of the statistic being shown
     func headerLabel() -> String {
         switch graphBehavior {
         case .aggregate:
@@ -70,6 +75,7 @@ struct TallyDetailHeader: View {
         }
     }
     
+    // Helper function to calculate statistic being shown
     func headerNumberText() -> String {
         let range = dateRange()
         
@@ -77,8 +83,7 @@ struct TallyDetailHeader: View {
         let end = TallyDatum.df.string(from: range.end)
         
         let tallyDatums = tally.data.filter() { td in td.date >= start && td.date <= end }
-        
-        let sum = tallyDatums.reduce(0) { $0 + $1.value }
+        let sum = tallyDatums.reduce(0) { $0 + $1.intValue }
         
         switch graphBehavior {
         case .aggregate:
@@ -92,11 +97,13 @@ struct TallyDetailHeader: View {
         }
     }
     
+    // Helper function to create date label of statistic and graph
     func headerDateText() -> String {
         let range = dateRange()
         
         let df: DateFormatter = DateFormatter();
         
+        // Show year if dates are not from the same year
         if Calendar.current.isDate(range.start, equalTo: range.end, toGranularity: .year) {
             df.dateFormat = "MMM dd"
         } else {
@@ -108,6 +115,8 @@ struct TallyDetailHeader: View {
     
     var body: some View {
         VStack {
+            
+            // Statistic at top of header
             HStack {
                 VStack(alignment: .leading) {
                     Text(headerLabel())
@@ -129,24 +138,41 @@ struct TallyDetailHeader: View {
             }
             .padding(.top)
             
+            
+            
+            // TODO: Add Graph
+            
+            
+            
+            // Segment controls to select duration and graph behavior
             Picker(selection: $duration, label: Text("Graph Duration")) {
                 ForEach(Duration.allCases, id: \.self) { kind in
                     Text(kind.rawValue)
                 }
             }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.horizontal)
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal)
             
             Picker(selection: $graphBehavior, label: Text("Graph Behavior")) {
                 ForEach(GraphBehavior.allCases, id: \.self) { kind in
                     Text(kind.rawValue)
                 }
             }
-                .pickerStyle(SegmentedPickerStyle())
-                .padding(.horizontal)
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal)
+            
         }
     }
 }
+
+
+
+
+
+
+
+
+
 
 struct ContentView_TallyDetailHeader: View {    
     @State var tally = UserData.testData.tallies[0]

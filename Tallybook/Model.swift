@@ -8,12 +8,19 @@
 
 import Foundation
 
+// Each tally datum represents the value of a tally on a date
 struct TallyDatum: Identifiable {
+    
     var id = UUID()
     
+    // Dates are stored by string to avoid issues with time zone and manually setting time. Each tally datum corresponds to a specific date
+    // The default date class includes time information that would overcomplicate this application
     var date: String
-    var value: Int
     
+    
+    private var value: Int
+    
+    // External access is only allowed through intValue wrapper in order to keep inputs within bounds
     var intValue: Int {
         get {
             return value
@@ -24,6 +31,42 @@ struct TallyDatum: Identifiable {
         }
     }
     
+    
+    // Beccause the tally datums use a custom string format, this is date formatter can be used to convert the string dates to more versatile date objects
+    static var df: DateFormatter = {
+        let formatter = DateFormatter();
+        formatter.dateFormat = "yyyy-MM-dd"
+        return formatter
+    }()
+    
+    // Helper to find string version of today
+    static var today: String {
+        get {
+            df.string(from: Date())
+        }
+    }
+    
+    // Function to validate numeric inputs. This is used in the delegates for the custom numeric keyboards
+    static func validate(string: String) -> Bool {
+        let digits = CharacterSet.decimalDigits
+        return digits.isSuperset(of: CharacterSet(charactersIn: string)) && string.count <= 4
+    }
+    
+    
+    init(date: Date, value: Int) {
+        self.date = TallyDatum.df.string(from: date)
+        self.value = min(9999, value)
+    }
+    
+    init(date: String, value: Int) {
+        self.date = date
+        self.value = min(9999, value)
+    }
+}
+
+// These calculated properties simply repetive logic whenever inputs are provided throught text fields
+// Text fields can bind to specific tally datums, simplifying data flow
+extension TallyDatum {
     var defaultBlankStringValue: String {
         get {
             if intValue == 0 {
@@ -57,38 +100,9 @@ struct TallyDatum: Identifiable {
             intValue = newValue ? 1 : 0
         }
     }
-    
-    
-    static var df: DateFormatter = {
-        let formatter = DateFormatter();
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter
-    }()
-    
-    //TODO: Update to use combine to broadcast change on date change
-    static var today: String {
-        get {
-            df.string(from: Date())
-        }
-    }
-    
-    static func validate(string: String) -> Bool {
-        let digits = CharacterSet.decimalDigits
-        return digits.isSuperset(of: CharacterSet(charactersIn: string)) && string.count <= 4
-    }
-    
-    init(date: Date, value: Int) {
-        self.date = TallyDatum.df.string(from: date)
-        self.value = min(9999, value)
-    }
-    
-    init(date: String, value: Int) {
-        self.date = date
-        self.value = min(9999, value)
-    }
 }
 
-
+// Tally Class
 class Tally: Identifiable, ObservableObject {
     
     enum Kind: String, CaseIterable {
@@ -106,7 +120,9 @@ class Tally: Identifiable, ObservableObject {
         self.data = data
     }
     
-    
+    // TallyBlock relies depends on having data for today, while the tally detail view allows users to delete any tally datum, even the current one.
+    // To overcome the potential issue there, the today TallyDatum is created by a Tally when it is needed, but only added to the model when it is set with a nonzero value
+    // If its' value is set to zero, it is also removed from the model
     var today: TallyDatum {
         get {
             if let td = data.first, td.date == TallyDatum.today {
@@ -118,13 +134,13 @@ class Tally: Identifiable, ObservableObject {
         
         set {
             if let td = data.first, td.date == TallyDatum.today {
-                if newValue.value != 0 {
+                if newValue.intValue != 0 {
                     data[0].intValue = newValue.intValue
                 } else {
                     data.removeFirst()
                 }
             } else {
-                if newValue.value != 0 {
+                if newValue.intValue != 0 {
                     data.insert(newValue, at: 0)
                 } else {
                     data.removeFirst()
@@ -137,6 +153,7 @@ class Tally: Identifiable, ObservableObject {
 }
 
 
+// UserData class: contains all information about the user's tallies
 class UserData: ObservableObject {
     @Published var tallies: [Tally] = []
     
@@ -144,6 +161,7 @@ class UserData: ObservableObject {
         
     }
     
+    // Fake data for testing
     static let testData: UserData = {
         // Generate dummy date data
         var day = Date();
