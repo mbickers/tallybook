@@ -73,6 +73,7 @@ struct TalliesView: View {
             
         }
         .accentColor(.customAccent)
+        .navigationViewStyle(DoubleColumnNavigationViewStyle())
     }
     
 
