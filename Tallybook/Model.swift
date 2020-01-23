@@ -177,7 +177,6 @@ class UserData: ObservableObject {
         u.tallies = [Tally(kind: .completion, name: "Go to Gym", data: data),
                      Tally(kind: .counter, name: "Cups of Coffee", data: data),
                      Tally(kind: .amount, name: "Hours of Sleep", data: data),
-                     Tally(kind: .counter, name: "Internship Rejections", data: data),
                      Tally(kind: .completion, name: "Check Email", data: data),
                      Tally(kind: .completion, name: "Call Mom", data: data)]
         return u
