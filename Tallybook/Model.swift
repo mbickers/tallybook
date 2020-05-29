@@ -148,7 +148,8 @@ class Tally: Identifiable, ObservableObject, Codable {
         }
     }
     
-    
+    // Codable implementation for persistent storage
+
     enum CodingKeys: CodingKey {
         case kind, name, data, id
     }
@@ -204,17 +205,16 @@ class UserData: ObservableObject, Codable {
     }
     
     
+    // Codable implementation for persistent storage
+    
     enum CodingKeys: CodingKey {
         case tallies
     }
     
     required init(from decoder: Decoder) throws {
-        
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
         tallies = try container.decode([Tally].self, forKey: .tallies)
-        
-        
     }
     
     func encode(to encoder: Encoder) throws {

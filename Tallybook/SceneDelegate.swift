@@ -49,7 +49,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Save data
         if let encoded = try? JSONEncoder().encode(userData) {
             UserDefaults.standard.set(encoded, forKey: "Data")
-            print("Saved Data")
         }
     }
 
