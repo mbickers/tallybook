@@ -185,7 +185,7 @@ struct TallyDetailHeader: View {
 
 
 struct ContentView_TallyDetailHeader: View {    
-    @State var tally = UserData.testData.tallies[0]
+    @State var tally = UserData.TestData().tallies[0]
     
     var body: some View {
         TallyDetailHeader(tally: tally)

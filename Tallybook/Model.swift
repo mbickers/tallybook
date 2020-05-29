@@ -9,7 +9,7 @@
 import Foundation
 
 // Each tally datum represents the value of a tally on a date
-struct TallyDatum: Identifiable {
+struct TallyDatum: Identifiable, Codable {
     
     var id = UUID()
     
@@ -103,21 +103,22 @@ extension TallyDatum {
 }
 
 // Tally Class
-class Tally: Identifiable, ObservableObject {
+class Tally: Identifiable, ObservableObject, Codable {
     
-    enum Kind: String, CaseIterable {
+    enum Kind: String, CaseIterable, Codable {
         case completion = "Completion", counter = "Counter", amount = "Amount"
     }
     
     @Published var kind: Kind
     @Published var name: String = "Test"
     @Published var data: [TallyDatum]
-    let id = UUID()
+    let id: UUID
     
     init(kind: Kind, name: String, data: [TallyDatum]) {
         self.kind = kind
         self.name = name
         self.data = data
+        self.id = UUID()
     }
     
     // TallyBlock relies depends on having data for today, while the tally detail view allows users to delete any tally datum, even the current one.
@@ -148,19 +149,39 @@ class Tally: Identifiable, ObservableObject {
     }
     
     
+    enum CodingKeys: CodingKey {
+        case kind, name, data, id
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        kind = try container.decode(Kind.self, forKey: .kind)
+        name = try container.decode(String.self, forKey: .name)
+        data = try container.decode([TallyDatum].self, forKey: .data)
+        id = try container.decode(UUID.self, forKey: .id)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(kind, forKey: .kind)
+        try container.encode(name, forKey: .name)
+        try container.encode(data, forKey: .data)
+        try container.encode(id, forKey: .id)
+    }
 }
 
 
 // UserData class: contains all information about the user's tallies
-class UserData: ObservableObject {
+class UserData: ObservableObject, Codable {
+    
     @Published var tallies: [Tally] = []
     
-    init() {
-        
-    }
+    init() {}
     
     // Fake data for testing
-    static let testData: UserData = {
+    static func TestData() -> UserData {
         // Generate dummy date data
         var day = Date();
 
@@ -180,6 +201,29 @@ class UserData: ObservableObject {
                      Tally(kind: .completion, name: "Check Email", data: data),
                      Tally(kind: .completion, name: "Call Mom", data: data)]
         return u
-    }()
+    }
+    
+    
+    enum CodingKeys: CodingKey {
+        case tallies
+    }
+    
+    required init(from decoder: Decoder) throws {
+        
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        tallies = try container.decode([Tally].self, forKey: .tallies)
+        
+        
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        try container.encode(tallies, forKey: .tallies)
+    }
+    
+    
+    
     
 }

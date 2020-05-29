@@ -143,10 +143,10 @@ struct TallyBlock_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             TalliesView()
-            .environmentObject(UserData.testData)
+            .environmentObject(UserData.TestData())
             
             TalliesView()
-                .environmentObject(UserData.testData)
+                .environmentObject(UserData.TestData())
                 .environment(\.colorScheme, .dark)
         }
     }

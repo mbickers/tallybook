@@ -127,6 +127,6 @@ struct TallyDetailView: View {
 struct TallyViewDetail_Previews: PreviewProvider {
     
     static var previews: some View {
-        TallyDetailView(tally: UserData.testData.tallies[0])
+        TallyDetailView(tally: UserData.TestData().tallies[0])
     }
 }
