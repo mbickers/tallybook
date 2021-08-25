@@ -89,7 +89,6 @@ struct TalliesView: View {
 struct TalliesView_Previews: PreviewProvider {
     static var previews: some View {
         TalliesView()
-            .environment(\.colorScheme, .dark)
             .environmentObject(UserData.TestData())
     }
 }
