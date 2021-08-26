@@ -38,6 +38,6 @@ class NumericUITextFieldDelegate: NSObject, UITextFieldDelegate {
   }
 
   func textFieldDidEndEditing(_ textField: UITextField) {
-    didEndEditing?(text)    
+    didEndEditing?(text)
   }
 }
