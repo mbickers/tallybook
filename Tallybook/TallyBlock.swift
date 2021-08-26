@@ -13,16 +13,16 @@ struct TallyBlock: View {
     @ObservedObject var tally: Tally
     @Environment(\.colorScheme) var colorScheme: ColorScheme
     @State private var showingDetailView: Bool = false
-    
+
     var body: some View {
-        
+
         HStack(alignment: .top) {
             VStack(alignment: .leading) {
                 Text(tally.name)
                     .font(.system(size: 22, weight: .regular, design: .rounded))
-                
+
                 Spacer()
-                
+
                 switch tally.kind {
                     case .completion:
                         Button(action: {
@@ -33,10 +33,10 @@ struct TallyBlock: View {
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .animation(nil)
-                                .foregroundColor(tally.today.boolValue ? .customAccent : Color(UIColor.tertiaryLabel))                            
+                                .foregroundColor(tally.today.boolValue ? .customAccent : Color(UIColor.tertiaryLabel))
                         }
                         .buttonStyle(ExpandingButtonStyle())
-                        
+
                     case .counter:
                         HStack {
                             Button(action: {
@@ -50,20 +50,20 @@ struct TallyBlock: View {
                                     .foregroundColor(.customAccent)
                             }
                             .buttonStyle(ExpandingButtonStyle())
-                            
+
                             NumericTallyTextField(placeholder: "0", text: $tally.today.defaultBlankStringValue)
                                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0)
                         }
-                        
+
                     case .amount:
                         NumericTallyTextField(placeholder: "Tap...", text: $tally.today.defaultBlankStringValue)
                             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0)
                 }
             }
             .padding(EdgeInsets(top: 6, leading: 10, bottom: 6, trailing: 6))
-            
+
             Spacer()
-            
+
             ZStack {
                 // SwiftUI navigation links are a very funky, particular kind of beast.
                 // The navigation link button is hidden under other stuff here and minimized, so that its default button doesn't show up
@@ -75,11 +75,11 @@ struct TallyBlock: View {
                 .disabled(true)
                 .padding(.all, 0)
                 .frame(minWidth: 0, idealWidth: 0, maxWidth: 0, minHeight: 0, idealHeight: 0, maxHeight: 0)
-                
+
                 Rectangle()
                     .frame(width: 62)
                     .foregroundColor(.customAccent)
-                
+
                 Image(systemName: "chevron.right.circle.fill")
                     .resizable()
                     .frame(width: 50, height: 50)
@@ -94,7 +94,7 @@ struct TallyBlock: View {
         .cornerRadius(20)
         .shadow(color: colorScheme != .dark ? .gray : .black, radius: 3, x: 0, y: 2)
     }
-    
+
 }
 
 struct ExpandingButtonStyle: ButtonStyle {
@@ -108,10 +108,10 @@ struct TallyBlock_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             TallyBlock(tally: UserData.TestData().tallies[1])
-            
+
             TalliesView()
             .environmentObject(UserData.TestData())
-            
+
             TalliesView()
                 .environmentObject(UserData.TestData())
                 .environment(\.colorScheme, .dark)

@@ -10,35 +10,33 @@ import SwiftUI
 
 // Screen to add new tallies
 struct AddTallyView: View {
-    
+
     @EnvironmentObject var userData: UserData
-    
+
     // Model object that is added to the real model when save button is pressed
     @ObservedObject var tally = Tally(kind: .completion, name: "", data: [TallyDatum]())
-    
+
     @Binding var presenting: Bool
-    
+
     // This variable is always true when the view is shown. Setting its value is done with an animation wrapper that causes the Tally Block to bounce
     @State private var animatingTallyBlock = false
-    
-    
+
     init(presenting: Binding<Bool>) {
-        
+
         // Need to have a binding to presenting view's "modal show" variable for the done and cancel buttons to work
         _presenting = presenting
-        
+
         // Change font of Segmented Control to rounded. Not possible in native SwiftUI yet
         let selectedFont = UIFont.systemRounded(style: .callout, weight: .semibold)
         UISegmentedControl.appearance().setTitleTextAttributes([.font: selectedFont], for: .selected)
-        
+
         let defaultFont = UIFont.systemRounded(style: .callout, weight: .regular)
         UISegmentedControl.appearance().setTitleTextAttributes([.font: defaultFont], for: .normal)
     }
-    
-    
+
     var body: some View {
         VStack(alignment: .center) {
-            
+
             // Header at top of view
             HStack {
                 // Cancel button
@@ -49,16 +47,15 @@ struct AddTallyView: View {
                         .font(Font.system(.body, design: .rounded))
                 })
                     .padding()
-                
+
                 Spacer()
-                
+
                 Text("New Tally")
                     .font(Font.system(.body, design: .rounded))
                     .bold()
-                    
-                
+
                 Spacer()
-                
+
                 // Done button
                 Button(action: {
                     self.userData.tallies.insert(self.tally, at: 0)
@@ -72,8 +69,7 @@ struct AddTallyView: View {
                     // Disable done button whenever there is no text in textfield
                     .disabled(tally.name == "" ? true : false)
             }
-            
-            
+
             // Bouncing preview Tally Block in the middle of the view
             TallyBlock(tally: tally)
                 .disabled(true)
@@ -84,7 +80,7 @@ struct AddTallyView: View {
                         self.animatingTallyBlock = true
                     }
                 }
-            
+
             // Custom text field that automatically brings up keyboard and becommes active when it appears
             AutofocusTextField(text: $tally.name)
                 // Need to set max frame to .infinity for layout to work correctly
@@ -93,7 +89,7 @@ struct AddTallyView: View {
                 .background(Color(UIColor.tertiarySystemFill))
                 .cornerRadius(12)
                 .padding(.horizontal)
-            
+
             // Segment control to select tally type
             Picker(selection: $tally.kind, label: Text("Tally Type")) {
                 ForEach(Tally.Kind.allCases, id: \.self) { kind in
@@ -103,22 +99,13 @@ struct AddTallyView: View {
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal)
             .padding(.top, 5)
-            
+
             Spacer()
         }
         .accentColor(Color.customAccent)
-        
+
     }
 }
-
-
-
-
-
-
-
-
-
 
 struct AddTallyView_Previews: PreviewProvider {
     static var previews: some View {

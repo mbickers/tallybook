@@ -11,23 +11,21 @@ import UIKit
 
 // Main screen on app
 struct TalliesView: View {
-    
+
     @EnvironmentObject var userData: UserData
-    
+
     @State private var showingAddTally = false
 
-        
     init() {
         // Configure navigation bar - not yet possible natively in SwiftUI
         UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont.systemRounded(style: .largeTitle, weight: .bold)]
         UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.systemRounded(style: .headline, weight: .semibold)]
     }
-    
-    
+
     var body: some View {
-        
+
         NavigationView {
-            
+
             // List of TallyBlocks
             List {
                 ForEach(userData.tallies, id: \.id) { tally in
@@ -45,14 +43,13 @@ struct TalliesView: View {
                 }
             }
             .listStyle(PlainListStyle())
-            
+
             // Configure navigation bar
             // EditButton has built in functionality that makes the list go into editing mode 
             .navigationBarItems(leading:
                 EditButton()
                     .font(Font.system(.body, design: .rounded))
-                    .padding([.vertical, .trailing])
-                , trailing:
+                    .padding([.vertical, .trailing]), trailing:
                 Button(action: {
                     self.showingAddTally = true
                 }) {
@@ -61,27 +58,19 @@ struct TalliesView: View {
                         .padding([.vertical, .leading])
                 })
             .navigationBarTitle(Text("Tallies"))
-            
+
             // New Tally Modal Sheet
             .sheet(isPresented: $showingAddTally) {
                 AddTallyView(presenting: self.$showingAddTally)
                     .environmentObject(self.userData)
             }
-            
+
         }
         .accentColor(.customAccent)
         .navigationViewStyle(DoubleColumnNavigationViewStyle())
     }
-    
 
 }
-
-
-
-
-
-
-
 
 struct TalliesView_Previews: PreviewProvider {
     static var previews: some View {
@@ -89,5 +78,3 @@ struct TalliesView_Previews: PreviewProvider {
             .environmentObject(UserData.TestData())
     }
 }
-
-
