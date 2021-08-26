@@ -11,210 +11,212 @@ import Foundation
 // Each tally datum represents the value of a tally on a date
 struct TallyDatum: Identifiable, Codable {
 
-    var id = UUID()
+  var id = UUID()
 
-    // Dates are stored by string to avoid issues with time zone and manually setting time. Each tally datum corresponds to a specific date
-    // The default date class includes time information that would overcomplicate this application
-    var date: String
+  // Dates are stored by string to avoid issues with time zone and manually setting time. Each tally datum corresponds to a specific date
+  // The default date class includes time information that would overcomplicate this application
+  var date: String
 
-    private var value: Int
+  private var value: Int
 
-    // External access is only allowed through intValue wrapper in order to keep inputs within bounds
-    var intValue: Int {
-        get {
-            return value
-        }
-
-        set {
-            value = min(9999, newValue)
-        }
+  // External access is only allowed through intValue wrapper in order to keep inputs within bounds
+  var intValue: Int {
+    get {
+      return value
     }
 
-    // Beccause the tally datums use a custom string format, this is date formatter can be used to convert the string dates to more versatile date objects
-    static let df: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        return formatter
-    }()
-
-    // Helper to find string version of today
-    static var today: String {
-        get {
-            df.string(from: Date())
-        }
+    set {
+      value = min(9999, newValue)
     }
+  }
 
-    // Function to validate numeric inputs. This is used in the delegates for the custom numeric keyboards
-    static func validate(string: String) -> Bool {
-        let digits = CharacterSet.decimalDigits
-        return digits.isSuperset(of: CharacterSet(charactersIn: string)) && string.count <= 4
-    }
+  // Beccause the tally datums use a custom string format, this is date formatter can be used to convert the string dates to more versatile date objects
+  static let df: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    return formatter
+  }()
 
-    init(date: Date, value: Int) {
-        self.date = TallyDatum.df.string(from: date)
-        self.value = min(9999, value)
-    }
+  // Helper to find string version of today
+  static var today: String {
+    df.string(from: Date())
+  }
 
-    init(date: String, value: Int) {
-        self.date = date
-        self.value = min(9999, value)
-    }
+  // Function to validate numeric inputs. This is used in the delegates for the custom numeric keyboards
+  static func validate(string: String) -> Bool {
+    let digits = CharacterSet.decimalDigits
+    return digits.isSuperset(of: CharacterSet(charactersIn: string)) && string.count <= 4
+  }
+
+  init(date: Date, value: Int) {
+    self.date = TallyDatum.df.string(from: date)
+    self.value = min(9999, value)
+  }
+
+  init(date: String, value: Int) {
+    self.date = date
+    self.value = min(9999, value)
+  }
 }
 
 // These calculated properties simply repetive logic whenever inputs are provided throught text fields
 // Text fields can bind to specific tally datums, simplifying data flow
 extension TallyDatum {
-    var defaultBlankStringValue: String {
-        get {
-            if intValue == 0 {
-                return ""
-            } else {
-                return String(intValue)
-            }
-        }
-
-        set {
-            intValue = Int(newValue) ?? 0
-        }
+  var defaultBlankStringValue: String {
+    get {
+      if intValue == 0 {
+        return ""
+      } else {
+        return String(intValue)
+      }
     }
 
-    var defaultZeroStringValue: String {
-        get {
-            return String(intValue)
-        }
+    set {
+      intValue = Int(newValue) ?? 0
+    }
+  }
 
-        set {
-            intValue = Int(newValue) ?? 0
-        }
+  var defaultZeroStringValue: String {
+    get {
+      return String(intValue)
     }
 
-    var boolValue: Bool {
-        get {
-            return intValue >= 1
-        }
-
-        set {
-            intValue = newValue ? 1 : 0
-        }
+    set {
+      intValue = Int(newValue) ?? 0
     }
+  }
+
+  var boolValue: Bool {
+    get {
+      return intValue >= 1
+    }
+
+    set {
+      intValue = newValue ? 1 : 0
+    }
+  }
 }
 
 // Tally Class
 class Tally: Identifiable, ObservableObject, Codable {
 
-    enum Kind: String, CaseIterable, Codable {
-        case completion = "Completion", counter = "Counter", amount = "Amount"
+  enum Kind: String, CaseIterable, Codable {
+    case completion = "Completion"
+    case counter = "Counter"
+    case amount = "Amount"
+  }
+
+  @Published var kind: Kind
+  @Published var name: String = "Test"
+  @Published var data: [TallyDatum]
+  let id: UUID
+
+  init(kind: Kind, name: String, data: [TallyDatum]) {
+    self.kind = kind
+    self.name = name
+    self.data = data
+    self.id = UUID()
+  }
+
+  // TallyBlock relies depends on having data for today, while the tally detail view allows users to delete any tally datum, even the current one.
+  // To overcome the potential issue there, the today TallyDatum is created by a Tally when it is needed, but only added to the model when it is set with a nonzero value
+  // If its' value is set to zero, it is also removed from the model
+  var today: TallyDatum {
+    get {
+      if let td = data.first, td.date == TallyDatum.today {
+        return td
+      } else {
+        return TallyDatum(date: Date(), value: 0)
+      }
     }
 
-    @Published var kind: Kind
-    @Published var name: String = "Test"
-    @Published var data: [TallyDatum]
-    let id: UUID
-
-    init(kind: Kind, name: String, data: [TallyDatum]) {
-        self.kind = kind
-        self.name = name
-        self.data = data
-        self.id = UUID()
-    }
-
-    // TallyBlock relies depends on having data for today, while the tally detail view allows users to delete any tally datum, even the current one.
-    // To overcome the potential issue there, the today TallyDatum is created by a Tally when it is needed, but only added to the model when it is set with a nonzero value
-    // If its' value is set to zero, it is also removed from the model
-    var today: TallyDatum {
-        get {
-            if let td = data.first, td.date == TallyDatum.today {
-                return td
-            } else {
-                return TallyDatum(date: Date(), value: 0)
-            }
+    set {
+      if let td = data.first, td.date == TallyDatum.today {
+        if newValue.intValue != 0 {
+          data[0].intValue = newValue.intValue
+        } else {
+          data.removeFirst()
         }
-
-        set {
-            if let td = data.first, td.date == TallyDatum.today {
-                if newValue.intValue != 0 {
-                    data[0].intValue = newValue.intValue
-                } else {
-                    data.removeFirst()
-                }
-            } else {
-                if newValue.intValue != 0 {
-                    data.insert(newValue, at: 0)
-                }
-            }
+      } else {
+        if newValue.intValue != 0 {
+          data.insert(newValue, at: 0)
         }
+      }
     }
+  }
 
-    // Codable implementation for persistent storage
+  // Codable implementation for persistent storage
 
-    enum CodingKeys: CodingKey {
-        case kind, name, data, id
-    }
+  enum CodingKeys: CodingKey {
+    case kind, name, data, id
+  }
 
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+  required init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        kind = try container.decode(Kind.self, forKey: .kind)
-        name = try container.decode(String.self, forKey: .name)
-        data = try container.decode([TallyDatum].self, forKey: .data)
-        id = try container.decode(UUID.self, forKey: .id)
-    }
+    kind = try container.decode(Kind.self, forKey: .kind)
+    name = try container.decode(String.self, forKey: .name)
+    data = try container.decode([TallyDatum].self, forKey: .data)
+    id = try container.decode(UUID.self, forKey: .id)
+  }
 
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
+  func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
 
-        try container.encode(kind, forKey: .kind)
-        try container.encode(name, forKey: .name)
-        try container.encode(data, forKey: .data)
-        try container.encode(id, forKey: .id)
-    }
+    try container.encode(kind, forKey: .kind)
+    try container.encode(name, forKey: .name)
+    try container.encode(data, forKey: .data)
+    try container.encode(id, forKey: .id)
+  }
 }
 
 // UserData class: contains all information about the user's tallies
 class UserData: ObservableObject, Codable {
 
-    @Published var tallies: [Tally] = []
+  @Published var tallies: [Tally] = []
 
-    init() {}
+  init() {}
 
-    // Fake data for testing
-    static func TestData() -> UserData {
-        // Generate dummy date data
-        var day = Date()
+  // Fake data for testing
+  static func TestData() -> UserData {
+    // Generate dummy date data
+    var day = Date()
 
-        let dummy_values = [2, 3, 5, 0, 1, 10, 2, 0, 12, 2, 6]
-        var data = [TallyDatum]()
+    let dummy_values = [2, 3, 5, 0, 1, 10, 2, 0, 12, 2, 6]
+    var data = [TallyDatum]()
 
-        for v in dummy_values {
-            data.append(TallyDatum(date: day, value: v))
-            day.addTimeInterval(-2*24*3600)
-        }
-
-        let u  = UserData()
-        u.tallies = [Tally(kind: .completion, name: "Go to Gym", data: data),
-                     Tally(kind: .counter, name: "Cups of Coffee", data: data),
-                     Tally(kind: .amount, name: "Hours of Sleep", data: data),
-                     Tally(kind: .completion, name: "Check Email", data: data),
-                     Tally(kind: .completion, name: "Call Mom", data: data)]
-        return u
+    for v in dummy_values {
+      data.append(TallyDatum(date: day, value: v))
+      day.addTimeInterval(-2 * 24 * 3600)
     }
 
-    // Codable implementation for persistent storage
+    let u = UserData()
+    u.tallies = [
+      Tally(kind: .completion, name: "Go to Gym", data: data),
+      Tally(kind: .counter, name: "Cups of Coffee", data: data),
+      Tally(kind: .amount, name: "Hours of Sleep", data: data),
+      Tally(kind: .completion, name: "Check Email", data: data),
+      Tally(kind: .completion, name: "Call Mom", data: data),
+    ]
+    return u
+  }
 
-    enum CodingKeys: CodingKey {
-        case tallies
-    }
+  // Codable implementation for persistent storage
 
-    required init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
+  enum CodingKeys: CodingKey {
+    case tallies
+  }
 
-        tallies = try container.decode([Tally].self, forKey: .tallies)
-    }
+  required init(from decoder: Decoder) throws {
+    let container = try decoder.container(keyedBy: CodingKeys.self)
 
-    func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
+    tallies = try container.decode([Tally].self, forKey: .tallies)
+  }
 
-        try container.encode(tallies, forKey: .tallies)
-    }
+  func encode(to encoder: Encoder) throws {
+    var container = encoder.container(keyedBy: CodingKeys.self)
+
+    try container.encode(tallies, forKey: .tallies)
+  }
 
 }
