@@ -21,11 +21,6 @@ struct TalliesView: View {
         // Configure navigation bar - not yet possible natively in SwiftUI
         UINavigationBar.appearance().largeTitleTextAttributes = [.font: UIFont.systemRounded(style: .largeTitle, weight: .bold)]
         UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.systemRounded(style: .headline, weight: .semibold)]
-        
-        // Configure tally list - not yet possible natively in SwiftUI
-        UITableView.appearance().separatorStyle = .none
-        UITableView.appearance().allowsSelection = false
-        UITableViewCell.appearance().selectionStyle = .none
     }
     
     
@@ -34,11 +29,12 @@ struct TalliesView: View {
         NavigationView {
             
             // List of TallyBlocks
-            List() {
+            List {
                 ForEach(userData.tallies, id: \.id) { tally in
                     TallyBlock(tally: tally)
-                        .listRowInsets(EdgeInsets(top: 6, leading: 10, bottom: 6, trailing: 10))
-                    
+                        .padding(EdgeInsets(top: 7, leading: 11, bottom: 7, trailing: 11))
+                        .listRowInsets(EdgeInsets(.init(top: -1, leading: -1, bottom: -1, trailing: -1)))
+                        .background(Color(UIColor.systemBackground))
                 }
                 // Callbacks to allow tallies to be rearranged and deleted by the table view
                 .onMove { source, destination in
@@ -48,6 +44,7 @@ struct TalliesView: View {
                     self.userData.tallies.remove(atOffsets: sources)
                 }
             }
+            .listStyle(PlainListStyle())
             
             // Configure navigation bar
             // EditButton has built in functionality that makes the list go into editing mode 
