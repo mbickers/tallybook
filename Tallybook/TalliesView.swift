@@ -13,11 +13,11 @@ import UIKit
 struct TalliesView: View {
 
   @EnvironmentObject var userData: UserData
-
   @State private var showingAddTally = false
 
   init() {
     // Configure navigation bar - not yet possible natively in SwiftUI
+    // TODO: Update to do correctly when possible
     UINavigationBar.appearance().largeTitleTextAttributes = [
       .font: UIFont.systemRounded(style: .largeTitle, weight: .bold)
     ]
@@ -33,6 +33,8 @@ struct TalliesView: View {
         ForEach(userData.tallies, id: \.id) { tally in
           TallyBlock(tally: tally)
             .padding(EdgeInsets(top: 7, leading: 11, bottom: 7, trailing: 11))
+            // Hack to hide list item separators on iOS 14
+            // TODO: Fix in iOS 15
             .listRowInsets(EdgeInsets(.init(top: -1, leading: -1, bottom: -1, trailing: -1)))
             .background(Color(UIColor.systemBackground))
         }

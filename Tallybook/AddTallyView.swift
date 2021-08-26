@@ -19,11 +19,11 @@ struct AddTallyView: View {
   @State private var animatingTallyBlock = false
 
   init(presenting: Binding<Bool>) {
-
     // Need to have a binding to presenting view's "modal show" variable for the done and cancel buttons to work
     _presenting = presenting
 
-    // Change font of Segmented Control to rounded. Not possible in native SwiftUI yet
+    // Change font of Segmented Control to rounded. Not possible in native SwiftUI yet.
+    // TODO: Update to do correctly when possible
     let selectedFont = UIFont.systemRounded(style: .callout, weight: .semibold)
     UISegmentedControl.appearance().setTitleTextAttributes([.font: selectedFont], for: .selected)
 
