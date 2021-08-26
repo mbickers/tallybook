@@ -8,7 +8,6 @@
 
 import SwiftUI
 
-// Tally Detail View
 struct TallyDetailView: View {
 
   @ObservedObject var tally: Tally
@@ -30,10 +29,8 @@ struct TallyDetailView: View {
 
   var body: some View {
     VStack {
-      // Tally detail header with statistics at the top of the view
       TallyDetailHeader(tally: tally)
 
-      // List of Tally Datums
       List {
         Section(header: Text("All Recorded Data")) {
           ForEach(tally.data, id: \.id) { tallyDatum in
@@ -45,7 +42,6 @@ struct TallyDetailView: View {
                 .foregroundColor(Color(UIColor.clear))
                 .frame(height: 1)
 
-              // Open edit tally screen
               Button(action: {
                 self.selectedTallyDatumID = tallyDatum.id
                 self.showingEditTallyDatum = true
@@ -77,7 +73,6 @@ struct TallyDetailView: View {
               }
             }
           }
-          // Slide to delete functionality
           .onDelete { sources in
             withAnimation {
               self.tally.data.remove(atOffsets: sources)
@@ -93,7 +88,6 @@ struct TallyDetailView: View {
 
     }
 
-    // Configure navigation bar
     .navigationBarItems(
       trailing:
         Button(action: {
@@ -106,7 +100,6 @@ struct TallyDetailView: View {
     )
     .navigationBarTitle(Text(tally.name), displayMode: .inline)
 
-    // Add/Edit Tally Sheet
     .sheet(isPresented: $showingEditTallyDatum) {
       EditTallyDatumView(
         presenting: self.$showingEditTallyDatum,

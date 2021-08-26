@@ -17,8 +17,6 @@ struct NumericTextField: UIViewRepresentable {
   @Binding var text: String
 
   func makeUIView(context: UIViewRepresentableContext<NumericTextField>) -> UITextField {
-
-    // Configure text field
     textField.placeholder = placeholder
     textField.keyboardType = .numberPad
     textField.font = .systemRounded(style: .body, weight: .regular)

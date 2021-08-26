@@ -9,12 +9,9 @@
 import SwiftUI
 
 // Header at the top of TallyDetailView that includes statistics about the tally data
-// PLANNED: Include graph of data
 struct TallyDetailHeader: View {
 
   @ObservedObject var tally: Tally
-
-  // Types and variables for the segment controls with congrols
   enum Duration: String, CaseIterable {
     case week = "Week"
     case month = "Month"
@@ -23,8 +20,6 @@ struct TallyDetailHeader: View {
   @State private var duration: Duration = .week
 
   enum GraphBehavior: String, CaseIterable {
-    // Aggregate: Look at data points individually
-    // Cumulative: Look at running tally
     case aggregate = "Aggregate"
     case cumulative = "Cumulative"
   }
@@ -109,13 +104,12 @@ struct TallyDetailHeader: View {
     }
   }
 
-  // Helper function to create date label of statistic and graph
+  // Helper function to create date label of statistics and graph
   func headerDateText() -> String {
     let range = dateRange()
 
     let df: DateFormatter = DateFormatter()
 
-    // Show year if dates are not from the same year
     if Calendar.current.isDate(range.start, equalTo: range.end, toGranularity: .year) {
       df.dateFormat = "MMM dd"
     } else {
@@ -127,8 +121,6 @@ struct TallyDetailHeader: View {
 
   var body: some View {
     VStack {
-
-      // Statistic at top of header
       HStack {
         VStack(alignment: .leading) {
           Text(headerLabel())
@@ -152,7 +144,6 @@ struct TallyDetailHeader: View {
 
       // TODO: Add Graph
 
-      // Segment controls to select duration and graph behavior
       Picker(selection: $duration, label: Text("Graph Duration")) {
         ForEach(Duration.allCases, id: \.self) { kind in
           Text(kind.rawValue)

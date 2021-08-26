@@ -26,14 +26,11 @@ struct NumericTallyTextField: UIViewRepresentable {
   @Binding var text: String
 
   func makeUIView(context: UIViewRepresentableContext<NumericTallyTextField>) -> UITextField {
-
-    // Specific configuration for use in tally block
     textField.keyboardType = .numberPad
     textField.font = .systemRounded(size: 99, weight: .regular)
     textField.placeholder = placeholder
 
     // When the user presses the done button, update the text binding, which sends the new text up the hierarchy
-    // The coordinator is set in makeCoordinator() below, which uses a custom UITextField delegate defined in Helpers.swift that only accepts numeric 4 digit input
     textField.delegate = context.coordinator
     (textField.delegate as! NumericUITextFieldDelegate).didEndEditing = { text in self.text = text }
 

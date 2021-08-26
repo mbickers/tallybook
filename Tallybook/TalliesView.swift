@@ -29,8 +29,6 @@ struct TalliesView: View {
   var body: some View {
 
     NavigationView {
-
-      // List of TallyBlocks
       List {
         ForEach(userData.tallies, id: \.id) { tally in
           TallyBlock(tally: tally)
@@ -38,7 +36,6 @@ struct TalliesView: View {
             .listRowInsets(EdgeInsets(.init(top: -1, leading: -1, bottom: -1, trailing: -1)))
             .background(Color(UIColor.systemBackground))
         }
-        // Callbacks to allow tallies to be rearranged and deleted by the table view
         .onMove { source, destination in
           self.userData.tallies.move(fromOffsets: source, toOffset: destination)
         }
@@ -48,8 +45,6 @@ struct TalliesView: View {
       }
       .listStyle(PlainListStyle())
 
-      // Configure navigation bar
-      // EditButton has built in functionality that makes the list go into editing mode
       .navigationBarItems(
         leading:
           EditButton()
@@ -66,7 +61,6 @@ struct TalliesView: View {
       )
       .navigationBarTitle(Text("Tallies"))
 
-      // New Tally Modal Sheet
       .sheet(isPresented: $showingAddTally) {
         AddTallyView(presenting: self.$showingAddTally)
           .environmentObject(self.userData)

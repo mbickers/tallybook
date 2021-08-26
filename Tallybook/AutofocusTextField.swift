@@ -16,13 +16,9 @@ struct AutofocusTextField: UIViewRepresentable {
   @Binding var text: String
 
   func makeUIView(context: UIViewRepresentableContext<AutofocusTextField>) -> UITextField {
-
-    // Configure text field
-    // These configuration are specific to the usage in the add tally button, but the view could be modified to be more versatile
     textField.textAlignment = .center
     textField.font = UIFont.systemRounded(style: .title1, weight: .semibold)
 
-    // The coordinator is set in makeCoordinator() below, which uses a custom UITextField delegate
     textField.delegate = context.coordinator
 
     // Configure autolayout so that text field doesn't expand

@@ -65,13 +65,11 @@ struct TallyBlock: View {
       Spacer()
 
       ZStack {
-        // SwiftUI navigation links are a very funky, particular kind of beast.
-        // The navigation link button is hidden under other stuff here and minimized, so that its default button doesn't show up
-        // It is activated by the showingDetailView binding
+        // SwiftUI navigation links are funky and annoying.
         NavigationLink(destination: TallyDetailView(tally: tally), isActive: $showingDetailView) {
           EmptyView()
         }
-        // Disable the button that would show up, not the navigation functionality
+        // Disable the default button that shows up
         .disabled(true)
         .padding(.all, 0)
         .frame(minWidth: 0, idealWidth: 0, maxWidth: 0, minHeight: 0, idealHeight: 0, maxHeight: 0)

@@ -12,10 +12,7 @@ import SwiftUI
 struct AddTallyView: View {
 
   @EnvironmentObject var userData: UserData
-
-  // Model object that is added to the real model when save button is pressed
   @ObservedObject var tally = Tally(kind: .completion, name: "", data: [TallyDatum]())
-
   @Binding var presenting: Bool
 
   // This variable is always true when the view is shown. Setting its value is done with an animation wrapper that causes the Tally Block to bounce
@@ -36,10 +33,7 @@ struct AddTallyView: View {
 
   var body: some View {
     VStack(alignment: .center) {
-
-      // Header at top of view
       HStack {
-        // Cancel button
         Button(
           action: {
             self.presenting = false
@@ -59,7 +53,6 @@ struct AddTallyView: View {
 
         Spacer()
 
-        // Done button
         Button(
           action: {
             self.userData.tallies.insert(self.tally, at: 0)
@@ -72,11 +65,9 @@ struct AddTallyView: View {
           }
         )
         .padding()
-        // Disable done button whenever there is no text in textfield
-        .disabled(tally.name == "" ? true : false)
+        .disabled(tally.name == "")
       }
 
-      // Bouncing preview Tally Block in the middle of the view
       TallyBlock(tally: tally)
         .disabled(true)
         .scaleEffect(animatingTallyBlock ? 0.75 : 0.8)
@@ -87,7 +78,6 @@ struct AddTallyView: View {
           }
         }
 
-      // Custom text field that automatically brings up keyboard and becommes active when it appears
       AutofocusTextField(text: $tally.name)
         // Need to set max frame to .infinity for layout to work correctly
         .frame(minWidth: 0, maxWidth: .infinity)
@@ -96,7 +86,6 @@ struct AddTallyView: View {
         .cornerRadius(12)
         .padding(.horizontal)
 
-      // Segment control to select tally type
       Picker(selection: $tally.kind, label: Text("Tally Type")) {
         ForEach(Tally.Kind.allCases, id: \.self) { kind in
           Text(kind.rawValue)

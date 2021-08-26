@@ -11,11 +11,10 @@ import SwiftUI
 // View to Add/Edit Tally Datums
 struct EditTallyDatumView: View {
 
-  // Variables passed in through parent view
   @Binding var presenting: Bool
   @ObservedObject var tally: Tally
 
-  // If a tally datum is being edited, its UUID is passed in. If this value is in nil, the view is in add mode
+  // If a tally datum is being edited, its UUID is passed in. If this value is nil, the view is in add mode
   @Binding var selectedTallyDatumID: UUID?
 
   // isEditing shows whether the view is in add or edit mode
@@ -29,10 +28,7 @@ struct EditTallyDatumView: View {
 
   var body: some View {
     VStack(alignment: .center) {
-
-      // Header at top of view
       HStack {
-        // Close button
         Button(
           action: {
             self.selectedTallyDatumID = nil
@@ -54,7 +50,6 @@ struct EditTallyDatumView: View {
 
         Spacer()
 
-        // Done button
         Button(
           action: {
             self.tallyDatum.date = TallyDatum.df.string(from: self.date)
@@ -90,17 +85,11 @@ struct EditTallyDatumView: View {
         .padding([.horizontal, .top])
       }
 
-      // Editable fields
-
       List {
-
-        // Field to set value
         VStack {
           HStack(alignment: .firstTextBaseline) {
             Text("Value")
               .font(Font.system(.body, design: .rounded))
-
-            // If the tally is the completion type, show a checkmark. Otherwise, show a text field
             if self.tally.kind == .completion {
               Spacer()
 
@@ -118,20 +107,17 @@ struct EditTallyDatumView: View {
               }
               .padding(.bottom, -2)
             } else {
-              // Custom numeric text field that only accepts numeric 4-digit or less inputs
               NumericTextField(placeholder: "0", text: self.$tallyDatum.defaultBlankStringValue)
             }
 
           }
 
-          // Divider at the bottom of the list cell
           Divider()
             .padding(.top, -5)
             .padding(.trailing, -20)
         }
         .padding(.bottom, -10)
 
-        // Date picker
         VStack {
           DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
             Text("Date")
