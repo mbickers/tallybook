@@ -8,8 +8,3 @@ Tallybook also has historical editing functionality and a statistics screen for 
 ## Technical Details
 Tallybook is written with Swift and SwiftUI, although there are a few custom views wrapping UIKit classes.
 I've learned a lot since starting the project, and there are definitely some things I'd do differently now-but I'm still really proud of how Tallybook has turned out!
-
-## Todo
-- Put on App Store (currently not allowed to use my developer account because I'm working at Apple).
-- CSV export
-- iCloud sync
