@@ -12,17 +12,7 @@ struct EditTallyView: View {
   @State var tally: Tally
   let onCommit: (Tally) -> Void
   @State private var animatingTallyBlock = false
-  @Environment(\.presentationMode) var presentationMode
-
-  init(tally: Tally, onCommit: @escaping (Tally) -> Void) {
-    _tally = State(wrappedValue: tally)
-    self.onCommit = onCommit
-    let selectedFont = UIFont.systemRounded(style: .callout, weight: .semibold)
-    UISegmentedControl.appearance().setTitleTextAttributes([.font: selectedFont], for: .selected)
-
-    let defaultFont = UIFont.systemRounded(style: .callout, weight: .regular)
-    UISegmentedControl.appearance().setTitleTextAttributes([.font: defaultFont], for: .normal)
-  }
+  @Environment(\.presentationMode) private var presentationMode
 
   var body: some View {
     VStack(alignment: .center) {
@@ -33,7 +23,6 @@ struct EditTallyView: View {
           },
           label: {
             Text("Cancel")
-              .font(Font.system(.body, design: .rounded))
           }
         )
         .padding()
@@ -41,7 +30,6 @@ struct EditTallyView: View {
         Spacer()
 
         Text("New Tally")
-          .font(Font.system(.body, design: .rounded))
           .bold()
 
         Spacer()
@@ -53,7 +41,6 @@ struct EditTallyView: View {
           },
           label: {
             Text("Done")
-              .font(Font.system(.body, design: .rounded))
               .bold()
           }
         )
@@ -85,11 +72,12 @@ struct EditTallyView: View {
         }
       }
       .pickerStyle(SegmentedPickerStyle())
-      .padding(.horizontal)
       .padding(.top, 5)
+      .padding(.horizontal)
 
       Spacer()
     }
+    .font(Font.system(.body, design: .rounded))
     .accentColor(Color.customAccent)
 
   }

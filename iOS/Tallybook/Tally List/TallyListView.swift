@@ -9,9 +9,8 @@
 import SwiftUI
 import UIKit
 
-// Main screen on app
 struct TallyListView: View {
-  @ObservedObject var tallyListViewModel = TallyListViewModel()
+  @ObservedObject private var tallyListViewModel = TallyListViewModel()
   @State private var showingAddTally = false
 
   var body: some View {
@@ -19,7 +18,6 @@ struct TallyListView: View {
       List {
         ForEach($tallyListViewModel.tallies) { $tally in
           TallyRow(tally: $tally)
-            .background(Color(UIColor.systemBackground))
             .listRowSeparator(.hidden)
         }
         .onMove { source, destination in
@@ -31,34 +29,29 @@ struct TallyListView: View {
       }
       .listStyle(PlainListStyle())
 
-      .navigationBarItems(
-        leading:
+      .toolbar {
+        ToolbarItem(placement: .navigationBarLeading) {
           EditButton()
-          .font(Font.system(.body, design: .rounded))
-          .padding([.vertical, .trailing]),
-        trailing:
+        }
+        ToolbarItem(placement: .navigationBarTrailing) {
           Button(action: {
-            self.showingAddTally = true
+            showingAddTally = true
           }) {
             Image(systemName: "plus")
-              .imageScale(.large)
-              .padding([.vertical, .leading])
           }
-      )
+        }
+      }
       .navigationBarTitle(Text("Tallies"))
 
       .sheet(isPresented: $showingAddTally) {
         EditTallyView(
           tally: Tally(name: "", kind: .completion),
-          onCommit: { newTally in
-            tallyListViewModel.tallies.append(newTally)
-          })
+          onCommit: tallyListViewModel.addTally)
       }
 
     }
-
+    .font(Font.system(.body, design: .rounded))
     .accentColor(.customAccent)
-    .navigationViewStyle(DoubleColumnNavigationViewStyle())
   }
 
 }

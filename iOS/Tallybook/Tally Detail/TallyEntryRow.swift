@@ -28,7 +28,6 @@ struct TallyEntryRow: View {
         Spacer()
         Text(entry.date)
           .foregroundColor(Color(UIColor.secondaryLabel))
-          .padding(.trailing, 15)
       }
     }
     .sheet(isPresented: $showingEditEntrySheet) {

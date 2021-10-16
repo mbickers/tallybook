@@ -27,12 +27,8 @@ struct TallyDetailView: View {
               //self.tally.data.remove(atOffsets: sources)
             }
           }
-          // Have to manually specify insets and padding to avoid bug where List jumps around
-          .listRowInsets(EdgeInsets(top: 0, leading: 15, bottom: 0, trailing: 0))
         }
       }
-      // In order for the inset grouped style to be changed, the size class has to be manually changed
-      .environment(\.horizontalSizeClass, .regular)
       .listStyle(GroupedListStyle())
 
     }

@@ -15,6 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+    let selectedFont = UIFont.systemRounded(style: .callout, weight: .semibold)
+    UISegmentedControl.appearance().setTitleTextAttributes([.font: selectedFont], for: .selected)
+
+    let defaultFont = UIFont.systemRounded(style: .callout, weight: .regular)
+    UISegmentedControl.appearance().setTitleTextAttributes([.font: defaultFont], for: .normal)
+
+    UINavigationBar.appearance().largeTitleTextAttributes = [
+      .font: UIFont.systemRounded(style: .largeTitle, weight: .bold)
+    ]
+
+    UINavigationBar.appearance().titleTextAttributes = [
+      .font: UIFont.systemRounded(style: .headline, weight: .semibold)
+    ]
     return true
   }
 

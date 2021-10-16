@@ -25,17 +25,6 @@ struct TallyDetailHeader: View {
   }
   @State private var graphBehavior: GraphBehavior = .aggregate
 
-  init(tally: Binding<Tally>) {
-    _tally = tally
-
-    // Change font of Segmented Control to rounded. Not possible in native SwiftUI yet
-    let selectedFont = UIFont.systemRounded(style: .callout, weight: .semibold)
-    UISegmentedControl.appearance().setTitleTextAttributes([.font: selectedFont], for: .selected)
-
-    let defaultFont = UIFont.systemRounded(style: .callout, weight: .regular)
-    UISegmentedControl.appearance().setTitleTextAttributes([.font: defaultFont], for: .normal)
-  }
-
   // Helper function to find the current date range as selected on the segment control
   func dateRange() -> (start: Date, end: Date, length: Int) {
     let end = Date()
@@ -131,11 +120,9 @@ struct TallyDetailHeader: View {
               .foregroundColor(Color(UIColor.secondaryLabel))
           }
         }
-        .padding(.leading)
 
         Spacer()
       }
-      .padding(.top)
 
       // TODO: Add Graph
 
@@ -145,7 +132,6 @@ struct TallyDetailHeader: View {
         }
       }
       .pickerStyle(SegmentedPickerStyle())
-      .padding(.horizontal)
 
       Picker(selection: $graphBehavior, label: Text("Graph Behavior")) {
         ForEach(GraphBehavior.allCases, id: \.self) { kind in
@@ -153,9 +139,8 @@ struct TallyDetailHeader: View {
         }
       }
       .pickerStyle(SegmentedPickerStyle())
-      .padding(.horizontal)
-
     }
+    .padding([.horizontal, .top])
   }
 }
 

@@ -18,4 +18,8 @@ class TallyListViewModel: ObservableObject {
   }
 
   private var cancellables = Set<AnyCancellable>()
+
+  func addTally(_ tally: Tally) {
+    tallies.append(tally)
+  }
 }

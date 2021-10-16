@@ -28,7 +28,6 @@ extension UIFont {
   }
 }
 
-// Helper that accesses AccentColor font in Assets folder
 extension UIColor {
   static let customAccent: UIColor = UIColor(named: "AccentColor")!
 }
@@ -37,7 +36,6 @@ extension Color {
   static let customAccent: Color = Color(UIColor.customAccent)
 }
 
-// Helper to vibrate device
 extension UIDevice {
   static func vibrate() {
     UIImpactFeedbackGenerator(style: .medium).impactOccurred()

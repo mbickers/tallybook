@@ -81,14 +81,8 @@ struct EditTallyEntryView: View {
             } else {
               NumericTextField(value: $entry.value)
             }
-
           }
-
-          Divider()
-            .padding(.top, -5)
-            .padding(.trailing, -20)
         }
-        .padding(.bottom, -10)
 
         VStack {
           DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
@@ -103,13 +97,11 @@ struct EditTallyEntryView: View {
 
       }
       .listStyle(GroupedListStyle())
-
     }
     .accentColor(Color.customAccent)
     .onAppear {
       date = Tally.Entry.df.date(from: entry.date)!
     }
-
   }
 }
 

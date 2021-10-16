@@ -27,12 +27,13 @@ struct TallyRow: View {
         case .completion:
           Button(action: {
             UIDevice.vibrate()
-            tally.today.value = tally.today.value < 1 ? 1 : 0
+            withAnimation {
+              tally.today.value = tally.today.value < 1 ? 1 : 0
+            }
           }) {
             Image(systemName: "checkmark.circle" + (tally.today.value >= 1 ? ".fill" : ""))
               .resizable()
               .aspectRatio(contentMode: .fit)
-              .animation(nil)
               .foregroundColor(
                 tally.today.value >= 1 ? .customAccent : Color(UIColor.tertiaryLabel))
           }
@@ -47,7 +48,6 @@ struct TallyRow: View {
               Image(systemName: "plus.circle")
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-                .animation(nil)
                 .foregroundColor(.customAccent)
             }
             .buttonStyle(ExpandingButtonStyle())

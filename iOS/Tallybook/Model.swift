@@ -27,17 +27,13 @@ struct Tally: Identifiable, Codable {
   }
 }
 
-// Each tally datum represents the value of a tally on a date
 extension Tally.Entry {
-
-  // Beccause the tally datums use a custom string format, this is date formatter can be used to convert the string dates to more versatile date objects
   static let df: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
     return formatter
   }()
 
-  // Helper to find string version of today
   static var today: String {
     df.string(from: Date())
   }
