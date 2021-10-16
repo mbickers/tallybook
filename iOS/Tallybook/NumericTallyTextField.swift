@@ -22,17 +22,14 @@ struct NumericTallyTextField: UIViewRepresentable {
   }
 
   let textField = NumericTallyTextField.NumericUITextField()
-  var placeholder: String?
-  @Binding var text: String
+  @Binding var value: Int
 
   func makeUIView(context: UIViewRepresentableContext<NumericTallyTextField>) -> UITextField {
     textField.keyboardType = .numberPad
     textField.font = .systemRounded(size: 99, weight: .regular)
-    textField.placeholder = placeholder
+    textField.placeholder = "0"
 
-    // When the user presses the done button, update the text binding, which sends the new text up the hierarchy
     textField.delegate = context.coordinator
-    (textField.delegate as! NumericUITextFieldDelegate).didEndEditing = { text in self.text = text }
 
     // Add toolbar that shows done button above keyboard
     let toolbar = UIToolbar(
@@ -69,27 +66,23 @@ struct NumericTallyTextField: UIViewRepresentable {
   func updateUIView(
     _ uiView: UITextField, context: UIViewRepresentableContext<NumericTallyTextField>
   ) {
-    // Make sure that the text field adjusts for changes to the state that originate from other parts of the app
-    // This is done outside of the view update because setting the text during a view update can cause issues
-    DispatchQueue.main.async {
-      uiView.text = self.text
-    }
+    uiView.text = String(value)
   }
 
   func makeCoordinator() -> NumericUITextFieldDelegate {
-    return NumericUITextFieldDelegate(text: $text)
+    return NumericUITextFieldDelegate(value: $value)
   }
 
 }
 
 struct ContentView_TestNumericTallyTextField: View {
-  @State var numberOfBeans: String = "12"
+  @State var beans = 12
 
   var body: some View {
     VStack {
-      Text("Beans: " + (numberOfBeans))
+      Text("Beans: \(beans)")
 
-      NumericTallyTextField(placeholder: "Beans", text: $numberOfBeans)
+      NumericTallyTextField(value: $beans)
         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
     }
   }

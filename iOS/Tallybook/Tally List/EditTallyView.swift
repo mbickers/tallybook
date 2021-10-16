@@ -8,22 +8,15 @@
 
 import SwiftUI
 
-// Screen to add new tallies
-struct AddTallyView: View {
-
-  @EnvironmentObject var userData: UserData
-  @ObservedObject var tally = Tally(kind: .completion, name: "", data: [TallyDatum]())
-  @Binding var presenting: Bool
-
-  // This variable is always true when the view is shown. Setting its value is done with an animation wrapper that causes the Tally Block to bounce
+struct EditTallyView: View {
+  @State var tally: Tally
+  let onCommit: (Tally) -> Void
   @State private var animatingTallyBlock = false
+  @Environment(\.presentationMode) var presentationMode
 
-  init(presenting: Binding<Bool>) {
-    // Need to have a binding to presenting view's "modal show" variable for the done and cancel buttons to work
-    _presenting = presenting
-
-    // Change font of Segmented Control to rounded. Not possible in native SwiftUI yet.
-    // TODO: Update to do correctly when possible
+  init(tally: Tally, onCommit: @escaping (Tally) -> Void) {
+    _tally = State(wrappedValue: tally)
+    self.onCommit = onCommit
     let selectedFont = UIFont.systemRounded(style: .callout, weight: .semibold)
     UISegmentedControl.appearance().setTitleTextAttributes([.font: selectedFont], for: .selected)
 
@@ -36,7 +29,7 @@ struct AddTallyView: View {
       HStack {
         Button(
           action: {
-            self.presenting = false
+            presentationMode.wrappedValue.dismiss()
           },
           label: {
             Text("Cancel")
@@ -55,8 +48,8 @@ struct AddTallyView: View {
 
         Button(
           action: {
-            self.userData.tallies.insert(self.tally, at: 0)
-            self.presenting = false
+            onCommit(tally)
+            presentationMode.wrappedValue.dismiss()
           },
           label: {
             Text("Done")
@@ -68,7 +61,7 @@ struct AddTallyView: View {
         .disabled(tally.name == "")
       }
 
-      TallyBlock(tally: tally)
+      TallyRow(tally: $tally)
         .disabled(true)
         .scaleEffect(animatingTallyBlock ? 0.75 : 0.8)
         .padding(.bottom, 30)
@@ -102,8 +95,9 @@ struct AddTallyView: View {
   }
 }
 
-struct AddTallyView_Previews: PreviewProvider {
+struct EditTallyView_Previews: PreviewProvider {
   static var previews: some View {
-    AddTallyView(presenting: .constant(true))
+    EditTallyView(
+      tally: Tally(name: "Test", kind: .completion), onCommit: { newValue in print(newValue) })
   }
 }

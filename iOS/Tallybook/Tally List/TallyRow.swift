@@ -9,8 +9,8 @@
 import SwiftUI
 
 // List rows on main screen that show interactive information about each tally
-struct TallyBlock: View {
-  @ObservedObject var tally: Tally
+struct TallyRow: View {
+  @Binding var tally: Tally
   @Environment(\.colorScheme) var colorScheme: ColorScheme
   @State private var showingDetailView: Bool = false
 
@@ -27,13 +27,14 @@ struct TallyBlock: View {
         case .completion:
           Button(action: {
             UIDevice.vibrate()
-            self.tally.today.boolValue.toggle()
+            tally.today.value = tally.today.value < 1 ? 1 : 0
           }) {
-            Image(systemName: tally.today.boolValue ? "checkmark.circle.fill" : "checkmark.circle")
+            Image(systemName: "checkmark.circle" + (tally.today.value >= 1 ? ".fill" : ""))
               .resizable()
               .aspectRatio(contentMode: .fit)
               .animation(nil)
-              .foregroundColor(tally.today.boolValue ? .customAccent : Color(UIColor.tertiaryLabel))
+              .foregroundColor(
+                tally.today.value >= 1 ? .customAccent : Color(UIColor.tertiaryLabel))
           }
           .buttonStyle(ExpandingButtonStyle())
 
@@ -41,7 +42,7 @@ struct TallyBlock: View {
           HStack {
             Button(action: {
               UIDevice.vibrate()
-              self.tally.today.intValue += 1
+              tally.today.value += 1
             }) {
               Image(systemName: "plus.circle")
                 .resizable()
@@ -51,12 +52,12 @@ struct TallyBlock: View {
             }
             .buttonStyle(ExpandingButtonStyle())
 
-            NumericTallyTextField(placeholder: "0", text: $tally.today.defaultBlankStringValue)
+            NumericTallyTextField(value: $tally.today.value)
               .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0)
           }
 
         case .amount:
-          NumericTallyTextField(placeholder: "Tap...", text: $tally.today.defaultBlankStringValue)
+          NumericTallyTextField(value: $tally.today.value)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0)
         }
       }
@@ -66,7 +67,7 @@ struct TallyBlock: View {
 
       ZStack {
         // SwiftUI navigation links are funky and annoying.
-        NavigationLink(destination: TallyDetailView(tally: tally), isActive: $showingDetailView) {
+        NavigationLink(destination: TallyDetailView(tally: $tally), isActive: $showingDetailView) {
           EmptyView()
         }
         // Disable the default button that shows up
@@ -105,14 +106,7 @@ struct ExpandingButtonStyle: ButtonStyle {
 struct TallyBlock_Previews: PreviewProvider {
   static var previews: some View {
     Group {
-      TallyBlock(tally: UserData.TestData().tallies[1])
-
-      TalliesView()
-        .environmentObject(UserData.TestData())
-
-      TalliesView()
-        .environmentObject(UserData.TestData())
-        .environment(\.colorScheme, .dark)
+      TallyRow(tally: .constant(Tally(name: "Test", kind: .completion)))
     }
   }
 }

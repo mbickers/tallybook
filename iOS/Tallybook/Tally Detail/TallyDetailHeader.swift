@@ -11,7 +11,7 @@ import SwiftUI
 // Header at the top of TallyDetailView that includes statistics about the tally data
 struct TallyDetailHeader: View {
 
-  @ObservedObject var tally: Tally
+  @Binding var tally: Tally
   enum Duration: String, CaseIterable {
     case week = "Week"
     case month = "Month"
@@ -25,8 +25,8 @@ struct TallyDetailHeader: View {
   }
   @State private var graphBehavior: GraphBehavior = .aggregate
 
-  init(tally: Tally) {
-    self.tally = tally
+  init(tally: Binding<Tally>) {
+    _tally = tally
 
     // Change font of Segmented Control to rounded. Not possible in native SwiftUI yet
     let selectedFont = UIFont.systemRounded(style: .callout, weight: .semibold)
@@ -50,8 +50,8 @@ struct TallyDetailHeader: View {
       start = Date().advanced(by: -28 * 24 * 3600)
       length = 28
     case .allTime:
-      if let date = tally.data.last?.date {
-        start = TallyDatum.df.date(from: date)
+      if let date = tally.entries.last?.date {
+        start = Tally.Entry.df.date(from: date)
         length = Calendar.current.dateComponents([.day], from: start, to: end).day ?? 0
         length = max(1, length)
       } else {
@@ -77,17 +77,12 @@ struct TallyDetailHeader: View {
   func headerNumberText() -> String {
     let range = dateRange()
 
-    let start = TallyDatum.df.string(from: range.start)
-    let end = TallyDatum.df.string(from: range.end)
+    let start = Tally.Entry.df.string(from: range.start)
+    let end = Tally.Entry.df.string(from: range.end)
 
-    let tallyDatums = tally.data.filter { td in td.date >= start && td.date <= end }
+    let entries = tally.entries.filter { entry in entry.date >= start && entry.date <= end }
 
-    var sum: Int!
-    if tally.kind == .completion {
-      sum = tallyDatums.reduce(0) { $0 + ($1.boolValue ? 1 : 0) }
-    } else {
-      sum = tallyDatums.reduce(0) { $0 + $1.intValue }
-    }
+    let sum = entries.reduce(0) { $0 + $1.value }
 
     switch graphBehavior {
     case .aggregate:
@@ -165,10 +160,10 @@ struct TallyDetailHeader: View {
 }
 
 struct ContentView_TallyDetailHeader: View {
-  @State var tally = UserData.TestData().tallies[0]
+  @State var tally = Tally(name: "Test", kind: .amount)
 
   var body: some View {
-    TallyDetailHeader(tally: tally)
+    TallyDetailHeader(tally: $tally)
   }
 }
 

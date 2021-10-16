@@ -10,9 +10,8 @@ import SwiftUI
 import UIKit
 
 // Main screen on app
-struct TalliesView: View {
-
-  @EnvironmentObject var userData: UserData
+struct TallyListView: View {
+  @ObservedObject var tallyListViewModel = TallyListViewModel()
   @State private var showingAddTally = false
 
   init() {
@@ -27,11 +26,11 @@ struct TalliesView: View {
   }
 
   var body: some View {
-
     NavigationView {
+
       List {
-        ForEach(userData.tallies, id: \.id) { tally in
-          TallyBlock(tally: tally)
+        ForEach($tallyListViewModel.tallies) { $tally in
+          TallyRow(tally: $tally)
             .padding(EdgeInsets(top: 7, leading: 11, bottom: 7, trailing: 11))
             // Hack to hide list item separators on iOS 14
             // TODO: Fix in iOS 15
@@ -39,10 +38,10 @@ struct TalliesView: View {
             .background(Color(UIColor.systemBackground))
         }
         .onMove { source, destination in
-          self.userData.tallies.move(fromOffsets: source, toOffset: destination)
+          //self.userData.tallies.move(fromOffsets: source, toOffset: destination)
         }
         .onDelete { sources in
-          self.userData.tallies.remove(atOffsets: sources)
+          //self.userData.tallies.remove(atOffsets: sources)
         }
       }
       .listStyle(PlainListStyle())
@@ -64,20 +63,23 @@ struct TalliesView: View {
       .navigationBarTitle(Text("Tallies"))
 
       .sheet(isPresented: $showingAddTally) {
-        AddTallyView(presenting: self.$showingAddTally)
-          .environmentObject(self.userData)
+        EditTallyView(
+          tally: Tally(name: "", kind: .completion),
+          onCommit: { newTally in
+            tallyListViewModel.tallies.append(newTally)
+          })
       }
 
     }
+
     .accentColor(.customAccent)
     .navigationViewStyle(DoubleColumnNavigationViewStyle())
   }
 
 }
 
-struct TalliesView_Previews: PreviewProvider {
+struct TallyListView_Previews: PreviewProvider {
   static var previews: some View {
-    TalliesView()
-      .environmentObject(UserData.TestData())
+    TallyListView()
   }
 }
