@@ -28,6 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().titleTextAttributes = [
       .font: UIFont.systemRounded(style: .headline, weight: .semibold)
     ]
+
+    UIDatePicker.appearance().tintColor = UIColor.customAccent
+
     return true
   }
 
