@@ -116,14 +116,14 @@ struct TallyDetailHeader: View {
 
       // TODO: Add Graph
 
-      Picker(selection: $duration, label: Text("Graph Duration")) {
+      Picker(selection: $duration, label: Text("Duration")) {
         ForEach(Duration.allCases, id: \.self) { kind in
           Text(kind.rawValue.localizedCapitalized)
         }
       }
       .pickerStyle(SegmentedPickerStyle())
 
-      Picker(selection: $overviewType, label: Text("Graph Behavior")) {
+      Picker(selection: $overviewType, label: Text("Overview Type")) {
         ForEach(OverviewType.allCases, id: \.self) { kind in
           Text(kind.rawValue.localizedCapitalized)
         }
