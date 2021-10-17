@@ -29,7 +29,6 @@ struct EditTallyEntryView: View {
           },
           label: {
             Text("Cancel")
-              .font(Font.system(.body, design: .rounded))
           }
         )
         .padding([.horizontal, .top])
@@ -37,7 +36,6 @@ struct EditTallyEntryView: View {
         Spacer()
 
         Text("\(mode.rawValue.localizedCapitalized) Entry")
-          .font(Font.system(.body, design: .rounded))
           .bold()
           .padding(.top)
 
@@ -50,7 +48,6 @@ struct EditTallyEntryView: View {
           },
           label: {
             Text(mode == .edit ? "Done" : "Add")
-              .font(Font.system(.body, design: .rounded))
               .bold()
           }
         )
@@ -61,7 +58,6 @@ struct EditTallyEntryView: View {
         VStack {
           HStack(alignment: .firstTextBaseline) {
             Text("Value")
-              .font(Font.system(.body, design: .rounded))
             if tallyKind == .completion {
               Spacer()
 
@@ -87,7 +83,6 @@ struct EditTallyEntryView: View {
         VStack {
           DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
             Text("Date")
-              .font(Font.system(.body, design: .rounded))
           }
           .datePickerStyle(WheelDatePickerStyle())
           .onChange(of: date) { newValue in
@@ -99,6 +94,7 @@ struct EditTallyEntryView: View {
       .listStyle(GroupedListStyle())
     }
     .accentColor(Color.customAccent)
+    .font(Font.system(.body, design: .rounded))
     .onAppear {
       date = Tally.Entry.df.date(from: entry.date)!
     }

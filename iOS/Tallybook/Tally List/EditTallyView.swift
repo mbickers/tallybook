@@ -79,7 +79,6 @@ struct EditTallyView: View {
     }
     .font(Font.system(.body, design: .rounded))
     .accentColor(Color.customAccent)
-
   }
 }
 
