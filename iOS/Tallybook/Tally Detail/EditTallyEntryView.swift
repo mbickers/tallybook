@@ -21,39 +21,7 @@ struct EditTallyEntryView: View {
   @Environment(\.presentationMode) private var presentationMode
 
   var body: some View {
-    VStack(alignment: .center) {
-      HStack {
-        Button(
-          action: {
-            presentationMode.wrappedValue.dismiss()
-          },
-          label: {
-            Text("Cancel")
-          }
-        )
-        .padding([.horizontal, .top])
-
-        Spacer()
-
-        Text("\(mode.rawValue.localizedCapitalized) Entry")
-          .bold()
-          .padding(.top)
-
-        Spacer()
-
-        Button(
-          action: {
-            onCommit(entry)
-            presentationMode.wrappedValue.dismiss()
-          },
-          label: {
-            Text(mode == .edit ? "Done" : "Add")
-              .bold()
-          }
-        )
-        .padding([.horizontal, .top])
-      }
-
+    NavigationView {
       List {
         VStack {
           HStack(alignment: .firstTextBaseline) {
@@ -81,17 +49,28 @@ struct EditTallyEntryView: View {
         }
 
         VStack {
-          DatePicker(selection: $date, in: ...Date(), displayedComponents: .date) {
-            Text("Date")
-          }
-          .datePickerStyle(WheelDatePickerStyle())
-          .onChange(of: date) { newValue in
-            entry.date = Tally.Entry.df.string(from: newValue)
+          DatePicker("Date", selection: $date, in: ...Date(), displayedComponents: .date)
+            .onChange(of: date) { newValue in
+              entry.date = Tally.Entry.df.string(from: newValue)
+            }
+        }
+      }
+      .toolbar {
+        ToolbarItem(placement: .navigationBarLeading) {
+          Button("Cancel") {
+            presentationMode.wrappedValue.dismiss()
           }
         }
 
+        ToolbarItem(placement: .navigationBarTrailing) {
+          Button(mode == .edit ? "Done" : "Add") {
+            onCommit(entry)
+            presentationMode.wrappedValue.dismiss()
+          }
+        }
       }
-      .listStyle(GroupedListStyle())
+      .navigationTitle("\(mode.rawValue.localizedCapitalized) Entry")
+      .navigationBarTitleDisplayMode(.inline)
     }
     .accentColor(Color.customAccent)
     .font(Font.system(.body, design: .rounded))
