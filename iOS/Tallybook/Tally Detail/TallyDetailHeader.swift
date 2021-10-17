@@ -13,17 +13,17 @@ struct TallyDetailHeader: View {
 
   @Binding var tally: Tally
   enum Duration: String, CaseIterable {
-    case week = "Week"
-    case month = "Month"
-    case allTime = "All Time"
+    case week
+    case month
+    case allTime = "all time"
   }
   @State private var duration: Duration = .week
 
-  enum GraphBehavior: String, CaseIterable {
-    case aggregate = "Aggregate"
-    case cumulative = "Cumulative"
+  enum OverviewType: String, CaseIterable {
+    case average
+    case total
   }
-  @State private var graphBehavior: GraphBehavior = .aggregate
+  @State private var overviewType: OverviewType = .average
 
   // Helper function to find the current date range as selected on the segment control
   func dateRange() -> (start: Date, end: Date, length: Int) {
@@ -52,16 +52,6 @@ struct TallyDetailHeader: View {
     return (start, end, length)
   }
 
-  // Helper function to find name of the statistic being shown
-  func headerLabel() -> String {
-    switch graphBehavior {
-    case .aggregate:
-      return "AVERAGE"
-    case .cumulative:
-      return "TOTAL"
-    }
-  }
-
   // Helper function to calculate statistic being shown
   func headerNumberText() -> String {
     let range = dateRange()
@@ -73,8 +63,8 @@ struct TallyDetailHeader: View {
 
     let sum = entries.reduce(0) { $0 + $1.value }
 
-    switch graphBehavior {
-    case .aggregate:
+    switch overviewType {
+    case .average:
       if range.length == 0 {
         return "0"
       } else {
@@ -83,7 +73,7 @@ struct TallyDetailHeader: View {
         }
         return String(format: "%.01f", Double(sum) / Double(range.length))
       }
-    case .cumulative:
+    case .total:
       return String(sum)
     }
   }
@@ -107,7 +97,7 @@ struct TallyDetailHeader: View {
     VStack {
       HStack {
         VStack(alignment: .leading) {
-          Text(headerLabel())
+          Text(overviewType.rawValue.localizedUppercase)
             .font(.system(.caption, design: .rounded))
             .foregroundColor(Color(UIColor.secondaryLabel))
 
@@ -128,14 +118,14 @@ struct TallyDetailHeader: View {
 
       Picker(selection: $duration, label: Text("Graph Duration")) {
         ForEach(Duration.allCases, id: \.self) { kind in
-          Text(kind.rawValue)
+          Text(kind.rawValue.localizedCapitalized)
         }
       }
       .pickerStyle(SegmentedPickerStyle())
 
-      Picker(selection: $graphBehavior, label: Text("Graph Behavior")) {
-        ForEach(GraphBehavior.allCases, id: \.self) { kind in
-          Text(kind.rawValue)
+      Picker(selection: $overviewType, label: Text("Graph Behavior")) {
+        ForEach(OverviewType.allCases, id: \.self) { kind in
+          Text(kind.rawValue.localizedCapitalized)
         }
       }
       .pickerStyle(SegmentedPickerStyle())

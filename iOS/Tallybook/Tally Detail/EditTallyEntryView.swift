@@ -10,7 +10,7 @@ import SwiftUI
 
 // View to Add/Edit Tally Datums
 struct EditTallyEntryView: View {
-  enum Mode {
+  enum Mode: String {
     case edit, add
   }
   let tallyKind: Tally.Kind
@@ -36,7 +36,7 @@ struct EditTallyEntryView: View {
 
         Spacer()
 
-        Text("\(String(describing: mode).capitalized) Entry")
+        Text("\(mode.rawValue.localizedCapitalized) Entry")
           .font(Font.system(.body, design: .rounded))
           .bold()
           .padding(.top)

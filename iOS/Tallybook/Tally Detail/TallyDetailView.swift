@@ -18,7 +18,7 @@ struct TallyDetailView: View {
       TallyDetailHeader(tally: $tally)
 
       List {
-        Section(header: Text("All Recorded Data")) {
+        Section(header: Text("All Data")) {
           ForEach(tally.entries, id: \.date) { entry in
             TallyEntryRow(tally: $tally, entry: entry)
           }
@@ -29,8 +29,6 @@ struct TallyDetailView: View {
           }
         }
       }
-      .listStyle(GroupedListStyle())
-
     }
 
     .navigationBarItems(
