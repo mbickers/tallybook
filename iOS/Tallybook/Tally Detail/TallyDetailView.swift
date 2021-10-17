@@ -30,16 +30,13 @@ struct TallyDetailView: View {
         }
       }
     }
-
-    .navigationBarItems(
-      trailing:
-        Button(action: {
+    .toolbar {
+      ToolbarItem(placement: .navigationBarTrailing) {
+        Button("Add Data") {
           showingAddEntrySheet = true
-        }) {
-          Text("Add Data")
-            .padding([.vertical, .leading])
         }
-    )
+      }
+    }
     .navigationBarTitle(Text(tally.name), displayMode: .inline)
 
     .sheet(isPresented: $showingAddEntrySheet) {
