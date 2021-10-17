@@ -34,14 +34,12 @@ struct TallyListView: View {
           EditButton()
         }
         ToolbarItem(placement: .navigationBarTrailing) {
-          Button(action: {
+          Button("\(Image(systemName: "plus"))") {
             showingAddTally = true
-          }) {
-            Image(systemName: "plus")
           }
         }
       }
-      .navigationBarTitle(Text("Tallies"))
+      .navigationBarTitle("Tallies")
 
       .sheet(isPresented: $showingAddTally) {
         EditTallyView(

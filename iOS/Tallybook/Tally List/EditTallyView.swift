@@ -17,14 +17,9 @@ struct EditTallyView: View {
   var body: some View {
     VStack(alignment: .center) {
       HStack {
-        Button(
-          action: {
-            presentationMode.wrappedValue.dismiss()
-          },
-          label: {
-            Text("Cancel")
-          }
-        )
+        Button("Cancel") {
+          presentationMode.wrappedValue.dismiss()
+        }
         .padding()
 
         Spacer()
@@ -34,16 +29,10 @@ struct EditTallyView: View {
 
         Spacer()
 
-        Button(
-          action: {
-            onCommit(tally)
-            presentationMode.wrappedValue.dismiss()
-          },
-          label: {
-            Text("Done")
-              .bold()
-          }
-        )
+        Button("Done") {
+          onCommit(tally)
+          presentationMode.wrappedValue.dismiss()
+        }
         .padding()
         .disabled(tally.name == "")
       }

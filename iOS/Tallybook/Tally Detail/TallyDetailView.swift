@@ -18,7 +18,7 @@ struct TallyDetailView: View {
       TallyDetailHeader(tally: $tally)
 
       List {
-        Section(header: Text("All Data")) {
+        Section("All Data") {
           ForEach(tally.entries, id: \.date) { entry in
             TallyEntryRow(tally: $tally, entry: entry)
           }
