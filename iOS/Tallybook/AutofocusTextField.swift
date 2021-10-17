@@ -10,9 +10,7 @@ import SwiftUI
 
 // SwiftUI compatibible wrapper of UITextField that automatically becomes first responder, so that the keyboard comes up when the text field appears on screen
 struct AutofocusTextField: UIViewRepresentable {
-  typealias UIViewType = UITextField
-
-  let textField = UITextField(frame: .zero)
+  private let textField = UITextField(frame: .zero)
   @Binding var text: String
 
   func makeUIView(context: UIViewRepresentableContext<AutofocusTextField>) -> UITextField {

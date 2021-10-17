@@ -10,7 +10,7 @@ import SwiftUI
 
 // SwiftUI compatibible wrapper of UITextField that only allows numeric input
 struct NumericTextField: UIViewRepresentable {
-  let textField = UITextField()
+  private let textField = UITextField()
   @Binding var value: Int
 
   func makeUIView(context: UIViewRepresentableContext<NumericTextField>) -> UITextField {

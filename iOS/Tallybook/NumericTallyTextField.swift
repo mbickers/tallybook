@@ -10,6 +10,8 @@ import SwiftUI
 
 // SwiftUI compatibible wrapper of UITextField that adds custom functionality for usage in TallyBlock
 struct NumericTallyTextField: UIViewRepresentable {
+  private let textField = NumericTallyTextField.NumericUITextField()
+  @Binding var value: Int
 
   // Subclass of UITextField that makes cursor slightly smaller so that it fits in TallyBlock without interfering with nearby sibling views
   class NumericUITextField: UITextField {
@@ -20,9 +22,6 @@ struct NumericTallyTextField: UIViewRepresentable {
       return rect
     }
   }
-
-  let textField = NumericTallyTextField.NumericUITextField()
-  @Binding var value: Int
 
   func makeUIView(context: UIViewRepresentableContext<NumericTallyTextField>) -> UITextField {
     textField.keyboardType = .numberPad
