@@ -18,7 +18,7 @@ struct TallyListView: View {
     NavigationView {
       List {
         ForEach($tallyListViewModel.tallies) { $tally in
-          if editMode.isEditing {
+          if editMode == .active {
             Text(tally.name)
               .font(.system(size: 22, weight: .regular, design: .rounded))
               .listRowSeparator(.hidden)
