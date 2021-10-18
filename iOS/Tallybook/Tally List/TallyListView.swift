@@ -12,19 +12,25 @@ import UIKit
 struct TallyListView: View {
   @ObservedObject private var tallyListViewModel = TallyListViewModel()
   @State private var showingAddTally = false
+  @State private var editMode = EditMode.inactive
 
   var body: some View {
     NavigationView {
       List {
         ForEach($tallyListViewModel.tallies) { $tally in
-          TallyRow(tally: $tally)
-            .listRowSeparator(.hidden)
+          if editMode.isEditing {
+            Text(tally.name)
+              .font(.system(size: 22, weight: .regular, design: .rounded))
+              .listRowSeparator(.hidden)
+          } else {
+            TallyRow(tally: $tally)
+          }
         }
-        .onMove { source, destination in
-          //self.userData.tallies.move(fromOffsets: source, toOffset: destination)
+        .onMove { sources, destinations in
+          tallyListViewModel.tallies.move(fromOffsets: sources, toOffset: destinations)
         }
-        .onDelete { sources in
-          //self.userData.tallies.remove(atOffsets: sources)
+        .onDelete { offsets in
+          tallyListViewModel.tallies.remove(atOffsets: offsets)
         }
       }
       .listStyle(PlainListStyle())
@@ -40,7 +46,7 @@ struct TallyListView: View {
         }
       }
       .navigationBarTitle("Tallies")
-
+      .environment(\.editMode, $editMode)
       .sheet(isPresented: $showingAddTally) {
         EditTallyView(
           tally: Tally(name: "", kind: .completion),
