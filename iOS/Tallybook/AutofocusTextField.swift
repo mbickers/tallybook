@@ -35,12 +35,10 @@ struct AutofocusTextField: UIViewRepresentable {
       uiView.text = self.text
     }
 
-    // Make text field first responder when view is first shown
-    if uiView.window != nil, let crd = uiView.delegate as? AutofocusTextField.Coordinator,
-      !crd.didBecomeFirstResponder
-    {
+    let coordinator = uiView.delegate as! AutofocusTextField.Coordinator
+    if !coordinator.didBecomeFirstResponder {
       uiView.becomeFirstResponder()
-      crd.didBecomeFirstResponder = true
+      coordinator.didBecomeFirstResponder = true
     }
   }
 
