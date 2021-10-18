@@ -22,10 +22,8 @@ struct TallyDetailView: View {
           ForEach(tally.entries, id: \.date) { entry in
             TallyEntryRow(tally: $tally, entry: entry)
           }
-          .onDelete { sources in
-            withAnimation {
-              //self.tally.data.remove(atOffsets: sources)
-            }
+          .onDelete { offsets in
+            tally.entries.remove(atOffsets: offsets)
           }
         }
       }
