@@ -10,22 +10,21 @@ import SwiftUI
 
 // Header at the top of TallyDetailView that includes statistics about the tally data
 struct TallyDetailHeader: View {
-
-  @Binding var tally: Tally
   enum Duration: String, CaseIterable {
     case week
     case month
     case allTime = "all time"
   }
-  @State private var duration: Duration = .week
 
   enum OverviewType: String, CaseIterable {
     case average
     case total
   }
-  @State private var overviewType: OverviewType = .average
 
-  // Helper function to find the current date range as selected on the segment control
+  @Binding var tally: Tally
+  @State private var duration = Duration.week
+  @State private var overviewType = OverviewType.average
+
   func dateRange() -> (start: Date, end: Date, length: Int) {
     let end = Date()
     var start: Date!
@@ -52,7 +51,6 @@ struct TallyDetailHeader: View {
     return (start, end, length)
   }
 
-  // Helper function to calculate statistic being shown
   func headerNumberText() -> String {
     let range = dateRange()
 
@@ -78,7 +76,6 @@ struct TallyDetailHeader: View {
     }
   }
 
-  // Helper function to create date label of statistics and graph
   func headerDateText() -> String {
     let range = dateRange()
 
@@ -113,8 +110,6 @@ struct TallyDetailHeader: View {
 
         Spacer()
       }
-
-      // TODO: Add Graph
 
       Picker(selection: $duration, label: Text("Duration")) {
         ForEach(Duration.allCases, id: \.self) { kind in
