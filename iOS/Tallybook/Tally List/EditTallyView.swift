@@ -15,56 +15,52 @@ struct EditTallyView: View {
   @Environment(\.presentationMode) private var presentationMode
 
   var body: some View {
-    VStack(alignment: .center) {
-      HStack {
-        Button("Cancel") {
-          presentationMode.wrappedValue.dismiss()
+    NavigationView {
+      ScrollView {
+        VStack(alignment: .center) {
+          TallyRow(tally: $tally)
+            .disabled(true)
+            .scaleEffect(animatingTallyBlock ? 0.75 : 0.8)
+            .animation(.easeInOut(duration: 1.2).repeatForever(), value: animatingTallyBlock)
+            .onAppear {
+              animatingTallyBlock = true
+            }
+            .padding(.bottom, 30)
+
+          AutofocusTextField(text: $tally.name)
+            // Need to set max frame to .infinity for layout to work correctly
+            .frame(minWidth: 0, maxWidth: .infinity)
+            .padding(.vertical, 10)
+            .background(Color(UIColor.tertiarySystemFill))
+            .cornerRadius(12)
+            .padding(.horizontal)
+
+          Picker(selection: $tally.kind, label: Text("Tally Type")) {
+            ForEach(Tally.Kind.allCases, id: \.self) { kind in
+              Text(kind.rawValue)
+            }
+          }
+          .pickerStyle(SegmentedPickerStyle())
+          .padding(.top, 5)
+          .padding(.horizontal)
         }
-        .padding()
-
-        Spacer()
-
-        Text("New Tally")
-          .bold()
-
-        Spacer()
-
-        Button("Done") {
-          onCommit(tally)
-          presentationMode.wrappedValue.dismiss()
-        }
-        .padding()
-        .disabled(tally.name == "")
       }
-
-      TallyRow(tally: $tally)
-        .disabled(true)
-        .scaleEffect(animatingTallyBlock ? 0.75 : 0.8)
-        .padding(.bottom, 30)
-        .onAppear {
-          withAnimation(Animation.easeInOut(duration: 1.2).repeatForever()) {
-            self.animatingTallyBlock = true
+      .toolbar {
+        ToolbarItem(placement: .navigationBarLeading) {
+          Button("Cancel") {
+            presentationMode.wrappedValue.dismiss()
           }
         }
-
-      AutofocusTextField(text: $tally.name)
-        // Need to set max frame to .infinity for layout to work correctly
-        .frame(minWidth: 0, maxWidth: .infinity)
-        .padding(.vertical, 10)
-        .background(Color(UIColor.tertiarySystemFill))
-        .cornerRadius(12)
-        .padding(.horizontal)
-
-      Picker(selection: $tally.kind, label: Text("Tally Type")) {
-        ForEach(Tally.Kind.allCases, id: \.self) { kind in
-          Text(kind.rawValue)
+        ToolbarItem(placement: .navigationBarTrailing) {
+          Button("Done") {
+            onCommit(tally)
+            presentationMode.wrappedValue.dismiss()
+          }
+          .disabled(tally.name == "")
         }
       }
-      .pickerStyle(SegmentedPickerStyle())
-      .padding(.top, 5)
-      .padding(.horizontal)
-
-      Spacer()
+      .navigationTitle("New Tally")
+      .navigationBarTitleDisplayMode(.inline)
     }
     .font(Font.system(.body, design: .rounded))
     .accentColor(Color.customAccent)
