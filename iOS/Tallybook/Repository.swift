@@ -44,22 +44,20 @@ class TestRepository: BaseRepository, TallyRepository, ObservableObject {
 }
 
 private func testData() -> [Tally] {
-  // Generate dummy date data
-  var day = Date()
+  var numericData = [Tally.Entry]()
+  var completionData = [Tally.Entry]()
 
-  let dummy_values = [2, 3, 5, 0, 1, 10, 2, 0, 12, 2, 6]
-  var data = [Tally.Entry]()
-
-  for v in dummy_values {
-    data.append(Tally.Entry(day, value: v))
-    day.addTimeInterval(-2 * 24 * 3600)
+  for offset in stride(from: 0, through: -20, by: -2) {
+    let day = Date().addingTimeInterval(TimeInterval(offset * 24 * 3600))
+    numericData.append(Tally.Entry(day, value: Int.random(in: 1..<10)))
+    completionData.append(Tally.Entry(day, value: 1))
   }
 
   return [
-    Tally(name: "Go to Gym", kind: .completion, entries: data),
-    Tally(name: "Cups of Coffee", kind: .counter, entries: data),
-    Tally(name: "Hours of Sleep", kind: .amount, entries: data),
-    Tally(name: "Check Email", kind: .completion, entries: data),
-    Tally(name: "Call Mom", kind: .completion, entries: data),
+    Tally(name: "Go to Gym", kind: .completion, entries: completionData),
+    Tally(name: "Cups of Coffee", kind: .counter, entries: numericData),
+    Tally(name: "Hours of Sleep", kind: .amount, entries: numericData),
+    Tally(name: "Check Email", kind: .completion, entries: completionData),
+    Tally(name: "Call Mom", kind: .completion, entries: completionData),
   ]
 }

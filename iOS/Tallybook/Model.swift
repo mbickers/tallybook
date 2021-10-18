@@ -46,25 +46,10 @@ extension Tally.Entry {
 
 extension Tally {
   mutating func updateEntry(_ entry: Tally.Entry) {
-    let index = entries.firstIndex { entry.date >= $0.date }
-    if let index = index,
-      entry.date == entries[index].date
-    {
-      if entry.value == 0 {
-        entries.remove(at: index)
-      } else {
-        entries[index] = entry
-      }
-    } else {
-      if entry.value == 0 {
-        return
-      } else {
-        if let index = index {
-          entries.insert(entry, at: index)
-        } else {
-          entries.append(entry)
-        }
-      }
+    entries.removeAll { $0.date == entry.date }
+    if entry.value != 0 {
+      entries.append(entry)
+      entries.sort { $0.date > $1.date }
     }
 
     //repository.updateTally(tally)
@@ -78,7 +63,7 @@ extension Tally {
 
   var today: Tally.Entry {
     get {
-      return entries.first { Tally.Entry.today >= $0.date } ?? Tally.Entry(Date(), value: 0)
+      return entries.first { Tally.Entry.today == $0.date } ?? Tally.Entry(Date(), value: 0)
     }
 
     set {
