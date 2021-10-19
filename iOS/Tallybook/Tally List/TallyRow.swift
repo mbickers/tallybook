@@ -25,12 +25,12 @@ struct TallyRow: View {
 
         switch tally.kind {
         case .completion:
-          Button(action: {
+          Button {
             UIDevice.vibrate()
             withAnimation {
               tally.today.boolValue.toggle()
             }
-          }) {
+          } label: {
             Image(systemName: "checkmark.circle" + (tally.today.boolValue ? ".fill" : ""))
               .resizable()
               .aspectRatio(contentMode: .fit)
@@ -41,10 +41,10 @@ struct TallyRow: View {
 
         case .counter:
           HStack {
-            Button(action: {
+            Button {
               UIDevice.vibrate()
               tally.today.value += 1
-            }) {
+            } label: {
               Image(systemName: "plus.circle")
                 .resizable()
                 .aspectRatio(contentMode: .fit)

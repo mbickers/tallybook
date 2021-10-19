@@ -29,9 +29,9 @@ struct EditTallyEntryView: View {
             if tallyKind == .completion {
               Spacer()
 
-              Button(action: {
+              Button {
                 entry.boolValue.toggle()
-              }) {
+              } label: {
                 Image(
                   systemName: "checkmark.circle" + (entry.boolValue ? ".fill" : "")
                 )

@@ -31,12 +31,10 @@ struct TallyEntryRow: View {
       }
     }
     .sheet(isPresented: $showingEditEntrySheet) {
-      EditTallyEntryView(
-        tallyKind: tally.kind, entry: entry, mode: .edit,
-        onCommit: { entry in
-          tally.removeEntry(self.entry)
-          tally.updateEntry(entry)
-        })
+      EditTallyEntryView(tallyKind: tally.kind, entry: entry, mode: .edit) { entry in
+        tally.removeEntry(self.entry)
+        tally.updateEntry(entry)
+      }
     }
   }
 }
