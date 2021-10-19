@@ -14,9 +14,9 @@ struct TallyEntryRow: View {
   @State private var showingEditEntrySheet = false
 
   var body: some View {
-    Button(action: {
+    Button {
       showingEditEntrySheet = true
-    }) {
+    } label: {
       HStack {
         if tally.kind == .completion {
           Text(entry.boolValue ? "Complete" : "Incomplete")
@@ -25,7 +25,9 @@ struct TallyEntryRow: View {
           Text(String(entry.value))
             .foregroundColor(Color(UIColor.label))
         }
+
         Spacer()
+
         Text(entry.date)
           .foregroundColor(Color(UIColor.secondaryLabel))
       }
