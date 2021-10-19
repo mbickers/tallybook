@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// SwiftUI compatibible wrapper of UITextField that automatically becomes first responder, so that the keyboard comes up when the text field appears on screen
+// SwiftUI wrapper of UITextField used in EditTallyView. Automatically becomes active.
 struct AutofocusTextField: UIViewRepresentable {
   private let textField = UITextField(frame: .zero)
   @Binding var text: String

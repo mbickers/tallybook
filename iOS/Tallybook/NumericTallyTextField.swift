@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// SwiftUI compatibible wrapper of UITextField that adds custom functionality for usage in TallyBlock
+// SwiftUI wrapper of UITextField used in TallyRow. Numeric input only and selects existing text when editing begins.
 struct NumericTallyTextField: UIViewRepresentable {
   private let textField = NumericTallyTextField.NumericUITextField()
   @Binding var value: Int

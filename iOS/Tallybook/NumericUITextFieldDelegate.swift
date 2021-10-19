@@ -9,7 +9,7 @@
 import Foundation
 import SwiftUI
 
-// Custom UITextField delegate that only allows numeric input
+// Custom UITextField delegate that only allows numeric input and selects existing text when editing begins.
 class NumericUITextFieldDelegate: NSObject, UITextFieldDelegate {
   @Binding var value: Int
 

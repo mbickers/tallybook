@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// SwiftUI compatibible wrapper of UITextField that only allows numeric input
+// SwiftUI wrapper of UITextField used in EditTallyEntryView. Numeric input only, right-aligned, selects existing text when editing begins.
 struct NumericTextField: UIViewRepresentable {
   private let textField = UITextField()
   @Binding var value: Int
