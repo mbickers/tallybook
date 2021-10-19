@@ -17,6 +17,11 @@ class NumericUITextFieldDelegate: NSObject, UITextFieldDelegate {
     _value = value
   }
 
+  func textFieldDidBeginEditing(_ textField: UITextField) {
+    textField.selectedTextRange = textField.textRange(
+      from: textField.beginningOfDocument, to: textField.endOfDocument)
+  }
+
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
     // Lose focus when enter button pressed
     textField.resignFirstResponder()
