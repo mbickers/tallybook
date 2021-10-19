@@ -33,7 +33,7 @@ struct EditTallyEntryView: View {
                 entry.boolValue.toggle()
               }) {
                 Image(
-                  systemName: entry.boolValue ? "checkmark.circle.fill" : "checkmark.circle"
+                  systemName: "checkmark.circle" + (entry.boolValue ? ".fill" : "")
                 )
                 .resizable()
                 .frame(width: 20, height: 20)

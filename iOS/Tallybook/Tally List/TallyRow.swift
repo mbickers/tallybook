@@ -11,7 +11,7 @@ import SwiftUI
 // List rows on main screen that show interactive information about each tally
 struct TallyRow: View {
   @Binding var tally: Tally
-  @Environment(\.colorScheme) var colorScheme: ColorScheme
+  @Environment(\.colorScheme) private var colorScheme: ColorScheme
   @State private var showingDetailView: Bool = false
 
   var body: some View {
@@ -71,9 +71,7 @@ struct TallyRow: View {
           EmptyView()
         }
         // Disable the default button that shows up
-        .disabled(true)
-        .padding(.all, 0)
-        .frame(minWidth: 0, idealWidth: 0, maxWidth: 0, minHeight: 0, idealHeight: 0, maxHeight: 0)
+        .frame(width: 0, height: 0)
 
         Rectangle()
           .frame(width: 62)
@@ -85,7 +83,7 @@ struct TallyRow: View {
           .foregroundColor(Color(UIColor.tertiarySystemBackground))
       }
       .onTapGesture {
-        self.showingDetailView = true
+        showingDetailView = true
       }
     }
     .frame(height: 145)
