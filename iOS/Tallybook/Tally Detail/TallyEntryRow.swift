@@ -19,7 +19,7 @@ struct TallyEntryRow: View {
     }) {
       HStack {
         if tally.kind == .completion {
-          Text(entry.value != 0 ? "Complete" : "Incomplete")
+          Text(entry.boolValue ? "Complete" : "Incomplete")
             .foregroundColor(Color(UIColor.label))
         } else {
           Text(String(entry.value))

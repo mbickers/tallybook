@@ -28,14 +28,14 @@ struct TallyRow: View {
           Button(action: {
             UIDevice.vibrate()
             withAnimation {
-              tally.today.value = tally.today.value < 1 ? 1 : 0
+              tally.today.boolValue.toggle()
             }
           }) {
-            Image(systemName: "checkmark.circle" + (tally.today.value >= 1 ? ".fill" : ""))
+            Image(systemName: "checkmark.circle" + (tally.today.boolValue ? ".fill" : ""))
               .resizable()
               .aspectRatio(contentMode: .fit)
               .foregroundColor(
-                tally.today.value >= 1 ? .customAccent : Color(UIColor.tertiaryLabel))
+                tally.today.boolValue ? .customAccent : Color(UIColor.tertiaryLabel))
           }
           .buttonStyle(ExpandingButtonStyle())
 

@@ -30,16 +30,15 @@ struct EditTallyEntryView: View {
               Spacer()
 
               Button(action: {
-                entry.value = 1 - entry.value
+                entry.boolValue.toggle()
               }) {
                 Image(
-                  systemName: entry.value != 0
-                    ? "checkmark.circle.fill" : "checkmark.circle"
+                  systemName: entry.boolValue ? "checkmark.circle.fill" : "checkmark.circle"
                 )
                 .resizable()
                 .frame(width: 20, height: 20)
                 .foregroundColor(
-                  entry.value != 0 ? .customAccent : Color(UIColor.tertiaryLabel))
+                  entry.boolValue ? .customAccent : Color(UIColor.tertiaryLabel))
               }
               .padding(.bottom, -2)
             } else {
