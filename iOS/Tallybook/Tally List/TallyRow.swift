@@ -18,7 +18,7 @@ struct TallyRow: View {
 
     HStack(alignment: .top) {
       VStack(alignment: .leading) {
-        Text(tally.name)
+        Text(tally.name.isEmpty ? " " : tally.name)
           .font(.system(size: 22, weight: .regular, design: .rounded))
 
         Spacer()
@@ -106,8 +106,9 @@ struct ExpandingButtonStyle: ButtonStyle {
 
 struct TallyBlock_Previews: PreviewProvider {
   static var previews: some View {
-    Group {
+    VStack {
       TallyRow(tally: .constant(Tally(name: "Test", kind: .completion)))
+      TallyRow(tally: .constant(Tally(name: "", kind: .completion)))
     }
   }
 }
