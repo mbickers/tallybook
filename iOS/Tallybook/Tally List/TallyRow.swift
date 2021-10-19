@@ -71,6 +71,7 @@ struct TallyRow: View {
           EmptyView()
         }
         // Disable the default button that shows up
+        .disabled(true)
         .frame(width: 0, height: 0)
 
         Rectangle()
