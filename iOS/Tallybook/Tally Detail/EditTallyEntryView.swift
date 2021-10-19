@@ -1,5 +1,5 @@
 //
-//  EditTallyDatumView.swift
+//  EditTallyEntryView.swift
 //  Tallybook
 //
 //  Created by Max Bickers on 12/11/19.
@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-// View to Add/Edit Tally Datums
+// View to Add/Edit tally entries
 struct EditTallyEntryView: View {
   enum Mode: String {
     case edit, add
@@ -79,7 +79,7 @@ struct EditTallyEntryView: View {
   }
 }
 
-struct EditTallyDatumView_Previews: PreviewProvider {
+struct EditTallyEntryView_Previews: PreviewProvider {
   static var previews: some View {
     EditTallyEntryView(
       tallyKind: .amount, entry: Tally.Entry(Date(), value: 3), mode: .edit,

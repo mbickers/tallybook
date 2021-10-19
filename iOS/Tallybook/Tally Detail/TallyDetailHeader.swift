@@ -1,5 +1,5 @@
 //
-//  TallyGraphView.swift
+//  TallyDetailHeader.swift
 //  Tallybook
 //
 //  Created by Max Bickers on 12/12/19.

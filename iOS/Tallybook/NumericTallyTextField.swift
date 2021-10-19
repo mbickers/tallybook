@@ -1,5 +1,5 @@
 //
-//  CustomTextField.swift
+//  NumericTallyTextField.swift
 //  Tallybook
 //
 //  Created by Max Bickers on 12/2/19.

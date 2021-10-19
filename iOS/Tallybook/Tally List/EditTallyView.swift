@@ -1,5 +1,5 @@
 //
-//  AddTallyView.swift
+//  EditTallyView.swift
 //  Tallybook
 //
 //  Created by Max Bickers on 12/5/19.

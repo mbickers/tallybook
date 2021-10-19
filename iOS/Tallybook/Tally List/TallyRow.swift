@@ -1,5 +1,5 @@
 //
-//  TallyBlock.swift
+//  TallyRow.swift
 //  Tallybook
 //
 //  Created by Max Bickers on 11/24/19.
@@ -103,7 +103,7 @@ struct ExpandingButtonStyle: ButtonStyle {
   }
 }
 
-struct TallyBlock_Previews: PreviewProvider {
+struct TallyRow_Previews: PreviewProvider {
   static var previews: some View {
     VStack {
       TallyRow(tally: .constant(Tally(name: "Test", kind: .completion)))

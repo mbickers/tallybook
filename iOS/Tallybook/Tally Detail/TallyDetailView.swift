@@ -1,5 +1,5 @@
 //
-//  TallyViewDetail.swift
+//  TallyDetailView.swift
 //  Tallybook
 //
 //  Created by Max Bickers on 11/25/19.
@@ -45,7 +45,7 @@ struct TallyDetailView: View {
   }
 }
 
-struct TallyViewDetail_Previews: PreviewProvider {
+struct TallyDetailView_Previews: PreviewProvider {
 
   static var previews: some View {
     TallyDetailView(tally: .constant(Tally(name: "Test", kind: .completion)))

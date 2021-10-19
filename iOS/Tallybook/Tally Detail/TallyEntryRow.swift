@@ -40,3 +40,10 @@ struct TallyEntryRow: View {
     }
   }
 }
+
+struct TallyEntryRow_Previews: PreviewProvider {
+  static var previews: some View {
+    TallyEntryRow(
+      tally: .constant(Tally(name: "", kind: .completion)), entry: Tally.Entry(Date(), value: 1))
+  }
+}
