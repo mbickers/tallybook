@@ -10,7 +10,7 @@ import SwiftUI
 import UIKit
 
 struct TallyListView: View {
-  @ObservedObject private var tallyListViewModel = TallyListViewModel()
+  @StateObject private var tallyListViewModel = TallyListViewModel()
   @State private var showingAddTally = false
   @State private var editMode = EditMode.inactive
 
