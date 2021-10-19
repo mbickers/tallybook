@@ -40,7 +40,7 @@ extension Tally.Entry {
 
   init(_ date: Date, value: Int) {
     self.date = Tally.Entry.df.string(from: date)
-    self.value = min(9999, value)
+    self.value = value
   }
 }
 
