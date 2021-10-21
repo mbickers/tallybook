@@ -23,36 +23,32 @@ struct EditTallyEntryView: View {
   var body: some View {
     NavigationView {
       List {
-        VStack {
-          HStack(alignment: .firstTextBaseline) {
-            Text("Value")
-            if tallyKind == .completion {
-              Spacer()
+        HStack(alignment: .firstTextBaseline) {
+          Text("Value")
+          if tallyKind == .completion {
+            Spacer()
 
-              Button {
-                entry.boolValue.toggle()
-              } label: {
-                Image(
-                  systemName: "checkmark.circle" + (entry.boolValue ? ".fill" : "")
-                )
-                .resizable()
-                .frame(width: 20, height: 20)
-                .foregroundColor(
-                  entry.boolValue ? .customAccent : Color(UIColor.tertiaryLabel))
-              }
-              .padding(.bottom, -2)
-            } else {
-              NumericTextField(value: $entry.value)
+            Button {
+              entry.boolValue.toggle()
+            } label: {
+              Image(
+                systemName: "checkmark.circle" + (entry.boolValue ? ".fill" : "")
+              )
+              .resizable()
+              .frame(width: 20, height: 20)
+              .foregroundColor(
+                entry.boolValue ? .customAccent : Color(UIColor.tertiaryLabel))
             }
+            .padding(.bottom, -2)
+          } else {
+            NumericTextField(value: $entry.value)
           }
         }
 
-        VStack {
-          DatePicker("Date", selection: $date, in: ...Date(), displayedComponents: .date)
-            .onChange(of: date) { newValue in
-              entry.date = Tally.Entry.df.string(from: newValue)
-            }
-        }
+        DatePicker("Date", selection: $date, in: ...Date(), displayedComponents: .date)
+          .onChange(of: date) { newValue in
+            entry.date = Tally.Entry.df.string(from: newValue)
+          }
       }
       .toolbar {
         ToolbarItem(placement: .navigationBarLeading) {
