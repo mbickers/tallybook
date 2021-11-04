@@ -26,12 +26,8 @@ struct TallyListView: View {
             TallyRow(viewModel: tallyRowViewModel)
           }
         }
-        .onMove { sources, destinations in
-          tallyListViewModel.tallies.move(fromOffsets: sources, toOffset: destinations)
-        }
-        .onDelete { offsets in
-          tallyListViewModel.tallies.remove(atOffsets: offsets)
-        }
+        .onMove(perform: tallyListViewModel.moveTallies)
+        .onDelete(perform: tallyListViewModel.deleteTallies)
       }
       .listStyle(PlainListStyle())
 

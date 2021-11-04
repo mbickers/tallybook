@@ -10,8 +10,9 @@ import Combine
 import Foundation
 
 class TallyListViewModel: ObservableObject {
-  @Published var repository: TallyRepository = TestRepository.shared
-  @Published var tallies = [TallyRowViewModel]()
+  private var repository: TallyRepository = TestRepository.shared
+  @Published private(set) var tallies = [TallyRowViewModel]()
+  private var cancellables = Set<AnyCancellable>()
 
   init() {
     repository.$tallies.map { tallies in
@@ -21,7 +22,13 @@ class TallyListViewModel: ObservableObject {
     .store(in: &cancellables)
   }
 
-  private var cancellables = Set<AnyCancellable>()
+  func moveTallies(fromOffsets sources: IndexSet, toOffset destination: Int) {
+    tallies.move(fromOffsets: sources, toOffset: destination)
+  }
+
+  func deleteTallies(atOffsets offsets: IndexSet) {
+    tallies.remove(atOffsets: offsets)
+  }
 
   func addTally(_ tally: Tally) {
     repository.addTally(tally)
