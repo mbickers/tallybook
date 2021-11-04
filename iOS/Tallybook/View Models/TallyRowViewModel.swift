@@ -7,14 +7,35 @@
 //
 
 import Foundation
-import UIKit
 
 class TallyRowViewModel: ObservableObject, Identifiable {
-  @Published var tally: Tally
+  @Published private(set) var tally: Tally
 
   init(tally: Tally) {
     // Note: Tally may not already exist in repository (such as in EditTallyView)
     self.tally = tally
     // Subscribe to updates from repository
+  }
+
+  var todayValue: Int {
+    get {
+      let todayEntry = tally.entries.first { Tally.Entry.today == $0.date }
+      return todayEntry?.value ?? 0
+    }
+
+    set {
+      var todayEntry =
+        tally.entries.first { Tally.Entry.today == $0.date } ?? Tally.Entry(Date(), value: 0)
+      todayEntry.value = newValue
+      tally.updateEntry(todayEntry)
+    }
+  }
+
+  func toggleTodayValue() {
+    if todayValue == 0 {
+      todayValue = 1
+    } else {
+      todayValue = 0
+    }
   }
 }

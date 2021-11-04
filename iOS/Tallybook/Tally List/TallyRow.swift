@@ -28,14 +28,14 @@ struct TallyRow: View {
           Button {
             UIDevice.vibrate()
             withAnimation {
-              viewModel.tally.today.boolValue.toggle()
+              viewModel.toggleTodayValue()
             }
           } label: {
-            Image(systemName: "checkmark.circle" + (viewModel.tally.today.boolValue ? ".fill" : ""))
+            Image(systemName: "checkmark.circle" + (viewModel.todayValue == 1 ? ".fill" : ""))
               .resizable()
               .aspectRatio(contentMode: .fit)
               .foregroundColor(
-                viewModel.tally.today.boolValue ? .customAccent : Color(UIColor.tertiaryLabel))
+                viewModel.todayValue == 1 ? .customAccent : Color(UIColor.tertiaryLabel))
           }
           .buttonStyle(ExpandingButtonStyle())
 
@@ -43,7 +43,7 @@ struct TallyRow: View {
           HStack {
             Button {
               UIDevice.vibrate()
-              viewModel.tally.today.value += 1
+              viewModel.todayValue += 1
             } label: {
               Image(systemName: "plus.circle")
                 .resizable()
@@ -52,12 +52,12 @@ struct TallyRow: View {
             }
             .buttonStyle(ExpandingButtonStyle())
 
-            NumericTallyTextField(value: $viewModel.tally.today.value)
+            NumericTallyTextField(value: $viewModel.todayValue)
               .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0)
           }
 
         case .amount:
-          NumericTallyTextField(value: $viewModel.tally.today.value)
+          NumericTallyTextField(value: $viewModel.todayValue)
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0)
         }
       }
@@ -67,8 +67,10 @@ struct TallyRow: View {
 
       ZStack {
         // SwiftUI navigation links are funky and annoying.
+        //TODO: Add proper view model for TallyDetailView
         NavigationLink(
-          destination: TallyDetailView(tally: $viewModel.tally), isActive: $showingDetailView
+          destination: TallyDetailView(tally: .constant(viewModel.tally)),
+          isActive: $showingDetailView
         ) {
           EmptyView()
         }

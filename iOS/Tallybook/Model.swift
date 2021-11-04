@@ -70,14 +70,4 @@ extension Tally {
 
     // update repository?
   }
-
-  var today: Tally.Entry {
-    get {
-      return entries.first { Tally.Entry.today == $0.date } ?? Tally.Entry(Date(), value: 0)
-    }
-
-    set {
-      updateEntry(newValue)
-    }
-  }
 }
