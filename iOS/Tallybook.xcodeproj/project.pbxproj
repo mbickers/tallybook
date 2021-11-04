@@ -32,6 +32,7 @@
 		A5CA799E238AF46C00263480 /* TallybookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA799D238AF46C00263480 /* TallybookUITests.swift */; };
 		A5CA79AC238AF53F00263480 /* TallyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA79AB238AF53F00263480 /* TallyRow.swift */; };
 		A5E2CAA523A69C4300622D86 /* NumericUITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E2CAA423A69C4300622D86 /* NumericUITextFieldDelegate.swift */; };
+		A5F6BBC7272C942F00943756 /* TallyRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F6BBC6272C942F00943756 /* TallyRowViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +85,7 @@
 		A5CA799F238AF46C00263480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5CA79AB238AF53F00263480 /* TallyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyRow.swift; sourceTree = "<group>"; };
 		A5E2CAA423A69C4300622D86 /* NumericUITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericUITextFieldDelegate.swift; sourceTree = "<group>"; };
+		A5F6BBC6272C942F00943756 /* TallyRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyRowViewModel.swift; sourceTree = "<group>"; };
 		C5B5382C98B99E2598AE2EC6 /* Pods-Tallybook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tallybook.debug.xcconfig"; path = "Target Support Files/Pods-Tallybook/Pods-Tallybook.debug.xcconfig"; sourceTree = "<group>"; };
 		CBE8D898E4115E29DF564ACF /* Pods_Tallybook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tallybook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D31B784311D1C613D55D7259 /* Pods-Tallybook-TallybookUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tallybook-TallybookUITests.release.xcconfig"; path = "Target Support Files/Pods-Tallybook-TallybookUITests/Pods-Tallybook-TallybookUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				A56E974B2701327F00ABF4E1 /* TallyListViewModel.swift */,
+				A5F6BBC6272C942F00943756 /* TallyRowViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				A5CA797E238AF46A00263480 /* SceneDelegate.swift in Sources */,
 				A59E31B523A1F57D00A06ACC /* EditTallyEntryView.swift in Sources */,
 				A561E5AF238C86DE000767E4 /* TallyDetailView.swift in Sources */,
+				A5F6BBC7272C942F00943756 /* TallyRowViewModel.swift in Sources */,
 				A561E5AD238C80C7000767E4 /* TallyListView.swift in Sources */,
 				A56E974C2701327F00ABF4E1 /* TallyListViewModel.swift in Sources */,
 				A50F6F962399A2A000EB7235 /* EditTallyView.swift in Sources */,

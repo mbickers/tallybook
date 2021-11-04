@@ -11,15 +11,19 @@ import Foundation
 
 class TallyListViewModel: ObservableObject {
   @Published var repository: TallyRepository = TestRepository.shared
-  @Published var tallies = [Tally]()
+  @Published var tallies = [TallyRowViewModel]()
 
   init() {
-    tallies = repository.tallies
+    repository.$tallies.map { tallies in
+      tallies.map(TallyRowViewModel.init)
+    }
+    .assign(to: \.tallies, on: self)
+    .store(in: &cancellables)
   }
 
   private var cancellables = Set<AnyCancellable>()
 
   func addTally(_ tally: Tally) {
-    tallies.append(tally)
+    repository.addTally(tally)
   }
 }

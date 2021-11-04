@@ -18,7 +18,7 @@ struct EditTallyView: View {
     NavigationView {
       ScrollView {
         VStack(alignment: .center) {
-          TallyRow(tally: $tally)
+          TallyRow(viewModel: TallyRowViewModel(tally: tally))
             .disabled(true)
             .scaleEffect(animatingTallyBlock ? 0.75 : 0.8)
             .animation(.easeInOut(duration: 1.2).repeatForever(), value: animatingTallyBlock)
@@ -56,7 +56,7 @@ struct EditTallyView: View {
             onCommit(tally)
             presentationMode.wrappedValue.dismiss()
           }
-          .disabled(tally.name == "")
+          .disabled(tally.name.isEmpty)
         }
       }
       .navigationTitle("New Tally")
@@ -69,7 +69,8 @@ struct EditTallyView: View {
 
 struct EditTallyView_Previews: PreviewProvider {
   static var previews: some View {
-    EditTallyView(
-      tally: Tally(name: "Test", kind: .completion), onCommit: { newValue in print(newValue) })
+    EditTallyView(tally: Tally()) { tally in
+      print(tally)
+    }
   }
 }

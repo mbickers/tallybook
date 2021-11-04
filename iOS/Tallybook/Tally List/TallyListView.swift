@@ -17,13 +17,13 @@ struct TallyListView: View {
   var body: some View {
     NavigationView {
       List {
-        ForEach($tallyListViewModel.tallies) { $tally in
+        ForEach(tallyListViewModel.tallies) { tallyRowViewModel in
           if editMode == .active {
-            Text(tally.name)
+            Text(tallyRowViewModel.tally.name)
               .font(.system(size: 22, weight: .regular, design: .rounded))
               .listRowSeparator(.hidden)
           } else {
-            TallyRow(tally: $tally)
+            TallyRow(viewModel: tallyRowViewModel)
           }
         }
         .onMove { sources, destinations in
@@ -48,9 +48,7 @@ struct TallyListView: View {
       .navigationBarTitle("Tallies")
       .environment(\.editMode, $editMode)
       .sheet(isPresented: $showingAddTally) {
-        EditTallyView(
-          tally: Tally(name: "", kind: .completion),
-          onCommit: tallyListViewModel.addTally)
+        EditTallyView(tally: Tally(), onCommit: tallyListViewModel.addTally)
       }
 
     }

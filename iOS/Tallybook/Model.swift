@@ -17,8 +17,8 @@ struct Tally: Identifiable, Codable {
   }
 
   var id = UUID.init()
-  var name: String
-  var kind: Kind
+  var name = ""
+  var kind = Kind.completion
   var entries = [Entry]()
 
   struct Entry: Codable {
