@@ -28,7 +28,7 @@ struct TallyEntryRow: View {
 
         Spacer()
 
-        Text(entry.date)
+        Text(entry.date, style: .date)
           .foregroundColor(Color(UIColor.secondaryLabel))
       }
     }
@@ -42,9 +42,10 @@ struct TallyEntryRow: View {
 }
 
 struct TallyEntryRow_Previews: PreviewProvider {
+  static let entry = Tally.Entry(date: Date.today(), value: 1)
   static var previews: some View {
     TallyEntryRow(
-      viewModel: TallyDetailViewModel(tally: Tally(entries: [Tally.Entry(Date(), value: 1)])),
-      entry: Tally.Entry(Date(), value: 1))
+      viewModel: TallyDetailViewModel(tally: Tally(entries: [entry])),
+      entry: entry)
   }
 }

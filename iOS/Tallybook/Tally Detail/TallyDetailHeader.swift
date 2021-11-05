@@ -38,8 +38,7 @@ struct TallyDetailHeader: View {
       start = Date().advanced(by: -28 * 24 * 3600)
       length = 28
     case .allTime:
-      if let date = viewModel.tally.entries.last?.date {
-        start = Tally.Entry.df.date(from: date)
+      if let start = viewModel.tally.entries.last?.date {
         length = Calendar.current.dateComponents([.day], from: start, to: end).day ?? 0
         length = max(1, length)
       } else {
@@ -54,10 +53,8 @@ struct TallyDetailHeader: View {
   func headerNumberText() -> String {
     let range = dateRange()
 
-    let start = Tally.Entry.df.string(from: range.start)
-    let end = Tally.Entry.df.string(from: range.end)
-
-    let entries = viewModel.tally.entries.filter { entry in entry.date >= start && entry.date <= end
+    let entries = viewModel.tally.entries.filter { entry in
+      entry.date >= range.start && entry.date <= range.end
     }
 
     let sum = entries.reduce(0) { $0 + $1.value }

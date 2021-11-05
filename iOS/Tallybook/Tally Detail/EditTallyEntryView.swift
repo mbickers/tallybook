@@ -17,7 +17,6 @@ struct EditTallyEntryView: View {
   @State var entry: Tally.Entry
   let mode: Mode
   let onCommit: (Tally.Entry) -> Void
-  @State private var date = Date()
   @Environment(\.presentationMode) private var presentationMode
 
   var body: some View {
@@ -49,10 +48,7 @@ struct EditTallyEntryView: View {
           }
         }
 
-        DatePicker("Date", selection: $date, in: ...Date(), displayedComponents: .date)
-          .onChange(of: date) { newValue in
-            entry.date = Tally.Entry.df.string(from: newValue)
-          }
+        DatePicker("Date", selection: $entry.date, in: ...Date.today(), displayedComponents: .date)
       }
       .toolbar {
         ToolbarItem(placement: .navigationBarLeading) {
@@ -73,16 +69,13 @@ struct EditTallyEntryView: View {
     }
     .accentColor(Color.customAccent)
     .font(Font.system(.body, design: .rounded))
-    .onAppear {
-      date = Tally.Entry.df.date(from: entry.date)!
-    }
   }
 }
 
 struct EditTallyEntryView_Previews: PreviewProvider {
   static var previews: some View {
     EditTallyEntryView(
-      tallyKind: .amount, entry: Tally.Entry(Date(), value: 3), mode: .edit,
+      tallyKind: .amount, entry: Tally.Entry(date: Date.today(), value: 3), mode: .edit,
       onCommit: { entry in print(entry) })
   }
 }

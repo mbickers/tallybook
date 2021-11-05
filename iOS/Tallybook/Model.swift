@@ -22,25 +22,8 @@ struct Tally: Identifiable, Codable {
   var entries = [Entry]()
 
   struct Entry: Codable {
-    var date: String
+    var date: Date
     var value: Int
-  }
-}
-
-extension Tally.Entry {
-  static let df: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
-    return formatter
-  }()
-
-  static var today: String {
-    df.string(from: Date())
-  }
-
-  init(_ date: Date, value: Int) {
-    self.date = Tally.Entry.df.string(from: date)
-    self.value = value
   }
 }
 

@@ -49,8 +49,8 @@ private func testData() -> [Tally] {
 
   for offset in stride(from: 0, through: -20, by: -2) {
     let day = Date().addingTimeInterval(TimeInterval(offset * 24 * 3600))
-    numericData.append(Tally.Entry(day, value: Int.random(in: 1..<10)))
-    completionData.append(Tally.Entry(day, value: 1))
+    numericData.append(Tally.Entry(date: day.truncatingTime(), value: Int.random(in: 1..<10)))
+    completionData.append(Tally.Entry(date: day.truncatingTime(), value: 1))
   }
 
   return [

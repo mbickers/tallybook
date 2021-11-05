@@ -19,13 +19,13 @@ class TallyRowViewModel: ObservableObject, Identifiable {
 
   var todayValue: Int {
     get {
-      let todayEntry = tally.entries.first { Tally.Entry.today == $0.date }
+      let todayEntry = tally.entries.first { Date.today() == $0.date }
       return todayEntry?.value ?? 0
     }
 
     set {
       var todayEntry =
-        tally.entries.first { Tally.Entry.today == $0.date } ?? Tally.Entry(Date(), value: 0)
+        tally.entries.first { Date.today() == $0.date } ?? Tally.Entry(date: Date.today(), value: 0)
       todayEntry.value = newValue
       tally.updateEntry(todayEntry)
     }
