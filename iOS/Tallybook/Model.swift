@@ -42,16 +42,6 @@ extension Tally.Entry {
     self.date = Tally.Entry.df.string(from: date)
     self.value = value
   }
-
-  var boolValue: Bool {
-    get {
-      return value != 0
-    }
-
-    set(newValue) {
-      value = newValue ? 1 : 0
-    }
-  }
 }
 
 extension Tally {
