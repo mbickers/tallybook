@@ -17,7 +17,7 @@ struct TallyListView: View {
   var body: some View {
     NavigationView {
       List {
-        ForEach(tallyListViewModel.tallies) { tallyRowViewModel in
+        ForEach(tallyListViewModel.tallies, id: \.tally.id) { tallyRowViewModel in
           if editMode == .active {
             Text(tallyRowViewModel.tally.name)
               .font(.system(size: 22, weight: .regular, design: .rounded))

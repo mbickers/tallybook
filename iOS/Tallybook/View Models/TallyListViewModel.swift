@@ -10,12 +10,12 @@ import Combine
 import Foundation
 
 class TallyListViewModel: ObservableObject {
-  private var repository: TallyRepository = TestRepository.shared
+  private var repository = Injected.repository
   @Published private(set) var tallies = [TallyRowViewModel]()
   private var cancellables = Set<AnyCancellable>()
 
   init() {
-    repository.$tallies.map { tallies in
+    repository.publisher.map { tallies in
       tallies.map(TallyRowViewModel.init)
     }
     .assign(to: \.tallies, on: self)
@@ -23,11 +23,13 @@ class TallyListViewModel: ObservableObject {
   }
 
   func moveTallies(fromOffsets sources: IndexSet, toOffset destination: Int) {
-    tallies.move(fromOffsets: sources, toOffset: destination)
+    //TODO: implement
+    //repository.move(fromOffsets: sources, toOffset: destination)
   }
 
   func deleteTallies(atOffsets offsets: IndexSet) {
-    tallies.remove(atOffsets: offsets)
+    let talliesToRemove = offsets.map { idx in tallies[idx].tally }
+    talliesToRemove.forEach(repository.removeTally)
   }
 
   func addTally(_ tally: Tally) {

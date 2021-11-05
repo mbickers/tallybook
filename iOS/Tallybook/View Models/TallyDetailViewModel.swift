@@ -9,6 +9,7 @@
 import Foundation
 
 class TallyDetailViewModel: ObservableObject {
+  private let repository = Injected.repository
   @Published private(set) var tally: Tally
 
   init(tally: Tally) {
@@ -17,13 +18,16 @@ class TallyDetailViewModel: ObservableObject {
 
   func deleteEntries(atOffsets offsets: IndexSet) {
     tally.entries.remove(atOffsets: offsets)
+    repository.updateTally(tally)
   }
 
   func removeEntry(_ entry: Tally.Entry) {
     tally.removeEntry(entry)
+    repository.updateTally(tally)
   }
 
   func updateEntry(_ entry: Tally.Entry) {
     tally.updateEntry(entry)
+    repository.updateTally(tally)
   }
 }

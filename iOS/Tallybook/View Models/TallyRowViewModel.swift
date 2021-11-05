@@ -6,15 +6,16 @@
 //  Copyright © 2021 Max Bickers. All rights reserved.
 //
 
+import Combine
 import Foundation
 
-class TallyRowViewModel: ObservableObject, Identifiable {
+class TallyRowViewModel: ObservableObject {
+  private let repository = Injected.repository
   @Published private(set) var tally: Tally
+  private var cancellables = Set<AnyCancellable>()
 
   init(tally: Tally) {
-    // Note: Tally may not already exist in repository (such as in EditTallyView)
     self.tally = tally
-    // Subscribe to updates from repository
   }
 
   var todayValue: Int {
@@ -28,6 +29,7 @@ class TallyRowViewModel: ObservableObject, Identifiable {
         tally.entries.first { Date.today() == $0.date } ?? Tally.Entry(date: Date.today(), value: 0)
       todayEntry.value = newValue
       tally.updateEntry(todayEntry)
+      repository.updateTally(tally)
     }
   }
 

@@ -6,39 +6,45 @@
 //  Copyright © 2021 Max Bickers. All rights reserved.
 //
 
+import Combine
 import Foundation
 
-class BaseRepository {
-  @Published var tallies = [Tally]()
+class Injected {
+  static let repository: Repository = TestRepository()
 }
 
-protocol TallyRepository: BaseRepository {
+protocol Repository {
+  var publisher: AnyPublisher<[Tally], Never> { get }
+
   func addTally(_ tally: Tally)
   func removeTally(_ tally: Tally)
   func updateTally(_ tally: Tally)
 }
 
-class TestRepository: BaseRepository, TallyRepository, ObservableObject {
-  private override init() {
-    super.init()
-    tallies = testData()
+class TestRepository: Repository {
+  var publisher: AnyPublisher<[Tally], Never> {
+    return tallies.eraseToAnyPublisher()
   }
 
-  static let shared = TestRepository()
+  private var tallies: CurrentValueSubject<[Tally], Never>
+
+  fileprivate init() {
+    tallies = CurrentValueSubject(testData())
+  }
 
   func addTally(_ tally: Tally) {
-    tallies.append(tally)
+    tallies.value.append(tally)
   }
 
   func removeTally(_ tally: Tally) {
-    if let index = tallies.firstIndex(where: { $0.id == tally.id }) {
-      tallies.remove(at: index)
+    if let index = tallies.value.firstIndex(where: { $0.id == tally.id }) {
+      tallies.value.remove(at: index)
     }
   }
 
   func updateTally(_ tally: Tally) {
-    if let index = tallies.firstIndex(where: { $0.id == tally.id }) {
-      tallies[index] = tally
+    if let index = tallies.value.firstIndex(where: { $0.id == tally.id }) {
+      tallies.value[index] = tally
     }
   }
 }
