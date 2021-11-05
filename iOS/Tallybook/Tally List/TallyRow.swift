@@ -69,7 +69,7 @@ struct TallyRow: View {
         // SwiftUI navigation links are funky and annoying.
         //TODO: Add proper view model for TallyDetailView
         NavigationLink(
-          destination: TallyDetailView(tally: .constant(viewModel.tally)),
+          destination: TallyDetailView(viewModel: TallyDetailViewModel(tally: viewModel.tally)),
           isActive: $showingDetailView
         ) {
           EmptyView()

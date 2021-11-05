@@ -9,22 +9,19 @@
 import SwiftUI
 
 struct TallyDetailView: View {
-
-  @Binding var tally: Tally
+  @ObservedObject var viewModel: TallyDetailViewModel
   @State private var showingAddEntrySheet = false
 
   var body: some View {
     VStack {
-      TallyDetailHeader(tally: $tally)
+      TallyDetailHeader(viewModel: viewModel)
 
       List {
         Section("All Data") {
-          ForEach(tally.entries, id: \.date) { entry in
-            TallyEntryRow(tally: $tally, entry: entry)
+          ForEach(viewModel.tally.entries, id: \.date) { entry in
+            TallyEntryRow(viewModel: viewModel, entry: entry)
           }
-          .onDelete { offsets in
-            tally.entries.remove(atOffsets: offsets)
-          }
+          .onDelete(perform: viewModel.deleteEntries)
         }
       }
     }
@@ -35,12 +32,12 @@ struct TallyDetailView: View {
         }
       }
     }
-    .navigationBarTitle(Text(tally.name), displayMode: .inline)
+    .navigationBarTitle(Text(viewModel.tally.name), displayMode: .inline)
 
     .sheet(isPresented: $showingAddEntrySheet) {
       EditTallyEntryView(
-        tallyKind: tally.kind, entry: Tally.Entry(Date(), value: 0), mode: .add,
-        onCommit: { entry in tally.updateEntry(entry) })
+        tallyKind: viewModel.tally.kind, entry: Tally.Entry(Date(), value: 0), mode: .add,
+        onCommit: viewModel.updateEntry)
     }
   }
 }
@@ -48,6 +45,6 @@ struct TallyDetailView: View {
 struct TallyDetailView_Previews: PreviewProvider {
 
   static var previews: some View {
-    TallyDetailView(tally: .constant(Tally(name: "Test", kind: .completion)))
+    TallyDetailView(viewModel: TallyDetailViewModel(tally: Tally()))
   }
 }

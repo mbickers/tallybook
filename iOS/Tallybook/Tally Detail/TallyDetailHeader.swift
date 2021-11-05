@@ -21,7 +21,7 @@ struct TallyDetailHeader: View {
     case total
   }
 
-  @Binding var tally: Tally
+  @ObservedObject var viewModel: TallyDetailViewModel
   @State private var duration = Duration.week
   @State private var overviewType = OverviewType.average
 
@@ -38,7 +38,7 @@ struct TallyDetailHeader: View {
       start = Date().advanced(by: -28 * 24 * 3600)
       length = 28
     case .allTime:
-      if let date = tally.entries.last?.date {
+      if let date = viewModel.tally.entries.last?.date {
         start = Tally.Entry.df.date(from: date)
         length = Calendar.current.dateComponents([.day], from: start, to: end).day ?? 0
         length = max(1, length)
@@ -57,7 +57,8 @@ struct TallyDetailHeader: View {
     let start = Tally.Entry.df.string(from: range.start)
     let end = Tally.Entry.df.string(from: range.end)
 
-    let entries = tally.entries.filter { entry in entry.date >= start && entry.date <= end }
+    let entries = viewModel.tally.entries.filter { entry in entry.date >= start && entry.date <= end
+    }
 
     let sum = entries.reduce(0) { $0 + $1.value }
 
@@ -66,7 +67,7 @@ struct TallyDetailHeader: View {
       if range.length == 0 {
         return "0"
       } else {
-        if tally.kind == .completion {
+        if viewModel.tally.kind == .completion {
           return String(format: "%.0f%%", 100 * Double(sum) / Double(range.length))
         }
         return String(format: "%.01f", Double(sum) / Double(range.length))
@@ -130,10 +131,8 @@ struct TallyDetailHeader: View {
 }
 
 struct ContentView_TallyDetailHeader: View {
-  @State var tally = Tally(name: "Test", kind: .amount)
-
   var body: some View {
-    TallyDetailHeader(tally: $tally)
+    TallyDetailHeader(viewModel: TallyDetailViewModel(tally: Tally()))
   }
 }
 
