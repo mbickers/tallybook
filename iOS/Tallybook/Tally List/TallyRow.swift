@@ -96,6 +96,7 @@ struct TallyRow: View {
     .cornerRadius(20)
     .shadow(color: colorScheme != .dark ? .gray : .black, radius: 3, x: 0, y: 2)
     .listRowSeparator(.hidden)
+    .id(viewModel.tally.id)
   }
 
 }
