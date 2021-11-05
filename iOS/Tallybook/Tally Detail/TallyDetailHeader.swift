@@ -26,28 +26,22 @@ struct TallyDetailHeader: View {
   @State private var overviewType = OverviewType.average
 
   func dateRange() -> (start: Date, end: Date, length: Int) {
-    let end = Date()
-    var start: Date!
-    var length: Int!
-
     switch duration {
     case .week:
-      start = Date().advanced(by: -7 * 24 * 3600)
-      length = 7
+      return (Date().advanced(by: -7 * 24 * 3600), Date(), 28)
+
     case .month:
-      start = Date().advanced(by: -28 * 24 * 3600)
-      length = 28
+      return (Date().advanced(by: -28 * 24 * 3600), Date(), 28)
+
     case .allTime:
       if let start = viewModel.tally.entries.last?.date {
-        length = Calendar.current.dateComponents([.day], from: start, to: end).day ?? 0
-        length = max(1, length)
+        let length = max(
+          Calendar.current.dateComponents([.day], from: start, to: Date()).day ?? 0, 1)
+        return (start, Date(), length)
       } else {
-        start = end
-        length = 1
+        return (Date(), Date(), 1)
       }
     }
-
-    return (start, end, length)
   }
 
   func headerNumberText() -> String {
