@@ -27,15 +27,15 @@ struct TallyRow: View {
         case .completion:
           Button {
             UIDevice.vibrate()
-            withAnimation {
-              viewModel.toggleTodayValue()
-            }
+            viewModel.toggleTodayValue()
           } label: {
             Image(systemName: "checkmark.circle" + (viewModel.todayValue == 1 ? ".fill" : ""))
               .resizable()
               .aspectRatio(contentMode: .fit)
               .foregroundColor(
-                viewModel.todayValue == 1 ? .customAccent : Color(UIColor.tertiaryLabel))
+                viewModel.todayValue == 1 ? .customAccent : Color(UIColor.tertiaryLabel)
+              )
+              .animation(Animation.default, value: viewModel.todayValue)
           }
           .buttonStyle(ExpandingButtonStyle())
 
