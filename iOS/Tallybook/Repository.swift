@@ -47,7 +47,9 @@ class TestRepository: Repository {
       tallies.value[index] = tally
     }
 
-    tallies.value.sort()
+    tallies.value.sort { lhs, rhs in
+      return lhs.listPriority < rhs.listPriority
+    }
   }
 }
 

@@ -28,16 +28,6 @@ struct Tally: Identifiable, Codable {
   }
 }
 
-extension Tally: Comparable {
-  static func < (lhs: Tally, rhs: Tally) -> Bool {
-    return lhs.listPriority < rhs.listPriority
-  }
-
-  static func == (lhs: Tally, rhs: Tally) -> Bool {
-    return lhs.id == rhs.id
-  }
-}
-
 extension Tally {
   mutating func updateEntry(_ entry: Tally.Entry) {
     entries.removeAll { $0.date == entry.date }
