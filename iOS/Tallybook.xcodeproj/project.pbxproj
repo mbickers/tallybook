@@ -171,7 +171,6 @@
 			isa = PBXGroup;
 			children = (
 				A561E5AC238C80C7000767E4 /* TallyListView.swift */,
-				A50F6F952399A2A000EB7235 /* EditTallyView.swift */,
 				A5CA79AB238AF53F00263480 /* TallyRow.swift */,
 			);
 			path = "Tally List";
@@ -191,10 +190,19 @@
 		A5A2789B23960696008572E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A5A8653B2736094C00FD69A4 /* Edit Tally */,
 				A57AB961271B47140028E12D /* Tally List */,
 				A57AB963271B47670028E12D /* Tally Detail */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		A5A8653B2736094C00FD69A4 /* Edit Tally */ = {
+			isa = PBXGroup;
+			children = (
+				A50F6F952399A2A000EB7235 /* EditTallyView.swift */,
+			);
+			path = "Edit Tally";
 			sourceTree = "<group>";
 		};
 		A5CA796F238AF46A00263480 = {
