@@ -11,12 +11,18 @@ import SwiftUI
 struct TallyDetailView: View {
   @ObservedObject var viewModel: TallyDetailViewModel
   @State private var showingAddEntrySheet = false
+  @State private var showingEditTallySheet = false
 
   var body: some View {
     VStack {
       TallyDetailHeader(viewModel: viewModel)
 
       List {
+
+        Button("Edit Tally") {
+          showingEditTallySheet = true
+        }
+
         Section("All Data") {
           ForEach(viewModel.tally.entries, id: \.date) { entry in
             TallyEntryRow(viewModel: viewModel, entry: entry)
@@ -39,6 +45,10 @@ struct TallyDetailView: View {
         tallyKind: viewModel.tally.kind, entry: Tally.Entry(date: Date.today(), value: 0),
         mode: .add,
         onCommit: viewModel.updateEntry)
+    }
+
+    .sheet(isPresented: $showingEditTallySheet) {
+      EditTallyView(mode: .edit, tally: viewModel.tally, onCommit: viewModel.updateTally)
     }
   }
 }

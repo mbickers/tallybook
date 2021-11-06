@@ -30,4 +30,20 @@ class TallyDetailViewModel: ObservableObject {
     tally.updateEntry(entry)
     repository.updateTally(tally)
   }
+
+  func updateTally(_ tally: Tally) {
+    if tally.kind == .completion {
+      let entries = tally.entries.map { entry -> Tally.Entry in
+        var newEntry = entry
+        newEntry.value = 1
+        return newEntry
+      }
+
+      var newTally = tally
+      newTally.entries = entries
+      repository.updateTally(newTally)
+    } else {
+      repository.updateTally(tally)
+    }
+  }
 }

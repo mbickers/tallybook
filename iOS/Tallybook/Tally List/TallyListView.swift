@@ -46,7 +46,7 @@ struct TallyListView: View {
       .environment(\.editMode, $editMode)
       .sheet(isPresented: $showingAddTally) {
         let newTally = Tally(listPriority: tallyListViewModel.tallies.count)
-        EditTallyView(tally: newTally, onCommit: tallyListViewModel.addTally)
+        EditTallyView(mode: .add, tally: newTally, onCommit: tallyListViewModel.addTally)
       }
 
     }

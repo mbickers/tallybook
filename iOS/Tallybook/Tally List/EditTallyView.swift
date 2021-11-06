@@ -9,6 +9,10 @@
 import SwiftUI
 
 struct EditTallyView: View {
+  enum Mode: String {
+    case edit, add
+  }
+  let mode: Mode
   @State var tally: Tally
   let onCommit: (Tally) -> Void
   @State private var animatingTallyBlock = false
@@ -52,14 +56,14 @@ struct EditTallyView: View {
           }
         }
         ToolbarItem(placement: .navigationBarTrailing) {
-          Button("Done") {
+          Button(mode == .edit ? "Done" : "Add") {
             onCommit(tally)
             presentationMode.wrappedValue.dismiss()
           }
           .disabled(tally.name.isEmpty)
         }
       }
-      .navigationTitle("New Tally")
+      .navigationTitle("\(mode.rawValue.localizedCapitalized) Tally")
       .navigationBarTitleDisplayMode(.inline)
     }
     .font(Font.system(.body, design: .rounded))
@@ -69,7 +73,7 @@ struct EditTallyView: View {
 
 struct EditTallyView_Previews: PreviewProvider {
   static var previews: some View {
-    EditTallyView(tally: Tally()) { tally in
+    EditTallyView(mode: .add, tally: Tally()) { tally in
       print(tally)
     }
   }
