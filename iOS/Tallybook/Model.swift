@@ -35,13 +35,9 @@ extension Tally {
       entries.append(entry)
       entries.sort { $0.date > $1.date }
     }
-
-    //repository.updateTally(tally)
   }
 
   mutating func removeEntry(_ entry: Tally.Entry) {
     entries.removeAll { $0.date == entry.date }
-
-    // update repository?
   }
 }
