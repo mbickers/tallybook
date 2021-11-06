@@ -39,6 +39,7 @@ struct TallyListView: View {
           Button("\(Image(systemName: "plus"))") {
             showingAddTally = true
           }
+          .disabled(editMode == .active)
         }
       }
       .navigationBarTitle("Tallies")
