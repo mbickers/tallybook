@@ -20,10 +20,21 @@ struct Tally: Identifiable, Codable {
   var name = ""
   var kind = Kind.completion
   var entries = [Entry]()
+  var listPriority = 0
 
   struct Entry: Codable {
     var date: Date
     var value: Int
+  }
+}
+
+extension Tally: Comparable {
+  static func < (lhs: Tally, rhs: Tally) -> Bool {
+    return lhs.listPriority < rhs.listPriority
+  }
+
+  static func == (lhs: Tally, rhs: Tally) -> Bool {
+    return lhs.id == rhs.id
   }
 }
 

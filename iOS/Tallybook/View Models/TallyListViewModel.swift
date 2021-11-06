@@ -23,8 +23,13 @@ class TallyListViewModel: ObservableObject {
   }
 
   func moveTallies(fromOffsets sources: IndexSet, toOffset destination: Int) {
-    //TODO: implement
-    //repository.move(fromOffsets: sources, toOffset: destination)
+    var newTallies = tallies.map(\.tally)
+    newTallies.move(fromOffsets: sources, toOffset: destination)
+    newTallies.enumerated().forEach { (idx, tally) in
+      var newTally = tally
+      newTally.listPriority = idx
+      repository.updateTally(newTally)
+    }
   }
 
   func deleteTallies(atOffsets offsets: IndexSet) {

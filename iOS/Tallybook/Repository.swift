@@ -46,6 +46,8 @@ class TestRepository: Repository {
     if let index = tallies.value.firstIndex(where: { $0.id == tally.id }) {
       tallies.value[index] = tally
     }
+
+    tallies.value.sort()
   }
 }
 
