@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TallyEntryRow: View {
   @ObservedObject var viewModel: TallyDetailViewModel
-  let entry: Tally.Entry
+  let entry: TallyEntry
   @State private var showingEditEntrySheet = false
 
   var body: some View {
@@ -42,7 +42,7 @@ struct TallyEntryRow: View {
 }
 
 struct TallyEntryRow_Previews: PreviewProvider {
-  static let entry = Tally.Entry(date: Date.today(), value: 1)
+  static let entry = TallyEntry(date: Date.today(), value: 1)
   static var previews: some View {
     TallyEntryRow(
       viewModel: TallyDetailViewModel(tally: Tally(entries: [entry])),

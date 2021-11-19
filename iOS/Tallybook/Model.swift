@@ -9,6 +9,8 @@
 import Combine
 import Foundation
 
+typealias TallyEntry = (date: Date, value: Int)
+
 struct Tally: Identifiable {
   enum Kind: String, CaseIterable {
     case completion = "Completion"
@@ -19,17 +21,12 @@ struct Tally: Identifiable {
   var id = UUID.init()
   var name = ""
   var kind = Kind.completion
-  var entries = [Entry]()
+  var entries = [TallyEntry]()
   var listPriority = 0
-
-  struct Entry {
-    var date: Date
-    var value: Int
-  }
 }
 
 extension Tally {
-  mutating func updateEntry(_ entry: Tally.Entry) {
+  mutating func updateEntry(_ entry: TallyEntry) {
     entries.removeAll { $0.date == entry.date }
     if entry.value != 0 {
       entries.append(entry)
@@ -37,7 +34,7 @@ extension Tally {
     }
   }
 
-  mutating func removeEntry(_ entry: Tally.Entry) {
+  mutating func removeEntry(_ entry: TallyEntry) {
     entries.removeAll { $0.date == entry.date }
   }
 }

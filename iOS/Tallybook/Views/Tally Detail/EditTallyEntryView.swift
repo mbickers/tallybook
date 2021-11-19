@@ -14,9 +14,9 @@ struct EditTallyEntryView: View {
     case edit, add
   }
   let tallyKind: Tally.Kind
-  @State var entry: Tally.Entry
+  @State var entry: TallyEntry
   let mode: Mode
-  let onCommit: (Tally.Entry) -> Void
+  let onCommit: (TallyEntry) -> Void
   @Environment(\.presentationMode) private var presentationMode
 
   var body: some View {
@@ -75,7 +75,7 @@ struct EditTallyEntryView: View {
 struct EditTallyEntryView_Previews: PreviewProvider {
   static var previews: some View {
     EditTallyEntryView(
-      tallyKind: .amount, entry: Tally.Entry(date: Date.today(), value: 3), mode: .edit,
+      tallyKind: .amount, entry: TallyEntry(date: Date.today(), value: 3), mode: .edit,
       onCommit: { entry in print(entry) })
   }
 }

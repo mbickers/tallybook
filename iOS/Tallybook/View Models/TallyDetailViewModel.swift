@@ -21,19 +21,19 @@ class TallyDetailViewModel: ObservableObject {
     repository.updateTally(tally)
   }
 
-  func removeEntry(_ entry: Tally.Entry) {
+  func removeEntry(_ entry: TallyEntry) {
     tally.removeEntry(entry)
     repository.updateTally(tally)
   }
 
-  func updateEntry(_ entry: Tally.Entry) {
+  func updateEntry(_ entry: TallyEntry) {
     tally.updateEntry(entry)
     repository.updateTally(tally)
   }
 
   func updateTally(_ tally: Tally) {
     if tally.kind == .completion {
-      let entries = tally.entries.map { entry -> Tally.Entry in
+      let entries = tally.entries.map { entry -> TallyEntry in
         var newEntry = entry
         newEntry.value = 1
         return newEntry

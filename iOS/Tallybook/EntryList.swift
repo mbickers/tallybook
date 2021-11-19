@@ -9,7 +9,6 @@
 import Foundation
 
 struct EntryList {
-  typealias Entry = (date: Date, value: Int)
   private static let dateFormatter: DateFormatter = {
     let df = DateFormatter()
     df.dateFormat = "yyyy-MM-dd"
@@ -50,7 +49,7 @@ struct EntryList {
     }
   }
 
-  var allEntries: [Entry] {
+  var allEntries: [TallyEntry] {
     return entries.map { (formattedDate: String, value: Int) in
       let date = EntryList.dateFormatter.date(from: formattedDate)!
       return (date, value)

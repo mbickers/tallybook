@@ -26,7 +26,7 @@ class TallyRowViewModel: ObservableObject {
 
     set {
       var todayEntry =
-        tally.entries.first { Date.today() == $0.date } ?? Tally.Entry(date: Date.today(), value: 0)
+        tally.entries.first { Date.today() == $0.date } ?? TallyEntry(date: Date.today(), value: 0)
       todayEntry.value = newValue
       tally.updateEntry(todayEntry)
       repository.updateTally(tally)
