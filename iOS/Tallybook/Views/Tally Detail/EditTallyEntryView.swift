@@ -48,7 +48,7 @@ struct EditTallyEntryView: View {
           }
         }
 
-        DatePicker("Date", selection: $entry.date, in: ...Date.today(), displayedComponents: .date)
+        DatePicker("Date", selection: $entry.date, in: ...Date(), displayedComponents: .date)
       }
       .toolbar {
         ToolbarItem(placement: .navigationBarLeading) {
@@ -75,7 +75,7 @@ struct EditTallyEntryView: View {
 struct EditTallyEntryView_Previews: PreviewProvider {
   static var previews: some View {
     EditTallyEntryView(
-      tallyKind: .amount, entry: TallyEntry(date: Date.today(), value: 3), mode: .edit,
+      tallyKind: .amount, entry: TallyEntry(date: Date(), value: 3), mode: .edit,
       onCommit: { entry in print(entry) })
   }
 }

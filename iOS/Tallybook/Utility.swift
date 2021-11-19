@@ -41,13 +41,3 @@ extension UIDevice {
     UIImpactFeedbackGenerator(style: .medium).impactOccurred()
   }
 }
-
-extension Date {
-  static func today() -> Date {
-    return Date().truncatingTime()
-  }
-
-  func truncatingTime() -> Date {
-    return Calendar.current.startOfDay(for: self)
-  }
-}

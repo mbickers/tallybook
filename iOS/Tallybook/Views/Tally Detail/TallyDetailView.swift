@@ -42,7 +42,7 @@ struct TallyDetailView: View {
 
     .sheet(isPresented: $showingAddEntrySheet) {
       EditTallyEntryView(
-        tallyKind: viewModel.tally.kind, entry: TallyEntry(date: Date.today(), value: 0),
+        tallyKind: viewModel.tally.kind, entry: TallyEntry(date: Date(), value: 0),
         mode: .add,
         onCommit: viewModel.updateEntry)
     }
