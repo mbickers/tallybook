@@ -9,8 +9,8 @@
 import Combine
 import Foundation
 
-struct Tally: Identifiable, Codable {
-  enum Kind: String, CaseIterable, Codable {
+struct Tally: Identifiable {
+  enum Kind: String, CaseIterable {
     case completion = "Completion"
     case counter = "Counter"
     case amount = "Amount"
@@ -22,7 +22,7 @@ struct Tally: Identifiable, Codable {
   var entries = [Entry]()
   var listPriority = 0
 
-  struct Entry: Codable {
+  struct Entry {
     var date: Date
     var value: Int
   }

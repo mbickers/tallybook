@@ -40,6 +40,16 @@ struct EntryList {
     self[date] = 0
   }
 
+  var todayValue: Int {
+    get {
+      return self[Date()]
+    }
+
+    set(value) {
+      self[Date()] = value
+    }
+  }
+
   var allEntries: [Entry] {
     return entries.map { (formattedDate: String, value: Int) in
       let date = EntryList.dateFormatter.date(from: formattedDate)!
