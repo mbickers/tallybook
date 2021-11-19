@@ -22,12 +22,12 @@ class TallyDetailViewModel: ObservableObject {
   }
 
   func removeEntry(_ entry: TallyEntry) {
-    tally.removeEntry(entry)
+    tally.entries.removeEntry(onDate: entry.date)
     repository.updateTally(tally)
   }
 
   func updateEntry(_ entry: TallyEntry) {
-    tally.updateEntry(entry)
+    tally.entries[entry.date] = entry.value
     repository.updateTally(tally)
   }
 

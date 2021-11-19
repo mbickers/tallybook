@@ -24,13 +24,3 @@ struct Tally: Identifiable {
   var entries = EntryList()
   var listPriority = 0
 }
-
-extension Tally {
-  mutating func updateEntry(_ entry: TallyEntry) {
-    entries[entry.date] = entry.value
-  }
-
-  mutating func removeEntry(_ entry: TallyEntry) {
-    entries.removeEntry(onDate: entry.date)
-  }
-}
