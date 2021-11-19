@@ -24,7 +24,7 @@ struct TallyDetailView: View {
         }
 
         Section("All Data") {
-          ForEach(viewModel.tally.entries, id: \.date) { entry in
+          ForEach(viewModel.tally.entries.allEntries, id: \.date) { entry in
             TallyEntryRow(viewModel: viewModel, entry: entry)
           }
           .onDelete(perform: viewModel.deleteEntries)

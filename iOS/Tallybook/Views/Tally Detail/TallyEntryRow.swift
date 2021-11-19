@@ -45,7 +45,7 @@ struct TallyEntryRow_Previews: PreviewProvider {
   static let entry = TallyEntry(date: Date.today(), value: 1)
   static var previews: some View {
     TallyEntryRow(
-      viewModel: TallyDetailViewModel(tally: Tally(entries: [entry])),
+      viewModel: TallyDetailViewModel(tally: Tally(entries: EntryList([entry]))),
       entry: entry)
   }
 }

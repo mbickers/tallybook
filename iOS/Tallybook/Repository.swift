@@ -59,15 +59,15 @@ private func testData() -> [Tally] {
 
   for offset in stride(from: 0, through: -20, by: -2) {
     let day = Date().addingTimeInterval(TimeInterval(offset * 24 * 3600))
-    numericData.append(TallyEntry(date: day.truncatingTime(), value: Int.random(in: 1..<10)))
-    completionData.append(TallyEntry(date: day.truncatingTime(), value: 1))
+    numericData.append(TallyEntry(date: day, value: Int.random(in: 1..<10)))
+    completionData.append(TallyEntry(date: day, value: 1))
   }
 
   return [
-    Tally(name: "Go to Gym", kind: .completion, entries: completionData),
-    Tally(name: "Cups of Coffee", kind: .counter, entries: numericData),
-    Tally(name: "Hours of Sleep", kind: .amount, entries: numericData),
-    Tally(name: "Check Email", kind: .completion, entries: completionData),
-    Tally(name: "Call Mom", kind: .completion, entries: completionData),
+    Tally(name: "Go to Gym", kind: .completion, entries: EntryList(completionData)),
+    Tally(name: "Cups of Coffee", kind: .counter, entries: EntryList(numericData)),
+    Tally(name: "Hours of Sleep", kind: .amount, entries: EntryList(numericData)),
+    Tally(name: "Check Email", kind: .completion, entries: EntryList(completionData)),
+    Tally(name: "Call Mom", kind: .completion, entries: EntryList(completionData)),
   ]
 }

@@ -20,15 +20,11 @@ class TallyRowViewModel: ObservableObject {
 
   var todayValue: Int {
     get {
-      let todayEntry = tally.entries.first { Date.today() == $0.date }
-      return todayEntry?.value ?? 0
+      return tally.entries.todayValue
     }
 
     set {
-      var todayEntry =
-        tally.entries.first { Date.today() == $0.date } ?? TallyEntry(date: Date.today(), value: 0)
-      todayEntry.value = newValue
-      tally.updateEntry(todayEntry)
+      tally.entries.todayValue = newValue
       repository.updateTally(tally)
     }
   }

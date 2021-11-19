@@ -17,7 +17,7 @@ class TallyDetailViewModel: ObservableObject {
   }
 
   func deleteEntries(atOffsets offsets: IndexSet) {
-    tally.entries.remove(atOffsets: offsets)
+    tally.entries.removeEntries(atOffsets: offsets)
     repository.updateTally(tally)
   }
 
@@ -33,14 +33,14 @@ class TallyDetailViewModel: ObservableObject {
 
   func updateTally(_ tally: Tally) {
     if tally.kind == .completion {
-      let entries = tally.entries.map { entry -> TallyEntry in
+      let entries = tally.entries.allEntries.map { entry -> TallyEntry in
         var newEntry = entry
         newEntry.value = 1
         return newEntry
       }
 
       var newTally = tally
-      newTally.entries = entries
+      newTally.entries = EntryList(entries)
       repository.updateTally(newTally)
     } else {
       repository.updateTally(tally)

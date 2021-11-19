@@ -34,7 +34,7 @@ struct TallyDetailHeader: View {
       return (Date().advanced(by: -28 * 24 * 3600), Date(), 28)
 
     case .allTime:
-      if let start = viewModel.tally.entries.last?.date {
+      if let start = viewModel.tally.entries.allEntries.last?.date {
         let length = max(
           Calendar.current.dateComponents([.day], from: start, to: Date()).day ?? 0, 1)
         return (start, Date(), length)
@@ -47,7 +47,7 @@ struct TallyDetailHeader: View {
   func headerNumberText() -> String {
     let range = dateRange()
 
-    let entries = viewModel.tally.entries.filter { entry in
+    let entries = viewModel.tally.entries.allEntries.filter { entry in
       entry.date >= range.start && entry.date <= range.end
     }
 

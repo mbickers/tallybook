@@ -47,6 +47,10 @@ struct EntryList {
     self[date] = 0
   }
 
+  mutating func removeEntries(atOffsets offsets: IndexSet) {
+    entries.remove(atOffsets: offsets)
+  }
+
   var todayValue: Int {
     get {
       return self[Date()]
