@@ -17,6 +17,14 @@ struct EntryList {
 
   private var entries = [(formattedDate: String, value: Int)]()
 
+  init() {}
+
+  init(_ entries: [TallyEntry]) {
+    for entry in entries {
+      self[entry.date] = entry.value
+    }
+  }
+
   subscript(date: Date) -> Int {
     get {
       let formattedDate = EntryList.dateFormatter.string(from: date)
