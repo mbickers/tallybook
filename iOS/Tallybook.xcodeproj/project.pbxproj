@@ -11,6 +11,9 @@
 		3EDAFE3308E402F985DFADDB /* Pods_Tallybook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBE8D898E4115E29DF564ACF /* Pods_Tallybook.framework */; };
 		44CE2A28794DB203080151E7 /* Pods_TallybookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E80D93D42C5AC387A3E9021 /* Pods_TallybookTests.framework */; };
 		A508D7BD2748310500D87DB5 /* EntryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7BC2748310500D87DB5 /* EntryList.swift */; };
+		A508D7C02748419100D87DB5 /* UIFont+systemRounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7BF2748419100D87DB5 /* UIFont+systemRounded.swift */; };
+		A508D7C2274841A700D87DB5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C1274841A700D87DB5 /* Color.swift */; };
+		A508D7C4274841E200D87DB5 /* UIDevice+vibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C3274841E200D87DB5 /* UIDevice+vibrate.swift */; };
 		A50F6F962399A2A000EB7235 /* EditTallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F6F952399A2A000EB7235 /* EditTallyView.swift */; };
 		A5313EE623A337B100D0E367 /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5313EE523A337B100D0E367 /* NumericTextField.swift */; };
 		A5313EE823A33C1200D0E367 /* TallyDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5313EE723A33C1200D0E367 /* TallyDetailHeader.swift */; };
@@ -22,7 +25,6 @@
 		A59913142399D11500B0D22E /* AutofocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59913132399D11500B0D22E /* AutofocusTextField.swift */; };
 		A59E31B523A1F57D00A06ACC /* EditTallyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E31B423A1F57D00A06ACC /* EditTallyEntryView.swift */; };
 		A5A278982395AF18008572E9 /* NumericTallyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A278972395AF18008572E9 /* NumericTallyTextField.swift */; };
-		A5A2789A2395C868008572E9 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A278992395C868008572E9 /* Utility.swift */; };
 		A5B63C85238C9C61004390E6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B63C84238C9C61004390E6 /* Model.swift */; };
 		A5CA797C238AF46A00263480 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA797B238AF46A00263480 /* AppDelegate.swift */; };
 		A5CA797E238AF46A00263480 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA797D238AF46A00263480 /* SceneDelegate.swift */; };
@@ -60,6 +62,9 @@
 		3C137FBC54E8946D9407E2C0 /* Pods_Tallybook_TallybookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tallybook_TallybookUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		61DE86A796A15ECBE00EEA96 /* Pods-Tallybook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tallybook.release.xcconfig"; path = "Target Support Files/Pods-Tallybook/Pods-Tallybook.release.xcconfig"; sourceTree = "<group>"; };
 		A508D7BC2748310500D87DB5 /* EntryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryList.swift; sourceTree = "<group>"; };
+		A508D7BF2748419100D87DB5 /* UIFont+systemRounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+systemRounded.swift"; sourceTree = "<group>"; };
+		A508D7C1274841A700D87DB5 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		A508D7C3274841E200D87DB5 /* UIDevice+vibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+vibrate.swift"; sourceTree = "<group>"; };
 		A50F6F952399A2A000EB7235 /* EditTallyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTallyView.swift; sourceTree = "<group>"; };
 		A5313EE523A337B100D0E367 /* NumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTextField.swift; sourceTree = "<group>"; };
 		A5313EE723A33C1200D0E367 /* TallyDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyDetailHeader.swift; sourceTree = "<group>"; };
@@ -71,7 +76,6 @@
 		A59913132399D11500B0D22E /* AutofocusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofocusTextField.swift; sourceTree = "<group>"; };
 		A59E31B423A1F57D00A06ACC /* EditTallyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTallyEntryView.swift; sourceTree = "<group>"; };
 		A5A278972395AF18008572E9 /* NumericTallyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTallyTextField.swift; sourceTree = "<group>"; };
-		A5A278992395C868008572E9 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		A5B63C84238C9C61004390E6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		A5CA7978238AF46A00263480 /* Tallybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tallybook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CA797B238AF46A00263480 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +150,16 @@
 				1E80D93D42C5AC387A3E9021 /* Pods_TallybookTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A508D7BE2748417D00D87DB5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A508D7BF2748419100D87DB5 /* UIFont+systemRounded.swift */,
+				A508D7C3274841E200D87DB5 /* UIDevice+vibrate.swift */,
+				A508D7C1274841A700D87DB5 /* Color.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		A5313EE423A3378B00D0E367 /* Custom Views */ = {
@@ -240,7 +254,7 @@
 				A56E97472701322F00ABF4E1 /* Repository.swift */,
 				A5B63C84238C9C61004390E6 /* Model.swift */,
 				A508D7BC2748310500D87DB5 /* EntryList.swift */,
-				A5A278992395C868008572E9 /* Utility.swift */,
+				A508D7BE2748417D00D87DB5 /* Extensions */,
 				A5CA7986238AF46C00263480 /* LaunchScreen.storyboard */,
 				A5CA7981238AF46C00263480 /* Assets.xcassets */,
 				A5CA7989238AF46C00263480 /* Info.plist */,
@@ -485,19 +499,21 @@
 				A56E97482701322F00ABF4E1 /* Repository.swift in Sources */,
 				A5B63C85238C9C61004390E6 /* Model.swift in Sources */,
 				A5CA79AC238AF53F00263480 /* TallyRow.swift in Sources */,
-				A5A2789A2395C868008572E9 /* Utility.swift in Sources */,
 				A59913142399D11500B0D22E /* AutofocusTextField.swift in Sources */,
 				A5313EE623A337B100D0E367 /* NumericTextField.swift in Sources */,
 				A5CA797C238AF46A00263480 /* AppDelegate.swift in Sources */,
 				A5E2CAA523A69C4300622D86 /* NumericUITextFieldDelegate.swift in Sources */,
 				A5CA797E238AF46A00263480 /* SceneDelegate.swift in Sources */,
+				A508D7C2274841A700D87DB5 /* Color.swift in Sources */,
 				A59E31B523A1F57D00A06ACC /* EditTallyEntryView.swift in Sources */,
 				A561E5AF238C86DE000767E4 /* TallyDetailView.swift in Sources */,
 				A5F6BBC7272C942F00943756 /* TallyRowViewModel.swift in Sources */,
 				A508D7BD2748310500D87DB5 /* EntryList.swift in Sources */,
 				A561E5AD238C80C7000767E4 /* TallyListView.swift in Sources */,
 				A56E974C2701327F00ABF4E1 /* TallyListViewModel.swift in Sources */,
+				A508D7C4274841E200D87DB5 /* UIDevice+vibrate.swift in Sources */,
 				A50F6F962399A2A000EB7235 /* EditTallyView.swift in Sources */,
+				A508D7C02748419100D87DB5 /* UIFont+systemRounded.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

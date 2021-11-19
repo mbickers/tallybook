@@ -1,14 +1,13 @@
 //
-//  Helpers.swift
+//  UIFont+systemRounded.swift
 //  Tallybook
 //
-//  Created by Max Bickers on 12/2/19.
-//  Copyright © 2019 Max Bickers. All rights reserved.
+//  Created by Max Bickers on 11/19/21.
+//  Copyright © 2021 Max Bickers. All rights reserved.
 //
 
-import SwiftUI
+import UIKit
 
-// Helper to have easy access to SF Rounded font
 extension UIFont {
   static func systemRounded(style: UIFont.TextStyle, weight: UIFont.Weight) -> UIFont {
     let size = UIFont.preferredFont(forTextStyle: style).pointSize
@@ -25,19 +24,5 @@ extension UIFont {
     let font = UIFont(descriptor: descriptor!, size: size)
 
     return font
-  }
-}
-
-extension UIColor {
-  static let customAccent: UIColor = UIColor(named: "AccentColor")!
-}
-
-extension Color {
-  static let customAccent: Color = Color(UIColor.customAccent)
-}
-
-extension UIDevice {
-  static func vibrate() {
-    UIImpactFeedbackGenerator(style: .medium).impactOccurred()
   }
 }
