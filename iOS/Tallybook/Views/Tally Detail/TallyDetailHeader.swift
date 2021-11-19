@@ -28,7 +28,7 @@ struct TallyDetailHeader: View {
   func dateRange() -> (start: Date, end: Date, length: Int) {
     switch duration {
     case .week:
-      return (Date().advanced(by: -7 * 24 * 3600), Date(), 28)
+      return (Date().advanced(by: -7 * 24 * 3600), Date(), 7)
 
     case .month:
       return (Date().advanced(by: -28 * 24 * 3600), Date(), 28)
