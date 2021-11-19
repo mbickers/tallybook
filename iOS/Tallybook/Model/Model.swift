@@ -10,8 +10,8 @@ import Foundation
 
 typealias TallyEntry = (date: Date, value: Int)
 
-struct Tally: Identifiable {
-  enum Kind: String, CaseIterable {
+struct Tally: Identifiable, Codable {
+  enum Kind: String, CaseIterable, Codable {
     case completion = "Completion"
     case counter = "Counter"
     case amount = "Amount"

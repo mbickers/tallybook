@@ -8,14 +8,18 @@
 
 import Foundation
 
-struct EntryList {
+struct EntryList: Codable {
   private static let dateFormatter: DateFormatter = {
     let df = DateFormatter()
     df.dateFormat = "yyyy-MM-dd"
     return df
   }()
 
-  private var entries = [(formattedDate: String, value: Int)]()
+  private struct Entry: Codable {
+    let formattedDate: String
+    let value: Int
+  }
+  private var entries = [Entry]()
 
   init() {}
 
@@ -36,7 +40,7 @@ struct EntryList {
       let formattedDate = EntryList.dateFormatter.string(from: date)
       entries.removeAll { $0.formattedDate == formattedDate }
       if value != 0 {
-        let newEntry = (formattedDate, value)
+        let newEntry = Entry(formattedDate: formattedDate, value: value)
         entries.append(newEntry)
         entries.sort { $0.formattedDate > $1.formattedDate }
       }
@@ -62,9 +66,9 @@ struct EntryList {
   }
 
   var allEntries: [TallyEntry] {
-    return entries.map { (formattedDate: String, value: Int) in
-      let date = EntryList.dateFormatter.date(from: formattedDate)!
-      return (date, value)
+    return entries.map { entry in
+      let date = EntryList.dateFormatter.date(from: entry.formattedDate)!
+      return (date, entry.value)
     }
   }
 }
