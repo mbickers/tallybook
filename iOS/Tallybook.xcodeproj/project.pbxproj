@@ -154,7 +154,7 @@
 				A5A278972395AF18008572E9 /* NumericTallyTextField.swift */,
 				A59913132399D11500B0D22E /* AutofocusTextField.swift */,
 			);
-			name = "Custom Views";
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 		A56E974D270132A700ABF4E1 /* View Models */ = {
@@ -194,7 +194,7 @@
 				A57AB961271B47140028E12D /* Tally List */,
 				A57AB963271B47670028E12D /* Tally Detail */,
 			);
-			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		A5A8653B2736094C00FD69A4 /* Edit Tally */ = {
