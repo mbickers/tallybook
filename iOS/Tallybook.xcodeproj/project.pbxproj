@@ -162,6 +162,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		A508D7C52748430800D87DB5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A5B63C84238C9C61004390E6 /* Model.swift */,
+				A508D7BC2748310500D87DB5 /* EntryList.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		A5313EE423A3378B00D0E367 /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -252,8 +261,7 @@
 				A5A2789B23960696008572E9 /* Views */,
 				A56E974D270132A700ABF4E1 /* View Models */,
 				A56E97472701322F00ABF4E1 /* Repository.swift */,
-				A5B63C84238C9C61004390E6 /* Model.swift */,
-				A508D7BC2748310500D87DB5 /* EntryList.swift */,
+				A508D7C52748430800D87DB5 /* Model */,
 				A508D7BE2748417D00D87DB5 /* Extensions */,
 				A5CA7986238AF46C00263480 /* LaunchScreen.storyboard */,
 				A5CA7981238AF46C00263480 /* Assets.xcassets */,

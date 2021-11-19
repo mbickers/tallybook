@@ -6,7 +6,6 @@
 //  Copyright © 2019 Max Bickers. All rights reserved.
 //
 
-import Combine
 import Foundation
 
 typealias TallyEntry = (date: Date, value: Int)
