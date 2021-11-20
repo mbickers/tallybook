@@ -15,6 +15,7 @@
 		A508D7C2274841A700D87DB5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C1274841A700D87DB5 /* Color.swift */; };
 		A508D7C4274841E200D87DB5 /* UIDevice+vibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C3274841E200D87DB5 /* UIDevice+vibrate.swift */; };
 		A508D7C82748436500D87DB5 /* TestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C72748436500D87DB5 /* TestRepository.swift */; };
+		A508D7CA274843C700D87DB5 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C9274843C700D87DB5 /* LocalRepository.swift */; };
 		A50F6F962399A2A000EB7235 /* EditTallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F6F952399A2A000EB7235 /* EditTallyView.swift */; };
 		A5313EE623A337B100D0E367 /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5313EE523A337B100D0E367 /* NumericTextField.swift */; };
 		A5313EE823A33C1200D0E367 /* TallyDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5313EE723A33C1200D0E367 /* TallyDetailHeader.swift */; };
@@ -67,6 +68,7 @@
 		A508D7C1274841A700D87DB5 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		A508D7C3274841E200D87DB5 /* UIDevice+vibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+vibrate.swift"; sourceTree = "<group>"; };
 		A508D7C72748436500D87DB5 /* TestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRepository.swift; sourceTree = "<group>"; };
+		A508D7C9274843C700D87DB5 /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
 		A50F6F952399A2A000EB7235 /* EditTallyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTallyView.swift; sourceTree = "<group>"; };
 		A5313EE523A337B100D0E367 /* NumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTextField.swift; sourceTree = "<group>"; };
 		A5313EE723A33C1200D0E367 /* TallyDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyDetailHeader.swift; sourceTree = "<group>"; };
@@ -178,6 +180,7 @@
 			children = (
 				A56E97472701322F00ABF4E1 /* Repository.swift */,
 				A508D7C72748436500D87DB5 /* TestRepository.swift */,
+				A508D7C9274843C700D87DB5 /* LocalRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				A508D7BD2748310500D87DB5 /* EntryList.swift in Sources */,
 				A561E5AD238C80C7000767E4 /* TallyListView.swift in Sources */,
 				A56E974C2701327F00ABF4E1 /* TallyListViewModel.swift in Sources */,
+				A508D7CA274843C700D87DB5 /* LocalRepository.swift in Sources */,
 				A508D7C82748436500D87DB5 /* TestRepository.swift in Sources */,
 				A508D7C4274841E200D87DB5 /* UIDevice+vibrate.swift in Sources */,
 				A50F6F962399A2A000EB7235 /* EditTallyView.swift in Sources */,

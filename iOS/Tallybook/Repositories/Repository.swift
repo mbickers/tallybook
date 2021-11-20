@@ -10,7 +10,7 @@ import Combine
 import Foundation
 
 class Injected {
-  static let repository: Repository = TestRepository()
+  static let repository: Repository = LocalRepository()
 }
 
 protocol Repository {
