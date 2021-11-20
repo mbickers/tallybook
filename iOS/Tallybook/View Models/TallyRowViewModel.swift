@@ -7,7 +7,6 @@
 //
 
 import Combine
-import Foundation
 
 class TallyRowViewModel: ObservableObject {
   private let repository = Injected.repository

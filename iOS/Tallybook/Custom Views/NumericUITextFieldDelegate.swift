@@ -6,7 +6,6 @@
 //  Copyright © 2019 Max Bickers. All rights reserved.
 //
 
-import Foundation
 import SwiftUI
 
 // Custom UITextField delegate that only allows numeric input and selects existing text when editing begins.
