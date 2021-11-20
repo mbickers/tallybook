@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -322,6 +322,7 @@
 				A5CA7974238AF46A00263480 /* Sources */,
 				A5CA7975238AF46A00263480 /* Frameworks */,
 				A5CA7976238AF46A00263480 /* Resources */,
+				F12671F88271E9BEA2455602 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -359,6 +360,7 @@
 				A5CA7995238AF46C00263480 /* Sources */,
 				A5CA7996238AF46C00263480 /* Frameworks */,
 				A5CA7997238AF46C00263480 /* Resources */,
+				EFDC36698DD4834D67CE3090 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -505,6 +507,40 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EFDC36698DD4834D67CE3090 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tallybook-TallybookUITests/Pods-Tallybook-TallybookUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tallybook-TallybookUITests/Pods-Tallybook-TallybookUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tallybook-TallybookUITests/Pods-Tallybook-TallybookUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F12671F88271E9BEA2455602 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tallybook/Pods-Tallybook-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Tallybook/Pods-Tallybook-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tallybook/Pods-Tallybook-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -754,7 +790,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2E6551D8DF43DC17604B69DF /* Pods-TallybookTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TallybookTests/Info.plist;
@@ -776,7 +811,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FE73EF294AC862193D4FB782 /* Pods-TallybookTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TallybookTests/Info.plist;
@@ -798,7 +832,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F93987CF523E382261655B74 /* Pods-Tallybook-TallybookUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TallybookUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -818,7 +851,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D31B784311D1C613D55D7259 /* Pods-Tallybook-TallybookUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = TallybookUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
