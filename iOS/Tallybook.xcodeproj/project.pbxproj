@@ -30,7 +30,7 @@
 		A59913142399D11500B0D22E /* AutofocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59913132399D11500B0D22E /* AutofocusTextField.swift */; };
 		A59E31B523A1F57D00A06ACC /* EditTallyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E31B423A1F57D00A06ACC /* EditTallyEntryView.swift */; };
 		A5A278982395AF18008572E9 /* NumericTallyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A278972395AF18008572E9 /* NumericTallyTextField.swift */; };
-		A5B63C85238C9C61004390E6 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B63C84238C9C61004390E6 /* Model.swift */; };
+		A5B63C85238C9C61004390E6 /* Tally.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B63C84238C9C61004390E6 /* Tally.swift */; };
 		A5CA797C238AF46A00263480 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA797B238AF46A00263480 /* AppDelegate.swift */; };
 		A5CA797E238AF46A00263480 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA797D238AF46A00263480 /* SceneDelegate.swift */; };
 		A5CA7982238AF46C00263480 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CA7981238AF46C00263480 /* Assets.xcassets */; };
@@ -84,7 +84,7 @@
 		A59913132399D11500B0D22E /* AutofocusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofocusTextField.swift; sourceTree = "<group>"; };
 		A59E31B423A1F57D00A06ACC /* EditTallyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTallyEntryView.swift; sourceTree = "<group>"; };
 		A5A278972395AF18008572E9 /* NumericTallyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTallyTextField.swift; sourceTree = "<group>"; };
-		A5B63C84238C9C61004390E6 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		A5B63C84238C9C61004390E6 /* Tally.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally.swift; sourceTree = "<group>"; };
 		A5CA7978238AF46A00263480 /* Tallybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tallybook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CA797B238AF46A00263480 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A5CA797D238AF46A00263480 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -173,7 +173,7 @@
 		A508D7C52748430800D87DB5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				A5B63C84238C9C61004390E6 /* Model.swift */,
+				A5B63C84238C9C61004390E6 /* Tally.swift */,
 				A508D7BC2748310500D87DB5 /* EntryList.swift */,
 			);
 			path = Model;
@@ -563,7 +563,7 @@
 				A57AB960271B44AB0028E12D /* TallyEntryRow.swift in Sources */,
 				A5A278982395AF18008572E9 /* NumericTallyTextField.swift in Sources */,
 				A56E97482701322F00ABF4E1 /* Repository.swift in Sources */,
-				A5B63C85238C9C61004390E6 /* Model.swift in Sources */,
+				A5B63C85238C9C61004390E6 /* Tally.swift in Sources */,
 				A5CA79AC238AF53F00263480 /* TallyRow.swift in Sources */,
 				A59913142399D11500B0D22E /* AutofocusTextField.swift in Sources */,
 				A5313EE623A337B100D0E367 /* NumericTextField.swift in Sources */,
