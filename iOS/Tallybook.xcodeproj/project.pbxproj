@@ -16,6 +16,9 @@
 		A508D7C4274841E200D87DB5 /* UIDevice+vibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C3274841E200D87DB5 /* UIDevice+vibrate.swift */; };
 		A508D7C82748436500D87DB5 /* TestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C72748436500D87DB5 /* TestRepository.swift */; };
 		A508D7CA274843C700D87DB5 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C9274843C700D87DB5 /* LocalRepository.swift */; };
+		A508D7CC2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A508D7CB2749C1D900D87DB5 /* GoogleService-Info.plist */; };
+		A508D7CD2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A508D7CB2749C1D900D87DB5 /* GoogleService-Info.plist */; };
+		A508D7CE2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A508D7CB2749C1D900D87DB5 /* GoogleService-Info.plist */; };
 		A50F6F962399A2A000EB7235 /* EditTallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F6F952399A2A000EB7235 /* EditTallyView.swift */; };
 		A5313EE623A337B100D0E367 /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5313EE523A337B100D0E367 /* NumericTextField.swift */; };
 		A5313EE823A33C1200D0E367 /* TallyDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5313EE723A33C1200D0E367 /* TallyDetailHeader.swift */; };
@@ -69,6 +72,7 @@
 		A508D7C3274841E200D87DB5 /* UIDevice+vibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+vibrate.swift"; sourceTree = "<group>"; };
 		A508D7C72748436500D87DB5 /* TestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRepository.swift; sourceTree = "<group>"; };
 		A508D7C9274843C700D87DB5 /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
+		A508D7CB2749C1D900D87DB5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A50F6F952399A2A000EB7235 /* EditTallyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTallyView.swift; sourceTree = "<group>"; };
 		A5313EE523A337B100D0E367 /* NumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTextField.swift; sourceTree = "<group>"; };
 		A5313EE723A33C1200D0E367 /* TallyDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyDetailHeader.swift; sourceTree = "<group>"; };
@@ -280,6 +284,7 @@
 				A5CA7986238AF46C00263480 /* LaunchScreen.storyboard */,
 				A5CA7981238AF46C00263480 /* Assets.xcassets */,
 				A5CA7989238AF46C00263480 /* Info.plist */,
+				A508D7CB2749C1D900D87DB5 /* GoogleService-Info.plist */,
 				A5CA7983238AF46C00263480 /* Preview Content */,
 			);
 			path = Tallybook;
@@ -421,6 +426,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5CA7988238AF46C00263480 /* LaunchScreen.storyboard in Resources */,
+				A508D7CC2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */,
 				A5CA7985238AF46C00263480 /* Preview Assets.xcassets in Resources */,
 				A5CA7982238AF46C00263480 /* Assets.xcassets in Resources */,
 			);
@@ -430,6 +436,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A508D7CD2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,6 +444,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A508D7CE2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

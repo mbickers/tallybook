@@ -6,6 +6,7 @@
 //  Copyright © 2019 Max Bickers. All rights reserved.
 //
 
+import Firebase
 import UIKit
 
 @UIApplicationMain
@@ -15,6 +16,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
+    FirebaseApp.configure()
+    customizeAppearances()
+
+    return true
+  }
+
+  private func customizeAppearances() {
     let selectedFont = UIFont.systemRounded(style: .callout, weight: .semibold)
     UISegmentedControl.appearance().setTitleTextAttributes([.font: selectedFont], for: .selected)
 
@@ -30,8 +38,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ]
 
     UIDatePicker.appearance().tintColor = UIColor.customAccent
-
-    return true
   }
 
   func application(
