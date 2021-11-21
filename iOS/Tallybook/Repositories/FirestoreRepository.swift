@@ -22,30 +22,35 @@ class FirestoreRepository: Repository {
   init() {
     db.collection("tallies")
       .order(by: "listPriority")
-      .addSnapshotListener { snapshot, error in
-        guard let snapshot = snapshot else {
-          print("Snapshot is nil")
-          return
-        }
+      .addSnapshotListener(snapshotListener)
+  }
 
-        let tallies = snapshot.documents.compactMap { document -> Tally? in
-          guard let tally = try? document.data(as: Tally.self) else {
-            print("Unable to decode tally")
-            return nil
-          }
+  func snapshotListener(_ snapshot: QuerySnapshot?, _ error: Error?) {
+    if let error = error {
+      print("Error in snapshot listener: \(error)")
+    }
 
-          return tally
-        }
+    guard let snapshot = snapshot else {
+      print("Snapshot is nil")
+      return
+    }
 
-        self.tallies.value = tallies
+    tallies.value = snapshot.documents.compactMap { document -> Tally? in
+      do {
+        return try document.data(as: Tally.self)
+      } catch {
+        print("Error decoding tally document: \(error)")
       }
+
+      return nil
+    }
   }
 
   func addTally(_ tally: Tally) {
     do {
       let _ = try db.collection("tallies").addDocument(from: tally)
     } catch {
-      print("Unable to add tally \(error)")
+      print("Error adding tally: \(error)")
     }
   }
 
@@ -55,9 +60,11 @@ class FirestoreRepository: Repository {
         .document(id)
         .delete { error in
           if let error = error {
-            print("Error removing document: \(error)")
+            print("Error removing tally: \(error)")
           }
         }
+    } else {
+      print("Tried to remove tally with nil id")
     }
   }
 
@@ -71,7 +78,7 @@ class FirestoreRepository: Repository {
         print("Error updating tally \(error)")
       }
     } else {
-      print("Tally id is nil")
+      print("Tried to update tally with nil id")
     }
   }
 }
