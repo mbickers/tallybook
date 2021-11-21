@@ -6,6 +6,8 @@
 //  Copyright © 2019 Max Bickers. All rights reserved.
 //
 
+import FirebaseFirestore
+import FirebaseFirestoreSwift
 import Foundation
 
 typealias TallyEntry = (date: Date, value: Int)
@@ -17,9 +19,10 @@ struct Tally: Identifiable, Codable {
     case amount = "Amount"
   }
 
-  var id = UUID.init()
+  @DocumentID var id: String? = UUID().uuidString
   var name = ""
   var kind = Kind.completion
   var entries = EntryList()
   var listPriority = 0
+  @ServerTimestamp var createdTime: Timestamp?
 }

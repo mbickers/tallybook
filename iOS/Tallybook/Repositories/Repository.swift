@@ -9,7 +9,7 @@
 import Combine
 
 class Injected {
-  static let repository: Repository = LocalRepository()
+  static let repository: Repository = FirestoreRepository()
 }
 
 protocol Repository {

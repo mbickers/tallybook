@@ -19,6 +19,9 @@
 		A508D7CC2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A508D7CB2749C1D900D87DB5 /* GoogleService-Info.plist */; };
 		A508D7CD2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A508D7CB2749C1D900D87DB5 /* GoogleService-Info.plist */; };
 		A508D7CE2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A508D7CB2749C1D900D87DB5 /* GoogleService-Info.plist */; };
+		A508D7D02749C64900D87DB5 /* FirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7CF2749C64900D87DB5 /* FirestoreRepository.swift */; };
+		A508D7D12749C64900D87DB5 /* FirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7CF2749C64900D87DB5 /* FirestoreRepository.swift */; };
+		A508D7D22749C64900D87DB5 /* FirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7CF2749C64900D87DB5 /* FirestoreRepository.swift */; };
 		A50F6F962399A2A000EB7235 /* EditTallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F6F952399A2A000EB7235 /* EditTallyView.swift */; };
 		A5313EE623A337B100D0E367 /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5313EE523A337B100D0E367 /* NumericTextField.swift */; };
 		A5313EE823A33C1200D0E367 /* TallyDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5313EE723A33C1200D0E367 /* TallyDetailHeader.swift */; };
@@ -73,6 +76,7 @@
 		A508D7C72748436500D87DB5 /* TestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRepository.swift; sourceTree = "<group>"; };
 		A508D7C9274843C700D87DB5 /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
 		A508D7CB2749C1D900D87DB5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A508D7CF2749C64900D87DB5 /* FirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRepository.swift; sourceTree = "<group>"; };
 		A50F6F952399A2A000EB7235 /* EditTallyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTallyView.swift; sourceTree = "<group>"; };
 		A5313EE523A337B100D0E367 /* NumericTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTextField.swift; sourceTree = "<group>"; };
 		A5313EE723A33C1200D0E367 /* TallyDetailHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyDetailHeader.swift; sourceTree = "<group>"; };
@@ -185,6 +189,7 @@
 				A56E97472701322F00ABF4E1 /* Repository.swift */,
 				A508D7C72748436500D87DB5 /* TestRepository.swift */,
 				A508D7C9274843C700D87DB5 /* LocalRepository.swift */,
+				A508D7CF2749C64900D87DB5 /* FirestoreRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -569,6 +574,7 @@
 				A5313EE623A337B100D0E367 /* NumericTextField.swift in Sources */,
 				A5CA797C238AF46A00263480 /* AppDelegate.swift in Sources */,
 				A5E2CAA523A69C4300622D86 /* NumericUITextFieldDelegate.swift in Sources */,
+				A508D7D02749C64900D87DB5 /* FirestoreRepository.swift in Sources */,
 				A5CA797E238AF46A00263480 /* SceneDelegate.swift in Sources */,
 				A508D7C2274841A700D87DB5 /* Color.swift in Sources */,
 				A59E31B523A1F57D00A06ACC /* EditTallyEntryView.swift in Sources */,
@@ -590,6 +596,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5CA7993238AF46C00263480 /* TallybookTests.swift in Sources */,
+				A508D7D12749C64900D87DB5 /* FirestoreRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +605,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A5CA799E238AF46C00263480 /* TallybookUITests.swift in Sources */,
+				A508D7D22749C64900D87DB5 /* FirestoreRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
