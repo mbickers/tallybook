@@ -11,6 +11,8 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 import Foundation
 
+// Referenced https://peterfriese.dev/replicating-reminder-swiftui-firebase-part2/
+
 class FirestoreRepository: Repository {
   var publisher: AnyPublisher<[Tally], Never> {
     return tallies.eraseToAnyPublisher()
