@@ -12,12 +12,15 @@ import UIKit
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+  var repository: Repository!
+
   func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     FirebaseApp.configure()
     customizeAppearances()
+    repository = FirestoreRepository()
 
     return true
   }
@@ -51,4 +54,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(
     _ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>
   ) {}
+
+  static var shared: AppDelegate {
+    return UIApplication.shared.delegate as! AppDelegate
+  }
 }

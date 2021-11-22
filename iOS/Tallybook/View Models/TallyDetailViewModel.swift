@@ -9,7 +9,7 @@
 import Foundation
 
 class TallyDetailViewModel: ObservableObject {
-  private let repository = Injected.repository
+  private let repository = AppDelegate.shared.repository
   @Published private(set) var tally: Tally
 
   init(tally: Tally) {

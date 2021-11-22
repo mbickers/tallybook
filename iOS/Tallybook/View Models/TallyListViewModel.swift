@@ -10,7 +10,7 @@ import Combine
 import Foundation
 
 class TallyListViewModel: ObservableObject {
-  private var repository = Injected.repository
+  private var repository = AppDelegate.shared.repository
   @Published private(set) var tallies = [TallyRowViewModel]()
   private var cancellables = Set<AnyCancellable>()
 

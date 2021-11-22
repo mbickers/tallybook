@@ -8,10 +8,6 @@
 
 import Combine
 
-class Injected {
-  static let repository: Repository = FirestoreRepository()
-}
-
 protocol Repository {
   var publisher: AnyPublisher<[Tally], Never> { get }
 

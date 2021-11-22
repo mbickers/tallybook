@@ -9,7 +9,7 @@
 import Combine
 
 class TallyRowViewModel: ObservableObject {
-  private let repository = Injected.repository
+  private let repository = AppDelegate.shared.repository
   @Published private(set) var tally: Tally
   private var cancellables = Set<AnyCancellable>()
 
