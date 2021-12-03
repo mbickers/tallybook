@@ -6,6 +6,7 @@ target 'Tallybook' do
 
   # Pods for Tallybook
   pod 'Firebase/Firestore'
+  pod 'Firebase/Auth'
   pod 'FirebaseFirestoreSwift'
 
   target 'TallybookTests' do
