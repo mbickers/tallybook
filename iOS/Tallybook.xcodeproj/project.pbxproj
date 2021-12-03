@@ -30,6 +30,7 @@
 		A56E97482701322F00ABF4E1 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E97472701322F00ABF4E1 /* Repository.swift */; };
 		A56E974C2701327F00ABF4E1 /* TallyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E974B2701327F00ABF4E1 /* TallyListViewModel.swift */; };
 		A57AB960271B44AB0028E12D /* TallyEntryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57AB95F271B44AB0028E12D /* TallyEntryRow.swift */; };
+		A591AEB5275AAAD500DB1695 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A591AEB4275AAAD500DB1695 /* AuthenticationService.swift */; };
 		A59913142399D11500B0D22E /* AutofocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59913132399D11500B0D22E /* AutofocusTextField.swift */; };
 		A59E31B523A1F57D00A06ACC /* EditTallyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E31B423A1F57D00A06ACC /* EditTallyEntryView.swift */; };
 		A5A278982395AF18008572E9 /* NumericTallyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A278972395AF18008572E9 /* NumericTallyTextField.swift */; };
@@ -85,6 +86,7 @@
 		A56E97472701322F00ABF4E1 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 		A56E974B2701327F00ABF4E1 /* TallyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyListViewModel.swift; sourceTree = "<group>"; };
 		A57AB95F271B44AB0028E12D /* TallyEntryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyEntryRow.swift; sourceTree = "<group>"; };
+		A591AEB4275AAAD500DB1695 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		A59913132399D11500B0D22E /* AutofocusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofocusTextField.swift; sourceTree = "<group>"; };
 		A59E31B423A1F57D00A06ACC /* EditTallyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTallyEntryView.swift; sourceTree = "<group>"; };
 		A5A278972395AF18008572E9 /* NumericTallyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTallyTextField.swift; sourceTree = "<group>"; };
@@ -235,6 +237,14 @@
 			path = "Tally Detail";
 			sourceTree = "<group>";
 		};
+		A591AEB3275AAAC300DB1695 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A591AEB4275AAAD500DB1695 /* AuthenticationService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		A5A2789B23960696008572E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,6 +295,7 @@
 				A56E974D270132A700ABF4E1 /* View Models */,
 				A508D7C62748435300D87DB5 /* Repositories */,
 				A508D7C52748430800D87DB5 /* Model */,
+				A591AEB3275AAAC300DB1695 /* Services */,
 				A508D7BE2748417D00D87DB5 /* Extensions */,
 				A5CA7986238AF46C00263480 /* LaunchScreen.storyboard */,
 				A5CA7981238AF46C00263480 /* Assets.xcassets */,
@@ -574,6 +585,7 @@
 				A5313EE623A337B100D0E367 /* NumericTextField.swift in Sources */,
 				A5CA797C238AF46A00263480 /* AppDelegate.swift in Sources */,
 				A5E2CAA523A69C4300622D86 /* NumericUITextFieldDelegate.swift in Sources */,
+				A591AEB5275AAAD500DB1695 /* AuthenticationService.swift in Sources */,
 				A508D7D02749C64900D87DB5 /* FirestoreRepository.swift in Sources */,
 				A5CA797E238AF46A00263480 /* SceneDelegate.swift in Sources */,
 				A508D7C2274841A700D87DB5 /* Color.swift in Sources */,
