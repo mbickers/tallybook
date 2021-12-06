@@ -18,7 +18,6 @@ struct TallyDetailView: View {
       TallyDetailHeader(viewModel: viewModel)
 
       List {
-
         Button("Edit Tally") {
           showingEditTallySheet = true
         }

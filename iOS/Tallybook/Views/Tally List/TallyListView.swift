@@ -33,7 +33,7 @@ struct TallyListView: View {
       .toolbar {
         ToolbarItem(placement: .navigationBarLeading) {
           Menu("\(Image(systemName: "ellipsis.circle"))") {
-            Button("Sign out") {
+            Button("Sign Out") {
               tallyListViewModel.signOut()
             }
           }

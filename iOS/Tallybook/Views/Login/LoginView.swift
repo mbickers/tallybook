@@ -31,7 +31,7 @@ struct LoginView: View {
       .disabled(!loginViewModel.validateEmail(email))
     }
     .padding(.horizontal)
-    .navigationTitle("Reset password")
+    .navigationTitle("Reset Password")
   }
 
   var body: some View {
@@ -47,7 +47,7 @@ struct LoginView: View {
           .textFieldStyle(.roundedBorder)
         HStack {
           Spacer()
-          NavigationLink("Reset password") {
+          NavigationLink("Reset Password") {
             resetPasswordView()
           }
         }
@@ -56,7 +56,7 @@ struct LoginView: View {
           Button {
             loginViewModel.trySignUp(withEmail: email, password: password)
           } label: {
-            Text("Sign up")
+            Text("Sign Up")
               .frame(maxWidth: .infinity)
           }
           .buttonStyle(.borderedProminent)
@@ -64,7 +64,7 @@ struct LoginView: View {
           Button {
             loginViewModel.trySignIn(withEmail: email, password: password)
           } label: {
-            Text("Sign in")
+            Text("Sign In")
               .frame(maxWidth: .infinity)
           }
           .buttonStyle(.borderedProminent)
@@ -73,7 +73,7 @@ struct LoginView: View {
         .padding(.top)
       }
       .padding(.horizontal)
-      .navigationTitle("Log in")
+      .navigationTitle("Sign in to Tallybook")
       .navigationBarTitleDisplayMode(.inline)
       .alert(isPresented: $loginViewModel.showingAlert) {
         Alert(
