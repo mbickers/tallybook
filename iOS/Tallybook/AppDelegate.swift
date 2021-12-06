@@ -13,14 +13,17 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var repository: Repository!
+  var authenticationService: AuthenticationService!
 
   func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     FirebaseApp.configure()
-    customizeAppearances()
     repository = FirestoreRepository()
+    authenticationService = AuthenticationService()
+
+    customizeAppearances()
 
     return true
   }

@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17D307D0C15E88D0B0E1E709 /* Pods_Tallybook_TallybookUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C137FBC54E8946D9407E2C0 /* Pods_Tallybook_TallybookUITests.framework */; };
 		3EDAFE3308E402F985DFADDB /* Pods_Tallybook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBE8D898E4115E29DF564ACF /* Pods_Tallybook.framework */; };
-		44CE2A28794DB203080151E7 /* Pods_TallybookTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E80D93D42C5AC387A3E9021 /* Pods_TallybookTests.framework */; };
 		A508D7BD2748310500D87DB5 /* EntryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7BC2748310500D87DB5 /* EntryList.swift */; };
 		A508D7C02748419100D87DB5 /* UIFont+systemRounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7BF2748419100D87DB5 /* UIFont+systemRounded.swift */; };
 		A508D7C2274841A700D87DB5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C1274841A700D87DB5 /* Color.swift */; };
@@ -17,11 +15,7 @@
 		A508D7C82748436500D87DB5 /* TestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C72748436500D87DB5 /* TestRepository.swift */; };
 		A508D7CA274843C700D87DB5 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C9274843C700D87DB5 /* LocalRepository.swift */; };
 		A508D7CC2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A508D7CB2749C1D900D87DB5 /* GoogleService-Info.plist */; };
-		A508D7CD2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A508D7CB2749C1D900D87DB5 /* GoogleService-Info.plist */; };
-		A508D7CE2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A508D7CB2749C1D900D87DB5 /* GoogleService-Info.plist */; };
 		A508D7D02749C64900D87DB5 /* FirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7CF2749C64900D87DB5 /* FirestoreRepository.swift */; };
-		A508D7D12749C64900D87DB5 /* FirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7CF2749C64900D87DB5 /* FirestoreRepository.swift */; };
-		A508D7D22749C64900D87DB5 /* FirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7CF2749C64900D87DB5 /* FirestoreRepository.swift */; };
 		A50F6F962399A2A000EB7235 /* EditTallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F6F952399A2A000EB7235 /* EditTallyView.swift */; };
 		A5313EE623A337B100D0E367 /* NumericTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5313EE523A337B100D0E367 /* NumericTextField.swift */; };
 		A5313EE823A33C1200D0E367 /* TallyDetailHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5313EE723A33C1200D0E367 /* TallyDetailHeader.swift */; };
@@ -31,6 +25,9 @@
 		A56E974C2701327F00ABF4E1 /* TallyListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A56E974B2701327F00ABF4E1 /* TallyListViewModel.swift */; };
 		A57AB960271B44AB0028E12D /* TallyEntryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A57AB95F271B44AB0028E12D /* TallyEntryRow.swift */; };
 		A591AEB5275AAAD500DB1695 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A591AEB4275AAAD500DB1695 /* AuthenticationService.swift */; };
+		A591AEB8275AB34000DB1695 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A591AEB7275AB34000DB1695 /* LoginView.swift */; };
+		A591AEBC275ADB1300DB1695 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A591AEBB275ADB1300DB1695 /* RootView.swift */; };
+		A591AEBE275AE66C00DB1695 /* String+isValidEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A591AEBD275AE66C00DB1695 /* String+isValidEmail.swift */; };
 		A59913142399D11500B0D22E /* AutofocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59913132399D11500B0D22E /* AutofocusTextField.swift */; };
 		A59E31B523A1F57D00A06ACC /* EditTallyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E31B423A1F57D00A06ACC /* EditTallyEntryView.swift */; };
 		A5A278982395AF18008572E9 /* NumericTallyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A278972395AF18008572E9 /* NumericTallyTextField.swift */; };
@@ -40,30 +37,11 @@
 		A5CA7982238AF46C00263480 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CA7981238AF46C00263480 /* Assets.xcassets */; };
 		A5CA7985238AF46C00263480 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A5CA7984238AF46C00263480 /* Preview Assets.xcassets */; };
 		A5CA7988238AF46C00263480 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A5CA7986238AF46C00263480 /* LaunchScreen.storyboard */; };
-		A5CA7993238AF46C00263480 /* TallybookTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA7992238AF46C00263480 /* TallybookTests.swift */; };
-		A5CA799E238AF46C00263480 /* TallybookUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA799D238AF46C00263480 /* TallybookUITests.swift */; };
 		A5CA79AC238AF53F00263480 /* TallyRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA79AB238AF53F00263480 /* TallyRow.swift */; };
 		A5D4AA732734A14E009B86DD /* TallyDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5D4AA722734A14E009B86DD /* TallyDetailViewModel.swift */; };
 		A5E2CAA523A69C4300622D86 /* NumericUITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E2CAA423A69C4300622D86 /* NumericUITextFieldDelegate.swift */; };
 		A5F6BBC7272C942F00943756 /* TallyRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5F6BBC6272C942F00943756 /* TallyRowViewModel.swift */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		A5CA798F238AF46C00263480 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5CA7970238AF46A00263480 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A5CA7977238AF46A00263480;
-			remoteInfo = Tallybook;
-		};
-		A5CA799A238AF46C00263480 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5CA7970238AF46A00263480 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A5CA7977238AF46A00263480;
-			remoteInfo = Tallybook;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		1E80D93D42C5AC387A3E9021 /* Pods_TallybookTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TallybookTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -87,6 +65,9 @@
 		A56E974B2701327F00ABF4E1 /* TallyListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyListViewModel.swift; sourceTree = "<group>"; };
 		A57AB95F271B44AB0028E12D /* TallyEntryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyEntryRow.swift; sourceTree = "<group>"; };
 		A591AEB4275AAAD500DB1695 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
+		A591AEB7275AB34000DB1695 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		A591AEBB275ADB1300DB1695 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
+		A591AEBD275AE66C00DB1695 /* String+isValidEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+isValidEmail.swift"; sourceTree = "<group>"; };
 		A59913132399D11500B0D22E /* AutofocusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofocusTextField.swift; sourceTree = "<group>"; };
 		A59E31B423A1F57D00A06ACC /* EditTallyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTallyEntryView.swift; sourceTree = "<group>"; };
 		A5A278972395AF18008572E9 /* NumericTallyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTallyTextField.swift; sourceTree = "<group>"; };
@@ -98,12 +79,6 @@
 		A5CA7984238AF46C00263480 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A5CA7987238AF46C00263480 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A5CA7989238AF46C00263480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A5CA798E238AF46C00263480 /* TallybookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TallybookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5CA7992238AF46C00263480 /* TallybookTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallybookTests.swift; sourceTree = "<group>"; };
-		A5CA7994238AF46C00263480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A5CA7999238AF46C00263480 /* TallybookUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TallybookUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5CA799D238AF46C00263480 /* TallybookUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallybookUITests.swift; sourceTree = "<group>"; };
-		A5CA799F238AF46C00263480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A5CA79AB238AF53F00263480 /* TallyRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyRow.swift; sourceTree = "<group>"; };
 		A5D4AA722734A14E009B86DD /* TallyDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TallyDetailViewModel.swift; sourceTree = "<group>"; };
 		A5E2CAA423A69C4300622D86 /* NumericUITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericUITextFieldDelegate.swift; sourceTree = "<group>"; };
@@ -121,22 +96,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3EDAFE3308E402F985DFADDB /* Pods_Tallybook.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A5CA798B238AF46C00263480 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				44CE2A28794DB203080151E7 /* Pods_TallybookTests.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A5CA7996238AF46C00263480 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				17D307D0C15E88D0B0E1E709 /* Pods_Tallybook_TallybookUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -172,6 +131,7 @@
 				A508D7BF2748419100D87DB5 /* UIFont+systemRounded.swift */,
 				A508D7C3274841E200D87DB5 /* UIDevice+vibrate.swift */,
 				A508D7C1274841A700D87DB5 /* Color.swift */,
+				A591AEBD275AE66C00DB1695 /* String+isValidEmail.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -245,12 +205,22 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
+		A591AEB6275AB33100DB1695 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				A591AEB7275AB34000DB1695 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
 		A5A2789B23960696008572E9 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A591AEB6275AB33100DB1695 /* Login */,
 				A5A8653B2736094C00FD69A4 /* Edit Tally */,
 				A57AB961271B47140028E12D /* Tally List */,
 				A57AB963271B47670028E12D /* Tally Detail */,
+				A591AEBB275ADB1300DB1695 /* RootView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -267,8 +237,6 @@
 			isa = PBXGroup;
 			children = (
 				A5CA797A238AF46A00263480 /* Tallybook */,
-				A5CA7991238AF46C00263480 /* TallybookTests */,
-				A5CA799C238AF46C00263480 /* TallybookUITests */,
 				A5CA7979238AF46A00263480 /* Products */,
 				82FEB38511587A9AEE5C280F /* Pods */,
 				A200AFD17034E667F2542CDC /* Frameworks */,
@@ -279,8 +247,6 @@
 			isa = PBXGroup;
 			children = (
 				A5CA7978238AF46A00263480 /* Tallybook.app */,
-				A5CA798E238AF46C00263480 /* TallybookTests.xctest */,
-				A5CA7999238AF46C00263480 /* TallybookUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -314,24 +280,6 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		A5CA7991238AF46C00263480 /* TallybookTests */ = {
-			isa = PBXGroup;
-			children = (
-				A5CA7992238AF46C00263480 /* TallybookTests.swift */,
-				A5CA7994238AF46C00263480 /* Info.plist */,
-			);
-			path = TallybookTests;
-			sourceTree = "<group>";
-		};
-		A5CA799C238AF46C00263480 /* TallybookUITests */ = {
-			isa = PBXGroup;
-			children = (
-				A5CA799D238AF46C00263480 /* TallybookUITests.swift */,
-				A5CA799F238AF46C00263480 /* Info.plist */,
-			);
-			path = TallybookUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -354,45 +302,6 @@
 			productReference = A5CA7978238AF46A00263480 /* Tallybook.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A5CA798D238AF46C00263480 /* TallybookTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A5CA79A5238AF46C00263480 /* Build configuration list for PBXNativeTarget "TallybookTests" */;
-			buildPhases = (
-				A509D60A243FD85823803581 /* [CP] Check Pods Manifest.lock */,
-				A5CA798A238AF46C00263480 /* Sources */,
-				A5CA798B238AF46C00263480 /* Frameworks */,
-				A5CA798C238AF46C00263480 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A5CA7990238AF46C00263480 /* PBXTargetDependency */,
-			);
-			name = TallybookTests;
-			productName = TallybookTests;
-			productReference = A5CA798E238AF46C00263480 /* TallybookTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		A5CA7998238AF46C00263480 /* TallybookUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = A5CA79A8238AF46C00263480 /* Build configuration list for PBXNativeTarget "TallybookUITests" */;
-			buildPhases = (
-				DE9AEEB5445708DEB6F8BF9B /* [CP] Check Pods Manifest.lock */,
-				A5CA7995238AF46C00263480 /* Sources */,
-				A5CA7996238AF46C00263480 /* Frameworks */,
-				A5CA7997238AF46C00263480 /* Resources */,
-				EFDC36698DD4834D67CE3090 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				A5CA799B238AF46C00263480 /* PBXTargetDependency */,
-			);
-			name = TallybookUITests;
-			productName = TallybookUITests;
-			productReference = A5CA7999238AF46C00263480 /* TallybookUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -405,14 +314,6 @@
 				TargetAttributes = {
 					A5CA7977238AF46A00263480 = {
 						CreatedOnToolsVersion = 11.0;
-					};
-					A5CA798D238AF46C00263480 = {
-						CreatedOnToolsVersion = 11.0;
-						TestTargetID = A5CA7977238AF46A00263480;
-					};
-					A5CA7998238AF46C00263480 = {
-						CreatedOnToolsVersion = 11.0;
-						TestTargetID = A5CA7977238AF46A00263480;
 					};
 				};
 			};
@@ -430,8 +331,6 @@
 			projectRoot = "";
 			targets = (
 				A5CA7977238AF46A00263480 /* Tallybook */,
-				A5CA798D238AF46C00263480 /* TallybookTests */,
-				A5CA7998238AF46C00263480 /* TallybookUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -445,22 +344,6 @@
 				A508D7CC2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */,
 				A5CA7985238AF46C00263480 /* Preview Assets.xcassets in Resources */,
 				A5CA7982238AF46C00263480 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A5CA798C238AF46C00263480 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A508D7CD2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A5CA7997238AF46C00263480 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A508D7CE2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,67 +370,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		A509D60A243FD85823803581 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-TallybookTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DE9AEEB5445708DEB6F8BF9B /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Tallybook-TallybookUITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EFDC36698DD4834D67CE3090 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Tallybook-TallybookUITests/Pods-Tallybook-TallybookUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Tallybook-TallybookUITests/Pods-Tallybook-TallybookUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tallybook-TallybookUITests/Pods-Tallybook-TallybookUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F12671F88271E9BEA2455602 /* [CP] Embed Pods Frameworks */ = {
@@ -579,6 +401,7 @@
 				A57AB960271B44AB0028E12D /* TallyEntryRow.swift in Sources */,
 				A5A278982395AF18008572E9 /* NumericTallyTextField.swift in Sources */,
 				A56E97482701322F00ABF4E1 /* Repository.swift in Sources */,
+				A591AEBC275ADB1300DB1695 /* RootView.swift in Sources */,
 				A5B63C85238C9C61004390E6 /* Tally.swift in Sources */,
 				A5CA79AC238AF53F00263480 /* TallyRow.swift in Sources */,
 				A59913142399D11500B0D22E /* AutofocusTextField.swift in Sources */,
@@ -595,6 +418,8 @@
 				A508D7BD2748310500D87DB5 /* EntryList.swift in Sources */,
 				A561E5AD238C80C7000767E4 /* TallyListView.swift in Sources */,
 				A56E974C2701327F00ABF4E1 /* TallyListViewModel.swift in Sources */,
+				A591AEB8275AB34000DB1695 /* LoginView.swift in Sources */,
+				A591AEBE275AE66C00DB1695 /* String+isValidEmail.swift in Sources */,
 				A508D7CA274843C700D87DB5 /* LocalRepository.swift in Sources */,
 				A508D7C82748436500D87DB5 /* TestRepository.swift in Sources */,
 				A508D7C4274841E200D87DB5 /* UIDevice+vibrate.swift in Sources */,
@@ -603,38 +428,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A5CA798A238AF46C00263480 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A5CA7993238AF46C00263480 /* TallybookTests.swift in Sources */,
-				A508D7D12749C64900D87DB5 /* FirestoreRepository.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		A5CA7995238AF46C00263480 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A5CA799E238AF46C00263480 /* TallybookUITests.swift in Sources */,
-				A508D7D22749C64900D87DB5 /* FirestoreRepository.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		A5CA7990238AF46C00263480 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A5CA7977238AF46A00263480 /* Tallybook */;
-			targetProxy = A5CA798F238AF46C00263480 /* PBXContainerItemProxy */;
-		};
-		A5CA799B238AF46C00263480 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = A5CA7977238AF46A00263480 /* Tallybook */;
-			targetProxy = A5CA799A238AF46C00263480 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		A5CA7986238AF46C00263480 /* LaunchScreen.storyboard */ = {
@@ -814,86 +608,6 @@
 			};
 			name = Release;
 		};
-		A5CA79A6238AF46C00263480 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2E6551D8DF43DC17604B69DF /* Pods-TallybookTests.debug.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TallybookTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mbick.TallybookTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tallybook.app/Tallybook";
-			};
-			name = Debug;
-		};
-		A5CA79A7238AF46C00263480 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE73EF294AC862193D4FB782 /* Pods-TallybookTests.release.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TallybookTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mbick.TallybookTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Tallybook.app/Tallybook";
-			};
-			name = Release;
-		};
-		A5CA79A9238AF46C00263480 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = F93987CF523E382261655B74 /* Pods-Tallybook-TallybookUITests.debug.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TallybookUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mbick.TallybookUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Tallybook;
-			};
-			name = Debug;
-		};
-		A5CA79AA238AF46C00263480 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D31B784311D1C613D55D7259 /* Pods-Tallybook-TallybookUITests.release.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = TallybookUITests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mbick.TallybookUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = Tallybook;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -911,24 +625,6 @@
 			buildConfigurations = (
 				A5CA79A3238AF46C00263480 /* Debug */,
 				A5CA79A4238AF46C00263480 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A5CA79A5238AF46C00263480 /* Build configuration list for PBXNativeTarget "TallybookTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A5CA79A6238AF46C00263480 /* Debug */,
-				A5CA79A7238AF46C00263480 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		A5CA79A8238AF46C00263480 /* Build configuration list for PBXNativeTarget "TallybookUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				A5CA79A9238AF46C00263480 /* Debug */,
-				A5CA79AA238AF46C00263480 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
