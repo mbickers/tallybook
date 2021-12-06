@@ -24,4 +24,5 @@ struct Tally: Identifiable, Codable {
   var kind = Kind.completion
   var entries = EntryList()
   var listPriority = 0
+  var userId: String? = nil
 }

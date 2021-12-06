@@ -18,16 +18,36 @@ class FirestoreRepository: Repository {
     return tallies.eraseToAnyPublisher()
   }
 
-  private var db = Firestore.firestore()
-  private var tallies = CurrentValueSubject<[Tally], Never>([Tally]())
+  private let db = Firestore.firestore()
+  private let authenticationService = AppDelegate.shared.authenticationService
+  private let tallies = CurrentValueSubject<[Tally], Never>([Tally]())
+  private var userId: String? = nil
+  private var activeSnapshotListener: ListenerRegistration? = nil
+
+  private var cancellables = Set<AnyCancellable>()
 
   init() {
-    db.collection("tallies")
-      .order(by: "listPriority")
-      .addSnapshotListener(snapshotListener)
+    authenticationService!.$user
+      .receive(on: DispatchQueue.main)
+      .sink { user in
+        self.updateUserId(user?.uid)
+      }
+      .store(in: &cancellables)
   }
 
-  func snapshotListener(_ snapshot: QuerySnapshot?, _ error: Error?) {
+  private func updateUserId(_ newUserId: String?) {
+    activeSnapshotListener?.remove()
+    userId = newUserId
+    tallies.value = [Tally]()
+    if let userId = userId {
+      activeSnapshotListener = db.collection("tallies")
+        .whereField("userId", isEqualTo: userId)
+        .order(by: "listPriority")
+        .addSnapshotListener(snapshotListener)
+    }
+  }
+
+  private func snapshotListener(_ snapshot: QuerySnapshot?, _ error: Error?) {
     if let error = error {
       print("Error in snapshot listener: \(error)")
     }
@@ -50,7 +70,11 @@ class FirestoreRepository: Repository {
 
   func addTally(_ tally: Tally) {
     do {
-      let _ = try db.collection("tallies").addDocument(from: tally)
+      if let userId = userId {
+        var userTally = tally
+        userTally.userId = userId
+        let _ = try db.collection("tallies").addDocument(from: userTally)
+      }
     } catch {
       print("Error adding tally: \(error)")
     }
