@@ -26,10 +26,10 @@
 		A591AEB5275AAAD500DB1695 /* AuthenticationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A591AEB4275AAAD500DB1695 /* AuthenticationService.swift */; };
 		A591AEB8275AB34000DB1695 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A591AEB7275AB34000DB1695 /* LoginView.swift */; };
 		A591AEBC275ADB1300DB1695 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A591AEBB275ADB1300DB1695 /* RootView.swift */; };
-		A591AEBE275AE66C00DB1695 /* String+isValidEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A591AEBD275AE66C00DB1695 /* String+isValidEmail.swift */; };
 		A59913142399D11500B0D22E /* AutofocusTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59913132399D11500B0D22E /* AutofocusTextField.swift */; };
 		A59E31B523A1F57D00A06ACC /* EditTallyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A59E31B423A1F57D00A06ACC /* EditTallyEntryView.swift */; };
 		A5A278982395AF18008572E9 /* NumericTallyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A278972395AF18008572E9 /* NumericTallyTextField.swift */; };
+		A5A41617275E790C0042D291 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5A41616275E790C0042D291 /* LoginViewModel.swift */; };
 		A5B63C85238C9C61004390E6 /* Tally.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5B63C84238C9C61004390E6 /* Tally.swift */; };
 		A5CA797C238AF46A00263480 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA797B238AF46A00263480 /* AppDelegate.swift */; };
 		A5CA797E238AF46A00263480 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5CA797D238AF46A00263480 /* SceneDelegate.swift */; };
@@ -65,10 +65,10 @@
 		A591AEB4275AAAD500DB1695 /* AuthenticationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationService.swift; sourceTree = "<group>"; };
 		A591AEB7275AB34000DB1695 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		A591AEBB275ADB1300DB1695 /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
-		A591AEBD275AE66C00DB1695 /* String+isValidEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+isValidEmail.swift"; sourceTree = "<group>"; };
 		A59913132399D11500B0D22E /* AutofocusTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutofocusTextField.swift; sourceTree = "<group>"; };
 		A59E31B423A1F57D00A06ACC /* EditTallyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTallyEntryView.swift; sourceTree = "<group>"; };
 		A5A278972395AF18008572E9 /* NumericTallyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumericTallyTextField.swift; sourceTree = "<group>"; };
+		A5A41616275E790C0042D291 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A5B63C84238C9C61004390E6 /* Tally.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tally.swift; sourceTree = "<group>"; };
 		A5CA7978238AF46A00263480 /* Tallybook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tallybook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5CA797B238AF46A00263480 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -129,7 +129,6 @@
 				A508D7BF2748419100D87DB5 /* UIFont+systemRounded.swift */,
 				A508D7C3274841E200D87DB5 /* UIDevice+vibrate.swift */,
 				A508D7C1274841A700D87DB5 /* Color.swift */,
-				A591AEBD275AE66C00DB1695 /* String+isValidEmail.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -167,6 +166,7 @@
 		A56E974D270132A700ABF4E1 /* View Models */ = {
 			isa = PBXGroup;
 			children = (
+				A5A41616275E790C0042D291 /* LoginViewModel.swift */,
 				A56E974B2701327F00ABF4E1 /* TallyListViewModel.swift */,
 				A5F6BBC6272C942F00943756 /* TallyRowViewModel.swift */,
 				A5D4AA722734A14E009B86DD /* TallyDetailViewModel.swift */,
@@ -414,9 +414,9 @@
 				A5F6BBC7272C942F00943756 /* TallyRowViewModel.swift in Sources */,
 				A508D7BD2748310500D87DB5 /* EntryList.swift in Sources */,
 				A561E5AD238C80C7000767E4 /* TallyListView.swift in Sources */,
+				A5A41617275E790C0042D291 /* LoginViewModel.swift in Sources */,
 				A56E974C2701327F00ABF4E1 /* TallyListViewModel.swift in Sources */,
 				A591AEB8275AB34000DB1695 /* LoginView.swift in Sources */,
-				A591AEBE275AE66C00DB1695 /* String+isValidEmail.swift in Sources */,
 				A508D7C82748436500D87DB5 /* TestRepository.swift in Sources */,
 				A508D7C4274841E200D87DB5 /* UIDevice+vibrate.swift in Sources */,
 				A50F6F962399A2A000EB7235 /* EditTallyView.swift in Sources */,

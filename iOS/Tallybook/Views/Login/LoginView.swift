@@ -9,14 +9,9 @@
 import SwiftUI
 
 struct LoginView: View {
-  @ObservedObject private var authenticationService = AppDelegate.shared.authenticationService
+  @ObservedObject private var loginViewModel = LoginViewModel()
   @State private var email = ""
   @State private var password = ""
-  private struct AlertData {
-    let title: String
-    let message: String
-  }
-  @State private var alertData: AlertData? = nil
 
   private func resetPasswordView() -> some View {
     ScrollView {
@@ -27,32 +22,19 @@ struct LoginView: View {
         .padding(.vertical)
 
       Button {
-        authenticationService.tryPasswordReset(withEmail: email) { error in
-          if let error = error {
-            alertData = AlertData(
-              title: "Unable to reset password", message: error.localizedDescription)
-          } else {
-            alertData = AlertData(title: "Password reset link sent", message: "")
-          }
-        }
+        loginViewModel.tryPasswordReset(withEmail: email)
       } label: {
         Text("Send password reset link")
           .frame(maxWidth: .infinity)
       }
       .buttonStyle(.borderedProminent)
-      .disabled(!email.isValidEmail)
+      .disabled(!loginViewModel.validateEmail(email))
     }
     .padding(.horizontal)
     .navigationTitle("Reset password")
   }
 
   var body: some View {
-    let showingAlertBinding = Binding {
-      return self.alertData != nil
-    } set: { _, _ in
-      self.alertData = nil
-    }
-
     NavigationView {
       ScrollView {
         TextField("Email", text: $email)
@@ -72,12 +54,7 @@ struct LoginView: View {
 
         HStack {
           Button {
-            authenticationService.trySignUp(withEmail: email, password: password) { _, error in
-              if let error = error {
-                alertData = AlertData(
-                  title: "Unable to sign up", message: error.localizedDescription)
-              }
-            }
+            loginViewModel.trySignUp(withEmail: email, password: password)
           } label: {
             Text("Sign up")
               .frame(maxWidth: .infinity)
@@ -85,26 +62,23 @@ struct LoginView: View {
           .buttonStyle(.borderedProminent)
 
           Button {
-            authenticationService.trySignIn(withEmail: email, password: password) { _, error in
-              if let error = error {
-                alertData = AlertData(
-                  title: "Unable to sign in", message: error.localizedDescription)
-              }
-            }
+            loginViewModel.trySignIn(withEmail: email, password: password)
           } label: {
             Text("Sign in")
               .frame(maxWidth: .infinity)
           }
           .buttonStyle(.borderedProminent)
         }
-        .disabled(!email.isValidEmail || password.isEmpty)
+        .disabled(!loginViewModel.validateEmail(email) || password.isEmpty)
         .padding(.top)
       }
       .padding(.horizontal)
       .navigationTitle("Log in")
       .navigationBarTitleDisplayMode(.inline)
-      .alert(isPresented: showingAlertBinding) {
-        Alert(title: Text(alertData!.title), message: Text(alertData!.message))
+      .alert(isPresented: $loginViewModel.showingAlert) {
+        Alert(
+          title: Text(loginViewModel.alertData!.title),
+          message: Text(loginViewModel.alertData!.message))
       }
     }
     .accentColor(.customAccent)
