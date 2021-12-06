@@ -13,7 +13,6 @@
 		A508D7C2274841A700D87DB5 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C1274841A700D87DB5 /* Color.swift */; };
 		A508D7C4274841E200D87DB5 /* UIDevice+vibrate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C3274841E200D87DB5 /* UIDevice+vibrate.swift */; };
 		A508D7C82748436500D87DB5 /* TestRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C72748436500D87DB5 /* TestRepository.swift */; };
-		A508D7CA274843C700D87DB5 /* LocalRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7C9274843C700D87DB5 /* LocalRepository.swift */; };
 		A508D7CC2749C1D900D87DB5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A508D7CB2749C1D900D87DB5 /* GoogleService-Info.plist */; };
 		A508D7D02749C64900D87DB5 /* FirestoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = A508D7CF2749C64900D87DB5 /* FirestoreRepository.swift */; };
 		A50F6F962399A2A000EB7235 /* EditTallyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50F6F952399A2A000EB7235 /* EditTallyView.swift */; };
@@ -53,7 +52,6 @@
 		A508D7C1274841A700D87DB5 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		A508D7C3274841E200D87DB5 /* UIDevice+vibrate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+vibrate.swift"; sourceTree = "<group>"; };
 		A508D7C72748436500D87DB5 /* TestRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestRepository.swift; sourceTree = "<group>"; };
-		A508D7C9274843C700D87DB5 /* LocalRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalRepository.swift; sourceTree = "<group>"; };
 		A508D7CB2749C1D900D87DB5 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A508D7CF2749C64900D87DB5 /* FirestoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreRepository.swift; sourceTree = "<group>"; };
 		A50F6F952399A2A000EB7235 /* EditTallyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTallyView.swift; sourceTree = "<group>"; };
@@ -150,7 +148,6 @@
 			children = (
 				A56E97472701322F00ABF4E1 /* Repository.swift */,
 				A508D7C72748436500D87DB5 /* TestRepository.swift */,
-				A508D7C9274843C700D87DB5 /* LocalRepository.swift */,
 				A508D7CF2749C64900D87DB5 /* FirestoreRepository.swift */,
 			);
 			path = Repositories;
@@ -420,7 +417,6 @@
 				A56E974C2701327F00ABF4E1 /* TallyListViewModel.swift in Sources */,
 				A591AEB8275AB34000DB1695 /* LoginView.swift in Sources */,
 				A591AEBE275AE66C00DB1695 /* String+isValidEmail.swift in Sources */,
-				A508D7CA274843C700D87DB5 /* LocalRepository.swift in Sources */,
 				A508D7C82748436500D87DB5 /* TestRepository.swift in Sources */,
 				A508D7C4274841E200D87DB5 /* UIDevice+vibrate.swift in Sources */,
 				A50F6F962399A2A000EB7235 /* EditTallyView.swift in Sources */,
