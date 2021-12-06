@@ -27,18 +27,6 @@ struct TallyListView: View {
         }
         .onMove(perform: tallyListViewModel.moveTallies)
         .onDelete(perform: tallyListViewModel.deleteTallies)
-
-        if tallyListViewModel.tallies.isEmpty {
-          HStack {
-            Spacer()
-            Button("\(Image(systemName: "plus")) Add a Tally") {
-              showingAddTally = true
-            }
-            .buttonStyle(.borderedProminent)
-            Spacer()
-          }
-          .listRowSeparator(.hidden)
-        }
       }
       .listStyle(PlainListStyle())
 
