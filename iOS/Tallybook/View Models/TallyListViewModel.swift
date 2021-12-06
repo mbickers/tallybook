@@ -10,7 +10,9 @@ import Combine
 import Foundation
 
 class TallyListViewModel: ObservableObject {
-  private var repository: Repository = AppDelegate.shared.repository
+  private let repository: Repository = AppDelegate.shared.repository
+  private let authenticationService: AuthenticationService = AppDelegate.shared
+    .authenticationService
   @Published private(set) var tallies = [TallyRowViewModel]()
   private var cancellables = Set<AnyCancellable>()
 
@@ -20,6 +22,10 @@ class TallyListViewModel: ObservableObject {
     }
     .assign(to: \.tallies, on: self)
     .store(in: &cancellables)
+  }
+
+  func signOut() {
+    authenticationService.signOut()
   }
 
   func moveTallies(fromOffsets sources: IndexSet, toOffset destination: Int) {

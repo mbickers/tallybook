@@ -9,7 +9,6 @@
 import SwiftUI
 
 struct TallyListView: View {
-  @ObservedObject private var authenticationService = AppDelegate.shared.authenticationService
   @StateObject private var tallyListViewModel = TallyListViewModel()
   @State private var showingAddTally = false
   @State private var editMode = EditMode.inactive
@@ -45,18 +44,24 @@ struct TallyListView: View {
 
       .toolbar {
         ToolbarItem(placement: .navigationBarLeading) {
-          Button("Sign out") {
-            authenticationService.signOut()
+          Menu("\(Image(systemName: "ellipsis.circle"))") {
+            Button("Sign out") {
+              tallyListViewModel.signOut()
+            }
           }
+          .disabled(editMode == .active)
         }
 
         ToolbarItem(placement: .navigationBarTrailing) {
           EditButton()
         }
 
-        ToolbarItem(placement: .navigationBarTrailing) {
-          Button("\(Image(systemName: "plus"))") {
+        ToolbarItem(placement: .bottomBar) {
+          Button {
             showingAddTally = true
+          } label: {
+            Image(systemName: "plus.circle.fill")
+            Text("Add a Tally")
           }
           .disabled(editMode == .active)
         }
