@@ -24,7 +24,7 @@ struct LoginView: View {
       Button {
         loginViewModel.tryPasswordReset(withEmail: email)
       } label: {
-        Text("Send password reset link")
+        Text("Send Reset Link")
           .frame(maxWidth: .infinity)
       }
       .buttonStyle(.borderedProminent)
