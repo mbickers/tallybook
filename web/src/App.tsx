@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react';
 import { initializeApp } from "firebase/app"
-import { getFirestore } from "firebase/firestore"
+import { getFirestore, collection, where, query, orderBy, onSnapshot } from "firebase/firestore"
 import { getAuth, signInWithEmailAndPassword, User } from "firebase/auth"
 import { Field, Form, Formik } from "formik"
-
-console.log(process.env)
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -36,13 +34,53 @@ const Login = () => {
   )
 }
 
+enum TallyKind {
+  Completion = "Completion",
+  Counter = "Counter",
+  Amount = "Amount",
+}
+
+type Tally = {
+  kind: TallyKind,
+  id?: string,
+  name: string,
+  entries: unknown,
+  listPriority: number,
+  userId?: string,
+}
+
+const TallyBlock = ({ tally }: { tally: Tally }) => {
+
+
+  return <div>
+    <h2>{tally.name}</h2>
+    <p>entries</p>
+  </div>
+}
+
+const TallyList = ({ user }: { user: User }) => {
+  const [tallies, setTallies] = useState<Tally[]>([])
+
+  useEffect(() => {
+    const talliesRef = collection(firestore, "tallies")
+    const talliesQuery = query(talliesRef, where("userId", "==", user.uid), orderBy("listPriority"))
+    const unsubscribe = onSnapshot(talliesQuery, snapshot => {
+      console.log("In query")
+      const tallies = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Tally))
+      setTallies(tallies)
+    })
+    return unsubscribe
+  }, [])
+
+  return <>{tallies.map(tally => <TallyBlock tally={tally} key={tally.id} />)}</>
+}
+
 const App = () => {
   const [user, setUser] = useState<User | null>(null)
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(user => {
       setUser(user)
-      console.log(user)
     })
 
     return unsubscribe
@@ -51,9 +89,11 @@ const App = () => {
   return <>
     <h1>Tallybook</h1>
     {user ?
-      <p>{user.email} <button onClick={() => auth.signOut() }>Sign out</button></p> :
+      <>
+        <p>{user.email} <button onClick={() => auth.signOut()}>Sign out</button></p>
+        <TallyList user={user} />
+      </> :
       <Login />}
-    
   </>
 }
 
