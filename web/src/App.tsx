@@ -1,11 +1,10 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { initializeApp } from "firebase/app"
 import { getFirestore } from "firebase/firestore"
 import { getAuth, signInWithEmailAndPassword, User } from "firebase/auth"
 import { Field, Form, Formik } from "formik"
-import { Tally } from './types';
-import { TallyServiceContext, TallyServiceProvider } from './TallyServiceProvider';
-import { formattedDate } from './FormattedDate';
+import { TallyServiceProvider } from './TallyServiceProvider';
+import { TallyList } from './TallyList';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -37,20 +36,6 @@ const Login = () => {
   )
 }
 
-const TallyRow = ({ tally }: { tally: Tally }) => {
-  const entries = tally.entries.entries
-  const todayValue = (entries.length > 0 && entries[0].formattedDate == formattedDate(new Date())) ? entries[0].value : 0
-  return <div>
-    <h2>{tally.name}</h2>
-    <p>{todayValue}</p>
-  </div>
-}
-
-const TallyList = () => {
-  const tallyService = useContext(TallyServiceContext)
-
-  return <>{tallyService.tallies?.map(tally => <TallyRow tally={tally} key={tally.id} />)}</>
-}
 
 const App = () => {
   const [user, setUser] = useState<User | null>(null)
