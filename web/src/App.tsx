@@ -5,6 +5,7 @@ import { getAuth, signInWithEmailAndPassword, User } from "firebase/auth"
 import { Field, Form, Formik } from "formik"
 import { Tally } from './types';
 import { TallyServiceContext, TallyServiceProvider } from './TallyServiceProvider';
+import { formattedDate } from './FormattedDate';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -36,17 +37,19 @@ const Login = () => {
   )
 }
 
-const TallyBlock = ({ tally }: { tally: Tally }) => {
+const TallyRow = ({ tally }: { tally: Tally }) => {
+  const entries = tally.entries.entries
+  const todayValue = (entries.length > 0 && entries[0].formattedDate == formattedDate(new Date())) ? entries[0].value : 0
   return <div>
     <h2>{tally.name}</h2>
-    <p>entries</p>
+    <p>{todayValue}</p>
   </div>
 }
 
 const TallyList = () => {
   const tallyService = useContext(TallyServiceContext)
 
-  return <>{tallyService.tallies?.map(tally => <TallyBlock tally={tally} key={tally.id} />)}</>
+  return <>{tallyService.tallies?.map(tally => <TallyRow tally={tally} key={tally.id} />)}</>
 }
 
 const App = () => {

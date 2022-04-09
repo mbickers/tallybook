@@ -4,11 +4,20 @@ export enum TallyKind {
   Amount = "Amount",
 }
 
+export interface TallyEntry {
+    formattedDate: string,
+    value: number
+}
+
+export interface EntryList {
+    entries: TallyEntry[]
+}
+
 export interface Tally {
   kind: TallyKind,
   id?: string,
   name: string,
-  entries: unknown,
+  entries: EntryList,
   listPriority: number,
   userId?: string,
 }
