@@ -26,5 +26,5 @@ export interface TallyService {
   tallies?: Tally[]
   //addTally: (tally: Tally) => void
   //removeTally: (tally: Tally) => void
-  //updateTally: (tally: Tally) => void
+  updateTally?: (tally: Tally) => void
 }
