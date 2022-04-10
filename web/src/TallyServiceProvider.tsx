@@ -1,9 +1,44 @@
 import { User } from "firebase/auth"
-import { addDoc, collection, doc, Firestore, onSnapshot, orderBy, query, setDoc, where } from "firebase/firestore"
+import { collection, doc, Firestore, onSnapshot, orderBy, query, setDoc, where } from "firebase/firestore"
 import React, { useState, useEffect } from "react"
-import { Tally, TallyService } from "./types"
+import { EntryList, Tally, TallyKind, TallyService } from "./types"
 
 export const TallyServiceContext = React.createContext<TallyService>({})
+
+const normalizeEntryList = (entryList: EntryList, kind: TallyKind): EntryList => {
+  const seen = new Map()
+  const entries = entryList.entries.filter(entry => {
+    if (seen.get(entry.formattedDate)) {
+      return false
+    }
+    seen.set(entry.formattedDate, true)
+
+    if (entry.value <= 0 || !Number.isInteger(entry.value)) {
+      return false
+    }
+
+    return true
+  }).map(entry => {
+    let value = entry.value
+    if (kind === TallyKind.Completion) {
+      value = value === 0 ? 0 : 1
+    }
+    return { formattedDate: entry.formattedDate, value }
+  })
+  .sort((a, b) => [-1, 0, 1][Number(a.formattedDate < b.formattedDate)])
+
+  return { entries }
+}
+
+const normalizeTally = (tally: Tally): Omit<Tally, 'id'> => {
+  return {
+    kind: tally.kind,
+    name: tally.name,
+    entries: normalizeEntryList(tally.entries, tally.kind),
+    listPriority: tally.listPriority,
+    userId: tally.userId
+  }
+}
 
 export const TallyServiceProvider  = ({ children, firestore, user }: { children?: React.ReactNode, firestore: Firestore, user: User }) => {
   const [tallies, setTallies] = useState<Tally[]>([])
@@ -22,7 +57,8 @@ export const TallyServiceProvider  = ({ children, firestore, user }: { children?
 
   const updateTally = (tally: Tally) => {
     if ('id' in tally) {
-      setDoc(doc(talliesRef, tally.id), tally)
+      setDoc(doc(talliesRef, tally.id), normalizeTally(tally))
+      .catch(console.log)
     }
   }
 

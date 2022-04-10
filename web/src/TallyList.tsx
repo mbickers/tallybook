@@ -44,11 +44,11 @@ const TallyRow = ({ tally }: { tally: Tally }) => {
   const entriesIncludesToday = entries.length > 0 && entries[0].formattedDate == todayFormatted
   const todayValue = entriesIncludesToday ? entries[0].value : 0
 
-  const updateTodayValue = (newValue: number) => {
-      const newEntry = { formattedDate: formattedDate(new Date()), value: newValue }
-      const updatedEntries = [newEntry, ...(entriesIncludesToday ? entries.slice(1) : entries)]
+  const updateTodayValue = (value: number) => {
+      const otherEntries = entriesIncludesToday ? entries.slice(1) : entries
+      const newEntries = value === 0 ? otherEntries : [{value, formattedDate: formattedDate(new Date())}, ...otherEntries]
       if (tallyService.updateTally) {
-        tallyService.updateTally({ ...tally, entries: { entries: updatedEntries} })
+        tallyService.updateTally({ ...tally, entries: { entries: newEntries } })
       }
   }
 
