@@ -1,10 +1,17 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import { formattedDate } from "./FormattedDate"
 import { TallyServiceContext } from "./TallyServiceProvider"
 import { Tally, TallyKind } from "./types"
 
 const TallyInput = ({kind, value, updateValue}: {kind: TallyKind, value: number, updateValue: (newValue: number) => void}) => {
     const [fieldValue, updateFieldValue] = useState(String(value))
+
+    // I don't think this should be here, but it doesn't update if its not here
+    useEffect(() => {
+        updateFieldValue(String(value))
+    }, [value])
+
+    console.log(value, fieldValue)
 
     const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value === "") {
