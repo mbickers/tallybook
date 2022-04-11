@@ -1,8 +1,12 @@
+import { FirebaseApp } from "firebase/app"
+import { getAuth, User } from "firebase/auth"
 import React, { useContext, useEffect, useState } from "react"
 import { Link, Outlet } from "react-router-dom"
+import { FirebaseContext } from "./FirebaseProvider"
 import { formattedDate } from "./FormattedDate"
 import { TallyServiceContext } from "./TallyServiceProvider"
 import { Tally, TallyKind } from "./types"
+import { UserContext } from "./UserProvider"
 
 const TallyInput = ({kind, value, updateValue}: {kind: TallyKind, value: number, updateValue: (newValue: number) => void}) => {
     const [fieldValue, updateFieldValue] = useState(String(value))
@@ -67,8 +71,13 @@ const TallyRow = ({ tally }: { tally: Tally }) => {
 
 export const TallyList = () => {
   const tallyService = useContext(TallyServiceContext)
+  const firebase = useContext(FirebaseContext) as FirebaseApp
+  const user = useContext(UserContext) as User
+  const auth = getAuth(firebase)
+  const userInfo = auth.currentUser ? <p>{user.email} <button onClick={() => auth.signOut()}>Sign out</button></p> : <p>Not logged in</p>
 
   return <>
+      {userInfo}
       {tallyService.tallies?.map(tally => <TallyRow tally={tally} key={tally.id} />)}
       <Outlet />
   </>

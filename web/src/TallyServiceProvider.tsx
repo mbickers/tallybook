@@ -1,7 +1,10 @@
+import { FirebaseApp } from "firebase/app"
 import { User } from "firebase/auth"
-import { collection, doc, Firestore, onSnapshot, orderBy, query, setDoc, where } from "firebase/firestore"
-import React, { useState, useEffect } from "react"
+import { collection, doc, getFirestore, onSnapshot, orderBy, query, setDoc, where } from "firebase/firestore"
+import React, { useState, useEffect, useContext } from "react"
+import { FirebaseContext } from "./FirebaseProvider"
 import { EntryList, Tally, TallyKind, TallyService } from "./types"
+import { UserContext } from "./UserProvider"
 
 export const TallyServiceContext = React.createContext<TallyService>({})
 
@@ -40,22 +43,24 @@ const normalizeTally = (tally: Tally): Omit<Tally, 'id'> => {
   }
 }
 
-export const TallyServiceProvider  = ({ children, firestore, user }: { children?: React.ReactNode, firestore: Firestore, user: User | null }) => {
+export const TallyServiceProvider: React.FC  = ({ children }) => {
+  const firebase = useContext(FirebaseContext) as FirebaseApp
+  const user = useContext(UserContext) as User
   const [tallies, setTallies] = useState<Tally[]>([])
-  const talliesRef = collection(firestore, "tallies")
 
+  const firestore = getFirestore(firebase)
+  const talliesRef = collection(firestore, "tallies")
   useEffect(() => {
-    if (user) {
-      const talliesQuery = query(talliesRef, where("userId", "==", user.uid), orderBy("listPriority"))
-      console.log("Subscribing")
-      const unsubscribe = onSnapshot(talliesQuery, snapshot => {
-        console.log("Update")
-        const tallies = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Tally))
-        setTallies(tallies)
-      })
-      return unsubscribe
-    }
-  }, [user])
+    const talliesQuery = query(talliesRef, where("userId", "==", user.uid), orderBy("listPriority"))
+    console.log("Subscribing")
+    const unsubscribe = onSnapshot(talliesQuery, snapshot => {
+      console.log("Update")
+      const tallies = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Tally))
+      setTallies(tallies)
+    })
+
+    return unsubscribe
+  }, [firebase, user])
 
   const updateTally = (tally: Tally) => {
     if ('id' in tally) {
