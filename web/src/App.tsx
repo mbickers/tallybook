@@ -6,6 +6,7 @@ import { Field, Form, Formik } from "formik"
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { TallyServiceContext, TallyServiceProvider } from './TallyServiceProvider';
 import { TallyList } from './TallyList';
+import { TallyDetail } from './TallyDetail';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -58,7 +59,9 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Navigate to="/tallies" />} />
           <Route path="/login" element={user ? <Navigate to="/tallies" /> : <Login />} />
-          <Route path="/tallies" element={user ? <TallyList /> : <Navigate to="/login" />} />
+          <Route path="/tallies" element={user ? <TallyList /> : <Navigate to="/login" />} >
+            <Route path=":id" element={<TallyDetail />} />
+          </Route>
         </Routes>
       </BrowserRouter> 
     </TallyServiceProvider>

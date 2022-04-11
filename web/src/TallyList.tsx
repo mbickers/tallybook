@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from "react"
+import { Link, Outlet } from "react-router-dom"
 import { formattedDate } from "./FormattedDate"
 import { TallyServiceContext } from "./TallyServiceProvider"
 import { Tally, TallyKind } from "./types"
@@ -60,11 +61,15 @@ const TallyRow = ({ tally }: { tally: Tally }) => {
   return <div>
     <h2>{tally.name}</h2>
     <TallyInput kind={tally.kind} value={todayValue} updateValue={updateTodayValue} />
+    <p><Link to={`/tallies/${tally.id}`}>see detail</Link></p>
   </div>
 }
 
 export const TallyList = () => {
   const tallyService = useContext(TallyServiceContext)
 
-  return <>{tallyService.tallies?.map(tally => <TallyRow tally={tally} key={tally.id} />)}</>
+  return <>
+      {tallyService.tallies?.map(tally => <TallyRow tally={tally} key={tally.id} />)}
+      <Outlet />
+  </>
 }
