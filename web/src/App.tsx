@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
-import { TallyDetail } from './TallyDetail';
-import { FirebaseProvider } from './FirebaseProvider';
-import { Tallies } from './Tallies';
-import { Login } from './Login';
+import { TallyDetail } from './components/TallyDetail';
+import { FirebaseProvider } from './providers/FirebaseProvider';
+import { Tallies } from './pages/Tallies';
+import { Login } from './pages/Login';
 
 const App = () => {
   return (

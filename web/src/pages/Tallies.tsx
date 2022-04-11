@@ -1,6 +1,6 @@
-import { TallyList } from "./TallyList"
-import { TallyServiceProvider } from "./TallyServiceProvider"
-import { UserProvider } from "./UserProvider"
+import { TallyList } from "../components/TallyList"
+import { TallyServiceProvider } from "../providers/TallyServiceProvider"
+import { UserProvider } from "../providers/UserProvider"
 
 export const Tallies = () => {
     return (

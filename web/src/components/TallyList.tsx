@@ -2,11 +2,11 @@ import { FirebaseApp } from "firebase/app"
 import { getAuth, User } from "firebase/auth"
 import React, { useContext, useEffect, useState } from "react"
 import { Link, Outlet } from "react-router-dom"
-import { FirebaseContext } from "./FirebaseProvider"
-import { formattedDate } from "./FormattedDate"
-import { TallyServiceContext } from "./TallyServiceProvider"
-import { Tally, TallyKind } from "./types"
-import { UserContext } from "./UserProvider"
+import { FirebaseContext } from "../providers/FirebaseProvider"
+import { formattedDate } from "../utils"
+import { TallyServiceContext } from "../providers/TallyServiceProvider"
+import { Tally, TallyKind } from "../types"
+import { UserContext } from "../providers/UserProvider"
 
 const TallyInput = ({kind, value, updateValue}: {kind: TallyKind, value: number, updateValue: (newValue: number) => void}) => {
     const [fieldValue, updateFieldValue] = useState(String(value))

@@ -3,7 +3,7 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { Formik, Form, Field } from "formik"
 import { useContext } from "react"
 import { useNavigate } from "react-router-dom"
-import { FirebaseContext } from "./FirebaseProvider"
+import { FirebaseContext } from "../providers/FirebaseProvider"
 
 export const Login = () => {
   const navigate = useNavigate()

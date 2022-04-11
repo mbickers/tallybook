@@ -3,7 +3,7 @@ import { User } from "firebase/auth"
 import { collection, doc, getFirestore, onSnapshot, orderBy, query, setDoc, where } from "firebase/firestore"
 import React, { useState, useEffect, useContext } from "react"
 import { FirebaseContext } from "./FirebaseProvider"
-import { EntryList, Tally, TallyKind, TallyService } from "./types"
+import { EntryList, Tally, TallyKind, TallyService } from "../types"
 import { UserContext } from "./UserProvider"
 
 export const TallyServiceContext = React.createContext<TallyService>({})

@@ -1,6 +1,6 @@
 import { useContext } from "react"
 import { useParams } from "react-router-dom"
-import { TallyServiceContext } from "./TallyServiceProvider"
+import { TallyServiceContext } from "../providers/TallyServiceProvider"
 
 export const TallyDetail = () => {
   const id = useParams().id
