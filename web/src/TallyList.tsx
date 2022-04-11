@@ -11,8 +11,6 @@ const TallyInput = ({kind, value, updateValue}: {kind: TallyKind, value: number,
         updateFieldValue(String(value))
     }, [value])
 
-    console.log(value, fieldValue)
-
     const onChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.value === "") {
             updateFieldValue("")

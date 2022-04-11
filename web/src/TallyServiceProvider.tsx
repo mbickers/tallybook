@@ -40,19 +40,21 @@ const normalizeTally = (tally: Tally): Omit<Tally, 'id'> => {
   }
 }
 
-export const TallyServiceProvider  = ({ children, firestore, user }: { children?: React.ReactNode, firestore: Firestore, user: User }) => {
+export const TallyServiceProvider  = ({ children, firestore, user }: { children?: React.ReactNode, firestore: Firestore, user: User | null }) => {
   const [tallies, setTallies] = useState<Tally[]>([])
   const talliesRef = collection(firestore, "tallies")
 
   useEffect(() => {
-    const talliesQuery = query(talliesRef, where("userId", "==", user.uid), orderBy("listPriority"))
-    console.log("Subscribing")
-    const unsubscribe = onSnapshot(talliesQuery, snapshot => {
-      console.log("Update")
-      const tallies = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Tally))
-      setTallies(tallies)
-    })
-    return unsubscribe
+    if (user) {
+      const talliesQuery = query(talliesRef, where("userId", "==", user.uid), orderBy("listPriority"))
+      console.log("Subscribing")
+      const unsubscribe = onSnapshot(talliesQuery, snapshot => {
+        console.log("Update")
+        const tallies = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Tally))
+        setTallies(tallies)
+      })
+      return unsubscribe
+    }
   }, [user])
 
   const updateTally = (tally: Tally) => {

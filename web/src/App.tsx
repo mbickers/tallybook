@@ -3,7 +3,8 @@ import { initializeApp } from "firebase/app"
 import { getFirestore } from "firebase/firestore"
 import { getAuth, signInWithEmailAndPassword, User } from "firebase/auth"
 import { Field, Form, Formik } from "formik"
-import { TallyServiceProvider } from './TallyServiceProvider';
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
+import { TallyServiceContext, TallyServiceProvider } from './TallyServiceProvider';
 import { TallyList } from './TallyList';
 
 const firebaseConfig = {
@@ -48,17 +49,20 @@ const App = () => {
     return unsubscribe
   })
 
-  return <>
-    <h1>Tallybook</h1>
-    {user ?
-      <>
-        <p>{user.email} <button onClick={() => auth.signOut()}>Sign out</button></p>
-        <TallyServiceProvider firestore={firestore} user={user}>
-          <TallyList />
-        </TallyServiceProvider>
-      </> :
-      <Login />}
-  </>
+  const userInfo = <p>{user?.email} <button onClick={() => auth.signOut()}>Sign out</button></p>
+
+  return (
+    <TallyServiceProvider firestore={firestore} user={user}>
+      <BrowserRouter>
+        {user ? userInfo : []}
+        <Routes>
+          <Route path="/" element={<Navigate to="/tallies" />} />
+          <Route path="/login" element={user ? <Navigate to="/tallies" /> : <Login />} />
+          <Route path="/tallies" element={user ? <TallyList /> : <Navigate to="/login" />} />
+        </Routes>
+      </BrowserRouter> 
+    </TallyServiceProvider>
+  )
 }
 
 export default App;
