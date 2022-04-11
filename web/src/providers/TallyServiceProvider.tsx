@@ -5,13 +5,15 @@ import React, { useState, useEffect, useContext } from "react"
 import { FirebaseContext } from "./FirebaseProvider"
 import { EntryList, Tally, TallyKind, TallyService } from "../types"
 import { UserContext } from "./UserProvider"
+import { formattedDate } from "../utils"
 
 export const TallyServiceContext = React.createContext<TallyService>({})
 
 const normalizeEntryList = (entryList: EntryList, kind: TallyKind): EntryList => {
+  const currentDate = formattedDate(new Date())
   const seen = new Map()
   const entries = entryList.entries.filter(entry => {
-    if (seen.get(entry.formattedDate)) {
+    if (seen.get(entry.formattedDate) || entry.formattedDate > currentDate) {
       return false
     }
     seen.set(entry.formattedDate, true)
