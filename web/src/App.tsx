@@ -3,23 +3,26 @@ import { TallyDetail } from './components/TallyDetail';
 import { FirebaseProvider } from './providers/FirebaseProvider';
 import { Tallies } from './pages/Tallies';
 import { Login } from './pages/Login';
+import { ChakraProvider } from "@chakra-ui/react";
 
 const App = () => {
   return (
-    <FirebaseProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<h1>Homepage</h1>} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<h1>Signup</h1>} />
-          <Route path="/reset-password" element={<h1>Reset Password</h1>} />
-          <Route path="/tallies" element={<Tallies />} >
-            <Route path=":id" element={<TallyDetail />} />
-          </Route>
-          <Route path="/*" element={<Navigate to="/" />} />
-        </Routes>
-      </BrowserRouter> 
-    </FirebaseProvider>
+    <ChakraProvider>
+      <FirebaseProvider>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<h1>Homepage</h1>} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<h1>Signup</h1>} />
+            <Route path="/reset-password" element={<h1>Reset Password</h1>} />
+            <Route path="/tallies" element={<Tallies />} >
+              <Route path=":id" element={<TallyDetail />} />
+            </Route>
+            <Route path="/*" element={<Navigate to="/" />} />
+          </Routes>
+        </BrowserRouter>
+      </FirebaseProvider>
+    </ChakraProvider>
   )
 }
 
