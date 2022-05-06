@@ -1,4 +1,5 @@
-import { Box, Button, Center, Container, Flex, Heading, HStack, Spacer } from "@chakra-ui/react"
+import { ChevronDownIcon } from "@chakra-ui/icons"
+import { Box, Button, Center, Container, Flex, Heading, HStack, IconButton, Image, Menu, MenuButton, MenuItem, MenuList, Spacer, Text } from "@chakra-ui/react"
 import { FirebaseApp } from "firebase/app"
 import { User, getAuth } from "firebase/auth"
 import { useContext } from "react"
@@ -12,13 +13,19 @@ const Header = () => {
   const firebase = useContext(FirebaseContext) as FirebaseApp
   const user = useContext(UserContext) as User
   const auth = getAuth(firebase)
-  const userInfo = auth.currentUser ? <p>{user.email} <Button onClick={() => auth.signOut()}>Sign Out</Button></p> : <p>Not logged in</p>
 
     return <Box as='header' pos='fixed' w='100%' bg='white' zIndex='1'>
-        <Flex maxW='50rem' m='auto'>
+        <Flex maxW='50rem' m='auto' mt='0.1rem'>
             <Heading>Tallybook</Heading>
             <Spacer />
-            {userInfo}
+            <Menu>
+                <MenuButton as={Button} rightIcon={<ChevronDownIcon />} variant='ghost'>
+                    {user.email}
+                </MenuButton>
+                <MenuList>
+                    <MenuItem onClick={() => auth.signOut()}>Sign Out</MenuItem>
+                </MenuList>
+            </Menu>
         </Flex>
     </Box>
 }
