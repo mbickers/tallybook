@@ -7,12 +7,12 @@ import { formattedDate } from "../utils"
 import { TallyServiceContext } from "../providers/TallyServiceProvider"
 import { Tally, TallyKind } from "../types"
 import { UserContext } from "../providers/UserProvider"
-import { Button, Checkbox, Heading, Link, NumberInput, NumberInputField, Stack } from "@chakra-ui/react"
+import { Box, Button, Checkbox, Container, Flex, Heading, HStack, Link, NumberInput, NumberInputField, Spacer, Stack, VStack } from "@chakra-ui/react"
 
 const TallyInput = ({kind, value, updateValue}: {kind: TallyKind, value: number, updateValue: (newValue: number) => void}) => {
     switch (kind) {
         case TallyKind.Completion:
-            return <Checkbox isChecked={value === 1} onChange={e => updateValue(Number(e.target.checked))} />
+            return <Checkbox size='lg' isChecked={value === 1} onChange={e => updateValue(Number(e.target.checked))} />
         case TallyKind.Amount:
             return (
                 <NumberInput value={value} onChange={(_, newValue) => updateValue(newValue)}>
@@ -20,12 +20,12 @@ const TallyInput = ({kind, value, updateValue}: {kind: TallyKind, value: number,
                 </NumberInput>
             )
         case TallyKind.Counter:
-            return <Stack direction='row'>
+            return <HStack>
                 <Button onClick={() => updateValue(1 + value)}>+</Button>
                 <NumberInput value={value} onChange={(_, newValue) => updateValue(newValue)}>
                     <NumberInputField />
                 </NumberInput>
-            </Stack>
+            </HStack>
     }
 }
 
@@ -44,24 +44,23 @@ const TallyRow = ({ tally }: { tally: Tally }) => {
       }
   }
 
-  return <div>
-    <Heading as='h2' size='md'>{tally.name}</Heading>
-    <TallyInput kind={tally.kind} value={todayValue} updateValue={updateTodayValue} />
-    <Link as={RouterLink} to={`/tallies/${tally.id}`}>see detail</Link>
-  </div>
+  return <Flex w='sm' h='7rem' p='2' bg='white' borderRadius='lg' direction='column'>
+      <Heading size='md'>{tally.name}</Heading>
+      <Spacer />
+      <TallyInput kind={tally.kind} value={todayValue} updateValue={updateTodayValue} />
+      <Spacer />
+      <Box>
+          <Link as={RouterLink} to={`/tallies/${tally.id}`}>See detail</Link>
+      </Box>
+  </Flex>
 }
 
 export const TallyList = () => {
   const tallyService = useContext(TallyServiceContext)
-  const firebase = useContext(FirebaseContext) as FirebaseApp
-  const user = useContext(UserContext) as User
-  const auth = getAuth(firebase)
-  const userInfo = auth.currentUser ? <p>{user.email} <button onClick={() => auth.signOut()}>Sign out</button></p> : <p>Not logged in</p>
 
-  return <>
-      <Heading>Tallies</Heading>
-      {userInfo}
-      {tallyService.tallies?.map(tally => <TallyRow tally={tally} key={tally.id} />)}
-      <Outlet />
-  </>
+  return (
+      <VStack>
+          {tallyService.tallies?.map(tally => <TallyRow tally={tally} key={tally.id} />)}
+      </VStack>
+  )
 }

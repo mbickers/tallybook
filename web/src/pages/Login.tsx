@@ -1,3 +1,4 @@
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, VStack } from "@chakra-ui/react"
 import { FirebaseApp } from "firebase/app"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { Formik, Form, Field } from "formik"
@@ -18,11 +19,34 @@ export const Login = () => {
         .then(() => navigate("/tallies"))
       }}
     >
-      <Form>
-        <Field type="text" name="email" />
-        <Field type="text" name="password" />
-        <button type="submit" >Submit</button>
-      </Form>
+      {({ handleSubmit, errors, touched }) => (
+        <form onSubmit={handleSubmit}>
+          <VStack spacing={4} align="flex-start">
+            <FormControl>
+              <FormLabel htmlFor="email">Email Address</FormLabel>
+              <Field
+                as={Input}
+                id="email"
+                name="email"
+                type="email"
+                variant="filled"
+              />
+            </FormControl>
+            <FormControl isInvalid={!!errors.password && touched.password}>
+              <FormLabel htmlFor="password">Password</FormLabel>
+              <Field
+                as={Input}
+                id="password"
+                name="password"
+                type="password"
+                variant="filled"
+              />
+            </FormControl>
+            <Button type="submit" variant="solid" isFullWidth>
+              Login
+            </Button>
+          </VStack>
+        </form>)}
     </Formik>
   )
 }
