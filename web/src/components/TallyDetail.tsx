@@ -14,7 +14,7 @@ export const TallyDetail = () => {
   }
 
     return (
-        <VStack p='2' bg='white' borderRadius='lg' direction='column' w='100%' align='begin'>
+        <VStack p='0.4rem' bg='white' borderRadius='lg' direction='column' w='100%' align='begin'>
             <Heading size='md'>{tally.name}</Heading>
             <Button>Edit Tally</Button>
             <Button>Add Entry</Button>

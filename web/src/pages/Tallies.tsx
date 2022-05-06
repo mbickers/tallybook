@@ -12,10 +12,10 @@ const Header = () => {
   const firebase = useContext(FirebaseContext) as FirebaseApp
   const user = useContext(UserContext) as User
   const auth = getAuth(firebase)
-  const userInfo = auth.currentUser ? <p>{user.email} <Button onClick={() => auth.signOut()}>Sign out</Button></p> : <p>Not logged in</p>
+  const userInfo = auth.currentUser ? <p>{user.email} <Button onClick={() => auth.signOut()}>Sign Out</Button></p> : <p>Not logged in</p>
 
-    return <Box as='header' pos='fixed' w='100%' top='0' bg='white'>
-        <Flex maxW='800' m='auto'>
+    return <Box as='header' pos='fixed' w='100%' bg='white' zIndex='1'>
+        <Flex maxW='50rem' m='auto'>
             <Heading>Tallybook</Heading>
             <Spacer />
             {userInfo}
@@ -29,7 +29,7 @@ export const Tallies = () => {
             <TallyServiceProvider>
                 <Box bg='gray.100' h='100vh'>
                     <Header />
-                    <HStack m='auto' align='baseline' maxW='800' pt='20'>
+                    <HStack m='auto' align='baseline' maxW='50rem' pt='3.5rem'>
                         <TallyList />
                         <Outlet />
                     </HStack>
