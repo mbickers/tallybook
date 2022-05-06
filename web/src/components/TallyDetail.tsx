@@ -1,5 +1,5 @@
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons"
-import { Box, Button, Flex, Heading, HStack, IconButton, Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr, VStack } from "@chakra-ui/react"
+import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons"
+import { Box, Button, Flex, Heading, HStack, IconButton, Spacer, Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr, VStack } from "@chakra-ui/react"
 import { useContext } from "react"
 import { useParams } from "react-router-dom"
 import { TallyServiceContext } from "../providers/TallyServiceProvider"
@@ -14,10 +14,12 @@ export const TallyDetail = () => {
   }
 
     return (
-        <VStack p='0.4rem' bg='white' borderRadius='lg' direction='column' w='100%' align='begin'>
+        <VStack p='0.4rem' bg='white' borderRadius='lg' direction='column' w='100%' align='begin' >
             <Heading size='md'>{tally.name}</Heading>
-            <Button>Edit Tally</Button>
-            <Button>Add Entry</Button>
+            <HStack>
+                <Button isFullWidth leftIcon={<EditIcon />}>Edit Tally</Button>
+                <Button isFullWidth leftIcon={<AddIcon />}>Add Entry</Button>
+            </HStack>
             <TableContainer>
                 <Table>
                     <Thead>
@@ -34,6 +36,7 @@ export const TallyDetail = () => {
                                 <Td isNumeric>{entry.value}</Td>
                                 <Td>
                                     <HStack>
+                                        <Spacer />
                                         <Button size='xs'>Edit</Button>
                                         <IconButton size='xs' colorScheme='red' aria-label='delete entry' icon={<DeleteIcon />} />
                                     </HStack>
