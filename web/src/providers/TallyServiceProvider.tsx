@@ -1,6 +1,6 @@
 import { FirebaseApp } from "firebase/app"
 import { User } from "firebase/auth"
-import { collection, deleteDoc, doc, getFirestore, onSnapshot, orderBy, query, setDoc, where } from "firebase/firestore"
+import { addDoc, collection, deleteDoc, doc, getFirestore, onSnapshot, orderBy, query, setDoc, where } from "firebase/firestore"
 import React, { useState, useEffect, useContext } from "react"
 import { FirebaseContext } from "./FirebaseProvider"
 import { EntryList, Tally, TallyKind, TallyService } from "../types"
@@ -64,6 +64,10 @@ export const TallyServiceProvider: React.FC  = ({ children }) => {
     return unsubscribe
   }, [firebase, user])
 
+  const addTally = (kind: TallyKind, name: string) => {
+    addDoc(talliesRef, {kind, name, entries: {entries: []}, listPriority: tallies.length, userId: user.uid})
+  }
+
   const updateTally = (tally: Tally) => {
     if ('id' in tally) {
       setDoc(doc(talliesRef, tally.id), normalizeTally(tally))
@@ -78,7 +82,7 @@ export const TallyServiceProvider: React.FC  = ({ children }) => {
   }
 
   return (
-    <TallyServiceContext.Provider value={{tallies, updateTally, removeTally}}>
+    <TallyServiceContext.Provider value={{tallies, addTally, updateTally, removeTally}}>
       {children}
     </TallyServiceContext.Provider>
   )

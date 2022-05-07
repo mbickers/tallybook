@@ -65,7 +65,6 @@ export const TallyList = () => {
   return (
       <VStack w='18rem'>
           {tallyService.tallies?.map(tally => <TallyRow tally={tally} key={tally.id} />)}
-          <Button isFullWidth borderRadius='lg' leftIcon={<AddIcon />} colorScheme='green'>Add a Tally</Button>
       </VStack>
   )
 }

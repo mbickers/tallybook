@@ -1,4 +1,4 @@
-import { ChevronDownIcon } from "@chakra-ui/icons"
+import { AddIcon, ChevronDownIcon } from "@chakra-ui/icons"
 import { Box, Button, Flex, Heading, HStack, Menu, MenuButton, MenuItem, MenuList, Spacer } from "@chakra-ui/react"
 import { FirebaseApp } from "firebase/app"
 import { User, getAuth } from "firebase/auth"
@@ -36,10 +36,11 @@ export const Tallies = () => {
             <TallyServiceProvider>
                 <Box bg='gray.100'>
                     <Header />
-                    <HStack m='auto' align='baseline' maxW='50rem' py='3.5rem'>
+                    <HStack align='baseline' m='auto' maxW='50rem' py='3.5rem'>
                         <TallyList />
                         <Outlet />
                     </HStack>
+                    <Button borderRadius='lg' leftIcon={<AddIcon />} colorScheme='green' position='fixed' bottom='1rem' right='calc(1rem + (100vw - 50rem) / 2)'>Add a Tally</Button>
                 </Box>
             </TallyServiceProvider>
         </UserProvider>
