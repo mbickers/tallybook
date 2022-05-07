@@ -1,12 +1,12 @@
-import { Button, Center, Divider, FormControl, FormLabel, Heading, Input, Text, VStack } from "@chakra-ui/react"
+import { Button, Center, Divider, FormControl, FormLabel, Heading, Input, Link, Text, VStack } from "@chakra-ui/react"
 import { FirebaseApp } from "firebase/app"
-import { AuthError, getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { AuthError, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth"
 import { Formik, Field } from "formik"
 import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, Link as RouterLink } from "react-router-dom"
 import { FirebaseContext } from "../providers/FirebaseProvider"
 
-export const Login = () => {
+export const SignUp = () => {
   const navigate = useNavigate()
   const firebase = useContext(FirebaseContext) as FirebaseApp
   const auth = getAuth(firebase) 
@@ -21,7 +21,7 @@ export const Login = () => {
         <Formik
           initialValues={{ email: "", password: "" }}
           onSubmit={({ email, password }) => {
-            signInWithEmailAndPassword(auth, email, password)
+            createUserWithEmailAndPassword(auth, email, password)
               .then(() => navigate("/tallies"))
               .catch((error: AuthError) => {
                 setError(error.message)
@@ -52,11 +52,12 @@ export const Login = () => {
                   />
                 </FormControl>
                 <Button type="submit" colorScheme='green' variant="solid" isFullWidth>
-                  Login
+                  Sign Up
                 </Button>
               </VStack>
             </form>)}
         </Formik>
+        <Text>Already have an account? <Link color='green' as={RouterLink} to='/signin' >Sign in.</Link></Text>
       </VStack>
     </Center>
   )

@@ -2,8 +2,11 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import { TallyDetail } from './components/TallyDetail';
 import { FirebaseProvider } from './providers/FirebaseProvider';
 import { Tallies } from './pages/Tallies';
-import { Login } from './pages/Login';
+import { SignIn } from './pages/SignIn';
 import { ChakraProvider, Heading } from "@chakra-ui/react";
+import { SignUp } from "./pages/SignUp";
+import { ForgotPassword } from "./pages/ForgotPassword";
+import { ResetPassword } from "./pages/ResetPassword";
 
 const App = () => {
   return (
@@ -12,9 +15,10 @@ const App = () => {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Heading>Homepage</Heading>} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Heading>Signup</Heading>} />
-            <Route path="/reset-password" element={<Heading>Reset Password</Heading>} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/reset-password" element={<ResetPassword />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/tallies" element={<Tallies />} >
               <Route path=":id" element={<TallyDetail />} />
             </Route>

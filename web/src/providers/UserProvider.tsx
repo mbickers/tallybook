@@ -22,7 +22,7 @@ export const UserProvider: React.FC = ({ children }) => {
   }, [])
 
   if (hasLoaded && !user) {
-    return <Navigate to="/login" />
+    return <Navigate to="/signin" />
   }
 
   if (!user) {
