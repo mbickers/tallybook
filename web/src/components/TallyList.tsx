@@ -3,7 +3,7 @@ import { Link as RouterLink, useLocation } from "react-router-dom"
 import { formattedDate } from "../utils"
 import { TallyServiceContext } from "../providers/TallyServiceProvider"
 import { Tally, TallyKind } from "../types"
-import { Box, Button, Center, Flex, Heading, HStack, IconButton, NumberInput, NumberInputField, Spacer, VStack } from "@chakra-ui/react"
+import { Button, Flex, Heading, HStack, IconButton, NumberInput, NumberInputField, Spacer, VStack } from "@chakra-ui/react"
 import { AddIcon, CheckIcon, ChevronRightIcon } from "@chakra-ui/icons"
 
 const TallyInput = ({kind, value, updateValue}: {kind: TallyKind, value: number, updateValue: (newValue: number) => void}) => {

@@ -1,7 +1,7 @@
 import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons"
 import { Button, Heading, HStack, IconButton, Spacer, Table, TableContainer, Tbody, Td, Th, Thead, Tr, VStack } from "@chakra-ui/react"
 import { useContext } from "react"
-import { useParams } from "react-router-dom"
+import { Navigate, useParams } from "react-router-dom"
 import { TallyServiceContext } from "../providers/TallyServiceProvider"
 
 export const TallyDetail = () => {
@@ -10,7 +10,7 @@ export const TallyDetail = () => {
   const tally = tallyService.tallies?.find(tally => tally.id == id)
 
   if (!tally) {
-      return <p>Unable to view tally {id}</p>
+      return <Navigate to='/tallies' />
   }
 
     return (
@@ -46,7 +46,7 @@ export const TallyDetail = () => {
                     </Tbody>
                 </Table>
             </TableContainer>
-            <Button colorScheme='red' leftIcon={<DeleteIcon />}>Delete Tally</Button>
+            <Button colorScheme='red' leftIcon={<DeleteIcon />} onClick={() => tallyService.removeTally(tally) }>Delete Tally</Button>
         </VStack>
     )
 }
