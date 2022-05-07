@@ -55,7 +55,7 @@ const TallyRow = ({ tally }: { tally: Tally }) => {
           <TallyInput kind={tally.kind} value={todayValue} updateValue={updateTodayValue} />
       </VStack>
       <Spacer />
-      <IconButton size='lg' h='inherit' as={RouterLink} to={detailLocation} icon={<ChevronRightIcon />} aria-label='see detail' {...linkProps} />
+      <IconButton size='lg' h='inherit' as={RouterLink} to={detailLocation} icon={<ChevronRightIcon />} aria-label='see detail' variant='ghost' {...linkProps} />
   </Flex>
 }
 
@@ -63,7 +63,7 @@ export const TallyList = () => {
   const tallyService = useContext(TallyServiceContext)
 
   return (
-      <VStack>
+      <VStack w='18rem'>
           {tallyService.tallies?.map(tally => <TallyRow tally={tally} key={tally.id} />)}
           <Button isFullWidth borderRadius='lg' leftIcon={<AddIcon />} colorScheme='green'>Add a Tally</Button>
       </VStack>
