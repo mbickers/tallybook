@@ -1,5 +1,5 @@
 import { ChevronDownIcon } from "@chakra-ui/icons"
-import { Box, Button, Center, Container, Flex, Heading, HStack, IconButton, Image, Menu, MenuButton, MenuItem, MenuList, Spacer, Text } from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, HStack, Menu, MenuButton, MenuItem, MenuList, Spacer } from "@chakra-ui/react"
 import { FirebaseApp } from "firebase/app"
 import { User, getAuth } from "firebase/auth"
 import { useContext } from "react"

@@ -1,5 +1,5 @@
 import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons"
-import { Box, Button, Flex, Heading, HStack, IconButton, Spacer, Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr, VStack } from "@chakra-ui/react"
+import { Button, Heading, HStack, IconButton, Spacer, Table, TableContainer, Tbody, Td, Th, Thead, Tr, VStack } from "@chakra-ui/react"
 import { useContext } from "react"
 import { useParams } from "react-router-dom"
 import { TallyServiceContext } from "../providers/TallyServiceProvider"
