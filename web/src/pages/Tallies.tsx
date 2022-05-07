@@ -34,9 +34,9 @@ export const Tallies = () => {
     return (
         <UserProvider>
             <TallyServiceProvider>
-                <Box bg='gray.100' h='100vh'>
+                <Box bg='gray.100'>
                     <Header />
-                    <HStack m='auto' align='baseline' maxW='50rem' pt='3.5rem'>
+                    <HStack m='auto' align='baseline' maxW='50rem' py='3.5rem'>
                         <TallyList />
                         <Outlet />
                     </HStack>

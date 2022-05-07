@@ -1,9 +1,9 @@
 import { Button, Center, Divider, FormControl, FormLabel, Heading, Input, Text, VStack } from "@chakra-ui/react"
 import { FirebaseApp } from "firebase/app"
-import { AuthError, confirmPasswordReset, getAuth, sendPasswordResetEmail, signInWithEmailAndPassword } from "firebase/auth"
+import { AuthError, getAuth, sendPasswordResetEmail } from "firebase/auth"
 import { Formik, Field } from "formik"
 import { useContext, useState } from "react"
-import { Navigate, useLocation, useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { FirebaseContext } from "../providers/FirebaseProvider"
 
 export const ForgotPassword = () => {

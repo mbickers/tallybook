@@ -1,9 +1,9 @@
-import { Button, Center, Divider, FormControl, FormLabel, Heading, Input, Link, Text, VStack } from "@chakra-ui/react"
+import { Button, Center, Divider, FormControl, FormLabel, Heading, Input, Text, VStack } from "@chakra-ui/react"
 import { FirebaseApp } from "firebase/app"
-import { AuthError, confirmPasswordReset, getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { AuthError, confirmPasswordReset, getAuth } from "firebase/auth"
 import { Formik, Field } from "formik"
 import { useContext, useState } from "react"
-import { useNavigate, Link as RouterLink, useLocation, Navigate } from "react-router-dom"
+import { useNavigate, useLocation, Navigate } from "react-router-dom"
 import { FirebaseContext } from "../providers/FirebaseProvider"
 
 export const ResetPassword = () => {

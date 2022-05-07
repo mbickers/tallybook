@@ -1,6 +1,6 @@
 import { Button, Center, Divider, FormControl, FormLabel, Heading, Input, Link, Text, VStack } from "@chakra-ui/react"
 import { FirebaseApp } from "firebase/app"
-import { AuthError, createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword } from "firebase/auth"
+import { AuthError, createUserWithEmailAndPassword, getAuth } from "firebase/auth"
 import { Formik, Field } from "formik"
 import { useContext, useState } from "react"
 import { useNavigate, Link as RouterLink } from "react-router-dom"
