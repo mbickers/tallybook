@@ -24,7 +24,7 @@ export interface Tally {
 
 export interface TallyService {
   tallies?: Tally[]
-  addTally: (kind: TallyKind, name: string) => void
+  addTally: (name: string, kind: TallyKind) => void
   removeTally: (tally: Tally) => void
   updateTally: (tally: Tally) => void
 }
