@@ -65,7 +65,7 @@ export const TallyServiceProvider: React.FC  = ({ children }) => {
   }, [firebase, user])
 
   const addTally = (kind: TallyKind, name: string) => {
-    addDoc(talliesRef, {kind, name, entries: {entries: []}, listPriority: tallies.length, userId: user.uid})
+    addDoc(talliesRef, {kind, name, entries: {entries: []}, listPriority: tallies.length + 1, userId: user.uid})
   }
 
   const updateTally = (tally: Tally) => {

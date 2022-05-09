@@ -4,7 +4,7 @@ import { formattedDate } from "../utils"
 import { TallyServiceContext } from "../providers/TallyServiceProvider"
 import { Tally, TallyKind } from "../types"
 import { Button, Flex, Heading, HStack, IconButton, NumberInput, NumberInputField, Spacer, VStack } from "@chakra-ui/react"
-import { AddIcon, CheckIcon, ChevronRightIcon } from "@chakra-ui/icons"
+import { CheckIcon, ChevronRightIcon } from "@chakra-ui/icons"
 
 const TallyInput = ({kind, value, updateValue}: {kind: TallyKind, value: number, updateValue: (newValue: number) => void}) => {
     switch (kind) {
