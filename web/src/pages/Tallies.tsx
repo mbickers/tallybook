@@ -32,25 +32,10 @@ const Header = () => {
     </Box>
 }
 
-const AddTallyButton = () => {
+export const Tallies = () => {
     const tallyService = useContext(TallyServiceContext)
     const { isOpen, onOpen, onClose } = useDisclosure()
 
-    return (
-        <>
-            <Button leftIcon={<AddIcon />} colorScheme='green' onClick={onOpen} >Add a Tally</Button>
-            <EditTallyModal
-                mode='Add'
-                initialValues={{ name: '', kind: TallyKind.Completion }}
-                isOpen={isOpen}
-                onConfirm={tallyService.addTally}
-                onClose={onClose}
-            />
-        </>
-    )
-}
-
-export const Tallies = () => {
     return (
         <UserProvider>
             <TallyServiceProvider>
@@ -61,7 +46,14 @@ export const Tallies = () => {
                         <Outlet />
                     </HStack>
                     <Box position='fixed' bottom='1rem' right='calc(1rem + (100vw - 50rem) / 2)'>
-                        <AddTallyButton />
+                        <Button leftIcon={<AddIcon />} colorScheme='green' onClick={onOpen} >Add a Tally</Button>
+                        <EditTallyModal
+                            mode='Add'
+                            initialValues={{ name: '', kind: TallyKind.Completion }}
+                            isOpen={isOpen}
+                            onConfirm={tallyService.addTally}
+                            onClose={onClose}
+                        />
                     </Box>
                 </Box>
             </TallyServiceProvider>

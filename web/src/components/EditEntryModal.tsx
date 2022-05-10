@@ -1,6 +1,6 @@
-import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, VStack, FormControl, FormLabel, Input, RadioGroup, HStack, Radio, ModalFooter, Button, NumberInput, NumberInputField } from "@chakra-ui/react";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalBody, Input, HStack, ModalFooter, Button, NumberInput, NumberInputField } from "@chakra-ui/react";
 import { Formik, Field, FieldProps } from "formik";
-import { TallyEntry, TallyKind } from "../types";
+import { TallyEntry } from "../types";
 import { formattedDate } from "../utils";
 
 export const EditEntryModal = ({mode, initialValues, isOpen, onConfirm, onClose}: {mode: "Add" | "Edit", initialValues: TallyEntry, isOpen: boolean, onConfirm: (updatedEntry: TallyEntry) => void, onClose: () => void}) => {
