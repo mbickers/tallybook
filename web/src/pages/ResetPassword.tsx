@@ -1,37 +1,39 @@
-import { Button, Center, Divider, FormControl, FormLabel, Heading, Input, Text, VStack } from "@chakra-ui/react"
-import { FirebaseApp } from "firebase/app"
-import { AuthError, confirmPasswordReset, getAuth } from "firebase/auth"
-import { Formik, Field } from "formik"
-import { useContext, useState } from "react"
-import { useNavigate, useLocation, Navigate } from "react-router-dom"
-import { FirebaseContext } from "../providers/FirebaseProvider"
+import {
+  Button, Center, Divider, FormControl, FormLabel, Heading, Input, Text, VStack,
+} from '@chakra-ui/react';
+import { FirebaseApp } from 'firebase/app';
+import { AuthError, confirmPasswordReset, getAuth } from 'firebase/auth';
+import { Formik, Field } from 'formik';
+import { useContext, useState } from 'react';
+import { useNavigate, useLocation, Navigate } from 'react-router-dom';
+import { FirebaseContext } from '../providers/FirebaseProvider';
 
-export const ResetPassword = () => {
-  const navigate = useNavigate()
-  const firebase = useContext(FirebaseContext) as FirebaseApp
-  const auth = getAuth(firebase) 
-  const [error, setError] = useState('')
+export default function ResetPassword() {
+  const navigate = useNavigate();
+  const firebase = useContext(FirebaseContext) as FirebaseApp;
+  const auth = getAuth(firebase);
+  const [error, setError] = useState('');
 
-  const oobCode = new URLSearchParams(useLocation().search).get('oobCode')
+  const oobCode = new URLSearchParams(useLocation().search).get('oobCode');
 
   if (!oobCode) {
-    return <Navigate to="/signin" />
+    return <Navigate to="/signin" />;
   }
 
   return (
-    <Center bg='gray.100' h='100vh'>
-      <VStack bg='white' w='xs' borderRadius='lg' p='1rem' align='begin'>
+    <Center bg="gray.100" h="100vh">
+      <VStack bg="white" w="xs" borderRadius="lg" p="1rem" align="begin">
         <Heading>Tallybook</Heading>
         <Divider />
-        <Text color='red'>{error}</Text>
+        <Text color="red">{error}</Text>
         <Formik
-          initialValues={{ password: "" }}
+          initialValues={{ password: '' }}
           onSubmit={({ password }) => {
             confirmPasswordReset(auth, oobCode, password)
-              .then(() => navigate("/signin"))
-              .catch((error: AuthError) => {
-                setError(error.message)
-              })
+              .then(() => navigate('/signin'))
+              .catch((authError: AuthError) => {
+                setError(authError.message);
+              });
           }}
         >
           {({ handleSubmit }) => (
@@ -47,13 +49,14 @@ export const ResetPassword = () => {
                     variant="filled"
                   />
                 </FormControl>
-                <Button type="submit" colorScheme='green' variant="solid" isFullWidth>
+                <Button type="submit" colorScheme="green" variant="solid" isFullWidth>
                   Change Password
                 </Button>
               </VStack>
-            </form>)}
+            </form>
+          )}
         </Formik>
       </VStack>
     </Center>
-  )
+  );
 }

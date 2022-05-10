@@ -1,9 +1,9 @@
-import { FirebaseApp, initializeApp } from "firebase/app"
-import React, { useMemo } from "react"
+import { FirebaseApp, initializeApp } from 'firebase/app';
+import React, { ReactNode, useMemo } from 'react';
 
-export const FirebaseContext = React.createContext<FirebaseApp | null>(null)
+export const FirebaseContext = React.createContext<FirebaseApp | null>(null);
 
-export const FirebaseProvider: React.FC = ({ children }) => {
+export function FirebaseProvider({ children }: { children: ReactNode }) {
   const app = useMemo(() => {
     const firebaseConfig = {
       apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
@@ -14,12 +14,12 @@ export const FirebaseProvider: React.FC = ({ children }) => {
       appId: process.env.REACT_APP_FIREBASE_APP_ID,
     };
 
-    return initializeApp(firebaseConfig)
-  }, [])
+    return initializeApp(firebaseConfig);
+  }, []);
 
   return (
     <FirebaseContext.Provider value={app}>
       {children}
     </FirebaseContext.Provider>
-  )
+  );
 }

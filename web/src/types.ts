@@ -1,16 +1,16 @@
 export enum TallyKind {
-  Completion = "Completion",
-  Counter = "Counter",
-  Amount = "Amount",
+  Completion = 'Completion',
+  Counter = 'Counter',
+  Amount = 'Amount',
 }
 
 export interface TallyEntry {
-    formattedDate: string,
-    value: number
+  formattedDate: string,
+  value: number
 }
 
 export interface EntryList {
-    entries: TallyEntry[]
+  entries: TallyEntry[]
 }
 
 export interface Tally {

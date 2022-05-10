@@ -1,31 +1,33 @@
-import { Button, Center, Divider, Flex, FormControl, FormLabel, Heading, Input, Link, Spacer, Text, VStack } from "@chakra-ui/react"
-import { FirebaseApp } from "firebase/app"
-import { AuthError, getAuth, signInWithEmailAndPassword } from "firebase/auth"
-import { Formik, Field } from "formik"
-import { useContext, useState } from "react"
-import { useNavigate, Link as RouterLink } from "react-router-dom"
-import { FirebaseContext } from "../providers/FirebaseProvider"
+import {
+  Button, Center, Divider, Flex, FormControl, FormLabel, Heading, Input, Link, Spacer, Text, VStack,
+} from '@chakra-ui/react';
+import { FirebaseApp } from 'firebase/app';
+import { AuthError, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { Formik, Field } from 'formik';
+import { useContext, useState } from 'react';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import { FirebaseContext } from '../providers/FirebaseProvider';
 
-export const SignIn = () => {
-  const navigate = useNavigate()
-  const firebase = useContext(FirebaseContext) as FirebaseApp
-  const auth = getAuth(firebase) 
-  const [error, setError] = useState('')
+export default function SignIn() {
+  const navigate = useNavigate();
+  const firebase = useContext(FirebaseContext) as FirebaseApp;
+  const auth = getAuth(firebase);
+  const [error, setError] = useState('');
 
   return (
-    <Center bg='gray.100' h='100vh'>
-      <VStack bg='white' w='xs' borderRadius='lg' p='1rem' align='begin'>
+    <Center bg="gray.100" h="100vh">
+      <VStack bg="white" w="xs" borderRadius="lg" p="1rem" align="begin">
         <Heading>Tallybook</Heading>
         <Divider />
-        <Text color='red'>{error}</Text>
+        <Text color="red">{error}</Text>
         <Formik
-          initialValues={{ email: "", password: "" }}
+          initialValues={{ email: '', password: '' }}
           onSubmit={({ email, password }) => {
             signInWithEmailAndPassword(auth, email, password)
-              .then(() => navigate("/tallies"))
-              .catch((error: AuthError) => {
-                setError(error.message)
-              })
+              .then(() => navigate('/tallies'))
+              .catch((authError: AuthError) => {
+                setError(authError.message);
+              });
           }}
         >
           {({ handleSubmit }) => (
@@ -50,19 +52,23 @@ export const SignIn = () => {
                     type="password"
                     variant="filled"
                   />
-                  <Flex direction='row'>
+                  <Flex direction="row">
                     <Spacer />
-                    <Link color='green' as={RouterLink} to='/forgot-password' >Forgot password?</Link>
+                    <Link color="green" as={RouterLink} to="/forgot-password">Forgot password?</Link>
                   </Flex>
                 </FormControl>
-                <Button type="submit" colorScheme='green' variant="solid" isFullWidth>
+                <Button type="submit" colorScheme="green" variant="solid" isFullWidth>
                   Sign In
                 </Button>
               </VStack>
-            </form>)}
+            </form>
+          )}
         </Formik>
-        <Text>Need an account? <Link color='green' as={RouterLink} to='/signup' >Sign up.</Link></Text>
+        <Text>
+          Need an account?
+          <Link color="green" as={RouterLink} to="/signup">Sign up.</Link>
+        </Text>
       </VStack>
     </Center>
-  )
+  );
 }

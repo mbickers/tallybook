@@ -1,37 +1,39 @@
-import { FirebaseApp } from "firebase/app"
-import { getAuth, User } from "firebase/auth"
-import React, { useContext, useEffect, useState } from "react"
-import { Navigate } from "react-router-dom"
-import { FirebaseContext } from "./FirebaseProvider"
+import { FirebaseApp } from 'firebase/app';
+import { getAuth, User } from 'firebase/auth';
+import React, {
+  ReactNode, useContext, useEffect, useState,
+} from 'react';
+import { Navigate } from 'react-router-dom';
+import { FirebaseContext } from './FirebaseProvider';
 
-export const UserContext = React.createContext<User | null>(null)
+export const UserContext = React.createContext<User | null>(null);
 
-export const UserProvider: React.FC = ({ children }) => {
-  const firebase = useContext(FirebaseContext) as FirebaseApp
-  const auth = getAuth(firebase)
-  const [user, setUser] = useState<User | null>(null)
-  const [hasLoaded, setHasLoaded] = useState(false)
+export function UserProvider({ children }: { children: ReactNode }) {
+  const firebase = useContext(FirebaseContext) as FirebaseApp;
+  const auth = getAuth(firebase);
+  const [user, setUser] = useState<User | null>(null);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(user => {
-      setUser(user)
-      setHasLoaded(true)
-    })
+    const unsubscribe = auth.onAuthStateChanged((newUser) => {
+      setUser(newUser);
+      setHasLoaded(true);
+    });
 
-    return unsubscribe
-  }, [])
+    return unsubscribe;
+  }, []);
 
   if (hasLoaded && !user) {
-    return <Navigate to="/signin" />
+    return <Navigate to="/signin" />;
   }
 
   if (!user) {
-    return <p>Logging in</p>
+    return <p>Logging in</p>;
   }
 
   return (
     <UserContext.Provider value={user}>
       {children}
     </UserContext.Provider>
-  )
+  );
 }
