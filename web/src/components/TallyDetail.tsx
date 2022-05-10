@@ -45,7 +45,10 @@ const AddEntryButton = ({tally}: {tally: Tally}) => {
     </>
 }
 
-const EntryRow = ({ entry }: {entry: TallyEntry}) => {
+const EntryRow = ({ entry, tally }: {entry: TallyEntry, tally: Tally}) => {
+    const tallyService = useContext(TallyServiceContext)
+    const { isOpen, onOpen, onClose } = useDisclosure()
+
     return (
         <Tr>
             <Td>{entry.formattedDate}</Td>
@@ -53,8 +56,27 @@ const EntryRow = ({ entry }: {entry: TallyEntry}) => {
             <Td>
                 <HStack>
                     <Spacer />
-                    <Button size='xs'>Edit</Button>
-                    <IconButton size='xs' colorScheme='red' aria-label='delete entry' icon={<DeleteIcon />} />
+                    <Button size='xs' onClick={onOpen} >Edit</Button>
+                    <IconButton size='xs' colorScheme='red' aria-label='delete entry' icon={<DeleteIcon />} 
+                        onClick={() => {
+                            const deletedDate = entry.formattedDate
+                            const updatedEntryList = tally.entries.entries.filter(entry => entry.formattedDate != deletedDate)
+                            const updatedTally = { ...tally, entries: {entries: updatedEntryList}}
+                            tallyService.updateTally(updatedTally)
+                        }} />
+                    <EditEntryModal
+                        mode='Edit'
+                        initialValues={entry}
+                        isOpen={isOpen}
+                        onConfirm={(newEntry) => {
+                            const replacedDate = entry.formattedDate
+                            const filteredEntryList = tally.entries.entries.filter(entry => entry.formattedDate != replacedDate)
+                            const updatedEntryList = [newEntry].concat(filteredEntryList)
+                            const updatedTally = { ...tally, entries: { entries: updatedEntryList } }
+                            tallyService.updateTally(updatedTally)
+                        }}
+                        onClose={onClose}
+                    />
                 </HStack>
             </Td>
         </Tr>
@@ -87,7 +109,7 @@ export const TallyDetail = () => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {tally.entries.entries.map(entry => <EntryRow key={entry.formattedDate} entry={entry} />)}
+                        {tally.entries.entries.map(entry => <EntryRow key={entry.formattedDate} entry={entry} tally={tally} />)}
                     </Tbody>
                 </Table>
             </TableContainer>
