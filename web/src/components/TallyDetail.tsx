@@ -3,7 +3,9 @@ import { Button, Heading, HStack, IconButton, Spacer, Table, TableContainer, Tbo
 import { useContext } from "react"
 import { Navigate, useParams } from "react-router-dom"
 import { TallyServiceContext } from "../providers/TallyServiceProvider"
-import { Tally } from "../types"
+import { Tally, TallyEntry } from "../types"
+import { formattedDate } from "../utils"
+import { EditEntryModal } from "./EditEntryModal"
 import { EditTallyModal } from "./EditTallyModal"
 
 const EditTallyButton = ({tally}: {tally: Tally}) => {
@@ -24,6 +26,41 @@ const EditTallyButton = ({tally}: {tally: Tally}) => {
     </>
 }
 
+const AddEntryButton = ({tally}: {tally: Tally}) => {
+    const tallyService = useContext(TallyServiceContext)
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    return <>
+        <Button isFullWidth leftIcon={<AddIcon />} onClick={onOpen} >Add Entry</Button>
+        <EditEntryModal
+            mode='Add'
+            initialValues={{formattedDate: formattedDate(new Date()), value: 0}}
+            isOpen={isOpen}
+            onConfirm={(newEntry) => {
+                const updatedEntryList = [newEntry].concat(tally.entries.entries)
+                const updatedTally = {...tally, entries: {entries: updatedEntryList}}
+                tallyService.updateTally(updatedTally)
+            }}
+            onClose={onClose}
+        />
+    </>
+}
+
+const EntryRow = ({ entry }: {entry: TallyEntry}) => {
+    return (
+        <Tr>
+            <Td>{entry.formattedDate}</Td>
+            <Td isNumeric>{entry.value}</Td>
+            <Td>
+                <HStack>
+                    <Spacer />
+                    <Button size='xs'>Edit</Button>
+                    <IconButton size='xs' colorScheme='red' aria-label='delete entry' icon={<DeleteIcon />} />
+                </HStack>
+            </Td>
+        </Tr>
+    )
+}
+
 export const TallyDetail = () => {
   const id = useParams().id
   const tallyService = useContext(TallyServiceContext)
@@ -38,7 +75,7 @@ export const TallyDetail = () => {
             <Heading size='md'>{tally.name}</Heading>
             <HStack>
                 <EditTallyButton tally={tally} />
-                <Button isFullWidth leftIcon={<AddIcon />}>Add Entry</Button>
+                <AddEntryButton tally={tally} />
             </HStack>
             <TableContainer>
                 <Table>
@@ -50,19 +87,7 @@ export const TallyDetail = () => {
                         </Tr>
                     </Thead>
                     <Tbody>
-                        {tally.entries.entries.map(entry => (
-                            <Tr key={entry.formattedDate}>
-                                <Td>{entry.formattedDate}</Td>
-                                <Td isNumeric>{entry.value}</Td>
-                                <Td>
-                                    <HStack>
-                                        <Spacer />
-                                        <Button size='xs'>Edit</Button>
-                                        <IconButton size='xs' colorScheme='red' aria-label='delete entry' icon={<DeleteIcon />} />
-                                    </HStack>
-                                </Td>
-                            </Tr>
-                        ))}
+                        {tally.entries.entries.map(entry => <EntryRow key={entry.formattedDate} entry={entry} />)}
                     </Tbody>
                 </Table>
             </TableContainer>
