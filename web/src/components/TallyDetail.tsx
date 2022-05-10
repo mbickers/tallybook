@@ -1,8 +1,28 @@
 import { AddIcon, DeleteIcon, EditIcon } from "@chakra-ui/icons"
-import { Button, Heading, HStack, IconButton, Spacer, Table, TableContainer, Tbody, Td, Th, Thead, Tr, VStack } from "@chakra-ui/react"
+import { Button, Heading, HStack, IconButton, Spacer, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useDisclosure, VStack } from "@chakra-ui/react"
 import { useContext } from "react"
 import { Navigate, useParams } from "react-router-dom"
 import { TallyServiceContext } from "../providers/TallyServiceProvider"
+import { Tally } from "../types"
+import { EditTallyModal } from "./EditTallyModal"
+
+const EditTallyButton = ({tally}: {tally: Tally}) => {
+    const tallyService = useContext(TallyServiceContext)
+    const { isOpen, onOpen, onClose } = useDisclosure()
+    return <>
+        <Button isFullWidth leftIcon={<EditIcon />} onClick={onOpen} >Edit Tally</Button>
+        <EditTallyModal
+            mode='Edit'
+            initialValues={tally}
+            isOpen={isOpen}
+            onConfirm={(name, kind) => {
+                const updatedTally = {...tally, name, kind}
+                tallyService.updateTally(updatedTally)
+            }}
+            onClose={onClose}
+        />
+    </>
+}
 
 export const TallyDetail = () => {
   const id = useParams().id
@@ -17,7 +37,7 @@ export const TallyDetail = () => {
         <VStack p='0.4rem' bg='white' borderRadius='lg' direction='column' w='100%' align='begin' position='sticky' top='3.5rem'>
             <Heading size='md'>{tally.name}</Heading>
             <HStack>
-                <Button isFullWidth leftIcon={<EditIcon />}>Edit Tally</Button>
+                <EditTallyButton tally={tally} />
                 <Button isFullWidth leftIcon={<AddIcon />}>Add Entry</Button>
             </HStack>
             <TableContainer>

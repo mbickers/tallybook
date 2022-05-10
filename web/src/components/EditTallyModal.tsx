@@ -7,7 +7,7 @@ export const EditTallyModal = ({mode, initialValues, isOpen, onConfirm, onClose}
         <Modal isOpen={isOpen} onClose={onClose}>
             <ModalOverlay />
             <ModalContent>
-                <ModalHeader>{mode} a Tally</ModalHeader>
+                <ModalHeader>{mode === "Add" ? "Add a Tally" : "Edit Tally"}</ModalHeader>
                 <Formik
                     initialValues={initialValues}
                     onSubmit={({ name, kind }) => {
@@ -49,7 +49,7 @@ export const EditTallyModal = ({mode, initialValues, isOpen, onConfirm, onClose}
                                 <HStack>
                                     <Button variant='ghost' mr='1rem' onClick={onClose}>Cancel</Button>
                                     <Button colorScheme='green' type='submit'>
-                                        {mode} Tally
+                                        {mode === "Add" ? "Add Tally" : "Done"}
                                     </Button>
                                 </HStack>
                             </ModalFooter>
