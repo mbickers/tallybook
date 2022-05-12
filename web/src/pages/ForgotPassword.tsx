@@ -1,5 +1,5 @@
 import {
-  Button, Center, Divider, FormControl, FormLabel, Heading, Input, Text, VStack,
+  Button, Center, Divider, FormControl, FormLabel, Input, Text, VStack,
 } from '@chakra-ui/react';
 import { FirebaseApp } from 'firebase/app';
 import { AuthError, getAuth, sendPasswordResetEmail } from 'firebase/auth';
