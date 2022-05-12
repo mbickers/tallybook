@@ -62,7 +62,7 @@ struct TallyListView: View {
       }
 
     }
-    .navigationViewStyle(StackNavigationViewStyle())
+    .navigationViewStyle(.stack)
     .font(Font.system(.body, design: .rounded))
     .accentColor(.customAccent)
   }
