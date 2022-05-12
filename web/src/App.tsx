@@ -27,6 +27,10 @@ const theme = extendTheme({
       900: '#001602',
     },
   },
+  fonts: {
+    body: 'Nunito, sans-serif',
+    heading: 'Nunito, sans-serif',
+  },
 });
 
 function App() {
