@@ -45,7 +45,7 @@ export default function Tallies() {
     <UserProvider>
       <TallyServiceProvider>
         <Header />
-        <HStack align="baseline" m="auto" maxW="50rem" py="3.5rem">
+        <HStack align="baseline" m="auto" maxW="50rem" pt="3.5rem" pb="4.5rem">
           <TallyList />
           <Outlet />
         </HStack>
