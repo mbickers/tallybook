@@ -74,8 +74,7 @@ export function TallyServiceProvider({ children }: { children: ReactNode }) {
 
   const updateTally = (tally: Tally) => {
     if ('id' in tally) {
-      setDoc(doc(talliesRef, tally.id), normalizeTally(tally))
-        .catch(console.log);
+      setDoc(doc(talliesRef, tally.id), normalizeTally(tally));
     }
   };
 
