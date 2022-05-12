@@ -16,7 +16,7 @@ export default function ForgotPassword() {
   const [error, setError] = useState('');
 
   return (
-    <Center bg="gray.100" h="100vh">
+    <Center h="100vh">
       <VStack bg="white" w="xs" borderRadius="lg" p="1rem" align="begin">
         <TallybookHeading />
         <Divider />

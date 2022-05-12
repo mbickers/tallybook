@@ -44,22 +44,20 @@ export default function Tallies() {
   return (
     <UserProvider>
       <TallyServiceProvider>
-        <Box bg="gray.100" minH="100vh">
-          <Header />
-          <HStack align="baseline" m="auto" maxW="50rem" py="3.5rem">
-            <TallyList />
-            <Outlet />
-          </HStack>
-          <Box position="fixed" bottom="1rem" right="calc(1rem + (100vw - 50rem) / 2)">
-            <Button leftIcon={<AddIcon />} colorScheme="green" onClick={onOpen}>Add a Tally</Button>
-            <EditTallyModal
-              mode="Add"
-              initialValues={{ name: '', kind: TallyKind.Completion }}
-              isOpen={isOpen}
-              onConfirm={tallyService.addTally}
-              onClose={onClose}
-            />
-          </Box>
+        <Header />
+        <HStack align="baseline" m="auto" maxW="50rem" py="3.5rem">
+          <TallyList />
+          <Outlet />
+        </HStack>
+        <Box position="fixed" bottom="1rem" right="calc(1rem + (100vw - 50rem) / 2)">
+          <Button leftIcon={<AddIcon />} colorScheme="green" onClick={onOpen}>Add a Tally</Button>
+          <EditTallyModal
+            mode="Add"
+            initialValues={{ name: '', kind: TallyKind.Completion }}
+            isOpen={isOpen}
+            onConfirm={tallyService.addTally}
+            onClose={onClose}
+          />
         </Box>
       </TallyServiceProvider>
     </UserProvider>
