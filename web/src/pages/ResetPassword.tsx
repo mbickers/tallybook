@@ -6,6 +6,7 @@ import { AuthError, confirmPasswordReset, getAuth } from 'firebase/auth';
 import { Formik, Field } from 'formik';
 import { useContext, useState } from 'react';
 import { useNavigate, useLocation, Navigate } from 'react-router-dom';
+import TallybookHeading from '../components/TallybookHeading';
 import { FirebaseContext } from '../providers/FirebaseProvider';
 
 export default function ResetPassword() {
@@ -23,7 +24,7 @@ export default function ResetPassword() {
   return (
     <Center bg="gray.100" h="100vh">
       <VStack bg="white" w="xs" borderRadius="lg" p="1rem" align="begin">
-        <Heading>Tallybook</Heading>
+        <TallybookHeading />
         <Divider />
         <Text color="red">{error}</Text>
         <Formik

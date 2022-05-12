@@ -1,12 +1,13 @@
 import { AddIcon, ChevronDownIcon } from '@chakra-ui/icons';
 import {
-  Box, Button, Flex, Heading, HStack, Menu, MenuButton, MenuItem, MenuList, Spacer, useDisclosure,
+  Box, Button, Flex, HStack, Menu, MenuButton, MenuItem, MenuList, Spacer, useDisclosure,
 } from '@chakra-ui/react';
 import { FirebaseApp } from 'firebase/app';
 import { User, getAuth } from 'firebase/auth';
 import { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import EditTallyModal from '../components/EditTallyModal';
+import TallybookHeading from '../components/TallybookHeading';
 import TallyList from '../components/TallyList';
 import { FirebaseContext } from '../providers/FirebaseProvider';
 import { TallyServiceContext, TallyServiceProvider } from '../providers/TallyServiceProvider';
@@ -21,7 +22,7 @@ function Header() {
   return (
     <Box as="header" pos="fixed" w="100%" bg="white" zIndex="1">
       <Flex maxW="50rem" m="auto" mt="0.1rem">
-        <Heading>Tallybook</Heading>
+        <TallybookHeading />
         <Spacer />
         <Menu>
           <MenuButton as={Button} rightIcon={<ChevronDownIcon />} variant="ghost">

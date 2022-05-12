@@ -6,6 +6,7 @@ import { AuthError, getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { Formik, Field } from 'formik';
 import { useContext, useState } from 'react';
 import { useNavigate, Link as RouterLink } from 'react-router-dom';
+import TallybookHeading from '../components/TallybookHeading';
 import { FirebaseContext } from '../providers/FirebaseProvider';
 
 export default function SignIn() {
@@ -17,7 +18,7 @@ export default function SignIn() {
   return (
     <Center bg="gray.100" h="100vh">
       <VStack bg="white" w="xs" borderRadius="lg" p="1rem" align="begin">
-        <Heading>Tallybook</Heading>
+        <TallybookHeading />
         <Divider />
         <Text color="red">{error}</Text>
         <Formik
@@ -66,6 +67,7 @@ export default function SignIn() {
         </Formik>
         <Text>
           Need an account?
+          {' '}
           <Link color="green" as={RouterLink} to="/signup">Sign up.</Link>
         </Text>
       </VStack>
