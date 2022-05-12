@@ -52,7 +52,7 @@ export default function EditTallyModal({
               <ModalFooter>
                 <HStack>
                   <Button variant="ghost" mr="1rem" onClick={onClose}>Cancel</Button>
-                  <Button colorScheme="green" type="submit">
+                  <Button colorScheme="accent" type="submit">
                     {mode === 'Add' ? 'Add Tally' : 'Done'}
                   </Button>
                 </HStack>

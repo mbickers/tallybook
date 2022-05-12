@@ -44,7 +44,7 @@ export default function ForgotPassword() {
                     variant="filled"
                   />
                 </FormControl>
-                <Button type="submit" colorScheme="green" variant="solid" isFullWidth>
+                <Button type="submit" colorScheme="accent" variant="solid" isFullWidth>
                   Send Reset Email
                 </Button>
               </VStack>

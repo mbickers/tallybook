@@ -54,7 +54,7 @@ export default function SignUp() {
                     variant="filled"
                   />
                 </FormControl>
-                <Button type="submit" colorScheme="green" variant="solid" isFullWidth>
+                <Button type="submit" colorScheme="accent" variant="solid" isFullWidth>
                   Sign Up
                 </Button>
               </VStack>
@@ -64,7 +64,7 @@ export default function SignUp() {
         <Text>
           Already have an account?
           {' '}
-          <Link color="green" as={RouterLink} to="/signin">Sign in.</Link>
+          <Link color="accent" as={RouterLink} to="/signin">Sign in.</Link>
         </Text>
       </VStack>
     </Center>
