@@ -50,7 +50,7 @@ export default function ResetPassword() {
                     variant="filled"
                   />
                 </FormControl>
-                <Button type="submit" colorScheme="green" variant="solid" isFullWidth>
+                <Button type="submit" colorScheme="accent" variant="solid" isFullWidth>
                   Change Password
                 </Button>
               </VStack>

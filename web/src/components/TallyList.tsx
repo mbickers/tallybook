@@ -12,7 +12,7 @@ function TallyInput({ kind, value, updateValue }: { kind: TallyKind, value: numb
   switch (kind) {
     case TallyKind.Completion:
       if (value === 1) {
-        return <IconButton w="1rem" icon={<CheckIcon />} aria-label="complete tally" colorScheme="green" onClick={() => updateValue(0)} />;
+        return <IconButton w="1rem" icon={<CheckIcon />} aria-label="complete tally" colorScheme="accent" onClick={() => updateValue(0)} />;
       }
       return <IconButton w="1rem" icon={<CheckIcon />} aria-label="complete tally" variant="outline" onClick={() => updateValue(1)} />;
 
@@ -43,7 +43,7 @@ function TallyRow({ tally }: { tally: Tally }) {
 
   const location = useLocation().pathname;
   const detailLocation = `/tallies/${tally.id}`;
-  const linkProps = location === detailLocation ? { colorScheme: 'green', variant: 'solid' } : {};
+  const linkProps = location === detailLocation ? { colorScheme: 'accent', variant: 'solid' } : {};
 
   const updateTodayValue = (value: number) => {
     const otherEntries = entriesIncludesToday ? entries.slice(1) : entries;

@@ -50,7 +50,7 @@ export default function Tallies() {
           <Outlet />
         </HStack>
         <Box position="fixed" bottom="1rem" right="calc(1rem + (100vw - 50rem) / 2)">
-          <Button leftIcon={<AddIcon />} colorScheme="green" onClick={onOpen}>Add a Tally</Button>
+          <Button leftIcon={<AddIcon />} colorScheme="accent" onClick={onOpen}>Add a Tally</Button>
           <EditTallyModal
             mode="Add"
             initialValues={{ name: '', kind: TallyKind.Completion }}

@@ -1,7 +1,9 @@
 import {
   BrowserRouter, Routes, Route, Navigate,
 } from 'react-router-dom';
-import { Box, ChakraProvider, Heading } from '@chakra-ui/react';
+import {
+  Box, ChakraProvider, extendTheme, Heading,
+} from '@chakra-ui/react';
 import TallyDetail from './components/TallyDetail';
 import { FirebaseProvider } from './providers/FirebaseProvider';
 import Tallies from './pages/Tallies';
@@ -10,9 +12,26 @@ import SignUp from './pages/SignUp';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
 
+const theme = extendTheme({
+  colors: {
+    accent: {
+      50: '#e2fdea',
+      100: '#bdf0cb',
+      200: '#98e6ac',
+      300: '#70da8b',
+      400: '#49cf6b',
+      500: '#30b651',
+      600: '#238e3e',
+      700: '#16652b',
+      800: '#083e18',
+      900: '#001602',
+    },
+  },
+});
+
 function App() {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <FirebaseProvider>
         <Box bg="gray.100" minH="100vh">
           <BrowserRouter>
