@@ -37,10 +37,25 @@ function Header() {
   );
 }
 
-export default function Tallies() {
+function AddTallyButton() {
   const tallyService = useContext(TallyServiceContext);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  return (
+    <Box position="fixed" bottom="1rem" right="calc(1rem + (100vw - 50rem) / 2)">
+      <Button leftIcon={<AddIcon />} colorScheme="accent" onClick={onOpen}>Add a Tally</Button>
+      <EditTallyModal
+        mode="Add"
+        initialValues={{ name: '', kind: TallyKind.Completion }}
+        isOpen={isOpen}
+        onConfirm={tallyService.addTally}
+        onClose={onClose}
+      />
+    </Box>
+  );
+}
+
+export default function Tallies() {
   return (
     <UserProvider>
       <TallyServiceProvider>
@@ -49,16 +64,7 @@ export default function Tallies() {
           <TallyList />
           <Outlet />
         </HStack>
-        <Box position="fixed" bottom="1rem" right="calc(1rem + (100vw - 50rem) / 2)">
-          <Button leftIcon={<AddIcon />} colorScheme="accent" onClick={onOpen}>Add a Tally</Button>
-          <EditTallyModal
-            mode="Add"
-            initialValues={{ name: '', kind: TallyKind.Completion }}
-            isOpen={isOpen}
-            onConfirm={tallyService.addTally}
-            onClose={onClose}
-          />
-        </Box>
+        <AddTallyButton />
       </TallyServiceProvider>
     </UserProvider>
   );
