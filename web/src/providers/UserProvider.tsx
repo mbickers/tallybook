@@ -1,3 +1,4 @@
+import { Center, Spinner } from '@chakra-ui/react';
 import { FirebaseApp } from 'firebase/app';
 import { getAuth, User } from 'firebase/auth';
 import React, {
@@ -28,7 +29,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   }
 
   if (!user) {
-    return <p>Logging in</p>;
+    return <Center h="100vh"><Spinner /></Center>;
   }
 
   return (
