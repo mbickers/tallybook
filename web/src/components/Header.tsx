@@ -30,7 +30,7 @@ function UserBox() {
   if (location.pathname.startsWith('/tallies')) {
     return (
       <Menu>
-        <MenuButton as={Button} rightIcon={<ChevronDownIcon />} variant="ghost">
+        <MenuButton as={Button} rightIcon={<ChevronDownIcon />} variant="ghost" h="2rem">
           {user.email}
         </MenuButton>
         <MenuList>
