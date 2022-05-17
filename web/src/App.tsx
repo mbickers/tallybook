@@ -32,6 +32,17 @@ const theme = extendTheme({
     body: 'Nunito, sans-serif',
     heading: 'Nunito, sans-serif',
   },
+  components: {
+    Link: {
+      variants: {
+        'no-underline': {
+          _hover: {
+            textDecoration: 'none',
+          },
+        },
+      },
+    },
+  },
 });
 
 function App() {
