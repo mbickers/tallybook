@@ -8,7 +8,7 @@ export default function TallybookHeading() {
     <Link as={RouterLink} to="/" variant="no-underline">
       <HStack spacing="0.5rem">
         <Image boxSize="2.5rem" src="/logo.png" />
-        <Heading>Tallybook</Heading>
+        <Heading fontSize="2rem">Tallybook</Heading>
       </HStack>
     </Link>
   );
