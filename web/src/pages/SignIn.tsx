@@ -58,7 +58,7 @@ export default function SignIn() {
                     <Link as={RouterLink} to="/forgot-password">Forgot password?</Link>
                   </Flex>
                 </FormControl>
-                <Button type="submit" colorScheme="accent" variant="solid" isFullWidth>
+                <Button type="submit" colorScheme="accent" variant="solid" w="auto">
                   Sign In
                 </Button>
               </VStack>

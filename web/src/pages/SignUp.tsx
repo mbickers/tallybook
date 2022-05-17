@@ -54,7 +54,7 @@ export default function SignUp() {
                     variant="filled"
                   />
                 </FormControl>
-                <Button type="submit" colorScheme="accent" variant="solid" isFullWidth>
+                <Button type="submit" colorScheme="accent" variant="solid" w="auto">
                   Sign Up
                 </Button>
               </VStack>

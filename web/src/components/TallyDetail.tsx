@@ -15,7 +15,7 @@ function EditTallyButton({ tally }: { tally: Tally }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button isFullWidth leftIcon={<EditIcon />} onClick={onOpen}>Edit Tally</Button>
+      <Button w="auto" leftIcon={<EditIcon />} onClick={onOpen}>Edit Tally</Button>
       <EditTallyModal
         mode="Edit"
         initialValues={tally}
@@ -35,7 +35,7 @@ function AddEntryButton({ tally }: { tally: Tally }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button isFullWidth leftIcon={<AddIcon />} onClick={onOpen}>Add Entry</Button>
+      <Button w="auto" leftIcon={<AddIcon />} onClick={onOpen}>Add Entry</Button>
       <EditEntryModal
         mode="Add"
         initialValues={{ formattedDate: formattedDate(new Date()), value: 0 }}
