@@ -64,7 +64,7 @@ export default function SignUp() {
         <Text>
           Already have an account?
           {' '}
-          <Link color="accent" as={RouterLink} to="/signin">Sign in.</Link>
+          <Link as={RouterLink} to="/signin">Sign in.</Link>
         </Text>
       </VStack>
     </Center>

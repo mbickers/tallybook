@@ -55,7 +55,7 @@ export default function SignIn() {
                   />
                   <Flex direction="row">
                     <Spacer />
-                    <Link color="accent" as={RouterLink} to="/forgot-password">Forgot password?</Link>
+                    <Link as={RouterLink} to="/forgot-password">Forgot password?</Link>
                   </Flex>
                 </FormControl>
                 <Button type="submit" colorScheme="accent" variant="solid" isFullWidth>
@@ -68,7 +68,7 @@ export default function SignIn() {
         <Text>
           Need an account?
           {' '}
-          <Link color="accent" as={RouterLink} to="/signup">Sign up.</Link>
+          <Link as={RouterLink} to="/signup">Sign up.</Link>
         </Text>
       </VStack>
     </Center>

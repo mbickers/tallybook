@@ -34,8 +34,12 @@ const theme = extendTheme({
   },
   components: {
     Link: {
+      baseStyle: {
+        color: 'accent.500',
+      },
       variants: {
         'no-underline': {
+          color: 'inherit',
           _hover: {
             textDecoration: 'none',
           },
