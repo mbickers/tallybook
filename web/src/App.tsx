@@ -2,7 +2,7 @@ import {
   BrowserRouter, Routes, Route, Navigate,
 } from 'react-router-dom';
 import {
-  Box, ChakraProvider, extendTheme, Heading,
+  Box, ChakraProvider, extendTheme,
 } from '@chakra-ui/react';
 import TallyDetail from './components/TallyDetail';
 import { FirebaseProvider } from './providers/FirebaseProvider';
@@ -11,6 +11,7 @@ import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
 import ForgotPassword from './pages/ForgotPassword';
 import ResetPassword from './pages/ResetPassword';
+import Index from './pages/Index';
 
 const theme = extendTheme({
   colors: {
@@ -40,7 +41,7 @@ function App() {
         <Box bg="gray.100" minH="100vh">
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Heading>Homepage</Heading>} />
+              <Route path="/" element={<Index />} />
               <Route path="/signin" element={<SignIn />} />
               <Route path="/signup" element={<SignUp />} />
               <Route path="/reset-password" element={<ResetPassword />} />

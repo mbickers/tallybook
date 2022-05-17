@@ -1,41 +1,15 @@
-import { AddIcon, ChevronDownIcon } from '@chakra-ui/icons';
+import { AddIcon } from '@chakra-ui/icons';
 import {
-  Box, Button, Flex, HStack, Menu, MenuButton, MenuItem, MenuList, Spacer, useDisclosure,
+  Box, Button, HStack, useDisclosure,
 } from '@chakra-ui/react';
-import { FirebaseApp } from 'firebase/app';
-import { User, getAuth } from 'firebase/auth';
 import { useContext } from 'react';
 import { Outlet } from 'react-router-dom';
 import EditTallyModal from '../components/EditTallyModal';
-import TallybookHeading from '../components/TallybookHeading';
+import Header from '../components/Header';
 import TallyList from '../components/TallyList';
-import { FirebaseContext } from '../providers/FirebaseProvider';
 import { TallyServiceContext, TallyServiceProvider } from '../providers/TallyServiceProvider';
-import { UserContext, UserProvider } from '../providers/UserProvider';
+import { UserProvider } from '../providers/UserProvider';
 import { TallyKind } from '../types';
-
-function Header() {
-  const firebase = useContext(FirebaseContext) as FirebaseApp;
-  const user = useContext(UserContext) as User;
-  const auth = getAuth(firebase);
-
-  return (
-    <Box as="header" pos="fixed" w="100%" bg="white" zIndex="1">
-      <Flex maxW="50rem" m="auto" mt="0.1rem">
-        <TallybookHeading />
-        <Spacer />
-        <Menu>
-          <MenuButton as={Button} rightIcon={<ChevronDownIcon />} variant="ghost">
-            {user.email}
-          </MenuButton>
-          <MenuList>
-            <MenuItem onClick={() => auth.signOut()}>Sign Out</MenuItem>
-          </MenuList>
-        </Menu>
-      </Flex>
-    </Box>
-  );
-}
 
 function AddTallyButton() {
   const tallyService = useContext(TallyServiceContext);
