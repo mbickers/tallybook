@@ -11,9 +11,11 @@ import Foundation
 
 class AuthenticationService: ObservableObject {
   @Published var user: User? = nil
+  @Published var hasLoaded = false
 
   init() {
     Auth.auth().addStateDidChangeListener { _, user in
+      self.hasLoaded = true
       self.user = user
     }
   }

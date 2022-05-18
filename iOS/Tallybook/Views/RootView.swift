@@ -13,15 +13,14 @@ struct RootView: View {
   @ObservedObject private var authenticationService = AppDelegate.shared.authenticationService
 
   var body: some View {
-    let showingLoginBinding = Binding {
-      return authenticationService.user == nil
-    } set: { _ in
-    }
-
-    TallyListView()
-      .sheet(isPresented: showingLoginBinding) {
+    if !authenticationService.hasLoaded {
+      ProgressView()
+    } else {
+      if authenticationService.user == nil {
         LoginView()
-          .interactiveDismissDisabled()
+      } else {
+        TallyListView()
       }
+    }
   }
 }
