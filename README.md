@@ -25,9 +25,9 @@ firebase apps:sdkconfig iOS [iOS app ID] > iOS/Tallybook/GoogleService-Info.plis
 To add web app:
 ```bash
 firebase apps:create web tallybook
-echo REACT_APP_FIREBASE_CONFIG=\” > web/.env.local
+echo REACT_APP_FIREBASE_CONFIG=\" > web/.env.local
 firebase apps:sdkconfig web [web app ID]  | grep -zo "{[[:space:][:alnum:]:\",.-]*}"  | tr -d '\n' >> web/.env
-echo “ >> web/.env.local
+echo \" >> web/.env.local
 ```
 
 When firestore rules are changed: `firebase deploy`.
