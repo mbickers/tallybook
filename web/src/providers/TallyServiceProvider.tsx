@@ -6,6 +6,7 @@ import {
 import React, {
   useState, useEffect, useContext, ReactNode,
 } from 'react';
+import { Center, Spinner } from '@chakra-ui/react';
 import { FirebaseContext } from './FirebaseProvider';
 import {
   EntryList, Tally, TallyKind, TallyService,
@@ -53,6 +54,7 @@ export function TallyServiceProvider({ children }: { children: ReactNode }) {
   const firebase = useContext(FirebaseContext) as FirebaseApp;
   const user = useContext(UserContext) as User;
   const [tallies, setTallies] = useState<Tally[]>([]);
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   const firestore = getFirestore(firebase);
   const talliesRef = collection(firestore, 'tallies');
@@ -60,11 +62,16 @@ export function TallyServiceProvider({ children }: { children: ReactNode }) {
     const talliesQuery = query(talliesRef, where('userId', '==', user.uid), orderBy('listPriority'));
     const unsubscribe = onSnapshot(talliesQuery, (snapshot) => {
       const updatedTallies = snapshot.docs.map((tallyDoc) => ({ id: tallyDoc.id, ...tallyDoc.data() } as Tally));
+      setHasLoaded(true);
       setTallies(updatedTallies);
     });
 
     return unsubscribe;
   }, [firebase, user]);
+
+  if (!hasLoaded) {
+    return <Center h="100vh"><Spinner /></Center>;
+  }
 
   const addTally = (name: string, kind: TallyKind) => {
     addDoc(talliesRef, {
