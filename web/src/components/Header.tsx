@@ -1,6 +1,6 @@
-import { ChevronDownIcon } from '@chakra-ui/icons';
+import { ChevronDownIcon, HamburgerIcon } from '@chakra-ui/icons';
 import {
-  Box, Flex, Spacer, Menu, MenuButton, Button, MenuList, MenuItem,
+  Box, Flex, Spacer, Menu, MenuButton, Button, MenuList, MenuItem, useMediaQuery, IconButton,
 } from '@chakra-ui/react';
 import { FirebaseApp } from 'firebase/app';
 import { getAuth, User } from 'firebase/auth';
@@ -14,6 +14,7 @@ function UserBox() {
   const auth = getAuth(firebase);
   const [user, setUser] = useState<User | null>(auth.currentUser);
   const location = useLocation();
+  const [showFullEmail] = useMediaQuery('(min-width: 40rem)');
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((newUser) => {
@@ -28,11 +29,17 @@ function UserBox() {
   }
 
   if (location.pathname.startsWith('/tallies')) {
-    return (
-      <Menu>
+    const menuButton = showFullEmail
+      ? (
         <MenuButton as={Button} rightIcon={<ChevronDownIcon />} variant="ghost" h="2rem">
           {user.email}
         </MenuButton>
+      )
+      : <MenuButton as={IconButton} icon={<HamburgerIcon />} variant="ghost" size="sm" />;
+
+    return (
+      <Menu>
+        {menuButton}
         <MenuList>
           <MenuItem onClick={() => auth.signOut()}>Sign Out</MenuItem>
         </MenuList>
