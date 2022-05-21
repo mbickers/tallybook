@@ -30,4 +30,4 @@ firebase apps:sdkconfig web [web app ID]  | grep -zo "{[[:space:][:alnum:]:\",.-
 echo \" >> web/.env.local
 ```
 
-When firestore rules are changed: `firebase deploy`.
+To deploy web app or firestore rules: `firebase deploy`.
