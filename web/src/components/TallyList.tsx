@@ -41,9 +41,9 @@ function TallyRow({ tally }: { tally: Tally }) {
   const entriesIncludesToday = entries.length > 0 && entries[0].formattedDate === todayFormatted;
   const todayValue = entriesIncludesToday ? entries[0].value : 0;
 
-  const location = useLocation().pathname;
   const detailLocation = `/tallies/${tally.id}`;
-  const linkProps = location === detailLocation ? { colorScheme: 'accent', variant: 'solid' } : {};
+  const showingDetail = useLocation().pathname === detailLocation;
+  const linkProps = showingDetail ? { colorScheme: 'accent', variant: 'solid', to: '/tallies' } : { to: detailLocation };
 
   const updateTodayValue = (value: number) => {
     const otherEntries = entriesIncludesToday ? entries.slice(1) : entries;
@@ -61,7 +61,7 @@ function TallyRow({ tally }: { tally: Tally }) {
         <TallyInput kind={tally.kind} value={todayValue} updateValue={updateTodayValue} />
       </VStack>
       <Spacer />
-      <IconButton size="lg" h="inherit" as={RouterLink} to={detailLocation} icon={<ChevronRightIcon />} aria-label="see detail" variant="ghost" {...linkProps} />
+      <IconButton size="lg" h="inherit" as={RouterLink} icon={<ChevronRightIcon />} aria-label="see detail" variant="ghost" {...linkProps} />
     </Flex>
   );
 }
