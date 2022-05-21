@@ -81,6 +81,7 @@ struct LoginView: View {
           message: Text(loginViewModel.alertData!.message))
       }
     }
+    .navigationViewStyle(.stack)
     .accentColor(.customAccent)
   }
 }
