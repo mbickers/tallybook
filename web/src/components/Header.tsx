@@ -45,8 +45,8 @@ function UserBox() {
 
 export default function Header() {
   return (
-    <Box as="header" pos="fixed" w="100%" bg="white" zIndex="1">
-      <Flex maxW="50rem" m="auto" alignItems="center">
+    <Box as="header" pos="fixed" w="100vw" bg="white" zIndex="1" mx="-x-inset" px="x-inset">
+      <Flex maxW="max-content-width" m="auto" alignItems="center">
         <TallybookHeading />
         <Spacer />
         <UserBox />

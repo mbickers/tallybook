@@ -16,7 +16,7 @@ function AddTallyButton() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box position="fixed" bottom="1rem" right="calc(1rem + (100vw - 50rem) / 2)">
+    <Box position="fixed" bottom="1rem" right="calc(1rem + (100vw - var(--chakra-sizes-max-content-width)) / 2)">
       <Button leftIcon={<AddIcon />} colorScheme="accent" onClick={onOpen}>Add a Tally</Button>
       <EditTallyModal
         mode="Add"
@@ -34,7 +34,7 @@ export default function Tallies() {
     <UserProvider>
       <TallyServiceProvider>
         <Header />
-        <HStack align="baseline" m="auto" maxW="50rem" pt="3.5rem" pb="4.5rem">
+        <HStack align="baseline" m="auto" maxW="max-content-width" pt="3.5rem" pb="4.5rem">
           <TallyList />
           <Outlet />
         </HStack>

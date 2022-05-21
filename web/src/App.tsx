@@ -14,6 +14,12 @@ import ResetPassword from './pages/ResetPassword';
 import Index from './pages/Index';
 
 const theme = extendTheme({
+  space: {
+    'x-inset': '0.7rem',
+  },
+  sizes: {
+    'max-content-width': '50rem',
+  },
   colors: {
     accent: {
       50: '#e2fdea',
@@ -53,7 +59,7 @@ function App() {
   return (
     <ChakraProvider theme={theme}>
       <FirebaseProvider>
-        <Box bg="gray.100" minH="100vh">
+        <Box bg="gray.100" minH="100vh" w="100vw" px="x-inset">
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Index />} />

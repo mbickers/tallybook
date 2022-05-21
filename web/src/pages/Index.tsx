@@ -25,9 +25,9 @@ export default function Index() {
   return (
     <>
       <Header />
-      <Flex m="auto" maxW="50rem" pt="3.5rem" direction="column" minH="100vh">
+      <Flex m="auto" maxW="max-content-width" pt="3.5rem" direction="column" minH="inherit">
         <Spacer />
-        <VStack w="md" align="leading" spacing="0.8rem">
+        <VStack w={['inherit', 'md']} align="leading" spacing="0.8rem">
           <Heading>Keep track of things you do every day.</Heading>
           <Text>Tallybook is a web and iOS app that allows you to log the things you do frequently.</Text>
           <HStack>
