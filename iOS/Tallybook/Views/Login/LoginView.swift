@@ -38,6 +38,7 @@ struct LoginView: View {
     NavigationView {
       ScrollView {
         TextField("Email", text: $email)
+          .disableAutocorrection(true)
           .autocapitalization(.none)
           .keyboardType(.emailAddress)
           .textFieldStyle(.roundedBorder)
