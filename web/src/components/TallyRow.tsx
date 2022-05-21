@@ -34,7 +34,7 @@ function TallyInput({ kind, value, updateValue }: { kind: TallyKind, value: numb
   }
 }
 
-function TallyRow({ tally }: { tally: Tally }) {
+export default function TallyRow({ tally }: { tally: Tally }) {
   const tallyService = useContext(TallyServiceContext);
   const { entries } = tally.entries;
   const todayFormatted = formattedDate(new Date());
@@ -55,7 +55,7 @@ function TallyRow({ tally }: { tally: Tally }) {
   };
 
   return (
-    <Flex w="18rem" p="0.4rem" bg="white" borderRadius="lg" direction="row" gap="0.2rem">
+    <Flex w="inherit" p="0.4rem" bg="white" borderRadius="lg" direction="row" gap="0.2rem">
       <VStack align="begin">
         <Heading size="md">{tally.name}</Heading>
         <TallyInput kind={tally.kind} value={todayValue} updateValue={updateTodayValue} />
@@ -63,15 +63,5 @@ function TallyRow({ tally }: { tally: Tally }) {
       <Spacer />
       <IconButton size="lg" h="inherit" as={RouterLink} icon={<ChevronRightIcon />} aria-label="see detail" variant="ghost" {...linkProps} />
     </Flex>
-  );
-}
-
-export default function TallyList() {
-  const tallyService = useContext(TallyServiceContext);
-
-  return (
-    <VStack w="18rem">
-      {tallyService.tallies?.map((tally) => <TallyRow tally={tally} key={tally.id} />)}
-    </VStack>
   );
 }

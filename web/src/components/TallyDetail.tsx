@@ -1,9 +1,9 @@
 import { AddIcon, DeleteIcon, EditIcon } from '@chakra-ui/icons';
 import {
-  Button, Heading, HStack, IconButton, Spacer, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useDisclosure, VStack,
+  Button, CloseButton, Heading, HStack, IconButton, Spacer, Table, TableContainer, Tbody, Td, Th, Thead, Tr, useDisclosure, VStack,
 } from '@chakra-ui/react';
 import { useContext } from 'react';
-import { Navigate, useParams } from 'react-router-dom';
+import { Link, Navigate, useParams } from 'react-router-dom';
 import { TallyServiceContext } from '../providers/TallyServiceProvider';
 import { Tally, TallyEntry } from '../types';
 import formattedDate from '../utils';
@@ -15,7 +15,7 @@ function EditTallyButton({ tally }: { tally: Tally }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button w="auto" leftIcon={<EditIcon />} onClick={onOpen}>Edit Tally</Button>
+      <Button width="100%" leftIcon={<EditIcon />} onClick={onOpen}>Edit Tally</Button>
       <EditTallyModal
         mode="Edit"
         initialValues={tally}
@@ -35,7 +35,7 @@ function AddEntryButton({ tally }: { tally: Tally }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
-      <Button w="auto" leftIcon={<AddIcon />} onClick={onOpen}>Add Entry</Button>
+      <Button w="100%" leftIcon={<AddIcon />} onClick={onOpen}>Add Entry</Button>
       <EditEntryModal
         mode="Add"
         initialValues={{ formattedDate: formattedDate(new Date()), value: 0 }}
@@ -108,8 +108,12 @@ export default function TallyDetail() {
   }
 
   return (
-    <VStack p="0.4rem" bg="white" borderRadius="lg" direction="column" w="100%" align="begin" position="sticky" top="3.5rem">
-      <Heading size="md">{tally.name}</Heading>
+    <VStack p="0.4rem" bg="white" borderRadius="lg" direction="column" w="100%" align="begin" position="sticky">
+      <HStack>
+        <Heading size="md">{tally.name}</Heading>
+        <Spacer />
+        <CloseButton as={Link} to="/tallies" />
+      </HStack>
       <HStack>
         <EditTallyButton tally={tally} />
         <AddEntryButton tally={tally} />

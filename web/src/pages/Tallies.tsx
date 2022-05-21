@@ -1,12 +1,12 @@
 import { AddIcon } from '@chakra-ui/icons';
 import {
-  Box, Button, HStack, useDisclosure,
+  Box, Button, HStack, useDisclosure, useMediaQuery, VStack,
 } from '@chakra-ui/react';
 import { useContext } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import EditTallyModal from '../components/EditTallyModal';
 import Header from '../components/Header';
-import TallyList from '../components/TallyList';
+import TallyRow from '../components/TallyRow';
 import { TallyServiceContext, TallyServiceProvider } from '../providers/TallyServiceProvider';
 import { UserProvider } from '../providers/UserProvider';
 import { TallyKind } from '../types';
@@ -29,16 +29,47 @@ function AddTallyButton() {
   );
 }
 
+function Contents() {
+  const tallyService = useContext(TallyServiceContext);
+  const location = useLocation().pathname;
+  const [useSplitLayout] = useMediaQuery('(min-width: 40rem)');
+
+  if (useSplitLayout) {
+    return (
+      <>
+        <HStack align="baseline" m="auto" maxW="max-content-width">
+          <VStack w="18rem">
+            {tallyService.tallies?.map((tally) => <TallyRow tally={tally} key={tally.id} />)}
+          </VStack>
+          <Outlet />
+        </HStack>
+        <AddTallyButton />
+      </>
+    );
+  }
+
+  if (location === '/tallies') {
+    return (
+      <>
+        <VStack w="100%">
+          {tallyService.tallies?.map((tally) => <TallyRow tally={tally} key={tally.id} />)}
+        </VStack>
+        <AddTallyButton />
+      </>
+    );
+  }
+
+  return <Outlet />;
+}
+
 export default function Tallies() {
   return (
     <UserProvider>
       <TallyServiceProvider>
         <Header />
-        <HStack align="baseline" m="auto" maxW="max-content-width" pt="3.5rem" pb="4.5rem">
-          <TallyList />
-          <Outlet />
-        </HStack>
-        <AddTallyButton />
+        <Box pt="3.5rem" pb="4.5rem">
+          <Contents />
+        </Box>
       </TallyServiceProvider>
     </UserProvider>
   );
