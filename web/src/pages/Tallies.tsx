@@ -32,12 +32,12 @@ function AddTallyButton() {
 function Contents() {
   const tallyService = useContext(TallyServiceContext);
   const location = useLocation().pathname;
-  const [useSplitLayout] = useMediaQuery('(min-width: 40rem)');
+  const [useSplitLayout] = useMediaQuery('(min-width: 45rem)');
 
   if (useSplitLayout) {
     return (
       <>
-        <HStack align="baseline" m="auto" maxW="max-content-width">
+        <HStack align="baseline">
           <VStack w="18rem">
             {tallyService.tallies?.map((tally) => <TallyRow tally={tally} key={tally.id} />)}
           </VStack>
@@ -71,7 +71,7 @@ export default function Tallies() {
     <UserProvider>
       <TallyServiceProvider>
         <Header />
-        <Box pt="3.5rem" pb="4.5rem">
+        <Box pt="3.5rem" pb="4.5rem" maxW="max-content-width" m="auto">
           <Contents />
         </Box>
       </TallyServiceProvider>
