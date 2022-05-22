@@ -18,8 +18,9 @@ export default function EditTallyModal({
             onConfirm(name, kind);
             onClose();
           }}
+          isInitialValid={false}
         >
-          {({ handleSubmit }) => (
+          {({ handleSubmit, isValid }) => (
             <form onSubmit={handleSubmit} autoComplete="off">
               <ModalBody>
                 <VStack spacing={4} align="begin">
@@ -30,6 +31,7 @@ export default function EditTallyModal({
                       id="name"
                       name="name"
                       variant="filled"
+                      validate={(s: string) => (s === '' ? 'Tally name cannot be empty' : undefined)}
                     />
                   </FormControl>
                   <Field name="kind">
@@ -52,7 +54,7 @@ export default function EditTallyModal({
               <ModalFooter>
                 <HStack>
                   <Button variant="ghost" mr="1rem" onClick={onClose}>Cancel</Button>
-                  <Button colorScheme="accent" type="submit">
+                  <Button colorScheme="accent" type="submit" disabled={!isValid}>
                     {mode === 'Add' ? 'Add Tally' : 'Done'}
                   </Button>
                 </HStack>
