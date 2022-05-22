@@ -110,7 +110,7 @@ export default function TallyDetail() {
   return (
     <VStack p="0.4rem" bg="white" borderRadius="lg" direction="column" w="100%" align="begin" position="sticky">
       <HStack>
-        <Heading size="md">{tally.name}</Heading>
+        <Heading size="md" noOfLines={1}>{tally.name}</Heading>
         <Spacer />
         <CloseButton as={Link} to="/tallies" />
       </HStack>
