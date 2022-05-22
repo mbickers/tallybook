@@ -71,7 +71,7 @@ export default function Tallies() {
     <UserProvider>
       <TallyServiceProvider>
         <Header />
-        <Box pt="3.5rem" pb="4.5rem" maxW="max-content-width" m="auto">
+        <Box pt="3rem" pb="4.5rem" maxW="max-content-width" m="auto">
           <Contents />
         </Box>
       </TallyServiceProvider>

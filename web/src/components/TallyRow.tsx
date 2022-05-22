@@ -57,7 +57,7 @@ export default function TallyRow({ tally }: { tally: Tally }) {
   return (
     <Flex w="inherit" p="0.4rem" bg="white" borderRadius="lg" direction="row" gap="0.2rem">
       <VStack align="begin">
-        <Heading size="md">{tally.name}</Heading>
+        <Heading size="md" lineHeight="base">{tally.name}</Heading>
         <TallyInput kind={tally.kind} value={todayValue} updateValue={updateTodayValue} />
       </VStack>
       <Spacer />
