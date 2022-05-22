@@ -7,7 +7,7 @@ import React, {
 import { Navigate } from 'react-router-dom';
 import { FirebaseContext } from './FirebaseProvider';
 
-export const UserContext = React.createContext<User | null>(null);
+export const UserContext = React.createContext<User>({} as User);
 
 export function UserProvider({ children }: { children: ReactNode }) {
   const firebase = useContext(FirebaseContext) as FirebaseApp;

@@ -1,7 +1,7 @@
 import { FirebaseApp, initializeApp } from 'firebase/app';
 import React, { ReactNode, useMemo } from 'react';
 
-export const FirebaseContext = React.createContext<FirebaseApp | null>(null);
+export const FirebaseContext = React.createContext<FirebaseApp>({} as FirebaseApp);
 
 export function FirebaseProvider({ children }: { children: ReactNode }) {
   const app = useMemo(() => {
