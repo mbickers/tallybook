@@ -16,7 +16,7 @@ function AddTallyButton() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
-    <Box position="fixed" bottom="1rem" right="calc(1rem + (100vw - var(--chakra-sizes-max-content-width)) / 2)">
+    <>
       <Button leftIcon={<AddIcon />} colorScheme="accent" onClick={onOpen}>Add a Tally</Button>
       <EditTallyModal
         mode="Add"
@@ -25,7 +25,7 @@ function AddTallyButton() {
         onConfirm={tallyService.addTally}
         onClose={onClose}
       />
-    </Box>
+    </>
   );
 }
 
@@ -43,7 +43,9 @@ function Contents() {
           </VStack>
           <Outlet />
         </HStack>
-        <AddTallyButton />
+        <Box position="fixed" bottom="1rem" right="calc(1rem + max((100vw - var(--chakra-sizes-max-content-width)) / 2, 0px))">
+          <AddTallyButton />
+        </Box>
       </>
     );
   }
@@ -54,7 +56,9 @@ function Contents() {
         <VStack w="100%">
           {tallyService.tallies?.map((tally) => <TallyRow tally={tally} key={tally.id} />)}
         </VStack>
-        <AddTallyButton />
+        <Box position="fixed" bottom="1rem" right="1rem">
+          <AddTallyButton />
+        </Box>
       </>
     );
   }
